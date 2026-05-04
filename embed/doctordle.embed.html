@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Doctordle — Embedded Game</title>
+	<meta name="robots" content="noindex, nofollow" />
+	<link rel="canonical" href="https://doctordle.net/" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<style>
+		body {
+			min-height: auto;
+		}
+
+		main {
+			padding-top: 1rem;
+			max-width: 1180px;
+			margin: 0 auto;
+		}
+	</style>
+	<script>
+		(function () {
+			try {
+				if (window.top === window.self) {
+					window.location.replace('../index.html');
+				}
+			} catch (error) {
+				window.location.replace('../index.html');
+			}
+		})();
+	</script>
+</head>
+<body>
+
+<main>
+	<div class="game-title">What's the Diagnosis?</div>
+
+	<div class="card-flip">
+		<div class="card-flip-inner" id="card-flip-inner">
+
+			<div class="card-face">
+				<div class="section-label">Clinical Scenario</div>
+				<ul class="clue-list" id="clue-list"></ul>
+			</div>
+
+			<div class="card-face card-back">
+				<h3>Diagnosis Summary</h3>
+				<p id="back-description"></p>
+				<div class="anki-row" id="anki-row">
+					<button class="anki-btn" id="anki1-btn" style="display:none">📋 Copy Step 1 Anki Tag</button>
+					<button class="anki-btn" id="anki2-btn" style="display:none">📋 Copy Step 2 Anki Tag</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div id="guess-history"></div>
+	<div id="result-msg"></div>
+	<button id="summary-btn">+ Diagnosis Summary</button>
+
+	<div class="input-area">
+		<div class="input-row">
+			<input type="text" id="guess-input" placeholder="Diagnosis…" autocomplete="off" />
+			<button id="submit-btn">Submit</button>
+		</div>
+		<div id="suggestions"></div>
+	</div>
+
+	<p style="font-size:0.78rem;color:#a07050;text-align:center;margin-top:0.5rem">
+		You have <strong>6 guesses</strong>. Each wrong guess reveals a new clue. Leave blank to skip and get the next clue.
+	</p>
+</main>
+
+<div class="modal-overlay" id="modal-overlay">
+	<div class="modal-box">
+		<button class="modal-close" id="modal-close">✕</button>
+		<div id="modal-body"></div>
+		<div id="modal-actions" class="modal-actions"></div>
+		<div id="copy-confirm">✓ Copied to clipboard!</div>
+	</div>
+</div>
+
+<div id="cookie-banner">
+	<p>🍪 We use cookies to save your progress and prevent cheating. By playing, you agree to our use of essential cookies.</p>
+	<div class="cookie-btns">
+		<button class="btn-accept" id="cookie-accept">Accept &amp; Play</button>
+		<button class="btn-decline" id="cookie-decline">Decline</button>
+	</div>
+</div>
+
+<script src="../js/games.js"></script>
+<script src="../js/game.js"></script>
+</body>
+</html>

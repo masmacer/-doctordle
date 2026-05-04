@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Doctordle</title>
+  <meta name="description" content="Doctordle is a diagnosis guessing game built around daily clinical cases. Read the clues, test your instincts, and see how quickly you can land on the right answer." />
+  <link rel="canonical" href="https://doctordle.net/" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/shell.css" />
+  <link rel="icon" type="image/png" href="/images/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Doctordle" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Doctordle",
+      "url": "https://doctordle.net/",
+      "description": "Doctordle is a diagnosis guessing game built around daily clinical cases."
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Do I need medical training to play?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. People with more medical background will recognize some cases faster, but the format is simple enough for anyone to try. The clue-by-clue structure makes the page readable even if you are mostly playing for the puzzle."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there more than one case per day?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The homepage focuses on the daily case. If you want to keep going after that, Doctordle Endless gives you more cases in both Challenge Mode and Practice Mode."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What makes Doctordle fun?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is the mix of pattern recognition, timing, and restraint. The most satisfying wins are the ones where you trust the early clues and get there before the full case unfolds."
+          }
+        }
+      ]
+    }
+  </script>
+</head>
+<body class="shell-page">
+
+<!-- ===== Header ===== -->
+<header>
+  <a class="logo" href="/" aria-label="Doctordle home">
+    <img src="/images/logo.webp" alt="Doctordle" />
+    <span class="logo-wordmark">Doctordle</span>
+  </a>
+  <nav class="header-btns" aria-label="Primary">
+    <a class="header-btn" href="/games/doctordle-endless">Endless</a>
+  </nav>
+</header>
+
+<!-- ===== Main ===== -->
+<main>
+  <div class="embed-shell">
+    <iframe
+      class="embed-frame"
+      src="/embed/doctordle.embed.html"
+      title="Doctordle Game"
+      loading="eager"
+      referrerpolicy="same-origin"
+    ></iframe>
+    <p class="embed-note">Six guesses. One new clue each round. The faster you solve it, the better it feels.</p>
+    <div class="page-sections page-sections--home">
+      <section class="content-block" aria-labelledby="home-title">
+        <section class="page-intro page-intro--wide page-intro--compact">
+          <h1 id="home-title">Guess the diagnosis, one clue at a time.</h1>
+          <h2>The daily case gives you one clinical scenario and up to six guesses to get it right.</h2>
+          <p>Doctordle turns a clinical vignette into a quick daily puzzle: read the clue, trust your instincts, and decide how early you want to commit.</p>
+        </section>
+
+        <nav class="content-nav" aria-label="On this page">
+          <ul class="content-nav__list">
+            <li><a href="#how-it-works">How to Play</a></li>
+            <li><a href="#what-is-doctordle">What is Doctordle?</a></li>
+            <li><a href="#daily-vs-endless">Daily vs Endless</a></li>
+            <li><a href="#why-people-play">Why People Play</a></li>
+            <li><a href="#home-faq">FAQ</a></li>
+          </ul>
+        </nav>
+      </section>
+
+      <section class="content-block" aria-labelledby="how-it-works">
+        <h2 id="how-it-works">How to Play</h2>
+        <div class="flow-steps" aria-label="How to play flow">
+          <div class="flow-step">
+            <div class="flow-step__number">1</div>
+            <h3>Read the clue</h3>
+            <p>Start with the opening lines of the case and decide whether you already see the diagnosis.</p>
+          </div>
+          <div class="flow-step">
+            <div class="flow-step__number">2</div>
+            <h3>Guess or hold</h3>
+            <p>Each miss reveals another detail, so you can either trust the early read or wait for more information.</p>
+          </div>
+          <div class="flow-step">
+            <div class="flow-step__number">3</div>
+            <h3>Check the result</h3>
+            <p>Land the diagnosis as early as you can, then review the answer summary once the round is over.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-block" aria-labelledby="what-is-doctordle">
+        <h2 id="what-is-doctordle">What is Doctordle?</h2>
+        <p>Doctordle is a diagnosis guessing game built around short clinical cases. Instead of solving a trivia prompt or a word clue, you read a patient scenario and try to name the diagnosis before the full picture is revealed.</p>
+        <p>That makes the daily case feel like a compact puzzle with just enough tension: sometimes the answer is obvious from the first clue, and sometimes it takes a few more details before you want to commit.</p>
+      </section>
+
+      <section class="content-block" aria-labelledby="daily-vs-endless">
+        <h2 id="daily-vs-endless">Daily Case vs Endless Mode</h2>
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Focus</th>
+              <th>Daily Case</th>
+              <th>Endless Mode</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Best for</td>
+              <td>A quick daily check-in and one clean featured puzzle.</td>
+              <td>Longer sessions when you want to keep the format going.</td>
+            </tr>
+            <tr>
+              <td>Feel</td>
+              <td>Tighter, more ritual-like, and built around one shot per day.</td>
+              <td>More replayable, with room for streaks or lower-pressure practice.</td>
+            </tr>
+            <tr>
+              <td>Main goal</td>
+              <td>Get the daily diagnosis in as few clues as possible.</td>
+              <td>Keep playing beyond the daily round and find your pace.</td>
+            </tr>
+            <tr>
+              <td>When to choose it</td>
+              <td>When you want the main daily round and then move on.</td>
+              <td>When you want more cases after finishing the homepage game.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="content-block" aria-labelledby="why-people-play">
+        <h2 id="why-people-play">Why people keep playing</h2>
+        <p>The appeal is not just that the cases are medical. It is that every round creates a simple decision point: guess now, or wait for the next clue. That push and pull turns a short clinical prompt into something competitive, replayable, and easy to share.</p>
+        <p>Doctordle also works for different kinds of players. Some use it as a quick daily ritual. Some enjoy spotting the diagnosis fast. Others just like the small hit of getting a clinical puzzle right before the full case unfolds.</p>
+      </section>
+      <section class="content-block" aria-labelledby="home-faq">
+        <h2 id="home-faq">Frequently asked questions</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h3>Do I need medical training to play?</h3>
+            <p>No. People with more medical background will recognize some cases faster, but the format is simple enough for anyone to try. The clue-by-clue structure makes the page readable even if you are mostly playing for the puzzle.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Is there more than one case per day?</h3>
+            <p>The homepage focuses on the daily case. If you want to keep going after that, Doctordle Endless gives you more cases in both Challenge Mode and Practice Mode.</p>
+          </div>
+          <div class="faq-item">
+            <h3>What makes Doctordle fun?</h3>
+            <p>It is the mix of pattern recognition, timing, and restraint. The most satisfying wins are the ones where you trust the early clues and get there before the full case unfolds.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="site-footer">
+    <a class="site-footer__brand" href="/" aria-label="Doctordle home">
+      <img src="/images/logo.webp" alt="Doctordle" />
+      <span class="site-footer__wordmark">Doctordle</span>
+    </a>
+    <nav class="site-footer__links" aria-label="Footer">
+      <a href="/">Home</a>
+      <a href="/games/doctordle-endless">Endless</a>
+      <a href="/privacy-policy">Privacy Policy</a>
+      <a href="/terms.html">Terms</a>
+      <a href="mailto:hello@doctordle.net">Contact</a>
+    </nav>
+    <p class="site-footer__note">*Doctordle is for entertainment only and does not constitute medical advice. If you have any health concerns, please consult a medical professional.</p>
+  </div>
+</footer>
+</body>
+</html>

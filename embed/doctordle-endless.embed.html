@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Doctordle — Endless Embedded Game</title>
+	<meta name="robots" content="noindex, nofollow" />
+	<link rel="canonical" href="https://doctordle.net/games/doctordle-endless.html" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script>
+		(function () {
+			try {
+				if (window.top === window.self) {
+					window.location.replace('../games/doctordle-endless.html');
+				}
+			} catch (error) {
+				window.location.replace('../games/doctordle-endless.html');
+			}
+		})();
+	</script>
+	<style>
+		body {
+			min-height: auto;
+		}
+
+		main {
+			padding-top: 1rem;
+			max-width: 1180px;
+			margin: 0 auto;
+		}
+
+		.endless-toolbar {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 0.65rem;
+			margin-bottom: 0.75rem;
+		}
+
+		.mode-toggle-btn,
+		.status-chip,
+		.utility-btn,
+		.next-case-btn {
+			border-radius: 10px;
+			font-weight: 700;
+			cursor: pointer;
+			transition: transform 0.15s, background 0.2s, border-color 0.2s;
+		}
+
+		.mode-toggle-btn:hover,
+		.utility-btn:hover,
+		.next-case-btn:hover {
+			transform: translateY(-1px);
+		}
+
+		.mode-toggle-btn {
+			border: 2px solid #d4a87a;
+			background: #fff;
+			color: #7b3f00;
+			padding: 0.7rem 1rem;
+		}
+
+		.mode-toggle-btn.active {
+			background: #7b3f00;
+			border-color: #7b3f00;
+			color: #fff;
+		}
+
+		.utility-btn {
+			border: 2px solid #c7d8e8;
+			background: #f4f8fc;
+			color: #295a88;
+			padding: 0.7rem 0.95rem;
+		}
+
+		.endless-statusbar {
+			display: grid;
+			grid-template-columns: 1.05fr 1fr 1fr 1fr;
+			gap: 0.55rem;
+			margin-bottom: 0.65rem;
+		}
+
+		.status-chip {
+			background: #fff8f2;
+			border: 2px solid #e1bf98;
+			border-radius: 12px;
+			padding: 0.52rem 0.56rem;
+			text-align: center;
+			color: #7b3f00;
+			min-height: 56px;
+		}
+
+		.status-chip:hover {
+			background: #fff4e9;
+		}
+
+		.status-chip.is-ghost {
+			cursor: default;
+		}
+
+		.status-chip.is-info {
+			background: #f9efe4;
+		}
+
+		.status-chip.is-action {
+			background: #eef6ff;
+			border-color: #b8d1ee;
+			color: #295a88;
+		}
+
+		.status-chip-label {
+			display: block;
+			font-size: 0.62rem;
+			text-transform: uppercase;
+			letter-spacing: 0.07em;
+			color: #9e7552;
+			margin-bottom: 0.15rem;
+		}
+
+		.status-chip-value {
+			display: block;
+			font-size: 0.9rem;
+			font-weight: 700;
+			color: #7b3f00;
+			line-height: 1.1;
+		}
+
+		.status-chip-subtext {
+			display: block;
+			font-size: 0.62rem;
+			margin-top: 0.1rem;
+			line-height: 1.1;
+			color: #8a6244;
+		}
+
+		.challenge-share-card {
+			background: linear-gradient(135deg, #7b3f00 0%, #a85a00 52%, #f2b66d 100%);
+			border-radius: 18px;
+			padding: 1.2rem;
+			color: #fff8f2;
+			box-shadow: 0 10px 26px rgba(123, 63, 0, 0.22);
+		}
+
+		.challenge-share-kicker {
+			font-size: 0.74rem;
+			letter-spacing: 0.14em;
+			text-transform: uppercase;
+			opacity: 0.82;
+			margin-bottom: 0.45rem;
+		}
+
+		.challenge-share-title {
+			font-size: 1.55rem;
+			line-height: 1.08;
+			font-weight: 800;
+			margin-bottom: 0.35rem;
+		}
+
+		.challenge-share-subtitle {
+			font-size: 0.95rem;
+			line-height: 1.5;
+			opacity: 0.92;
+			margin-bottom: 0.95rem;
+		}
+
+		.challenge-share-grid {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 0.55rem;
+		}
+
+		.challenge-share-stat {
+			background: rgba(255, 248, 242, 0.16);
+			border: 1px solid rgba(255, 248, 242, 0.22);
+			border-radius: 12px;
+			padding: 0.7rem;
+			text-align: center;
+		}
+
+		.challenge-share-stat-label {
+			display: block;
+			font-size: 0.68rem;
+			letter-spacing: 0.09em;
+			text-transform: uppercase;
+			opacity: 0.8;
+			margin-bottom: 0.25rem;
+		}
+
+		.challenge-share-stat-value {
+			display: block;
+			font-size: 1.05rem;
+			font-weight: 800;
+		}
+
+		.challenge-share-footer {
+			margin-top: 0.95rem;
+			font-size: 0.8rem;
+			opacity: 0.88;
+		}
+
+		.next-case-btn {
+			display: none;
+			width: 100%;
+			padding: 0.8rem;
+			margin-bottom: 0.9rem;
+			border: none;
+			background: #2e7d32;
+			color: #fff;
+			font-size: 0.96rem;
+		}
+
+		@media (max-width: 560px) {
+			main {
+				max-width: none;
+			}
+
+			.endless-toolbar {
+				grid-template-columns: 1fr;
+			}
+
+			.endless-statusbar {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
+
+			.challenge-share-grid {
+				grid-template-columns: 1fr;
+			}
+		}
+	</style>
+</head>
+<body>
+<main>
+	<div class="endless-toolbar">
+		<button class="mode-toggle-btn active" id="challenge-mode-btn">Challenge Mode</button>
+		<button class="mode-toggle-btn" id="practice-mode-btn">Practice Mode</button>
+		<button class="utility-btn" id="stats-btn">Stats</button>
+	</div>
+
+	<div class="endless-statusbar">
+		<button class="status-chip is-ghost" type="button" id="status-mode-chip">
+			<span class="status-chip-label">Current Mode</span>
+			<span class="status-chip-value" id="status-mode">Challenge</span>
+		</button>
+		<button class="status-chip is-info" type="button" id="status-primary-chip">
+			<span class="status-chip-label" id="status-primary-label">Current Streak</span>
+			<span class="status-chip-value" id="status-primary-value">0</span>
+			<span class="status-chip-subtext">Tap for stats</span>
+		</button>
+		<button class="status-chip is-info" type="button" id="status-secondary-chip">
+			<span class="status-chip-label" id="status-secondary-label">Best Streak</span>
+			<span class="status-chip-value" id="status-secondary-value">0</span>
+			<span class="status-chip-subtext">Career high</span>
+		</button>
+		<button class="status-chip is-action" type="button" id="status-remaining-chip">
+			<span class="status-chip-label">Cases Left In Cycle</span>
+			<span class="status-chip-value" id="status-remaining">0</span>
+			<span class="status-chip-subtext">Next case ready</span>
+		</button>
+	</div>
+
+	<div class="card-flip">
+		<div class="card-flip-inner" id="card-flip-inner">
+			<div class="card-face">
+				<div class="section-label">Clinical Scenario</div>
+				<ul class="clue-list" id="clue-list"></ul>
+			</div>
+
+			<div class="card-face card-back">
+				<h3>Diagnosis Summary</h3>
+				<p id="back-description"></p>
+				<div class="anki-row" id="anki-row">
+					<button class="anki-btn" id="anki1-btn" style="display:none">📋 Copy Step 1 Anki Tag</button>
+					<button class="anki-btn" id="anki2-btn" style="display:none">📋 Copy Step 2 Anki Tag</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="guess-history"></div>
+	<div id="result-msg"></div>
+	<button id="summary-btn">+ Diagnosis Summary</button>
+	<button class="next-case-btn" id="next-case-btn">Next Case</button>
+
+	<div class="input-area">
+		<div class="input-row">
+			<input type="text" id="guess-input" placeholder="Diagnosis…" autocomplete="off" />
+			<button id="submit-btn">Submit</button>
+		</div>
+		<div id="suggestions"></div>
+	</div>
+
+	<p style="font-size:0.78rem;color:#a07050;text-align:center;margin-top:0.5rem">
+		You have <strong>6 guesses</strong>. Each wrong guess reveals a new clue. Leave blank to skip and get the next clue.
+	</p>
+</main>
+
+<div class="modal-overlay" id="modal-overlay">
+	<div class="modal-box">
+		<button class="modal-close" id="modal-close">✕</button>
+		<div id="modal-body"></div>
+		<div id="modal-actions" class="modal-actions"></div>
+		<div id="copy-confirm">✓ Copied to clipboard!</div>
+	</div>
+</div>
+
+<script src="../js/games.js"></script>
+<script src="../js/game-endless.js"></script>
+</body>
+</html>

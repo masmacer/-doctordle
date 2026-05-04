@@ -1,0 +1,13 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Local temp / scratch files
+temp_*.txt
+*.tmp
+*.bak
+*.orig
+
+# Local source material not needed for deploy
+archive_diseases.csv
