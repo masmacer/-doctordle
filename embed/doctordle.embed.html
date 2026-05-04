@@ -6,7 +6,7 @@
 	<title>Doctordle — Embedded Game</title>
 	<meta name="robots" content="noindex, nofollow" />
 	<link rel="canonical" href="https://doctordle.net/" />
-	<link rel="stylesheet" href="../css/style.css" />
+	<link rel="stylesheet" href="/css/style.css" />
 	<style>
 		body {
 			min-height: auto;
@@ -20,11 +20,7 @@
 	</style>
 	<script>
 		(function () {
-			try {
-				if (window.top === window.self) {
-					window.location.replace('../index.html');
-				}
-			} catch (error) {
+			if (window.parent === window) {
 				window.location.replace('../index.html');
 			}
 		})();
@@ -89,7 +85,7 @@
 	</div>
 </div>
 
-<script src="../js/games.js"></script>
-<script src="../js/game.js"></script>
+<script src="/js/games.js"></script>
+<script src="/js/game.js"></script>
 </body>
 </html>
