@@ -341,7 +341,7 @@
   function copyAnki(button, tag) {
     if (!tag) return;
     const original = button.textContent;
-    navigator.clipboard.writeText(tag).then(() => {
+    navigator.clipboard.writeText('tag:' + tag).then(() => {
       button.textContent = 'Copied!';
       setTimeout(() => {
         button.textContent = original;
@@ -586,7 +586,7 @@
       const button = document.createElement('button');
       button.className = 'btn-share';
       button.textContent = action.label;
-      button.addEventListener('click', action.onClick);
+      button.addEventListener('click', () => action.onClick(button));
       actionsWrap.appendChild(button);
     });
 
@@ -610,14 +610,22 @@
     return `Doctordle Endless (${currentMode})\n🏥 ${emojis.join(' ')}\nChallenge best streak: ${stats.bestStreak}\n\nhttps://doctordle.org`;
   }
 
-  function copyResult(text) {
+  function copyResult(text, btn) {
     navigator.clipboard.writeText(text).then(() => {
+      if (btn) {
+        btn.textContent = '✓ Copied!';
+        setTimeout(() => { btn.textContent = '📋 Copy Result'; }, 2000);
+      }
       const confirm = copyConfirm();
-      if (!confirm) return;
-      confirm.style.display = 'block';
-      setTimeout(() => {
-        confirm.style.display = 'none';
-      }, 1800);
+      if (confirm) {
+        confirm.style.display = 'block';
+        setTimeout(() => { confirm.style.display = 'none'; }, 1800);
+      }
+    }).catch(() => {
+      if (btn) {
+        btn.textContent = '⚠ Copy failed';
+        setTimeout(() => { btn.textContent = '📋 Copy Result'; }, 2000);
+      }
     });
   }
 
@@ -672,7 +680,7 @@
         }] : []),
         {
           label: '📋 Copy Result',
-          onClick: () => copyResult(shareText)
+          onClick: (btn) => copyResult(shareText, btn)
         }
       ]
     );

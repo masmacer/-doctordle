@@ -282,8 +282,13 @@
         btn.textContent = '📋 Copy Result';
         btn.onclick = () => {
           navigator.clipboard.writeText(shareText).then(() => {
+            btn.textContent = '✓ Copied!';
+            setTimeout(() => { btn.textContent = '📋 Copy Result'; }, 2000);
             const cc = copyConfirm();
             if (cc) { cc.style.display = 'block'; setTimeout(() => cc.style.display = 'none', 2000); }
+          }).catch(() => {
+            btn.textContent = '⚠ Copy failed';
+            setTimeout(() => { btn.textContent = '📋 Copy Result'; }, 2000);
           });
         };
         actions.appendChild(btn);
@@ -425,7 +430,7 @@
   // ── Anki copy ────────────────────────────────────────────────────
   function copyAnki(btn, tag) {
     const orig = btn.textContent;
-    navigator.clipboard.writeText(tag).then(() => {
+    navigator.clipboard.writeText('tag:' + tag).then(() => {
       btn.textContent = 'Copied!';
       setTimeout(() => btn.textContent = orig, 2000);
     });

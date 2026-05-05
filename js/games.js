@@ -1556,7 +1556,7 @@ const GAMES = [
       "Chest imaging shows atypical pneumonia, and liver enzymes are mildly elevated.",
       "Blood cultures remain negative.",
       "Serology supports infection by an obligate intracellular organism.",
-      "This pathogen is acquired by inhalation of aerosols from infected animal products and classically causes Q fever."
+      "This obligate intracellular organism acquired from animal birth products is not culturable by standard blood culture methods."
     ],
     description: "Coxiella burnetii is an obligate intracellular organism transmitted from livestock, especially during parturition. It causes Q fever, which may present with atypical pneumonia, hepatitis, or chronic culture-negative endocarditis.",
     ankiStep1: "",
@@ -1676,7 +1676,7 @@ const GAMES = [
       "Exam shows a fluctuant tender collection superficial to the patella with preserved knee range of motion.",
       "There is no joint effusion.",
       "Aspiration yields inflammatory fluid from the bursa rather than the joint space.",
-      "This overuse injury is commonly called housemaid's knee."
+      "Chronic repetitive kneeling compresses and irritates the fluid-filled sac overlying the patella."
     ],
     description: "Prepatellar bursitis is inflammation of the bursa overlying the patella, often caused by repetitive kneeling or direct trauma. Septic bursitis should be considered if there is marked erythema, warmth, or systemic symptoms.",
     ankiStep1: "",
@@ -1736,7 +1736,7 @@ const GAMES = [
       "Cardiac imaging identifies a congenital heart defect.",
       "Genital hypoplasia is noted.",
       "Developmental delays become apparent during infancy.",
-      "This syndrome combines coloboma, heart defects, choanal atresia, growth-retardation, genital anomalies, and ear abnormalities."
+      "Mutation in a chromatin-remodeling gene underlies this congenital syndrome affecting multiple organ systems."
     ],
     description: "CHARGE syndrome is a congenital disorder often caused by CHD7 mutations. It is characterized by coloboma, heart defects, choanal atresia, growth/developmental delay, genital abnormalities, and ear anomalies.",
     ankiStep1: "",
@@ -3450,8 +3450,8 @@ const GAMES = [
       "This X-linked enzyme deficiency impairs protection against oxidative stress."
     ],
     description: "G6PD deficiency causes episodic oxidative hemolysis after triggers such as sulfa drugs, antimalarials, infection, or fava beans. It is one of the most common enzyme deficiencies worldwide.",
-    ankiStep1: "",
-    ankiStep2: ""
+    ankiStep1: "#AK_Step1_v12::#FirstAid::01_Biochem::06_Metabolism::17_Glucose-6-phosphate_dehydrogenase_deficiency::*G6PD_Deficiency",
+    ankiStep2: "#AK_Step2_v12::#FirstAid::07_Hematology::04_Red_Blood_Cell_Disorders::05_G6PD_Deficiency"
   },
   {
     id: 231,
@@ -3916,7 +3916,7 @@ const GAMES = [
       "This vascular territory commonly causes contralateral homonymous hemianopia and visual association deficits."
     ],
     description: "PCA stroke often causes contralateral homonymous hemianopia, visual agnosia, alexia without agraphia, or memory impairment depending on laterality and extent. Motor findings are often minimal.",
-    ankiStep1: "",
+    ankiStep1: "#AK_Step1_v12::#Pixorize::05_Neuroanatomy::10_Strokes::03_Posterior_Cerebral_Artery_(PCA)",
     ankiStep2: ""
   },
   {
@@ -3931,7 +3931,7 @@ const GAMES = [
       "This stroke subtype is associated with lipohyalinosis from chronic hypertension."
     ],
     description: "Lacunar infarcts are small deep ischemic strokes affecting penetrating vessels and commonly produce pure motor, pure sensory, or ataxic-hemiparesis syndromes without cortical findings.",
-    ankiStep1: "",
+    ankiStep1: "#AK_Step1_v12::#Bootcamp::Neurology::20_Ischemic_Cerebrovascular_Accidents::04_Lacunar_Infarction",
     ankiStep2: ""
   },
   {
@@ -3947,7 +3947,7 @@ const GAMES = [
     ],
     description: "Benzodiazepine withdrawal can cause autonomic hyperactivity, anxiety, insomnia, perceptual disturbances, and seizures. Gradual tapering is essential after prolonged use.",
     ankiStep1: "",
-    ankiStep2: ""
+    ankiStep2: "#AK_Step2_v12::#Subjects::*Pharm_Extra::Neuro/Psych::Benzodiazepines"
   },
   {
     id: 264,
@@ -3961,8 +3961,8 @@ const GAMES = [
       "This highly lethal malignancy often presents late and is associated with smoking and chronic pancreatitis."
     ],
     description: "Pancreatic ductal adenocarcinoma commonly presents with weight loss, abdominal pain, and obstructive jaundice when located in the pancreatic head. It has a poor prognosis because disease is often advanced at diagnosis.",
-    ankiStep1: "",
-    ankiStep2: ""
+    ankiStep1: "#AK_Step1_v12::#Bootcamp::Gastroenterology::07_Pancreatic_and_Biliary_Pathology::04_Pancreatic_Malignancies",
+    ankiStep2: "#AK_Step2_v12::#FirstAid::06_Gastrointestinal::12_Pancreatic_Disease::04_Pancreatic_Cancer"
   },
   {
     id: 265,
@@ -3976,8 +3976,8 @@ const GAMES = [
       "Renal hypoperfusion rather than intrinsic parenchymal injury explains the laboratory pattern."
     ],
     description: "Pre-renal AKI is caused by decreased renal perfusion from hypovolemia, heart failure, cirrhosis, or effective arterial underfilling. Tubules remain intact initially, so urine is concentrated and sodium avidly retained.",
-    ankiStep1: "",
-    ankiStep2: ""
+    ankiStep1: "#AK_Step1_v12::#Bootcamp::Nephrology::12_Kidney_Injury::02_Prerenal_AKI",
+    ankiStep2: "#AK_Step2_v12::#Subjects::Nephrology_&_Urology::01_Kidneys::Acute_Kidney_Injury::Prerenal_Failure"
   },
   {
     id: 266,
@@ -3991,8 +3991,8 @@ const GAMES = [
       "This complication is strongly associated with prematurity."
     ],
     description: "Neonatal intraventricular hemorrhage usually occurs in premature infants because of fragile germinal matrix vasculature. Presentation can range from subtle instability to seizures and hydrocephalus.",
-    ankiStep1: "",
-    ankiStep2: ""
+    ankiStep1: "#AK_Step1_v12::#Bootcamp::Neurology::21_Aneurysms_and_Intracranial_Hemorrhage::06_Intraventricular_Hemorrhage",
+    ankiStep2: "#AK_Step2_v12::#Subjects::Neurology::06_Intracranial_Hemorrhage::Neonatal_Intraventricular_Hemorrhage"
   },
   {
     id: 267,
@@ -4006,8 +4006,8 @@ const GAMES = [
       "This postoperative complication results from alveolar collapse due to hypoventilation."
     ],
     description: "Atelectasis is collapse of alveoli causing impaired gas exchange and postoperative hypoxemia, especially after abdominal or thoracic surgery. Incentive spirometry and mobilization are key preventive measures.",
-    ankiStep1: "",
-    ankiStep2: ""
+    ankiStep1: "#AK_Step1_v12::#Physeo::11_Pathology::03_Pulmonary_Pathology::16_Atelectasis",
+    ankiStep2: "#AK_Step2_v12::#Subjects::Pulmonology::05_Lungs::Atelectasis"
   },
   {
     id: 268,
@@ -4021,8 +4021,8 @@ const GAMES = [
       "This symptom commonly reflects vascular and neurogenic impairment of penile blood flow and signaling."
     ],
     description: "Erectile dysfunction has vascular, neurogenic, psychogenic, endocrine, and medication-related causes. Diabetes and atherosclerotic disease are especially important organic contributors.",
-    ankiStep1: "",
-    ankiStep2: ""
+    ankiStep1: "#AK_Step1_v12::#Bootcamp::Psychiatry::07_Sleep_and_Psychosomatic_Conditions::04_Erectile_Dysfunction",
+    ankiStep2: "#AK_Step2_v12::#FirstAid::13_Psych::12_Sexual_Disorders::04_Sexual_Dysfunction"
   },
   {
     id: 269,
@@ -4036,8 +4036,8 @@ const GAMES = [
       "Retinitis can threaten vision if untreated."
     ],
     description: "CMV causes important disease in transplant recipients and advanced HIV, including retinitis, colitis, esophagitis, and systemic viral syndrome. Congenital infection is also a major cause of neonatal morbidity.",
-    ankiStep1: "",
-    ankiStep2: ""
+    ankiStep1: "#AK_Step1_v12::#FirstAid::03_Microbiology::05_Virology::05_DNA_viruses::*Cytomegalovirus",
+    ankiStep2: "#AK_Step2_v12::#FirstAid::16_Multisystem::05_Human_Immunodeficiency_Virus::09_Cytomegalovirus"
   },
   {
     id: 270,
@@ -4051,8 +4051,8 @@ const GAMES = [
       "This chronic immune-mediated disease is strongly associated with atopy."
     ],
     description: "Eosinophilic esophagitis is an atopy-associated inflammatory disorder causing dysphagia and food impaction. Treatment often includes proton pump inhibitors, swallowed topical steroids, and dietary elimination.",
-    ankiStep1: "",
-    ankiStep2: ""
+    ankiStep1: "#AK_Step1_v12::#FirstAid::09_Gastrointestinal::04_Pathology::03_Other_esophageal_pathologies::02_Esophagitis::*Eosinophilic_Esophagitis",
+    ankiStep2: "#AK_Step2_v12::#FirstAid::06_Gastrointestinal::02_Esophageal_Disease::04_Eosinophilic_Esophagitis"
   },
   {
     id: 271,
@@ -4066,8 +4066,8 @@ const GAMES = [
       "This acute coronary syndrome involves myocardial necrosis without ST elevation."
     ],
     description: "NSTEMI is defined by myocardial ischemia with elevated cardiac biomarkers but no ST-elevation pattern on ECG. Management includes antiplatelet therapy, anticoagulation, and risk-based invasive evaluation.",
-    ankiStep1: "",
-    ankiStep2: ""
+    ankiStep1: "#AK_Step1_v12::#B&B::06_Cardio::02_Cardiac_Ischemia::05_Unstable_Angina/NSTEMI",
+    ankiStep2: "#AK_Step2_v12::#SketchyIM::01_Cardiology::01_Ischemic_Heart_Disease::05_Unstable_Angina/NSTEMI"
   },
   {
     id: 272,
@@ -4081,8 +4081,8 @@ const GAMES = [
       "This disorder is caused by defective dynein arms in motile cilia."
     ],
     description: "Primary ciliary dyskinesia causes impaired mucociliary clearance leading to chronic sinopulmonary infection. Kartagener syndrome refers to the triad of bronchiectasis, sinusitis, and situs inversus.",
-    ankiStep1: "",
-    ankiStep2: ""
+    ankiStep1: "#AK_Step1_v12::#FirstAid::01_Biochem::02_Cellular::09_Cilia_structure::*Kartagener_Syndrome",
+    ankiStep2: "#AK_Step2_v12::#Subjects::Pulmonology::05_Lungs::Embryology::Kartagener_Syndrome"
   },
   {
     id: 273,
@@ -4096,7 +4096,7 @@ const GAMES = [
       "This neoplasm arises from Sertoli cells rather than germ cells."
     ],
     description: "Sertoli cell tumors are uncommon testicular sex cord-stromal tumors that may secrete estrogen and cause gynecomastia. Most are benign, but some can behave malignantly.",
-    ankiStep1: "",
+    ankiStep1: "#AK_Step1_v12::#Physeo::11_Pathology::09_Reproductive_Pathology::03_Testicular_Tumors",
     ankiStep2: ""
   },
   {
@@ -4111,8 +4111,8 @@ const GAMES = [
       "This protozoan is transmitted by ingestion of contaminated water."
     ],
     description: "Cryptosporidium causes watery diarrhea, especially in patients with AIDS or other immunocompromising conditions. Infection is commonly waterborne and diagnosed by stool antigen testing or acid-fast stain.",
-    ankiStep1: "",
-    ankiStep2: ""
+    ankiStep1: "#AK_Step1_v12::#FirstAid::03_Microbiology::04_Parasitology::01_Protozoa-gastrointestinal_infections::*Cryptosporidium",
+    ankiStep2: "#AK_Step2_v12::#Subjects::Microbiology::04_Parasites::01_Intestinal_Protozoa::Cryptosporidium"
   },
   {
     id: 275,
@@ -4126,8 +4126,8 @@ const GAMES = [
       "This condition results from deficiency of brush-border lactase."
     ],
     description: "Lactose intolerance is caused by reduced lactase activity in the small intestine, leading to osmotic diarrhea and gas after dairy ingestion. Management centers on dietary modification and lactase supplementation.",
-    ankiStep1: "",
-    ankiStep2: ""
+    ankiStep1: "#AK_Step1_v12::#FirstAid::01_Biochem::06_Metabolism::21_Lactase_deficiency::*Lactose_Intolerance",
+    ankiStep2: "#AK_Step2_v12::#Subjects::Gastroenterology::05_Small_Intestine::Malabsorption_Syndromes::Lactose_Intolerance"
   },
   {
     id: 276,
@@ -4141,8 +4141,8 @@ const GAMES = [
       "The toxin blocks acetylcholine release at the neuromuscular junction."
     ],
     description: "Botulism causes a symmetric descending flaccid paralysis due to presynaptic inhibition of acetylcholine release. Foodborne botulism follows ingestion of preformed toxin, while infant botulism follows ingestion of spores.",
-    ankiStep1: "",
-    ankiStep2: ""
+    ankiStep1: "#AK_Step1_v12::#FirstAid::03_Microbiology::02_Clinical_Bacteriology::15_Clostridia::02_Clostridium_botulinum",
+    ankiStep2: "#AK_Step2_v12::#Subjects::Microbiology::01_Bacteria::02_Gram_Positive_Bacilli::Clostridium_Botulinum"
   },
   {
     id: 277,
@@ -4156,8 +4156,8 @@ const GAMES = [
       "This congenital pure red cell aplasia often presents in early infancy."
     ],
     description: "Diamond-Blackfan anemia is a congenital ribosomopathy causing pure red cell aplasia, macrocytic anemia, and congenital anomalies. Many patients require steroids or transfusion support.",
-    ankiStep1: "",
-    ankiStep2: ""
+    ankiStep1: "#AK_Step1_v12::#FirstAid::10_Hematology_and_Oncology::04_Pathology::08_Macrocytic_anemias::*Nonmegaloblastic_Macrocytic_Anemia::Diamond-Blackfan",
+    ankiStep2: "#AK_Step2_v12::#FirstAid::12_Pediatrics::10_Pediatric_Hematology::01_Diamond-Blackfan_Anemia"
   },
   {
     id: 278,
@@ -4171,7 +4171,7 @@ const GAMES = [
       "This syndrome results from increased resistance to portal blood flow, most often from cirrhosis."
     ],
     description: "Portal hypertension produces varices, splenomegaly, ascites, and collateral venous circulation. Cirrhosis is the most common cause, though prehepatic and posthepatic causes also exist.",
-    ankiStep1: "",
+    ankiStep1: "#AK_Step1_v12::#FirstAid::09_Gastrointestinal::04_Pathology::31_Cirrhosis_and_portal_hypertension::*Portal_Hypertension",
     ankiStep2: ""
   },
   {
@@ -4186,8 +4186,8 @@ const GAMES = [
       "This congenital narrowing of the aorta is associated with bicuspid aortic valve and Turner syndrome."
     ],
     description: "Coarctation of the aorta causes upper-extremity hypertension with diminished lower-extremity perfusion. Long-standing disease can cause collateral intercostal enlargement and rib notching.",
-    ankiStep1: "",
-    ankiStep2: ""
+    ankiStep1: "#AK_Step1_v12::#FirstAid::07_Cardiovascular::04_Pathology::01_Congenital_Heart_Diseases::02_Left-to-right_Shunts::*Coarctation_of_the_Aorta",
+    ankiStep2: "#AK_Step2_v12::#FirstAid::12_Pediatrics::04_Congenital_Heart_Disease::05_Coarctation_of_the_Aorta"
   },
   {
     id: 280,
@@ -4201,8 +4201,8 @@ const GAMES = [
       "This personality disorder is characterized by perfectionism and control rather than true obsessions and compulsions."
     ],
     description: "OCPD involves pervasive perfectionism, orderliness, and control at the expense of flexibility and efficiency. Unlike OCD, behaviors are generally ego-syntonic and not driven by intrusive obsessions.",
-    ankiStep1: "",
-    ankiStep2: ""
+    ankiStep1: "#AK_Step1_v12::#FirstAid::13_Psych::02_Pathology::26_Personality_disorders::03_Cluster_C::*Cluster_C_Personality_Disorders::Obsessive_Compulsive_Personality_Disorder",
+    ankiStep2: "#AK_Step2_v12::#FirstAid::13_Psych::09_Personality_Disorders::01_Personality_Disorders"
   },
   {
     id: 281,
@@ -4216,8 +4216,8 @@ const GAMES = [
       "This condition results from deficient ADH production or release."
     ],
     description: "Central diabetes insipidus is caused by insufficient ADH secretion from the hypothalamus or posterior pituitary. Patients excrete large volumes of dilute urine and respond to desmopressin.",
-    ankiStep1: "",
-    ankiStep2: ""
+    ankiStep1: "#AK_Step1_v12::#FirstAid::08_Endocrine::04_Pathology::02_Primary_polydipsia_and_diabetes_insipidus::*Central_Diabetes_Insipidus",
+    ankiStep2: "#AK_Step2_v12::#Subjects::Endocrinology::02_Pituitary_Gland::Posterior_Pituitary::Diabetes_Insipidus::Central_Diabetes_Insipidus"
   },
   {
     id: 282,
@@ -4232,7 +4232,7 @@ const GAMES = [
     ],
     description: "Congenital muscular torticollis results from shortening or fibrosis of the sternocleidomastoid muscle, often related to intrauterine positioning or birth trauma. Early stretching therapy is usually effective.",
     ankiStep1: "",
-    ankiStep2: ""
+    ankiStep2: "#AK_Step2_v12::#Subjects::Pulmonology::01_ENT::Neck::Torticollis"
   },
   {
     id: 283,
@@ -4246,8 +4246,8 @@ const GAMES = [
       "This is a common cause of subacute scrotal pain in sexually active men."
     ],
     description: "Epididymitis causes gradual scrotal pain and swelling, often from sexually transmitted infection in younger men or enteric organisms in older men. It must be distinguished from testicular torsion.",
-    ankiStep1: "",
-    ankiStep2: ""
+    ankiStep1: "#AK_Step1_v12::#FirstAid::15_Repro::04_Pathology::41_Epididymitis_and_orchitis",
+    ankiStep2: "#AK_Step2_v12::#Subjects::Nephrology_&_Urology::03_Male_Reproduction::Scrotum::Epididymitis"
   },
   {
     id: 284,
@@ -4261,8 +4261,8 @@ const GAMES = [
       "This disorder involves sudden recurrent nonrhythmic motor or vocal behaviors."
     ],
     description: "Tic disorders cause brief stereotyped motor movements or vocalizations that can often be suppressed transiently. Severity often fluctuates, and symptoms commonly worsen with anxiety or excitement.",
-    ankiStep1: "",
-    ankiStep2: ""
+    ankiStep1: "#AK_Step1_v12::#FirstAid::13_Psych::02_Pathology::03_Childhood_and_early-onset_disorders::11_Tourette_syndrome",
+    ankiStep2: "#AK_Step2_v12::#FirstAid::13_Psych::01_Childhood_and_Adolescent_Disorders::05_Tourette_Syndrome"
   },
   {
     id: 285,
@@ -4276,8 +4276,8 @@ const GAMES = [
       "This superficial fungal overgrowth is caused by Malassezia species."
     ],
     description: "Tinea versicolor is a superficial Malassezia infection that causes hypo- or hyperpigmented scaly patches on the trunk and shoulders. Topical antifungals are commonly effective, though recurrence is frequent.",
-    ankiStep1: "",
-    ankiStep2: ""
+    ankiStep1: "#AK_Step1_v12::#FirstAid::03_Microbiology::03_Mycology::*Cutaneous_Mycoses::Malassezia_Furfur",
+    ankiStep2: "#AK_Step2_v12::#Subjects::Dermatology::05_Infections::Tinea_Versicolor"
   },
   {
     id: 286,
@@ -4291,8 +4291,8 @@ const GAMES = [
       "This rare infectious disease causes multisystem involvement and malabsorption."
     ],
     description: "Whipple disease is a chronic multisystem infection causing diarrhea, weight loss, arthralgias, and sometimes CNS involvement. Diagnosis is supported by PAS-positive macrophages in the small intestine.",
-    ankiStep1: "",
-    ankiStep2: ""
+    ankiStep1: "#AK_Step1_v12::#FirstAid::09_Gastrointestinal::04_Pathology::12_Malabsorption_Syndromes::05_Whipple_disease",
+    ankiStep2: "#AK_Step2_v12::#Subjects::Gastroenterology::05_Small_Intestine::Malabsorption_Syndromes::Whipple_Disease"
   },
   {
     id: 287,
@@ -4306,8 +4306,8 @@ const GAMES = [
       "This lesion should not be mistaken for simple dermatitis."
     ],
     description: "Mammary Paget disease is malignant involvement of the nipple epidermis, usually associated with underlying ductal carcinoma in situ or invasive carcinoma. It presents with chronic unilateral nipple eczema-like changes.",
-    ankiStep1: "",
-    ankiStep2: ""
+    ankiStep1: "#AK_Step1_v12::#FirstAid::15_Repro::04_Pathology::18_Vulvar_pathology::02_Neoplastic::*Extramammary_Paget_Disease",
+    ankiStep2: "#AK_Step2_v12::#Subjects::Obstetrics_&_Gynecology::01_Gynecology::Breast::Mammary_Paget_Disease"
   },
   {
     id: 288,
@@ -4321,8 +4321,8 @@ const GAMES = [
       "This small-vessel vasculitis is common in children."
     ],
     description: "IgA vasculitis causes palpable purpura, arthralgia, abdominal pain, and renal involvement, usually after a URI in children. It is mediated by IgA immune complex deposition.",
-    ankiStep1: "",
-    ankiStep2: ""
+    ankiStep1: "#AK_Step1_v12::#FirstAid::07_Cardiovascular::04_Pathology::*Vasculitides::Small_Vessel::Henoch-Schonlein_Purpura",
+    ankiStep2: "#AK_Step2_v12::#Subjects::Cardiology::12_Vascular_Pathology::Vasculitis::Henoch_Schonlein_Purpura"
   },
   {
     id: 289,
@@ -4336,8 +4336,8 @@ const GAMES = [
       "This rhythm reflects complete failure of atrioventricular conduction."
     ],
     description: "Third-degree AV block is complete heart block with AV dissociation. Patients may present with bradycardia, syncope, or heart failure symptoms and usually require pacing.",
-    ankiStep1: "",
-    ankiStep2: ""
+    ankiStep1: "#AK_Step1_v12::#FirstAid::07_Cardiovascular::03_Physiology::14_Electrocardiogram::*ECG_Tracings::3rd_Degree_AV_Block",
+    ankiStep2: "#AK_Step2_v12::#Subjects::Cardiology::10_Arrhythmias::AV_Block::3rd_Degree"
   },
   {
     id: 290,
@@ -4351,8 +4351,8 @@ const GAMES = [
       "This connective tissue disease causes fibrosis of skin and internal organs."
     ],
     description: "Systemic sclerosis is an autoimmune fibrosing disorder that causes vascular dysfunction and progressive fibrosis of skin and internal organs. Manifestations vary from limited cutaneous disease to diffuse multiorgan involvement.",
-    ankiStep1: "",
-    ankiStep2: ""
+    ankiStep1: "#AK_Step1_v12::#FirstAid::11_Musculoskeletal_Skin_and_Connective_Tissue::02_Pathology::35_Scleroderma",
+    ankiStep2: "#AK_Step2_v12::#Subjects::Immunology_&_Pathology::02_Immunology::Autoimmune_Disorders::Scleroderma"
   },
   {
     id: 291,
@@ -4366,7 +4366,7 @@ const GAMES = [
       "This chronic suppurative infection requires prolonged IV penicillin followed by oral amoxicillin."
     ],
     description: "Actinomycosis is a chronic suppurative infection caused by Actinomyces israelii, an oral anaerobe. It causes induration and sinus tracts often in the jaw or lung, with characteristic sulfur granules in drainage.",
-    ankiStep1: "",
+    ankiStep1: "#AK_Step1_v12::#Bootcamp::Microbiology::11_Non_-Lactose_Fermenting_Gram_Negative_Bacilli::05_Yersinia_Pestis",
     ankiStep2: ""
   },
   {
@@ -4381,8 +4381,8 @@ const GAMES = [
       "This form of shock results from mechanical obstruction to cardiac output rather than pump failure or volume loss."
     ],
     description: "Obstructive shock occurs when mechanical obstruction prevents effective cardiac output, as in massive pulmonary embolism, tension pneumothorax, or cardiac tamponade. It presents with hypotension, elevated JVP, and poor perfusion.",
-    ankiStep1: "",
-    ankiStep2: ""
+    ankiStep1: "#AK_Step1_v12::#FirstAid::03_Microbiology::06_Systems::08_Osteomyelitis",
+    ankiStep2: "#AK_Step2_v12::#FirstAid::08_MSK::01_Whole_Body::08_Osteomyelitis"
   },
   {
     id: 293,
@@ -4753,7 +4753,7 @@ const GAMES = [
       "He has only mild systemic symptoms.",
       "The illness began abruptly without lower respiratory findings.",
       "Several children at daycare have similar symptoms.",
-      "This common childhood viral exanthem is usually self-limited."
+      "An enterovirus is responsible, and the same virus occasionally causes more severe neurological complications in young children."
     ],
     description: "Hand, foot, and mouth disease is a common enteroviral exanthem in young children, most often caused by coxsackievirus. It presents with oral ulcers and a vesicular rash on the hands and feet.",
     ankiStep1: "",
@@ -4828,7 +4828,7 @@ const GAMES = [
       "Exam also shows pharyngitis and tender cervical lymph nodes.",
       "Several classmates have had similar symptoms.",
       "The illness lasts about a week and improves without specific therapy.",
-      "This common virus can cause pharyngoconjunctival fever in children."
+      "The responsible non-enveloped DNA virus is highly resistant to disinfectants and spreads efficiently in communal settings."
     ],
     description: "Adenovirus commonly causes febrile respiratory illness and can produce pharyngoconjunctival fever with sore throat and conjunctivitis. Management is generally supportive.",
     ankiStep1: "",
@@ -4873,7 +4873,7 @@ const GAMES = [
       "MRI shows ventriculomegaly without a focal obstructing lesion.",
       "Large-volume lumbar puncture temporarily improves his gait.",
       "CSF pathways are patent, but absorption is impaired.",
-      "This pattern is a classic presentation of normal-pressure hydrocephalus."
+      "Ventricular enlargement exceeds what brain atrophy alone would explain, yet opening pressure on lumbar puncture is within the normal range."
     ],
     description: "Normal pressure hydrocephalus is a communicating hydrocephalus syndrome characterized by gait impairment, cognitive decline, and urinary incontinence with ventriculomegaly and often temporary improvement after large-volume lumbar puncture.",
     ankiStep1: "",
@@ -5098,7 +5098,7 @@ const GAMES = [
       "Sounds seem uncomfortably loud on the affected side.",
       "Brain imaging is unrevealing.",
       "Forehead movement is also impaired.",
-      "He is started on corticosteroids and instructed on eye protection."
+      "Corticosteroids are started early, and incomplete eye closure prompts artificial tear use and eye taping at night."
     ],
     description: "Bell palsy is an acute idiopathic lower motor neuron facial nerve palsy that causes facial weakness, dysgeusia, and hyperacusis. Most patients recover, and steroids improve outcomes when started early.",
     ankiStep1: "",
@@ -5173,7 +5173,7 @@ const GAMES = [
       "Liver enzymes and synthetic function are otherwise normal.",
       "Liver biopsy shows dark coarse pigment within hepatocytes.",
       "There is no hemolysis or biliary obstruction.",
-      "This benign syndrome results from impaired hepatocellular excretion of conjugated bilirubin."
+      "The underlying defect is an inherited mutation in the canalicular organic anion transporter responsible for excreting conjugated bilirubin and related compounds."
     ],
     description: "Dubin-Johnson syndrome is a benign inherited defect in conjugated bilirubin excretion that causes intermittent conjugated hyperbilirubinemia and black liver pigmentation. Prognosis is excellent.",
     ankiStep1: "",
@@ -5263,7 +5263,7 @@ const GAMES = [
       "She feels entirely well during the summer months.",
       "This same pattern has repeated for the last 4 years.",
       "She improves with bright-light therapy and an SSRI.",
-      "This is a seasonal-pattern specifier applied to recurrent major depressive episodes."
+      "The seasonal relationship holds for at least two consecutive years and is not better explained by psychosocial stressors that coincide with that time of year."
     ],
     description: "Major depressive disorder with seasonal pattern is characterized by recurrent depressive episodes that reliably occur during a particular season, most often fall and winter. Light therapy, antidepressants, and psychotherapy can help.",
     ankiStep1: "",
@@ -5308,7 +5308,7 @@ const GAMES = [
       "Upper endoscopy reveals giant rugal folds in the body and fundus of the stomach.",
       "Biopsy shows foveolar hyperplasia with glandular atrophy.",
       "Gastric acid secretion is reduced.",
-      "This rare hypertrophic gastropathy causes protein-losing gastroenteropathy."
+      "Excess TGF-alpha signaling drives foveolar hyperplasia, leading to massive protein loss through the gastric mucosa."
     ],
     description: "Menetrier disease is a hypertrophic gastropathy characterized by giant gastric folds, excess mucus production, hypoalbuminemia, and reduced acid secretion. It causes a protein-losing gastroenteropathy and can increase gastric cancer risk.",
     ankiStep1: "",
@@ -5323,7 +5323,7 @@ const GAMES = [
       "Her pregnancy test is negative and pelvic ultrasound is normal.",
       "TSH and prolactin levels are normal.",
       "FSH and LH are low to low-normal with low estradiol.",
-      "Menses return after improved nutrition, reduced exercise intensity, and stress reduction."
+      "Low energy availability reduces leptin levels and raises cortisol, both of which suppress the hypothalamic GnRH pulse generator."
     ],
     description: "Functional hypothalamic amenorrhea is reversible suppression of GnRH pulsatility due to energy deficit, stress, or excessive exercise. It causes low gonadotropins, low estrogen, and loss of menses.",
     ankiStep1: "",
@@ -5443,7 +5443,7 @@ const GAMES = [
       "Ultrasound shows a well-circumscribed oval solid mass.",
       "There are no skin changes or nipple discharge.",
       "Biopsy shows benign stromal and epithelial proliferation without atypia.",
-      "This is the most common benign breast tumor in young women."
+      "The lesion arises from a single terminal duct-lobular unit and contains both stromal and epithelial components."
     ],
     description: "Fibroadenoma is a common benign breast tumor in young women and typically presents as a mobile, rubbery, well-circumscribed mass. Management depends on imaging, symptoms, and growth pattern.",
     ankiStep1: "",
@@ -5458,7 +5458,7 @@ const GAMES = [
       "Gastric acid secretion is low.",
       "Serum vasoactive intestinal peptide is markedly elevated.",
       "CT imaging identifies a pancreatic neuroendocrine tumor.",
-      "This tumor classically causes WDHA syndrome."
+      "The secreted peptide relaxes intestinal smooth muscle and stimulates chloride secretion, explaining the voluminous secretory diarrhea."
     ],
     description: "VIPoma is a pancreatic neuroendocrine tumor that secretes vasoactive intestinal peptide, causing watery diarrhea, hypokalemia, and achlorhydria. Treatment includes fluid replacement, octreotide, and tumor-directed therapy.",
     ankiStep1: "",
@@ -5503,7 +5503,7 @@ const GAMES = [
       "She has numbness radiating into the adjacent toes.",
       "Compression of the metatarsal heads reproduces the pain with a palpable click.",
       "The lesion reflects perineural fibrosis of a plantar digital nerve.",
-      "This common cause of metatarsalgia is called an interdigital neuroma."
+      "The lesion results from chronic perineural fibrosis caused by repetitive nerve compression between adjacent metatarsal heads."
     ],
     description: "Morton's neuroma is perineural fibrosis of a plantar digital nerve, usually in the third intermetatarsal space. It causes forefoot pain and paresthesias that worsen with tight shoes and walking.",
     ankiStep1: "",
@@ -5743,7 +5743,7 @@ const GAMES = [
       "Similar respiratory reactions occur with other COX-1 inhibiting NSAIDs.",
       "Leukotriene-mediated symptoms improve with aspirin desensitization in selected patients.",
       "The syndrome reflects abnormal arachidonic acid metabolism rather than IgE-mediated allergy.",
-      "This triad is also called Samter syndrome."
+      "COX-1 inhibition shifts arachidonic acid metabolism toward excess leukotriene production, triggering bronchoconstriction in susceptible individuals."
     ],
     description: "Aspirin-exacerbated respiratory disease is defined by asthma, chronic rhinosinusitis with nasal polyps, and respiratory reactions to aspirin or other COX-1 inhibitors. Leukotriene excess plays a major role in pathophysiology.",
     ankiStep1: "",
