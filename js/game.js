@@ -284,6 +284,7 @@
           navigator.clipboard.writeText(shareText).then(() => {
             btn.textContent = '✓ Copied!';
             setTimeout(() => { btn.textContent = '📋 Copy Result'; }, 2000);
+            if (typeof gtag === 'function') { gtag('event', 'share', { method: 'copy_result', content_type: 'daily' }); }
             const cc = copyConfirm();
             if (cc) { cc.style.display = 'block'; setTimeout(() => cc.style.display = 'none', 2000); }
           }).catch(() => {

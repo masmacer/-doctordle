@@ -612,6 +612,7 @@
 
   function copyResult(text, btn) {
     navigator.clipboard.writeText(text).then(() => {
+      if (typeof gtag === 'function') { gtag('event', 'share', { method: 'copy_result', content_type: currentMode || 'endless' }); }
       if (btn) {
         btn.textContent = '✓ Copied!';
         setTimeout(() => { btn.textContent = '📋 Copy Result'; }, 2000);
