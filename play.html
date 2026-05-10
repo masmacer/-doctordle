@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Doctordle — Past Case</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X8WH1TLTLW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-X8WH1TLTLW');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3369196922808842" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/shell.css" />
+  <link rel="icon" type="image/png" href="/images/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Doctordle" />
+  <link rel="manifest" href="/site.webmanifest" />
+</head>
+<body class="shell-page">
+
+<header>
+  <a class="logo" href="/" aria-label="Doctordle home">
+    <img src="/images/logo.webp" alt="Doctordle" />
+    <span class="logo-wordmark">Doctordle</span>
+  </a>
+  <nav class="header-btns" aria-label="Primary">
+    <a class="header-btn" href="/archive">← Archive</a>
+  </nav>
+</header>
+
+<!-- ===== Main ===== -->
+<main>
+  <div class="embed-shell">
+    <div id="case-nav" style="display:flex;align-items:center;justify-content:space-between;margin:0 0 0.4rem">
+      <a id="nav-prev" href="#" style="display:inline-flex;align-items:center;gap:0.35rem;padding:0.3rem 0.75rem;background:#5c3317;color:#fff;border-radius:6px;font-weight:700;font-size:0.85rem;text-decoration:none">&#8592; <span id="nav-prev-num"></span></a>
+      <p id="case-label" style="margin:0;flex:1;text-align:center;font-weight:700;color:#7b3f00;font-size:0.9rem"></p>
+      <a id="nav-next" href="#" style="display:inline-flex;align-items:center;gap:0.35rem;padding:0.3rem 0.75rem;background:#5c3317;color:#fff;border-radius:6px;font-weight:700;font-size:0.85rem;text-decoration:none"><span id="nav-next-num"></span> &#8594;</a>
+    </div>
+    <iframe
+      class="embed-frame"
+      id="game-frame"
+      title="Doctordle Past Case"
+      loading="eager"
+      referrerpolicy="same-origin"
+      style="visibility:hidden"
+    ></iframe>
+    <p class="embed-note">Six guesses. One new clue each round. The faster you solve it, the better it feels.</p>
+  </div>
+</main>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="site-footer">
+    <a class="site-footer__brand" href="/" aria-label="Doctordle home">
+      <img src="/images/logo.webp" alt="Doctordle" />
+      <span class="site-footer__wordmark">Doctordle</span>
+    </a>
+    <nav class="site-footer__links" aria-label="Footer">
+      <a href="/">Home</a>
+      <a href="/games/doctordle-endless">Endless</a>
+      <a href="/archive">Archive</a>
+      <a href="/it/">Italiano</a>
+      <a href="/privacy-policy">Privacy Policy</a>
+      <a href="/terms.html">Terms</a>
+      <a href="mailto:hello@doctordle.net">Contact</a>
+    </nav>
+    <p class="site-footer__note">*Doctordle is for entertainment only and does not constitute medical advice. If you have any health concerns, please consult a medical professional.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var START_DATE  = new Date('2026-04-11T00:00:00');
+  var todayIndex  = Math.floor((Date.now() - START_DATE) / 864e5);
+  var param       = parseInt(new URLSearchParams(location.search).get('day'), 10);
+
+  // Validate
+  if (isNaN(param) || param < 0 || param > todayIndex) {
+    location.replace('/archive');
+    return;
+  }
+
+  // Today → redirect to home
+  if (param === todayIndex) {
+    location.replace('/');
+    return;
+  }
+
+  // Past day — load embed
+  var num     = param + 1;
+  var date    = new Date(START_DATE.getTime() + param * 864e5);
+  var months  = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var dateStr = months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
+
+  document.title = 'Doctordle #' + num + ' \u2014 ' + dateStr;
+
+  var label = document.getElementById('case-label');
+  if (label) label.textContent = 'Case #' + num + ' \u2014 ' + dateStr;
+
+  // Prev / next navigation
+  var prevEl     = document.getElementById('nav-prev');
+  var nextEl     = document.getElementById('nav-next');
+  var prevNumEl  = document.getElementById('nav-prev-num');
+  var nextNumEl  = document.getElementById('nav-next-num');
+
+  if (param > 0) {
+    prevNumEl.textContent = '#' + param;          // param-1+1 = param
+    prevEl.href = '/play.html?day=' + (param - 1);
+  } else {
+    prevEl.style.visibility = 'hidden';
+  }
+
+  var nextDay = param + 1;
+  if (nextDay < todayIndex) {
+    nextNumEl.textContent = '#' + (nextDay + 1);
+    nextEl.href = '/play.html?day=' + nextDay;
+  } else if (nextDay === todayIndex) {
+    nextNumEl.textContent = '#' + (nextDay + 1) + ' (Today)';
+    nextEl.href = '/';
+  } else {
+    nextEl.style.visibility = 'hidden';
+  }
+
+  var frame = document.getElementById('game-frame');
+  frame.src = '/embed/doctordle.embed.html?day=' + param;
+  frame.style.visibility = 'visible';
+}());
+</script>
+</body>
+</html>

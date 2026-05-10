@@ -11,3 +11,6 @@ temp_*.txt
 
 # Local source material not needed for deploy
 archive_diseases.csv
+
+# Internal prompt / workflow docs
+prompts/

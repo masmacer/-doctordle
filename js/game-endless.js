@@ -607,7 +607,7 @@
       else if (index === guesses) emojis.push(won ? '🟩' : '🟥');
       else emojis.push('⬛');
     }
-    return `Doctordle Endless (${currentMode})\n🏥 ${emojis.join(' ')}\nChallenge best streak: ${stats.bestStreak}\n\nhttps://doctordle.org`;
+    return `Doctordle Endless (${currentMode})\n🏥 ${emojis.join(' ')}\nChallenge best streak: ${stats.bestStreak}\n\nhttps://doctordle.net/games/doctordle-endless`;
   }
 
   function copyResult(text, btn) {

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Doctordle Archive — All Daily Cases</title>
+  <meta name="description" content="Browse every past Doctordle daily case by date and case number. See which puzzles you solved and which stumped you." />
+  <link rel="canonical" href="https://doctordle.net/archive" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X8WH1TLTLW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-X8WH1TLTLW');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3369196922808842" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/shell.css" />
+  <link rel="icon" type="image/png" href="/images/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Doctordle" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="alternate" hreflang="en" href="https://doctordle.net/archive" />
+  <link rel="alternate" hreflang="it" href="https://doctordle.net/it/archive" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Doctordle",
+          "item": "https://doctordle.net/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Archive",
+          "item": "https://doctordle.net/archive"
+        }
+      ]
+    }
+  </script>
+  <style>
+    /* ── Legend ── */
+    .arc-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 0.84rem;
+    }
+    .arc-legend__item {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: #6f5339;
+    }
+    .arc-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .arc-dot--win      { background: #2e7d32; }
+    .arc-dot--loss     { background: #c62828; }
+    .arc-dot--unplayed { background: #d4bfa6; }
+    .arc-dot--today    { background: #7b3f00; }
+
+    /* ── Filter bar ── */
+    .arc-filter {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    .arc-filter label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #7b3f00;
+    }
+    .arc-filter input[type="text"] {
+      padding: 0.38rem 0.7rem;
+      border: 1.5px solid #d4a87a;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      color: #3a2a1a;
+      background: #fff8f2;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 160px;
+    }
+    .arc-filter input[type="text"]:focus { border-color: #7b3f00; }
+    .arc-count {
+      margin-left: auto;
+      font-size: 0.82rem;
+      color: #8a6244;
+    }
+
+    /* ── Card grid ── */
+    .arc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      gap: 0.55rem;
+    }
+
+    .arc-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.18rem;
+      padding: 0.65rem 0.4rem 0.6rem;
+      border-radius: 10px;
+      border: 1.5px solid #ecd4ba;
+      background: #fffaf5;
+      text-align: center;
+      text-decoration: none;
+      min-height: 80px;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    a.arc-card--today {
+      border-color: #7b3f00;
+      background: #fff3e0;
+      cursor: pointer;
+    }
+    a.arc-card--today:hover {
+      background: #ffe8c0;
+      border-color: #5a2d00;
+    }
+    .arc-card--win {
+      border-color: #a5d6a7;
+      background: #f1faf1;
+    }
+    .arc-card--loss {
+      border-color: #ef9a9a;
+      background: #fff5f5;
+    }
+    .arc-card--unplayed {
+      border-color: #ecd4ba;
+      background: #fffaf5;
+      opacity: 0.7;
+    }
+    .arc-card__num {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #7b3f00;
+      line-height: 1;
+    }
+    .arc-card__date {
+      font-size: 0.72rem;
+      color: #8a6244;
+      line-height: 1.2;
+    }
+    .arc-card__result {
+      margin-top: 0.25rem;
+      font-size: 1rem;
+      line-height: 1;
+    }
+    .arc-card--win  .arc-card__result { color: #2e7d32; }
+    .arc-card--loss .arc-card__result { color: #c62828; }
+    .arc-card--today .arc-card__result {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #7b3f00;
+      letter-spacing: 0.02em;
+    }
+
+    /* Month group heading */
+    .arc-month {
+      grid-column: 1 / -1;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #7b3f00;
+      padding: 0.3rem 0 0.1rem;
+      border-bottom: 1px solid #ecd4ba;
+      margin-top: 0.3rem;
+    }
+    .arc-month:first-child { margin-top: 0; }
+  </style>
+</head>
+<body class="shell-page">
+
+<!-- ===== Header ===== -->
+<header>
+  <a class="logo" href="/" aria-label="Doctordle home">
+    <img src="/images/logo.webp" alt="Doctordle" />
+    <span class="logo-wordmark">Doctordle</span>
+  </a>
+  <nav class="header-btns" aria-label="Primary">
+    <a class="header-btn" href="/games/doctordle-endless">Endless</a>
+    <a class="header-btn" href="/archive" aria-current="page">Archive</a>
+    <a class="header-btn" href="/it/archive">Italiano</a>
+  </nav>
+</header>
+
+<!-- ===== Main ===== -->
+<main>
+  <div class="embed-shell">
+    <div class="page-sections page-sections--home">
+      <section class="content-block" aria-labelledby="archive-title">
+        <section class="page-intro page-intro--wide page-intro--compact">
+          <h1 id="archive-title">Doctordle Archive</h1>
+          <h2>Every daily case since launch. Click today's card to play.</h2>
+          <p>Your results are stored locally — solved and failed records appear automatically if you've played on this device.</p>
+        </section>
+      </section>
+
+      <section class="content-block" aria-labelledby="archive-cases-title">
+        <h2 id="archive-cases-title">Previous Cases</h2>
+
+        <div class="arc-legend" aria-label="Legend">
+          <span class="arc-legend__item"><span class="arc-dot arc-dot--today"></span>Today</span>
+          <span class="arc-legend__item"><span class="arc-dot arc-dot--win"></span>Solved</span>
+          <span class="arc-legend__item"><span class="arc-dot arc-dot--loss"></span>Failed</span>
+          <span class="arc-legend__item"><span class="arc-dot arc-dot--unplayed"></span>Not played</span>
+        </div>
+
+        <div class="arc-filter">
+          <label for="arc-search">Filter:</label>
+          <input type="text" id="arc-search" placeholder="# or date" autocomplete="off" />
+          <span class="arc-count" id="arc-count"></span>
+        </div>
+
+        <div class="arc-grid" id="arc-grid" aria-label="Daily case archive">
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="site-footer">
+    <a class="site-footer__brand" href="/" aria-label="Doctordle home">
+      <img src="/images/logo.webp" alt="Doctordle" />
+      <span class="site-footer__wordmark">Doctordle</span>
+    </a>
+    <nav class="site-footer__links" aria-label="Footer">
+      <a href="/">Home</a>
+      <a href="/games/doctordle-endless">Endless</a>
+      <a href="/archive">Archive</a>
+      <a href="/privacy-policy">Privacy Policy</a>
+      <a href="/terms.html">Terms</a>
+      <a href="mailto:hello@doctordle.net">Contact</a>
+    </nav>
+    <p class="site-footer__note">*Doctordle is for entertainment only and does not constitute medical advice. If you have any health concerns, please consult a medical professional.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var START = new Date('2026-04-11T00:00:00');
+  var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function ymd(d)  { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+  function monthLabel(d) { return MONTHS[d.getMonth()] + ' ' + d.getFullYear(); }
+
+  // Read localStorage result: most recent first (replay overrides original)
+  function getResult(dayIndex) {
+    function readKey(key) {
+      try {
+        var raw = localStorage.getItem(key);
+        if (!raw) return null;
+        var s = JSON.parse(raw);
+        if (!s.gameCompleted) return null;
+        return (Array.isArray(s.guessHistory) && s.guessHistory.some(function (g) { return g.result === 'correct'; }))
+          ? 'win' : 'loss';
+      } catch (e) { return null; }
+    }
+    var replay = readKey('ddle_day_' + dayIndex + '_replay');
+    if (replay !== null) return replay;
+    var orig = readKey('ddle_day_' + dayIndex);
+    if (orig !== null) return orig;
+    return 'unplayed';
+  }
+
+  var todayNorm = new Date();
+  todayNorm.setHours(0, 0, 0, 0);
+  var todayYMD = ymd(todayNorm);
+
+  var entries = [];
+  var cur = new Date(START);
+  cur.setHours(0, 0, 0, 0);
+  var dayIndex = 0;
+
+  while (cur <= todayNorm) {
+    var d = new Date(cur);
+    var isToday = ymd(d) === todayYMD;
+    entries.push({
+      num:        dayIndex + 1,   // sequential: #1, #2, #3…
+      dayIndex:   dayIndex,
+      dateObj:    d,
+      dateStr:    ymd(d),
+      monthLabel: monthLabel(d),
+      isToday:    isToday,
+      result:     isToday ? (getResult(dayIndex) === 'unplayed' ? 'today' : getResult(dayIndex)) : getResult(dayIndex)
+    });
+    cur.setDate(cur.getDate() + 1);
+    dayIndex++;
+  }
+
+  entries.reverse(); // newest first
+
+  var grid     = document.getElementById('arc-grid');
+  var countEl  = document.getElementById('arc-count');
+  var searchEl = document.getElementById('arc-search');
+
+  function resultIcon(result) {
+    if (result === 'win')   return '<span class="arc-card__result" aria-label="Solved">✓</span>';
+    if (result === 'loss')  return '<span class="arc-card__result" aria-label="Failed">✗</span>';
+    if (result === 'today') return '<span class="arc-card__result" aria-label="Play today">Play →</span>';
+    return '<span class="arc-card__result" aria-label="Not played">·</span>';
+  }
+
+  function cardClass(result) {
+    if (result === 'today')    return 'arc-card arc-card--today';
+    if (result === 'win')      return 'arc-card arc-card--win';
+    if (result === 'loss')     return 'arc-card arc-card--loss';
+    return 'arc-card arc-card--unplayed';
+  }
+
+  function renderGrid(list) {
+    var html = '';
+    var lastMonth = null;
+    for (var i = 0; i < list.length; i++) {
+      var e = list[i];
+      if (e.monthLabel !== lastMonth) {
+        html += '<div class="arc-month">' + e.monthLabel + '</div>';
+        lastMonth = e.monthLabel;
+      }
+      var tag  = 'a';
+      var href = e.isToday ? ' href="/"' : ' href="/play.html?day=' + e.dayIndex + '"';
+      var d    = e.dateObj;
+      var label = MONTHS[d.getMonth()] + ' ' + d.getDate();
+      html += '<' + tag + ' class="' + cardClass(e.result) + '"' + href + '>';
+      html += '<span class="arc-card__num">#' + e.num + '</span>';
+      html += '<span class="arc-card__date">' + label + '</span>';
+      html += resultIcon(e.result);
+      html += '</' + tag + '>';
+    }
+    grid.innerHTML = html;
+    countEl.textContent = list.length + ' cases';
+  }
+
+  renderGrid(entries);
+
+  searchEl.addEventListener('input', function () {
+    var q = searchEl.value.trim().toLowerCase();
+    if (!q) { renderGrid(entries); return; }
+    var filtered = entries.filter(function (e) {
+      return e.dateStr.includes(q) ||
+             ('#' + e.num).includes(q) ||
+             String(e.num).includes(q) ||
+             e.monthLabel.toLowerCase().includes(q);
+    });
+    renderGrid(filtered);
+  });
+}());
+</script>
+
+</body>
+</html>

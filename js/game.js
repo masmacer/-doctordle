@@ -64,17 +64,28 @@
   const modalActions  = () => document.getElementById('modal-actions');
   const copyConfirm   = () => document.getElementById('copy-confirm');
 
-  // ── Game selection: pick today's game deterministically ─────────
-  function getTodayGame() {
-    const start = new Date('2025-01-01T00:00:00');
-    const now   = new Date();
-    const days  = Math.floor((now - start) / 864e5);
-    return GAMES[days % GAMES.length];
+  // ── Day / archive logic ─────────────────────────────────────────
+  const START_DATE    = new Date('2026-04-11T00:00:00');
+  const todayIndex    = Math.floor((Date.now() - START_DATE) / 864e5);
+  const _dayParam     = parseInt(new URLSearchParams(location.search).get('day'), 10);
+  const dayIndex      = (!isNaN(_dayParam) && _dayParam >= 0 && _dayParam <= todayIndex)
+                         ? _dayParam : todayIndex;
+  const isArchiveMode = dayIndex < todayIndex;
+
+  // Replay mode: archive puzzle already completed once — don't overwrite original result
+  const _firstKey = 'ddle_day_' + dayIndex;
+  const _firstRaw = (() => { try { return localStorage.getItem(_firstKey); } catch(e) { return null; } })();
+  const _firstDone = (() => { try { return _firstRaw && JSON.parse(_firstRaw).gameCompleted; } catch(e) { return false; } })();
+  const isReplayMode = isArchiveMode && !!_firstDone;
+
+  function getGameForDay() {
+    return GAMES[dayIndex % GAMES.length];
   }
 
   function gameStateKey() {
-    const d = new Date().toDateString();
-    return `ddle_${gameData.id}_${d}`;
+    // Replay: save to separate key so original result is never overwritten
+    if (isReplayMode) return 'ddle_day_' + dayIndex + '_replay';
+    return 'ddle_day_' + dayIndex;
   }
 
   // ── Render clues ─────────────────────────────────────────────────
@@ -336,14 +347,14 @@
   }
 
   function buildShareText(won, guesses) {
-    const days = Math.floor((Date.now() - new Date('2025-01-01').getTime()) / 864e5);
+    const num  = dayIndex + 1;
     const emojis = [];
     for (let i = 1; i <= 6; i++) {
       if (i < guesses) emojis.push('🟥');
       else if (i === guesses) emojis.push(won ? '🟩' : '🟥');
       else emojis.push('⬛');
     }
-    return `Doctordle #${days}\n🏥 ${emojis.join(' ')}\n\nhttps://doctordle.org`;
+    return `Doctordle #${num}\n🏥 ${emojis.join(' ')}\n\nhttps://doctordle.net`;
   }
 
   // ── Core guess logic ──────────────────────────────────────────────
@@ -392,7 +403,7 @@
       guessHistory.push({ name, result: 'correct' });
       renderHistory();
       revealAllClues();
-      updateStats(true, guessCount);
+      if (!isArchiveMode) updateStats(true, guessCount);
       saveState();
       disableInput(gameData.answer);
       showSummaryButton();
@@ -405,7 +416,7 @@
         guessHistory.push({ name, result: id ? 'wrong' : 'skip' });
         renderHistory();
         revealAllClues();
-        updateStats(false, guessCount);
+        if (!isArchiveMode) updateStats(false, guessCount);
         saveState();
         disableInput(gameData.answer);
         showSummaryButton();
@@ -460,7 +471,8 @@
   // ── Init ──────────────────────────────────────────────────────────
   function initGame() {
     loadStats();
-    const hasState = loadState();
+    // Replay mode always starts fresh (ignore any previous replay state)
+    const hasState = isReplayMode ? false : loadState();
     enableInput();
 
     if (hasState && gameCompleted) {
@@ -471,7 +483,7 @@
   }
 
   function boot() {
-    gameData = getTodayGame();
+    gameData = getGameForDay();
     renderClues(0);
 
     // wire up input
