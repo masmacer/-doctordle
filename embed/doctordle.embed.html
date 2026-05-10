@@ -12,7 +12,7 @@
 	  window.dataLayer = window.dataLayer || [];
 	  function gtag(){dataLayer.push(arguments);}
 	  gtag('js', new Date());
-	  gtag('config', 'G-X8WH1TLTLW');
+	  gtag('config', 'G-X8WH1TLTLW', { send_page_view: false, traffic_type: 'internal' });
 	</script>
 	<link rel="stylesheet" href="/css/style.css" />
 	<style>
@@ -30,6 +30,13 @@
 		(function () {
 			if (window.parent === window) {
 				window.location.replace('../index.html');
+			} else {
+				var ref = document.referrer ? new URL(document.referrer).hostname : '(unknown)';
+				window.addEventListener('load', function () {
+					if (typeof gtag === 'function') {
+						gtag('event', 'embed_view', { embed_host: ref, game: 'daily' });
+					}
+				});
 			}
 		})();
 	</script>
