@@ -206,7 +206,7 @@ function closeModal() {
 
 function buildStatsMarkup() {
   const winRate = stats.played ? Math.round((stats.wins / stats.played) * 100) : 0;
-  return `<div style="margin-top:1rem"><p style="margin:0 0 0.35rem;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:#9e7552">Daily Stats</p><div class="stats-grid"><div class="stat-item"><div class="stat-number">${stats.played}</div><div class="stat-label">Games Played</div></div><div class="stat-item"><div class="stat-number">${winRate}%</div><div class="stat-label">Win Rate</div></div><div class="stat-item"><div class="stat-number">${stats.currentStreak}</div><div class="stat-label">Current Streak</div></div><div class="stat-item"><div class="stat-number">${stats.longestStreak}</div><div class="stat-label">Best Streak</div></div></div></div>`;
+  return `<div style="margin-top:1rem"><p style="margin:0 0 0.35rem;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:#9e7552">Daily Stats</p><div class="scores-grid"><div class="scores-cell"><div class="scores-value">${stats.played}</div><div class="scores-desc">Games Played</div></div><div class="scores-cell"><div class="scores-value">${winRate}%</div><div class="scores-desc">Win Rate</div></div><div class="scores-cell"><div class="scores-value">${stats.currentStreak}</div><div class="scores-desc">Current Streak</div></div><div class="scores-cell"><div class="scores-value">${stats.longestStreak}</div><div class="scores-desc">Best Streak</div></div></div></div>`;
 }
 
 function buildShareText(snapshot, won) {

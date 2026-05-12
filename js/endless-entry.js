@@ -336,10 +336,10 @@ function buildStatsMarkup(mode = activeMode) {
   const stats = getModeStats(mode);
   const winRate = stats.played ? Math.round((stats.wins / stats.played) * 100) : 0;
   const streakBlock = mode === modes.challenge
-    ? `<div class="stat-item"><div class="stat-number">${stats.currentStreak}</div><div class="stat-label">Current Streak</div></div><div class="stat-item"><div class="stat-number">${stats.bestStreak}</div><div class="stat-label">Best Streak</div></div>`
+    ? `<div class="scores-cell"><div class="scores-value">${stats.currentStreak}</div><div class="scores-desc">Current Streak</div></div><div class="scores-cell"><div class="scores-value">${stats.bestStreak}</div><div class="scores-desc">Best Streak</div></div>`
     : '';
 
-  return `<div style="margin-top:1rem"><p style="margin:0 0 0.35rem;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:#9e7552">${mode === modes.challenge ? 'Challenge Mode' : 'Practice Mode'} Stats</p><div class="stats-grid"><div class="stat-item"><div class="stat-number">${stats.played}</div><div class="stat-label">Cases Played</div></div><div class="stat-item"><div class="stat-number">${stats.wins}</div><div class="stat-label">Correct Guesses</div></div><div class="stat-item"><div class="stat-number">${winRate}%</div><div class="stat-label">Win Rate</div></div>${streakBlock}</div></div>`;
+  return `<div style="margin-top:1rem"><p style="margin:0 0 0.35rem;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:#9e7552">${mode === modes.challenge ? 'Challenge Mode' : 'Practice Mode'} Stats</p><div class="scores-grid"><div class="scores-cell"><div class="scores-value">${stats.played}</div><div class="scores-desc">Cases Played</div></div><div class="scores-cell"><div class="scores-value">${stats.wins}</div><div class="scores-desc">Correct Guesses</div></div><div class="scores-cell"><div class="scores-value">${winRate}%</div><div class="scores-desc">Win Rate</div></div>${streakBlock}</div></div>`;
 }
 
 function openModal(html, options = {}) {

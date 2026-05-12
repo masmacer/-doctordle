@@ -698,15 +698,15 @@ main {
 }
 
 /* ===== Stats ===== */
-.stats-grid {
+.scores-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0.5rem;
   margin: 1rem 0;
 }
-.stat-item { text-align: center; }
-.stat-number { font-size: 1.6rem; font-weight: 700; color: #7b3f00; }
-.stat-label { font-size: 0.75rem; color: #6b5c4e; }
+.scores-cell { text-align: center; }
+.scores-value { font-size: 1.6rem; font-weight: 700; color: #7b3f00; }
+.scores-desc { font-size: 0.75rem; color: #6b5c4e; }
 
 .dist-row {
   display: flex;
@@ -788,7 +788,7 @@ footer {
 
 /* ===== Responsive ===== */
 @media (max-width: 480px) {
-  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .scores-grid { grid-template-columns: repeat(2, 1fr); }
   .result-card__header {
     flex-direction: column;
   }
