@@ -288,7 +288,7 @@ function buildSuggestions(query) {
     const guessKey = resolved && resolved.legacyId ? resolved.legacyId : label;
     const disabled = snapshot.guessedIds.includes(guessKey);
     const option = document.createElement('div');
-    option.className = `suggestion-item${disabled ? ' already-guessed' : ''}`;
+    option.className = `autocomplete-item${disabled ? ' used-guess' : ''}`;
     option.textContent = disabled ? `${label} (used)` : label;
     if (!disabled) {
       option.addEventListener('click', () => {
