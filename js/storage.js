@@ -147,8 +147,19 @@ export function createEndlessBundle() {
   };
 }
 
-export function readEndlessBundle() {
-  const parsed = parseJson(readLocalValue('ddle_endless_v1'), {});
+export function getEndlessStorageKey(scope = 'endless') {
+  const normalizedScope = String(scope || 'endless')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '') || 'endless';
+
+  return normalizedScope === 'endless'
+    ? 'ddle_endless_v1'
+    : `ddle_endless_${normalizedScope}_v1`;
+}
+
+export function readEndlessBundle(scope = 'endless') {
+  const parsed = parseJson(readLocalValue(getEndlessStorageKey(scope)), {});
   const base = createEndlessBundle();
 
   return {
@@ -185,6 +196,6 @@ export function readEndlessBundle() {
   };
 }
 
-export function writeEndlessBundle(value) {
-  return writeLocalValue('ddle_endless_v1', JSON.stringify(value));
+export function writeEndlessBundle(value, scope = 'endless') {
+  return writeLocalValue(getEndlessStorageKey(scope), JSON.stringify(value));
 }

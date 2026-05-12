@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Doctordle — Endless Embedded Game</title>
+	<title>Doctordle — Dental Edition Embedded Game</title>
 	<meta name="robots" content="noindex, nofollow" />
-	<link rel="canonical" href="https://doctordle.net/games/doctordle-endless" />
+	<link rel="canonical" href="https://doctordle.net/games/doctordle-for-dentist" />
 	<!-- Google tag (gtag.js) -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-X8WH1TLTLW"></script>
 	<script>
@@ -18,12 +18,12 @@
 	<script>
 		(function () {
 			if (window.parent === window) {
-				window.location.replace('../games/doctordle-endless.html');
+				window.location.replace('../games/doctordle-for-dentist.html');
 			} else {
 				var ref = document.referrer ? new URL(document.referrer).hostname : '(unknown)';
 				window.addEventListener('load', function () {
 					if (typeof gtag === 'function') {
-						gtag('event', 'embed_view', { embed_host: ref, game: 'endless' });
+						gtag('event', 'embed_view', { embed_host: ref, game: 'dental' });
 					}
 				});
 			}
@@ -238,12 +238,12 @@
 		}
 	</style>
 </head>
-<body data-endless-scope="endless">
+<body data-endless-scope="dental">
 <main>
 	<section class="round-brief" aria-label="Mode header" style="margin-bottom:0.8rem;text-align:center">
-		<p style="margin:0 0 0.2rem;font-size:0.72rem;letter-spacing:0.16em;text-transform:uppercase;color:#9e7552">Continuous Play</p>
-		<h1 style="margin:0;font-size:1.6rem;line-height:1.08;color:#7b3f00">Keep the clinic moving.</h1>
-		<p style="margin:0.45rem auto 0;max-width:38rem;font-size:0.92rem;line-height:1.5;color:#8a6244">Challenge Mode rewards survival. Practice Mode lets you stack reps. Both pull from the same case file without touching the daily slot.</p>
+		<p style="margin:0 0 0.2rem;font-size:0.72rem;letter-spacing:0.16em;text-transform:uppercase;color:#9e7552">Dental Edition</p>
+		<h1 style="margin:0;font-size:1.6rem;line-height:1.08;color:#7b3f00">Curated dental and oral medicine cases.</h1>
+		<p style="margin:0.45rem auto 0;max-width:38rem;font-size:0.92rem;line-height:1.5;color:#8a6244">Cases selected for dental students and clinicians — oral pathology, facial pain, head and neck disease, and systemic conditions with oral relevance.</p>
 	</section>
 
 	<div class="endless-toolbar">
@@ -302,7 +302,7 @@
 	</div>
 
 	<p style="font-size:0.78rem;color:#a07050;text-align:center;margin-top:0.5rem">
-		Leave the field blank to reveal the next clue. Repeated guesses are blocked.
+		Dental edition curated case set. Leave the field blank to reveal the next clue.
 	</p>
 </main>
 
@@ -315,7 +315,7 @@
 	</div>
 </div>
 
-<script src="../js/games.js"></script>
+<script src="../js/dental-cases.js"></script>
 <script type="module" src="../js/endless-entry.js"></script>
 </body>
 </html>

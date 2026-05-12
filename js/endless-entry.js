@@ -38,12 +38,32 @@ const selectors = {
   modeChip: () => document.getElementById('mode-chip-value'),
   primaryLabel: () => document.getElementById('record-primary-label'),
   primaryValue: () => document.getElementById('record-primary-value'),
+  primarySubtext: () => document.getElementById('record-primary-subtext'),
   secondaryLabel: () => document.getElementById('record-secondary-label'),
-  secondaryValue: () => document.getElementById('record-secondary-value')
+  secondaryValue: () => document.getElementById('record-secondary-value'),
+  secondarySubtext: () => document.getElementById('record-secondary-subtext')
 };
 
+const storageScope = document.body && document.body.dataset && document.body.dataset.endlessScope
+  ? document.body.dataset.endlessScope
+  : 'endless';
+const topicMeta = storageScope === 'dental'
+  ? {
+      title: 'Doctordle Dental Edition',
+      challengeTitle: 'Doctordle Dental Challenge',
+      practiceTitle: 'Doctordle Dental Practice',
+      pageUrl: 'https://doctordle.net/games/doctordle-for-dentist',
+      fileSlug: 'doctordle-dental'
+    }
+  : {
+      title: 'Doctordle Endless',
+      challengeTitle: 'Doctordle Endless Challenge',
+      practiceTitle: 'Doctordle Endless Practice',
+      pageUrl: 'https://doctordle.net/games/doctordle-endless',
+      fileSlug: 'doctordle-endless'
+    };
 const allCases = listCases();
-let store = readEndlessBundle();
+let store = readEndlessBundle(storageScope);
 let activeMode = store.mode === modes.practice ? modes.practice : modes.challenge;
 let currentCase = null;
 let session = createRoundSession({ legacyId: -1, title: '', clues: [] });
@@ -71,7 +91,7 @@ function getModeStats(mode = activeMode) {
 
 function persistStore() {
   store.mode = activeMode;
-  writeEndlessBundle(store);
+  writeEndlessBundle(store, storageScope);
 }
 
 function ensureQueue(mode = activeMode) {
@@ -187,8 +207,10 @@ function renderStatus() {
   const modeLabel = selectors.modeChip();
   const primaryLabel = selectors.primaryLabel();
   const primaryValue = selectors.primaryValue();
+  const primarySubtext = selectors.primarySubtext();
   const secondaryLabel = selectors.secondaryLabel();
   const secondaryValue = selectors.secondaryValue();
+  const secondarySubtext = selectors.secondarySubtext();
   const challengeToggle = selectors.challengeToggle();
   const practiceToggle = selectors.practiceToggle();
   const resultButton = selectors.resultButton();
@@ -199,8 +221,10 @@ function renderStatus() {
   if (modeLabel) modeLabel.textContent = activeMode === modes.challenge ? 'Challenge Mode' : 'Practice Mode';
   if (primaryLabel) primaryLabel.textContent = activeMode === modes.challenge ? 'Current Streak' : 'Correct Guesses';
   if (primaryValue) primaryValue.textContent = String(activeMode === modes.challenge ? stats.currentStreak : stats.wins);
+  if (primarySubtext) primarySubtext.textContent = activeMode === modes.challenge ? 'Open stats' : 'Solved across this topic';
   if (secondaryLabel) secondaryLabel.textContent = activeMode === modes.challenge ? 'Best Streak' : 'Cases Played';
   if (secondaryValue) secondaryValue.textContent = String(activeMode === modes.challenge ? stats.bestStreak : stats.played);
+  if (secondarySubtext) secondarySubtext.textContent = activeMode === modes.challenge ? 'Highest streak so far' : 'Rounds started in this topic';
   if (challengeToggle) challengeToggle.classList.toggle('active', activeMode === modes.challenge);
   if (practiceToggle) practiceToggle.classList.toggle('active', activeMode === modes.practice);
   if (resultButton) resultButton.style.display = session.snapshot().gameCompleted ? 'inline-flex' : 'none';
@@ -259,13 +283,13 @@ function buildChallengeShareCardHtml(data, caseTitle) {
   const summary = data.won
     ? `Solved in ${data.guesses}/6 guesses.`
     : `Missed after ${data.guesses}/6 guesses.`;
-  return `<section class="challenge-share-card"><div class="challenge-share-topline"><div><div class="challenge-share-kicker">Doctordle Endless Challenge</div><h3 class="challenge-share-title">${data.rank.title}</h3></div><span class="challenge-share-pill">${data.won ? 'Win' : 'Miss'}</span></div><p class="challenge-share-diagnosis">Diagnosis: ${caseTitle}</p><p class="challenge-share-subtitle">${summary} ${data.rank.subtitle}</p><div class="challenge-share-grid"><div class="challenge-share-stat"><span class="challenge-share-stat-label">Guesses</span><span class="challenge-share-stat-value">${data.guesses}/6</span></div><div class="challenge-share-stat"><span class="challenge-share-stat-label">Streak</span><span class="challenge-share-stat-value">${data.streakAfterRound}</span></div><div class="challenge-share-stat"><span class="challenge-share-stat-label">Best</span><span class="challenge-share-stat-value">${data.bestStreak}</span></div></div><div class="challenge-share-footer">${data.rank.flavor}</div></section>`;
+  return `<section class="challenge-share-card"><div class="challenge-share-topline"><div><div class="challenge-share-kicker">${topicMeta.challengeTitle}</div><h3 class="challenge-share-title">${data.rank.title}</h3></div><span class="challenge-share-pill">${data.won ? 'Win' : 'Miss'}</span></div><p class="challenge-share-diagnosis">Diagnosis: ${caseTitle}</p><p class="challenge-share-subtitle">${summary} ${data.rank.subtitle}</p><div class="challenge-share-grid"><div class="challenge-share-stat"><span class="challenge-share-stat-label">Guesses</span><span class="challenge-share-stat-value">${data.guesses}/6</span></div><div class="challenge-share-stat"><span class="challenge-share-stat-label">Streak</span><span class="challenge-share-stat-value">${data.streakAfterRound}</span></div><div class="challenge-share-stat"><span class="challenge-share-stat-label">Best</span><span class="challenge-share-stat-value">${data.bestStreak}</span></div></div><div class="challenge-share-footer">${data.rank.flavor}</div></section>`;
 }
 
 function buildChallengeShareSvg(data) {
   const roundLabel = data.won ? 'WIN' : 'MISS';
   const footer = data.won ? 'Keep the streak alive.' : 'Reload. Re-enter. Reclaim the crown.';
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7b3f00"/><stop offset="55%" stop-color="#a85a00"/><stop offset="100%" stop-color="#f2b66d"/></linearGradient></defs><rect width="1200" height="630" rx="36" fill="url(#bg)"/><text x="70" y="86" fill="#fff5eb" font-size="26" font-family="Segoe UI, Arial, sans-serif" letter-spacing="4">DOCTORDLE ENDLESS CHALLENGE</text><text x="70" y="190" fill="#fffaf3" font-size="74" font-weight="800" font-family="Segoe UI, Arial, sans-serif">${data.rank.title}</text><text x="70" y="255" fill="#fff4e8" font-size="34" font-family="Segoe UI, Arial, sans-serif">${data.rank.subtitle}</text><text x="70" y="305" fill="#ffe8cf" font-size="28" font-family="Segoe UI, Arial, sans-serif">${data.rank.flavor}</text><rect x="70" y="365" width="300" height="140" rx="22" fill="rgba(255,248,242,0.15)" stroke="rgba(255,248,242,0.26)"/><rect x="390" y="365" width="300" height="140" rx="22" fill="rgba(255,248,242,0.15)" stroke="rgba(255,248,242,0.26)"/><rect x="710" y="365" width="300" height="140" rx="22" fill="rgba(255,248,242,0.15)" stroke="rgba(255,248,242,0.26)"/><text x="105" y="410" fill="#ffead1" font-size="22" letter-spacing="3" font-family="Segoe UI, Arial, sans-serif">ROUND</text><text x="105" y="475" fill="#ffffff" font-size="52" font-weight="800" font-family="Segoe UI, Arial, sans-serif">${roundLabel}</text><text x="425" y="410" fill="#ffead1" font-size="22" letter-spacing="3" font-family="Segoe UI, Arial, sans-serif">GUESSES</text><text x="425" y="475" fill="#ffffff" font-size="52" font-weight="800" font-family="Segoe UI, Arial, sans-serif">${data.guesses}/6</text><text x="745" y="410" fill="#ffead1" font-size="22" letter-spacing="3" font-family="Segoe UI, Arial, sans-serif">BEST STREAK</text><text x="745" y="475" fill="#ffffff" font-size="52" font-weight="800" font-family="Segoe UI, Arial, sans-serif">${data.bestStreak}</text><text x="70" y="575" fill="#fff5eb" font-size="24" font-family="Segoe UI, Arial, sans-serif">${footer}</text></svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7b3f00"/><stop offset="55%" stop-color="#a85a00"/><stop offset="100%" stop-color="#f2b66d"/></linearGradient></defs><rect width="1200" height="630" rx="36" fill="url(#bg)"/><text x="70" y="86" fill="#fff5eb" font-size="26" font-family="Segoe UI, Arial, sans-serif" letter-spacing="4">${topicMeta.challengeTitle.toUpperCase()}</text><text x="70" y="190" fill="#fffaf3" font-size="74" font-weight="800" font-family="Segoe UI, Arial, sans-serif">${data.rank.title}</text><text x="70" y="255" fill="#fff4e8" font-size="34" font-family="Segoe UI, Arial, sans-serif">${data.rank.subtitle}</text><text x="70" y="305" fill="#ffe8cf" font-size="28" font-family="Segoe UI, Arial, sans-serif">${data.rank.flavor}</text><rect x="70" y="365" width="300" height="140" rx="22" fill="rgba(255,248,242,0.15)" stroke="rgba(255,248,242,0.26)"/><rect x="390" y="365" width="300" height="140" rx="22" fill="rgba(255,248,242,0.15)" stroke="rgba(255,248,242,0.26)"/><rect x="710" y="365" width="300" height="140" rx="22" fill="rgba(255,248,242,0.15)" stroke="rgba(255,248,242,0.26)"/><text x="105" y="410" fill="#ffead1" font-size="22" letter-spacing="3" font-family="Segoe UI, Arial, sans-serif">ROUND</text><text x="105" y="475" fill="#ffffff" font-size="52" font-weight="800" font-family="Segoe UI, Arial, sans-serif">${roundLabel}</text><text x="425" y="410" fill="#ffead1" font-size="22" letter-spacing="3" font-family="Segoe UI, Arial, sans-serif">GUESSES</text><text x="425" y="475" fill="#ffffff" font-size="52" font-weight="800" font-family="Segoe UI, Arial, sans-serif">${data.guesses}/6</text><text x="745" y="410" fill="#ffead1" font-size="22" letter-spacing="3" font-family="Segoe UI, Arial, sans-serif">BEST STREAK</text><text x="745" y="475" fill="#ffffff" font-size="52" font-weight="800" font-family="Segoe UI, Arial, sans-serif">${data.bestStreak}</text><text x="70" y="575" fill="#fff5eb" font-size="24" font-family="Segoe UI, Arial, sans-serif">${footer}</text></svg>`;
 }
 
 function downloadChallengeShareImage(data) {
@@ -283,7 +307,7 @@ function downloadChallengeShareImage(data) {
     URL.revokeObjectURL(url);
     const link = document.createElement('a');
     link.href = canvas.toDataURL('image/png');
-    link.download = `doctordle-endless-${data.won ? 'win' : 'miss'}.png`;
+    link.download = `${topicMeta.fileSlug}-${data.won ? 'win' : 'miss'}.png`;
     link.click();
   };
 
@@ -400,7 +424,7 @@ function buildShareText(snapshot, won) {
       else if (index === snapshot.guessCount) marks.push(won ? '🟩' : '🟥');
       else marks.push('⬛');
     }
-    return `Doctordle Endless Challenge\n${won ? `Solved in ${snapshot.guessCount}/6 guesses` : `Unsolved after ${snapshot.guessCount}/6 guesses`}\n${marks.join(' ')}\nBest streak: ${stats.bestStreak}\n#doctordle\nPlay: https://doctordle.net/games/doctordle-endless`;
+    return `${topicMeta.challengeTitle}\n${won ? `Solved in ${snapshot.guessCount}/6 guesses` : `Unsolved after ${snapshot.guessCount}/6 guesses`}\n${marks.join(' ')}\nBest streak: ${stats.bestStreak}\n#doctordle\nPlay: ${topicMeta.pageUrl}`;
   }
 
   const marks = [];
@@ -410,7 +434,7 @@ function buildShareText(snapshot, won) {
     else marks.push('⬛');
   }
   const scoreLine = won ? `Solved in ${snapshot.guessCount}/6 guesses` : `Unsolved after ${snapshot.guessCount}/6 guesses`;
-  return `Doctordle Endless Practice\n${scoreLine}\n${marks.join(' ')}\n#doctordle\nPlay: https://doctordle.net/games/doctordle-endless`;
+  return `${topicMeta.practiceTitle}\n${scoreLine}\n${marks.join(' ')}\n#doctordle\nPlay: ${topicMeta.pageUrl}`;
 }
 
 function updateStatsForResult(won) {

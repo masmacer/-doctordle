@@ -193,12 +193,28 @@
     <img src="/images/logo.webp" alt="Doctordle" />
     <span class="logo-wordmark">Doctordle</span>
   </a>
-  <nav class="header-btns" aria-label="Primary">
-    <a class="header-btn" href="/games/doctordle-endless">Endless</a>
-    <a class="header-btn" href="/archive" aria-current="page">Archive</a>
-    <a class="header-btn" href="/it/archive">Italiano</a>
+  <div class="header-right">
+    <div class="header-quick">
+      <a class="header-btn" href="/games/doctordle-endless">Endless</a>
+      <a class="header-btn" href="/it/archive">Italiano</a>
+    </div>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+    </button>
+  </div>
+  <nav class="nav-drawer" id="nav-drawer" aria-label="Primary">
+    <a class="nav-drawer__link" href="/">Daily</a>
+    <a class="nav-drawer__link" href="/games/doctordle-endless">Endless</a>
+    <a class="nav-drawer__link" href="/archive" aria-current="page">Archive</a>
+    <a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-for-dentist">🦷 For Dentists</a>
+    <a class="nav-drawer__link" href="/it/archive">Italiano</a>
   </nav>
 </header>
+<script>
+(function(){var t=document.getElementById('nav-toggle'),d=document.getElementById('nav-drawer');if(!t||!d)return;t.addEventListener('click',function(){var o=t.getAttribute('aria-expanded')==='true';t.setAttribute('aria-expanded',String(!o));d.classList.toggle('nav-drawer--open',!o);});document.addEventListener('click',function(e){if(!t.contains(e.target)&&!d.contains(e.target)){t.setAttribute('aria-expanded','false');d.classList.remove('nav-drawer--open');}});document.addEventListener('keydown',function(e){if(e.key==='Escape'){t.setAttribute('aria-expanded','false');d.classList.remove('nav-drawer--open');}});}());
+</script>
 
 <!-- ===== Main ===== -->
 <main>
