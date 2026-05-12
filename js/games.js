@@ -1,5 +1,4 @@
-﻿// games.js - game data for Doctordle clone
-// Each entry: id, answer, clues, description, ankiStep1, ankiStep2
+﻿
 
 const GAMES = [
   {
@@ -483,187 +482,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 33,
-    answer: "Selective Mutism",
-    clues: [
-      "A 6-year-old girl speaks normally with her parents and siblings at home.",
-      "At school she remains silent, avoids eye contact, and communicates only by nodding or pointing.",
-      "Her teacher says this pattern has lasted for months and interferes with class participation.",
-      "Hearing and language evaluation are normal.",
-      "She appears extremely shy in unfamiliar social situations but not globally developmentally delayed.",
-      "This anxiety-related disorder is defined by failure to speak in specific settings despite ability to speak elsewhere."
-    ],
-    description: "Selective mutism is an anxiety disorder in which a child consistently fails to speak in certain social settings despite speaking normally in others. It commonly overlaps with social anxiety and should be distinguished from language or developmental disorders.",
-    ankiStep1: "",
-    ankiStep2: ""
-  },
-  {
-    id: 34,
-    answer: "Acute Intermittent Porphyria",
-    clues: [
-      "A 25-year-old woman presents with severe diffuse abdominal pain, constipation, and anxiety.",
-      "She recently started a new antiseizure medication and has been eating very little.",
-      "Exam shows tachycardia but no peritoneal signs.",
-      "She also reports tingling in her hands and new proximal muscle weakness.",
-      "Urine darkens after standing and testing shows elevated porphobilinogen.",
-      "The disorder is caused by porphobilinogen deaminase deficiency and does not cause photosensitivity."
-    ],
-    description: "Acute intermittent porphyria causes episodic neurovisceral symptoms including abdominal pain, neuropathy, psychiatric changes, and autonomic instability. Attacks can be precipitated by drugs, fasting, and alcohol. Treatment includes hemin and glucose loading.",
-    ankiStep1: "",
-    ankiStep2: ""
-  },
-  {
-    id: 35,
-    answer: "Clonorchis sinensis (Chinese Liver Fluke)",
-    clues: [
-      "A 46-year-old man presents with recurrent right upper quadrant discomfort and intermittent jaundice.",
-      "He recently immigrated and reports frequent consumption of raw freshwater fish.",
-      "Labs show eosinophilia and a cholestatic pattern of liver enzyme elevation.",
-      "Ultrasound shows dilated intrahepatic bile ducts without gallstones.",
-      "Stool examination reveals characteristic operculated ova.",
-      "Chronic infection increases risk of cholangiocarcinoma."
-    ],
-    description: "Clonorchis sinensis is a liver fluke acquired from raw freshwater fish. It inhabits the biliary tree and causes inflammation, biliary obstruction, eosinophilia, and increased risk of cholangiocarcinoma.",
-    ankiStep1: "",
-    ankiStep2: ""
-  },
-  {
-    id: 36,
-    answer: "Acute mesenteric ischemia",
-    clues: [
-      "A 72-year-old woman with atrial fibrillation develops sudden severe abdominal pain.",
-      "She repeatedly says the pain is unbearable even though the abdomen is only mildly tender on exam.",
-      "She has nausea and one loose stool but no prior similar episodes.",
-      "Labs reveal metabolic acidosis with elevated lactate.",
-      "CT angiography shows an abrupt occlusion of the superior mesenteric artery.",
-      "This condition is a surgical emergency because bowel necrosis can develop rapidly."
-    ],
-    description: "Acute mesenteric ischemia often presents with pain out of proportion to the physical exam, classically from embolic occlusion of the superior mesenteric artery. Prompt diagnosis and revascularization are essential to prevent bowel infarction.",
-    ankiStep1: "",
-    ankiStep2: ""
-  },
-  {
-    id: 37,
-    answer: "Alpha-1 antitrypsin deficiency",
-    clues: [
-      "A 39-year-old nonsmoker presents with progressive shortness of breath and decreased exercise tolerance.",
-      "Pulmonary function testing shows airflow obstruction.",
-      "CT chest demonstrates basilar-predominant panacinar emphysema.",
-      "He also has mildly elevated liver enzymes.",
-      "Serum alpha-1 antitrypsin level is low.",
-      "The abnormal protein may accumulate in hepatocytes while failing to protect lung tissue from elastase."
-    ],
-    description: "Alpha-1 antitrypsin deficiency causes early emphysema, classically basilar and panacinar, especially in nonsmokers. Misfolded protein can also injure the liver, leading to hepatitis, cirrhosis, or hepatocellular carcinoma.",
-    ankiStep1: "",
-    ankiStep2: ""
-  },
-  {
-    id: 38,
-    answer: "Attention Deficit Hyperactivity Disorder (ADHD)",
-    clues: [
-      "An 8-year-old boy is brought in because he cannot stay seated, interrupts constantly, and loses school materials.",
-      "Teachers report he makes careless mistakes and rarely finishes assignments.",
-      "Symptoms are present both at home and at school and began years earlier.",
-      "Hearing, vision, and intellectual assessment are normal.",
-      "There is no history suggesting absence seizures or major mood disorder.",
-      "The diagnosis requires persistent inattention and-or hyperactivity causing impairment in multiple settings."
-    ],
-    description: "ADHD is characterized by developmentally inappropriate inattention, hyperactivity, and impulsivity across more than one setting. Behavioral interventions and stimulant medications are common treatment approaches.",
-    ankiStep1: "",
-    ankiStep2: ""
-  },
-  {
-    id: 39,
-    answer: "Mycobacterium tuberculosis",
-    clues: [
-      "A 42-year-old man has chronic cough, night sweats, weight loss, and intermittent fevers.",
-      "He recently spent time in a crowded shelter and has a remote history of incarceration.",
-      "Chest imaging shows upper-lobe cavitary lesions.",
-      "Sputum smear demonstrates acid-fast bacilli.",
-      "Nucleic acid testing confirms the organism.",
-      "This pathogen survives within macrophages and requires prolonged multidrug therapy."
-    ],
-    description: "Mycobacterium tuberculosis causes chronic granulomatous infection, most often in the lungs. Reactivation disease classically affects the upper lobes and presents with cough, hemoptysis, fevers, night sweats, and weight loss.",
-    ankiStep1: "",
-    ankiStep2: ""
-  },
-  {
-    id: 40,
-    answer: "Mediastinitis",
-    clues: [
-      "A 58-year-old man develops severe chest pain, fever, and shortness of breath after repeated forceful vomiting.",
-      "He appears toxic and has pain radiating to the back.",
-      "Exam reveals tachycardia and faint crepitus in the supraclavicular area.",
-      "Chest CT shows mediastinal air and fluid tracking around the esophagus.",
-      "Blood cultures later grow mixed oral flora.",
-      "This condition often follows esophageal perforation and requires urgent broad-spectrum antibiotics and surgical evaluation."
-    ],
-    description: "Mediastinitis is a life-threatening infection of the mediastinum, often caused by esophageal perforation or postoperative infection. Patients present with severe chest pain, systemic toxicity, and imaging evidence of mediastinal inflammation or air.",
-    ankiStep1: "",
-    ankiStep2: ""
-  },
-  {
-    id: 41,
-    answer: "Diverticulitis",
-    clues: [
-      "A 63-year-old woman presents with 2 days of left lower quadrant abdominal pain and fever.",
-      "She has nausea and constipation but no gross blood in the stool.",
-      "Exam shows focal left lower quadrant tenderness with mild guarding.",
-      "Labs reveal leukocytosis.",
-      "CT abdomen demonstrates focal sigmoid wall thickening with surrounding fat stranding.",
-      "The process reflects inflammation of an outpouching that forms where vasa recta penetrate the colon wall."
-    ],
-    description: "Diverticulitis usually occurs when a colonic diverticulum becomes inflamed or microperforates, most often in the sigmoid colon. It presents with fever, leukocytosis, and left lower quadrant pain; CT is the preferred diagnostic test.",
-    ankiStep1: "",
-    ankiStep2: ""
-  },
-  {
-    id: 42,
-    answer: "Bullous Pemphigoid",
-    clues: [
-      "A 76-year-old man develops intensely pruritic skin lesions over several weeks.",
-      "He first had urticarial plaques, followed by large tense blisters on the trunk and flexor surfaces.",
-      "Oral mucosal involvement is minimal.",
-      "Skin biopsy with direct immunofluorescence shows linear IgG and C3 deposition along the basement membrane.",
-      "The blisters are tense rather than flaccid and do not rupture as easily as in pemphigus vulgaris.",
-      "Autoantibodies target hemidesmosomal proteins in the dermoepidermal junction."
-    ],
-    description: "Bullous pemphigoid is an autoimmune blistering disorder of older adults caused by antibodies against hemidesmosomal proteins. It produces pruritic urticarial plaques and tense bullae with linear basement-membrane immunofluorescence.",
-    ankiStep1: "",
-    ankiStep2: ""
-  },
-  {
-    id: 43,
-    answer: "Iron Deficiency Anemia",
-    clues: [
-      "A 32-year-old woman presents with fatigue, reduced exercise tolerance, and cravings for ice.",
-      "She reports heavy menstrual bleeding for many months.",
-      "CBC shows microcytic anemia with elevated RDW.",
-      "Ferritin is low, transferrin is high, and transferrin saturation is low.",
-      "Peripheral smear shows hypochromic red cells and anisopoikilocytosis.",
-      "This is the most common cause of anemia worldwide."
-    ],
-    description: "Iron deficiency anemia causes microcytic hypochromic anemia and commonly results from chronic blood loss, increased requirements, or poor intake. Typical findings include low ferritin, high total iron-binding capacity, and low transferrin saturation.",
-    ankiStep1: "",
-    ankiStep2: ""
-  },
-  {
-    id: 44,
-    answer: "Sex Cord Thecoma",
-    clues: [
-      "A 59-year-old postmenopausal woman presents with new vaginal bleeding.",
-      "Pelvic ultrasound shows a unilateral solid ovarian mass.",
-      "Endometrial biopsy reveals proliferative changes without obvious carcinoma.",
-      "Tumor markers for epithelial ovarian cancer are not markedly elevated.",
-      "The mass is composed of lipid-rich stromal cells that can produce estrogen.",
-      "This ovarian sex cord-stromal tumor often causes hyperestrogenic symptoms."
-    ],
-    description: "An ovarian thecoma is a benign sex cord-stromal tumor that can secrete estrogen. Patients may present with postmenopausal bleeding or endometrial hyperplasia because of excess estrogen exposure.",
-    ankiStep1: "",
-    ankiStep2: ""
-  },
-  {
-    id: 45,
+      id: 33,
     answer: "Progressive Multifocal Leukoencephalopathy (PML)",
     clues: [
       "A 41-year-old man with advanced HIV develops progressive weakness and difficulty speaking over several weeks.",
@@ -678,7 +497,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 46,
+     id: 34,
     answer: "Adenomyosis",
     clues: [
       "A 42-year-old multiparous woman presents with worsening dysmenorrhea and heavy menstrual bleeding.",
@@ -693,7 +512,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 47,
+     id: 35,
     answer: "Serous Cystadenoma",
     clues: [
       "A 46-year-old woman is found to have an incidental ovarian cyst on imaging for renal colic.",
@@ -708,7 +527,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 48,
+     id: 36,
     answer: "Poxvirus (Molluscum Contagiosum)",
     clues: [
       "A 7-year-old boy has multiple small flesh-colored papules on the trunk and axillae.",
@@ -723,7 +542,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 49,
+     id: 37,
     answer: "Benign Prostatic Hyperplasia (BPH)",
     clues: [
       "A 68-year-old man reports urinary hesitancy, weak stream, nocturia, and incomplete emptying.",
@@ -738,7 +557,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 50,
+     id: 38,
     answer: "Focal Segmental Glomerulosclerosis (FSGS)",
     clues: [
       "A 35-year-old man presents with progressive leg edema and foamy urine.",
@@ -753,7 +572,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 51,
+     id: 39,
     answer: "1st Degree AV Block",
     clues: [
       "A 58-year-old man is found to have a conduction abnormality during a routine ECG.",
@@ -768,7 +587,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 52,
+     id: 40,
     answer: "Carotid Sinus Hypersensitivity",
     clues: [
       "A 78-year-old man has recurrent brief syncopal episodes while shaving or turning his neck.",
@@ -783,7 +602,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 53,
+     id: 41,
     answer: "Ganglion Cyst",
     clues: [
       "A 27-year-old woman notices a small lump on the dorsum of her wrist.",
@@ -798,7 +617,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 54,
+     id: 42,
     answer: "Zollinger-Ellison syndrome",
     clues: [
       "A 43-year-old man has recurrent severe peptic ulcer disease despite high-dose acid suppression.",
@@ -813,7 +632,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 55,
+     id: 43,
     answer: "Taenia solium (Neurocysticercosis)",
     clues: [
       "A 29-year-old immigrant presents with a first generalized tonic-clonic seizure.",
@@ -828,7 +647,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 56,
+     id: 44,
     answer: "Opioid Withdrawal",
     clues: [
       "A 30-year-old man presents with diffuse body aches, yawning, abdominal cramps, and diarrhea.",
@@ -843,187 +662,187 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 57,
-    answer: "Cardiac Tamponade",
+     id: 45,
+    answer: "Selective Mutism",
     clues: [
-      "A 61-year-old man with metastatic lung cancer presents with progressive dyspnea and chest discomfort.",
-      "He is tachycardic, hypotensive, and appears anxious.",
-      "Jugular venous distention is present and heart sounds are distant.",
-      "Blood pressure falls noticeably during inspiration.",
-      "Bedside echocardiography shows a large pericardial effusion with diastolic collapse of the right atrium and ventricle.",
-      "Urgent drainage is required because elevated pericardial pressure is impairing ventricular filling."
+      "A 6-year-old girl speaks normally with her parents and siblings at home.",
+      "At school she remains silent, avoids eye contact, and communicates only by nodding or pointing.",
+      "Her teacher says this pattern has lasted for months and interferes with class participation.",
+      "Hearing and language evaluation are normal.",
+      "She appears extremely shy in unfamiliar social situations but not globally developmentally delayed.",
+      "This anxiety-related disorder is defined by failure to speak in specific settings despite ability to speak elsewhere."
     ],
-    description: "Cardiac tamponade occurs when pericardial pressure impairs cardiac filling and reduces cardiac output. Findings include hypotension, elevated JVP, muffled heart sounds, pulsus paradoxus, and echocardiographic chamber collapse.",
+    description: "Selective mutism is an anxiety disorder in which a child consistently fails to speak in certain social settings despite speaking normally in others. It commonly overlaps with social anxiety and should be distinguished from language or developmental disorders.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 58,
-    answer: "Enterococcal UTI",
+     id: 46,
+    answer: "Acute Intermittent Porphyria",
     clues: [
-      "A 72-year-old hospitalized woman develops dysuria and fever after several days of Foley catheterization.",
-      "Urinalysis shows pyuria, and urine culture grows gram-positive cocci in pairs and short chains.",
-      "The organism grows in bile and high-salt conditions.",
-      "It is intrinsically resistant to many cephalosporins.",
-      "The patient recently received broad-spectrum antibiotics.",
-      "This catheter-associated healthcare infection is caused by a nosocomial pathogen that commonly affects the urinary tract."
+      "A 25-year-old woman presents with severe diffuse abdominal pain, constipation, and anxiety.",
+      "She recently started a new antiseizure medication and has been eating very little.",
+      "Exam shows tachycardia but no peritoneal signs.",
+      "She also reports tingling in her hands and new proximal muscle weakness.",
+      "Urine darkens after standing and testing shows elevated porphobilinogen.",
+      "The disorder is caused by porphobilinogen deaminase deficiency and does not cause photosensitivity."
     ],
-    description: "Enterococcal UTI is a common healthcare-associated infection, especially after urinary catheterization and recent antibiotic exposure. Enterococcus faecalis and Enterococcus faecium are important causes and are intrinsically resistant to many cephalosporins.",
+    description: "Acute intermittent porphyria causes episodic neurovisceral symptoms including abdominal pain, neuropathy, psychiatric changes, and autonomic instability. Attacks can be precipitated by drugs, fasting, and alcohol. Treatment includes hemin and glucose loading.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 59,
-    answer: "Measles (Rubeola Virus)",
+     id: 47,
+    answer: "Clonorchis sinensis (Chinese Liver Fluke)",
     clues: [
-      "A 5-year-old unvaccinated child presents with high fever, cough, conjunctivitis, and runny nose.",
-      "One day later, tiny blue-white lesions appear on the buccal mucosa.",
-      "A morbilliform rash then starts at the hairline and spreads downward.",
-      "He appears ill and photophobic.",
-      "Serology and PCR confirm the diagnosis.",
-      "This paramyxovirus can lead to pneumonia, encephalitis, and later subacute sclerosing panencephalitis."
+      "A 46-year-old man presents with recurrent right upper quadrant discomfort and intermittent jaundice.",
+      "He recently immigrated and reports frequent consumption of raw freshwater fish.",
+      "Labs show eosinophilia and a cholestatic pattern of liver enzyme elevation.",
+      "Ultrasound shows dilated intrahepatic bile ducts without gallstones.",
+      "Stool examination reveals characteristic operculated ova.",
+      "Chronic infection increases risk of cholangiocarcinoma."
     ],
-    description: "Measles presents with the three Cs of cough, coryza, and conjunctivitis, followed by Koplik spots and a cephalocaudal spreading rash. It is highly contagious and preventable by live attenuated vaccination.",
+    description: "Clonorchis sinensis is a liver fluke acquired from raw freshwater fish. It inhabits the biliary tree and causes inflammation, biliary obstruction, eosinophilia, and increased risk of cholangiocarcinoma.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 60,
-    answer: "Breast Fat Necrosis",
+     id: 48,
+    answer: "Acute mesenteric ischemia",
     clues: [
-      "A 54-year-old woman notices a firm irregular breast mass weeks after minor chest trauma from a seatbelt injury.",
-      "She is worried because the mass feels fixed and there is some surrounding skin retraction.",
-      "Mammography shows a calcified lesion concerning at first glance.",
-      "Core biopsy reveals necrotic adipocytes with foamy macrophages and multinucleated giant cells.",
-      "No malignant cells are identified.",
-      "This benign process commonly mimics carcinoma on exam and imaging."
+      "A 72-year-old woman with atrial fibrillation develops sudden severe abdominal pain.",
+      "She repeatedly says the pain is unbearable even though the abdomen is only mildly tender on exam.",
+      "She has nausea and one loose stool but no prior similar episodes.",
+      "Labs reveal metabolic acidosis with elevated lactate.",
+      "CT angiography shows an abrupt occlusion of the superior mesenteric artery.",
+      "This condition is a surgical emergency because bowel necrosis can develop rapidly."
     ],
-    description: "Breast fat necrosis is a benign inflammatory reaction after trauma, surgery, or radiation. It can present as a firm irregular mass with calcifications and often requires biopsy to exclude malignancy.",
+    description: "Acute mesenteric ischemia often presents with pain out of proportion to the physical exam, classically from embolic occlusion of the superior mesenteric artery. Prompt diagnosis and revascularization are essential to prevent bowel infarction.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 61,
-    answer: "Proctitis",
+     id: 49,
+    answer: "Alpha-1 antitrypsin deficiency",
     clues: [
-      "A 26-year-old man presents with rectal pain, urgency, and mucus-streaked stools.",
-      "He reports receptive anal intercourse and occasional scant bleeding with bowel movements.",
-      "Exam reveals exquisite rectal tenderness without a perianal abscess.",
-      "Flexible sigmoidoscopy shows inflamed rectal mucosa.",
-      "Swabs are sent for sexually transmitted infections.",
-      "Inflammation limited to the rectum commonly causes tenesmus and anorectal discomfort."
+      "A 39-year-old nonsmoker presents with progressive shortness of breath and decreased exercise tolerance.",
+      "Pulmonary function testing shows airflow obstruction.",
+      "CT chest demonstrates basilar-predominant panacinar emphysema.",
+      "He also has mildly elevated liver enzymes.",
+      "Serum alpha-1 antitrypsin level is low.",
+      "The abnormal protein may accumulate in hepatocytes while failing to protect lung tissue from elastase."
     ],
-    description: "Proctitis is inflammation of the rectum and can be caused by inflammatory bowel disease, radiation, or sexually transmitted infections such as gonorrhea, chlamydia, HSV, and syphilis. Tenesmus and rectal pain are typical.",
+    description: "Alpha-1 antitrypsin deficiency causes early emphysema, classically basilar and panacinar, especially in nonsmokers. Misfolded protein can also injure the liver, leading to hepatitis, cirrhosis, or hepatocellular carcinoma.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 62,
-    answer: "Multiple Myeloma",
+     id: 50,
+    answer: "Attention Deficit Hyperactivity Disorder (ADHD)",
     clues: [
-      "A 69-year-old man presents with back pain, fatigue, and recurrent respiratory infections.",
-      "CBC shows normocytic anemia, and chemistry reveals elevated creatinine and calcium.",
-      "Skeletal imaging shows punched-out lytic lesions in the vertebrae and skull.",
-      "Serum protein electrophoresis identifies a monoclonal spike.",
-      "Bone marrow biopsy demonstrates clonal plasma cells.",
-      "This plasma cell neoplasm causes CRAB findings: hyperCalcemia, Renal injury, Anemia, and Bone lesions."
+      "An 8-year-old boy is brought in because he cannot stay seated, interrupts constantly, and loses school materials.",
+      "Teachers report he makes careless mistakes and rarely finishes assignments.",
+      "Symptoms are present both at home and at school and began years earlier.",
+      "Hearing, vision, and intellectual assessment are normal.",
+      "There is no history suggesting absence seizures or major mood disorder.",
+      "The diagnosis requires persistent inattention and-or hyperactivity causing impairment in multiple settings."
     ],
-    description: "Multiple myeloma is a malignant plasma cell disorder characterized by monoclonal immunoglobulin production, lytic bone disease, renal injury, anemia, and recurrent infections. Diagnosis relies on marrow findings, paraprotein studies, and end-organ damage.",
+    description: "ADHD is characterized by developmentally inappropriate inattention, hyperactivity, and impulsivity across more than one setting. Behavioral interventions and stimulant medications are common treatment approaches.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 63,
-    answer: "Intellectual Disability",
+     id: 51,
+    answer: "Mycobacterium tuberculosis",
     clues: [
-      "A 9-year-old child is evaluated for persistent academic and adaptive difficulties.",
-      "He requires substantial assistance with age-appropriate self-care and communication tasks.",
-      "Formal testing demonstrates significantly below-average intellectual functioning.",
-      "Teachers note deficits in conceptual, social, and practical skills.",
-      "Symptoms began during early childhood rather than after a later injury.",
-      "The developmental team concludes that his lifelong deficits in both learning and adaptive functioning best explain the presentation."
+      "A 42-year-old man has chronic cough, night sweats, weight loss, and intermittent fevers.",
+      "He recently spent time in a crowded shelter and has a remote history of incarceration.",
+      "Chest imaging shows upper-lobe cavitary lesions.",
+      "Sputum smear demonstrates acid-fast bacilli.",
+      "Nucleic acid testing confirms the organism.",
+      "This pathogen survives within macrophages and requires prolonged multidrug therapy."
     ],
-    description: "Intellectual disability is defined by deficits in intellectual functioning and adaptive behavior beginning during the developmental period. Severity is based more on adaptive functioning than IQ alone.",
+    description: "Mycobacterium tuberculosis causes chronic granulomatous infection, most often in the lungs. Reactivation disease classically affects the upper lobes and presents with cough, hemoptysis, fevers, night sweats, and weight loss.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 64,
-    answer: "Primary (psychogenic) polydipsia",
+     id: 52,
+    answer: "Mediastinitis",
     clues: [
-      "A 36-year-old woman with chronic psychiatric illness presents with confusion and headache.",
-      "Staff at her facility report that she drinks water constantly throughout the day.",
-      "Labs show hyponatremia with low serum osmolality and inappropriately dilute urine.",
-      "She is euvolemic on exam.",
-      "Water deprivation increases urine osmolality, unlike central diabetes insipidus.",
-      "The problem is excessive free-water intake rather than inappropriate ADH secretion."
+      "A 58-year-old man develops severe chest pain, fever, and shortness of breath after repeated forceful vomiting.",
+      "He appears toxic and has pain radiating to the back.",
+      "Exam reveals tachycardia and faint crepitus in the supraclavicular area.",
+      "Chest CT shows mediastinal air and fluid tracking around the esophagus.",
+      "Blood cultures later grow mixed oral flora.",
+      "This condition often follows esophageal perforation and requires urgent broad-spectrum antibiotics and surgical evaluation."
     ],
-    description: "Primary polydipsia is excessive water intake that can lead to dilutional hyponatremia. It is often seen in psychiatric disease and is distinguished from diabetes insipidus by the ability to concentrate urine with water deprivation.",
+    description: "Mediastinitis is a life-threatening infection of the mediastinum, often caused by esophageal perforation or postoperative infection. Patients present with severe chest pain, systemic toxicity, and imaging evidence of mediastinal inflammation or air.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 65,
-    answer: "Esophageal Candidiasis",
+     id: 53,
+    answer: "Diverticulitis",
     clues: [
-      "A 38-year-old man with advanced HIV presents with painful swallowing and retrosternal discomfort.",
-      "He recently noticed white plaques in the mouth that scrape off.",
-      "Endoscopy shows multiple white adherent plaques in the esophagus.",
-      "Biopsy demonstrates budding yeast and pseudohyphae.",
-      "He has had poor adherence to antiretroviral therapy.",
-      "This opportunistic infection is an AIDS-defining condition when found in the esophagus."
+      "A 63-year-old woman presents with 2 days of left lower quadrant abdominal pain and fever.",
+      "She has nausea and constipation but no gross blood in the stool.",
+      "Exam shows focal left lower quadrant tenderness with mild guarding.",
+      "Labs reveal leukocytosis.",
+      "CT abdomen demonstrates focal sigmoid wall thickening with surrounding fat stranding.",
+      "The process reflects inflammation of an outpouching that forms where vasa recta penetrate the colon wall."
     ],
-    description: "Esophageal candidiasis causes odynophagia and dysphagia, especially in immunocompromised patients. Endoscopy shows white plaques, and treatment is usually systemic fluconazole.",
+    description: "Diverticulitis usually occurs when a colonic diverticulum becomes inflamed or microperforates, most often in the sigmoid colon. It presents with fever, leukocytosis, and left lower quadrant pain; CT is the preferred diagnostic test.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 66,
-    answer: "Goodpasture Syndrome",
+     id: 54,
+    answer: "Bullous Pemphigoid",
     clues: [
-      "A 24-year-old man presents with coughing up blood and dark urine.",
-      "He has dyspnea and fatigue but no rash or joint swelling.",
-      "Urinalysis shows red cell casts and proteinuria.",
-      "Chest imaging demonstrates diffuse alveolar hemorrhage.",
-      "Kidney biopsy shows crescentic glomerulonephritis with linear IgG deposition along the basement membrane.",
-      "Autoantibodies target type IV collagen in pulmonary and glomerular basement membranes."
+      "A 76-year-old man develops intensely pruritic skin lesions over several weeks.",
+      "He first had urticarial plaques, followed by large tense blisters on the trunk and flexor surfaces.",
+      "Oral mucosal involvement is minimal.",
+      "Skin biopsy with direct immunofluorescence shows linear IgG and C3 deposition along the basement membrane.",
+      "The blisters are tense rather than flaccid and do not rupture as easily as in pemphigus vulgaris.",
+      "Autoantibodies target hemidesmosomal proteins in the dermoepidermal junction."
     ],
-    description: "Goodpasture syndrome is an anti-glomerular basement membrane disease causing rapidly progressive glomerulonephritis and pulmonary hemorrhage. Treatment typically includes plasmapheresis, corticosteroids, and immunosuppression.",
+    description: "Bullous pemphigoid is an autoimmune blistering disorder of older adults caused by antibodies against hemidesmosomal proteins. It produces pruritic urticarial plaques and tense bullae with linear basement-membrane immunofluorescence.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 67,
-    answer: "Yolk Sac Tumor",
+     id: 55,
+    answer: "Iron Deficiency Anemia",
     clues: [
-      "A 3-year-old boy is brought in for a rapidly enlarging painless testicular mass.",
-      "Scrotal ultrasound shows a solid intratesticular lesion.",
-      "Serum alpha-fetoprotein is markedly elevated.",
-      "Biopsy demonstrates Schiller-Duval bodies.",
-      "There is no gynecomastia.",
-      "This is the most common testicular tumor in young children."
+      "A 32-year-old woman presents with fatigue, reduced exercise tolerance, and cravings for ice.",
+      "She reports heavy menstrual bleeding for many months.",
+      "CBC shows microcytic anemia with elevated RDW.",
+      "Ferritin is low, transferrin is high, and transferrin saturation is low.",
+      "Peripheral smear shows hypochromic red cells and anisopoikilocytosis.",
+      "This is the most common cause of anemia worldwide."
     ],
-    description: "Yolk sac tumor is a malignant germ cell tumor associated with elevated AFP and Schiller-Duval bodies. It is the most common testicular neoplasm in young boys and can also occur as an ovarian germ cell tumor.",
+    description: "Iron deficiency anemia causes microcytic hypochromic anemia and commonly results from chronic blood loss, increased requirements, or poor intake. Typical findings include low ferritin, high total iron-binding capacity, and low transferrin saturation.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 68,
-    answer: "Bronchial Carcinoid Tumor",
+     id: 56,
+    answer: "Sex Cord Thecoma",
     clues: [
-      "A 33-year-old woman presents with recurrent focal wheezing and episodes of hemoptysis.",
-      "She has been treated repeatedly for presumed asthma without improvement.",
-      "CT chest reveals a well-circumscribed central endobronchial mass.",
-      "Bronchoscopy biopsy shows nests of uniform neuroendocrine cells with salt-and-pepper chromatin.",
-      "Octreotide scan is positive.",
-      "This low-grade neuroendocrine tumor may cause cough, obstruction, or occasionally carcinoid syndrome."
+      "A 59-year-old postmenopausal woman presents with new vaginal bleeding.",
+      "Pelvic ultrasound shows a unilateral solid ovarian mass.",
+      "Endometrial biopsy reveals proliferative changes without obvious carcinoma.",
+      "Tumor markers for epithelial ovarian cancer are not markedly elevated.",
+      "The mass is composed of lipid-rich stromal cells that can produce estrogen.",
+      "This ovarian sex cord-stromal tumor often causes hyperestrogenic symptoms."
     ],
-    description: "Bronchial carcinoid tumors are neuroendocrine lung tumors that often present as central airway masses in younger patients. They may cause cough, recurrent pneumonia, wheezing, or hemoptysis and usually have a better prognosis than other lung cancers.",
+    description: "An ovarian thecoma is a benign sex cord-stromal tumor that can secrete estrogen. Patients may present with postmenopausal bleeding or endometrial hyperplasia because of excess estrogen exposure.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 69,
+     id: 57,
     answer: "Endometrial Hyperplasia",
     clues: [
       "A 48-year-old woman presents with irregular heavy uterine bleeding.",
@@ -1038,7 +857,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 70,
+     id: 58,
     answer: "Acromegaly",
     clues: [
       "A 47-year-old man reports increasing shoe size and needing larger rings over several years.",
@@ -1053,7 +872,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 71,
+     id: 59,
     answer: "Trypanosoma brucei (African Sleeping Sickness)",
     clues: [
       "A 31-year-old traveler returns from sub-Saharan Africa with intermittent fever, headache, and painful lymph nodes.",
@@ -1068,7 +887,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 72,
+     id: 60,
     answer: "Central Post-Stroke Pain Syndrome (CPSP)",
     clues: [
       "A 63-year-old woman develops burning severe pain on the left side of her body months after a right thalamic stroke.",
@@ -1083,7 +902,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 73,
+     id: 61,
     answer: "Parvovirus B19",
     clues: [
       "A 6-year-old child develops mild fever followed by bright red cheeks and a lacy rash on the arms.",
@@ -1098,7 +917,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 74,
+     id: 62,
     answer: "Chronic atrophic gastritis",
     clues: [
       "A 62-year-old woman presents with fatigue, numbness in the feet, and glossitis.",
@@ -1113,7 +932,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 75,
+     id: 63,
     answer: "Tetralogy of Fallot (ToF)",
     clues: [
       "A 4-month-old infant has episodes of cyanosis that worsen during crying and feeding.",
@@ -1128,7 +947,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 76,
+     id: 64,
     answer: "Pneumocystis jirovecii (PCP) pneumonia",
     clues: [
       "A 40-year-old man with untreated HIV presents with progressive shortness of breath and dry cough.",
@@ -1143,7 +962,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 77,
+     id: 65,
     answer: "Klinefelter Syndrome",
     clues: [
       "A 17-year-old boy is evaluated for delayed puberty and poor athletic performance.",
@@ -1158,7 +977,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 78,
+     id: 66,
     answer: "Brenner Tumor",
     clues: [
       "A 61-year-old woman undergoes evaluation of a solid incidental ovarian mass.",
@@ -1173,7 +992,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 79,
+     id: 67,
     answer: "Atrioventricular Septal Defect (AVSD) / Endocardial Cushion Defect",
     clues: [
       "A 2-month-old infant has poor feeding, tachypnea, and failure to gain weight.",
@@ -1188,7 +1007,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 80,
+     id: 68,
     answer: "Neisseria gonorrhoeae cervicitis",
     clues: [
       "A 22-year-old woman presents with pelvic discomfort and increased vaginal discharge.",
@@ -1203,187 +1022,187 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 81,
-    answer: "Type 1 Diabetes Mellitus",
+     id: 69,
+    answer: "Cardiac Tamponade",
     clues: [
-      "A 13-year-old boy presents with several weeks of polyuria, polydipsia, and weight loss.",
-      "He has nighttime urination and increasing fatigue.",
-      "Finger-stick glucose is 312 mg-dL.",
-      "Urinalysis shows glucosuria and ketonuria.",
-      "Autoantibodies against pancreatic islet antigens are present.",
-      "This disease results from autoimmune destruction of beta cells causing absolute insulin deficiency."
+      "A 61-year-old man with metastatic lung cancer presents with progressive dyspnea and chest discomfort.",
+      "He is tachycardic, hypotensive, and appears anxious.",
+      "Jugular venous distention is present and heart sounds are distant.",
+      "Blood pressure falls noticeably during inspiration.",
+      "Bedside echocardiography shows a large pericardial effusion with diastolic collapse of the right atrium and ventricle.",
+      "Urgent drainage is required because elevated pericardial pressure is impairing ventricular filling."
     ],
-    description: "Type 1 diabetes mellitus is an autoimmune disease that destroys pancreatic beta cells and causes absolute insulin deficiency. It usually presents in childhood or adolescence with hyperglycemia, polyuria, polydipsia, and sometimes ketoacidosis.",
+    description: "Cardiac tamponade occurs when pericardial pressure impairs cardiac filling and reduces cardiac output. Findings include hypotension, elevated JVP, muffled heart sounds, pulsus paradoxus, and echocardiographic chamber collapse.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 82,
-    answer: "Pulmonary Valve Regurgitation",
+     id: 70,
+    answer: "Enterococcal UTI",
     clues: [
-      "A 43-year-old woman with prior repair of congenital heart disease presents for follow-up.",
-      "She has gradually worsening exercise intolerance and a decrescendo early diastolic murmur at the left upper sternal border.",
-      "The murmur becomes louder with inspiration.",
-      "Echocardiography shows backflow from the pulmonary artery into the right ventricle during diastole.",
-      "Right ventricular dilation is developing over time.",
-      "This lesion often follows pulmonary hypertension or prior surgical intervention on the outflow tract."
+      "A 72-year-old hospitalized woman develops dysuria and fever after several days of Foley catheterization.",
+      "Urinalysis shows pyuria, and urine culture grows gram-positive cocci in pairs and short chains.",
+      "The organism grows in bile and high-salt conditions.",
+      "It is intrinsically resistant to many cephalosporins.",
+      "The patient recently received broad-spectrum antibiotics.",
+      "This catheter-associated healthcare infection is caused by a nosocomial pathogen that commonly affects the urinary tract."
     ],
-    description: "Pulmonary regurgitation is usually secondary to pulmonary hypertension or prior valve surgery and can lead to right ventricular dilation. Many mild cases are asymptomatic; severe chronic regurgitation causes exertional intolerance and right-sided failure.",
+    description: "Enterococcal UTI is a common healthcare-associated infection, especially after urinary catheterization and recent antibiotic exposure. Enterococcus faecalis and Enterococcus faecium are important causes and are intrinsically resistant to many cephalosporins.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 83,
-    answer: "Premature Ventricular Contractions (PVCs)",
+     id: 71,
+    answer: "Measles (Rubeola Virus)",
     clues: [
-      "A 46-year-old man complains of occasional skipped beats and thumps in the chest.",
-      "Symptoms worsen after several cups of coffee and poor sleep.",
-      "He has no syncope and no known structural heart disease.",
-      "ECG monitoring shows early wide QRS complexes without preceding P waves followed by full compensatory pauses.",
-      "Between episodes his rhythm is normal sinus.",
-      "These ectopic beats originate in the ventricles rather than the atria."
+      "A 5-year-old unvaccinated child presents with high fever, cough, conjunctivitis, and runny nose.",
+      "One day later, tiny blue-white lesions appear on the buccal mucosa.",
+      "A morbilliform rash then starts at the hairline and spreads downward.",
+      "He appears ill and photophobic.",
+      "Serology and PCR confirm the diagnosis.",
+      "This paramyxovirus can lead to pneumonia, encephalitis, and later subacute sclerosing panencephalitis."
     ],
-    description: "PVCs are early ventricular depolarizations that produce palpitations and a compensatory pause. They are often benign in structurally normal hearts but become more concerning when frequent or associated with cardiomyopathy or ischemia.",
+    description: "Measles presents with the three Cs of cough, coryza, and conjunctivitis, followed by Koplik spots and a cephalocaudal spreading rash. It is highly contagious and preventable by live attenuated vaccination.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 84,
-    answer: "Primary hyperaldosteronism (Conn syndrome)",
+     id: 72,
+    answer: "Breast Fat Necrosis",
     clues: [
-      "A 41-year-old woman has difficult-to-control hypertension despite two medications.",
-      "She also reports muscle weakness and intermittent leg cramps.",
-      "Labs show hypokalemia and metabolic alkalosis.",
-      "Plasma aldosterone is elevated while renin is suppressed.",
-      "CT adrenal imaging identifies a unilateral adrenal adenoma.",
-      "Excess mineralocorticoid production causes sodium retention and renal potassium wasting."
+      "A 54-year-old woman notices a firm irregular breast mass weeks after minor chest trauma from a seatbelt injury.",
+      "She is worried because the mass feels fixed and there is some surrounding skin retraction.",
+      "Mammography shows a calcified lesion concerning at first glance.",
+      "Core biopsy reveals necrotic adipocytes with foamy macrophages and multinucleated giant cells.",
+      "No malignant cells are identified.",
+      "This benign process commonly mimics carcinoma on exam and imaging."
     ],
-    description: "Primary hyperaldosteronism causes hypertension, hypokalemia, and metabolic alkalosis due to autonomous aldosterone secretion, usually from an adrenal adenoma or bilateral hyperplasia. Screening uses the aldosterone-renin ratio.",
+    description: "Breast fat necrosis is a benign inflammatory reaction after trauma, surgery, or radiation. It can present as a firm irregular mass with calcifications and often requires biopsy to exclude malignancy.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 85,
-    answer: "Keratosis Pilaris",
+     id: 73,
+    answer: "Proctitis",
     clues: [
-      "A 15-year-old girl complains of rough bumps on the backs of her upper arms.",
-      "The lesions are more noticeable during dry winter months.",
-      "Exam shows numerous tiny follicular keratotic papules with mild surrounding erythema.",
-      "They are not pustular, painful, or infectious appearing.",
-      "She has a history of atopic dermatitis.",
-      "This benign condition reflects keratin plugging of hair follicles."
+      "A 26-year-old man presents with rectal pain, urgency, and mucus-streaked stools.",
+      "He reports receptive anal intercourse and occasional scant bleeding with bowel movements.",
+      "Exam reveals exquisite rectal tenderness without a perianal abscess.",
+      "Flexible sigmoidoscopy shows inflamed rectal mucosa.",
+      "Swabs are sent for sexually transmitted infections.",
+      "Inflammation limited to the rectum commonly causes tenesmus and anorectal discomfort."
     ],
-    description: "Keratosis pilaris is a common benign skin condition causing rough follicular papules, especially on the upper arms and thighs. It is often associated with dry skin and atopy and improves with emollients and keratolytics.",
+    description: "Proctitis is inflammation of the rectum and can be caused by inflammatory bowel disease, radiation, or sexually transmitted infections such as gonorrhea, chlamydia, HSV, and syphilis. Tenesmus and rectal pain are typical.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 86,
-    answer: "Anorexia Nervosa",
+     id: 74,
+    answer: "Multiple Myeloma",
     clues: [
-      "A 17-year-old girl is brought in for weight loss, fatigue, and feeling cold all the time.",
-      "She counts calories rigidly and exercises excessively despite being underweight.",
-      "Her BMI is well below expected, and she expresses intense fear of gaining weight.",
-      "Exam shows bradycardia, lanugo, and orthostatic hypotension.",
-      "Labs may reveal electrolyte abnormalities from purging behaviors.",
-      "This disorder is defined by restriction of intake leading to significantly low body weight and distorted body image."
+      "A 69-year-old man presents with back pain, fatigue, and recurrent respiratory infections.",
+      "CBC shows normocytic anemia, and chemistry reveals elevated creatinine and calcium.",
+      "Skeletal imaging shows punched-out lytic lesions in the vertebrae and skull.",
+      "Serum protein electrophoresis identifies a monoclonal spike.",
+      "Bone marrow biopsy demonstrates clonal plasma cells.",
+      "This plasma cell neoplasm causes CRAB findings: hyperCalcemia, Renal injury, Anemia, and Bone lesions."
     ],
-    description: "Anorexia nervosa is an eating disorder marked by restriction of caloric intake, low body weight, fear of weight gain, and body image disturbance. Medical complications include arrhythmias, amenorrhea, osteopenia, and refeeding syndrome.",
+    description: "Multiple myeloma is a malignant plasma cell disorder characterized by monoclonal immunoglobulin production, lytic bone disease, renal injury, anemia, and recurrent infections. Diagnosis relies on marrow findings, paraprotein studies, and end-organ damage.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 87,
-    answer: "Acute Dystonia",
+     id: 75,
+    answer: "Intellectual Disability",
     clues: [
-      "A 19-year-old man develops painful neck twisting and upward deviation of the eyes several hours after receiving an antipsychotic in the emergency department.",
-      "He is frightened but fully conscious.",
-      "There is no fever, rigidity, or autonomic instability.",
-      "Exam shows sustained involuntary contractions of the neck muscles and extraocular muscles.",
-      "Symptoms improve rapidly after diphenhydramine administration.",
-      "This extrapyramidal reaction reflects dopamine blockade in the nigrostriatal pathway."
+      "A 9-year-old child is evaluated for persistent academic and adaptive difficulties.",
+      "He requires substantial assistance with age-appropriate self-care and communication tasks.",
+      "Formal testing demonstrates significantly below-average intellectual functioning.",
+      "Teachers note deficits in conceptual, social, and practical skills.",
+      "Symptoms began during early childhood rather than after a later injury.",
+      "The developmental team concludes that his lifelong deficits in both learning and adaptive functioning best explain the presentation."
     ],
-    description: "Acute dystonia is an early extrapyramidal side effect of dopamine-blocking medications. It presents with sustained muscle contractions such as torticollis or oculogyric crisis and is treated with anticholinergics or antihistamines.",
+    description: "Intellectual disability is defined by deficits in intellectual functioning and adaptive behavior beginning during the developmental period. Severity is based more on adaptive functioning than IQ alone.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 88,
-    answer: "Superficial Spreading Melanoma",
+     id: 76,
+    answer: "Primary (psychogenic) polydipsia",
     clues: [
-      "A 49-year-old man notices that a long-standing mole on his upper back has enlarged and changed color.",
-      "It now has asymmetry, irregular borders, and multiple shades of brown and black.",
-      "Dermatoscopy is concerning, and excisional biopsy is performed.",
-      "Pathology shows atypical melanocytes spreading along the epidermis in a radial growth phase.",
-      "There is intermittent bleeding after minor trauma.",
-      "This is the most common melanoma subtype."
+      "A 36-year-old woman with chronic psychiatric illness presents with confusion and headache.",
+      "Staff at her facility report that she drinks water constantly throughout the day.",
+      "Labs show hyponatremia with low serum osmolality and inappropriately dilute urine.",
+      "She is euvolemic on exam.",
+      "Water deprivation increases urine osmolality, unlike central diabetes insipidus.",
+      "The problem is excessive free-water intake rather than inappropriate ADH secretion."
     ],
-    description: "Superficial spreading melanoma is the most common form of melanoma and typically shows prolonged radial growth with irregular color and borders. Definitive diagnosis and staging depend on excisional biopsy and Breslow depth.",
+    description: "Primary polydipsia is excessive water intake that can lead to dilutional hyponatremia. It is often seen in psychiatric disease and is distinguished from diabetes insipidus by the ability to concentrate urine with water deprivation.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 89,
-    answer: "Myelodysplastic Syndrome",
+     id: 77,
+    answer: "Esophageal Candidiasis",
     clues: [
-      "A 73-year-old man presents with fatigue and recurrent infections.",
-      "CBC shows anemia and neutropenia, and platelets are mildly decreased.",
-      "Peripheral smear demonstrates dysplastic neutrophils and macrocytosis.",
-      "Bone marrow biopsy is hypercellular with ineffective hematopoiesis.",
-      "Cytogenetic abnormalities are identified.",
-      "This clonal stem-cell disorder carries a risk of progression to acute myeloid leukemia."
+      "A 38-year-old man with advanced HIV presents with painful swallowing and retrosternal discomfort.",
+      "He recently noticed white plaques in the mouth that scrape off.",
+      "Endoscopy shows multiple white adherent plaques in the esophagus.",
+      "Biopsy demonstrates budding yeast and pseudohyphae.",
+      "He has had poor adherence to antiretroviral therapy.",
+      "This opportunistic infection is an AIDS-defining condition when found in the esophagus."
     ],
-    description: "Myelodysplastic syndrome is a clonal bone marrow disorder characterized by ineffective hematopoiesis, cytopenias, and dysplastic cell morphology. It is most common in older adults and may evolve into AML.",
+    description: "Esophageal candidiasis causes odynophagia and dysphagia, especially in immunocompromised patients. Endoscopy shows white plaques, and treatment is usually systemic fluconazole.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 90,
-    answer: "Follicular Lymphoma",
+     id: 78,
+    answer: "Goodpasture Syndrome",
     clues: [
-      "A 61-year-old woman presents with several months of painless enlarged cervical and axillary lymph nodes.",
-      "She denies acute infectious symptoms but notes occasional night sweats.",
-      "Excisional biopsy shows a nodular follicular pattern of small cleaved lymphocytes.",
-      "Flow cytometry reveals a B-cell neoplasm.",
-      "Cytogenetics demonstrate t(14;18) with BCL2 overexpression.",
-      "This indolent lymphoma often presents with widespread painless lymphadenopathy."
+      "A 24-year-old man presents with coughing up blood and dark urine.",
+      "He has dyspnea and fatigue but no rash or joint swelling.",
+      "Urinalysis shows red cell casts and proteinuria.",
+      "Chest imaging demonstrates diffuse alveolar hemorrhage.",
+      "Kidney biopsy shows crescentic glomerulonephritis with linear IgG deposition along the basement membrane.",
+      "Autoantibodies target type IV collagen in pulmonary and glomerular basement membranes."
     ],
-    description: "Follicular lymphoma is an indolent B-cell non-Hodgkin lymphoma associated with BCL2 overexpression from t(14;18). Patients often present with painless generalized lymphadenopathy and recurrent relapses over time.",
+    description: "Goodpasture syndrome is an anti-glomerular basement membrane disease causing rapidly progressive glomerulonephritis and pulmonary hemorrhage. Treatment typically includes plasmapheresis, corticosteroids, and immunosuppression.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 91,
-    answer: "Large Cell Carcinoma of the Lung",
+     id: 79,
+    answer: "Yolk Sac Tumor",
     clues: [
-      "A 67-year-old heavy smoker presents with cough, weight loss, and chest discomfort.",
-      "Imaging reveals a large peripheral lung mass.",
-      "Biopsy shows poorly differentiated malignant cells lacking gland formation or keratinization.",
-      "Immunostaining does not support adenocarcinoma or squamous differentiation.",
-      "Mediastinal nodes are enlarged.",
-      "This diagnosis is made when a non-small cell lung cancer remains undifferentiated after pathologic evaluation."
+      "A 3-year-old boy is brought in for a rapidly enlarging painless testicular mass.",
+      "Scrotal ultrasound shows a solid intratesticular lesion.",
+      "Serum alpha-fetoprotein is markedly elevated.",
+      "Biopsy demonstrates Schiller-Duval bodies.",
+      "There is no gynecomastia.",
+      "This is the most common testicular tumor in young children."
     ],
-    description: "Large cell carcinoma is a poorly differentiated non-small cell lung carcinoma that lacks the features of adenocarcinoma or squamous cell carcinoma. It is strongly associated with smoking and may arise peripherally.",
+    description: "Yolk sac tumor is a malignant germ cell tumor associated with elevated AFP and Schiller-Duval bodies. It is the most common testicular neoplasm in young boys and can also occur as an ovarian germ cell tumor.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 92,
-    answer: "Intraparenchymal Hemorrhage (Intracerebral Hemorrhage)",
+     id: 80,
+    answer: "Bronchial Carcinoid Tumor",
     clues: [
-      "A 66-year-old man with long-standing poorly controlled hypertension suddenly develops headache, vomiting, and left-sided weakness.",
-      "He becomes progressively somnolent over the next hour.",
-      "Blood pressure is 228-118 mmHg.",
-      "Noncontrast head CT shows a hyperdense bleed in the right basal ganglia with surrounding edema.",
-      "There is no history of trauma.",
-      "Chronic hypertensive damage to small penetrating vessels is a common cause of this type of stroke."
+      "A 33-year-old woman presents with recurrent focal wheezing and episodes of hemoptysis.",
+      "She has been treated repeatedly for presumed asthma without improvement.",
+      "CT chest reveals a well-circumscribed central endobronchial mass.",
+      "Bronchoscopy biopsy shows nests of uniform neuroendocrine cells with salt-and-pepper chromatin.",
+      "Octreotide scan is positive.",
+      "This low-grade neuroendocrine tumor may cause cough, obstruction, or occasionally carcinoid syndrome."
     ],
-    description: "Intracerebral hemorrhage commonly results from chronic hypertension causing rupture of small penetrating arteries. It presents with acute neurologic deficits, headache, vomiting, and decreased consciousness and is diagnosed by noncontrast CT.",
+    description: "Bronchial carcinoid tumors are neuroendocrine lung tumors that often present as central airway masses in younger patients. They may cause cough, recurrent pneumonia, wheezing, or hemoptysis and usually have a better prognosis than other lung cancers.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 93,
+     id: 81,
     answer: "Glomus Tumor",
     clues: [
       "A 35-year-old woman has exquisite pain at the tip of one finger for many months.",
@@ -1398,7 +1217,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 94,
+     id: 82,
     answer: "Posterior Urethral Valves",
     clues: [
       "A male newborn has poor urinary stream and a palpable distended bladder.",
@@ -1413,7 +1232,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 95,
+     id: 83,
     answer: "Central Sleep Apnea",
     clues: [
       "A 70-year-old man with systolic heart failure is referred for evaluation of witnessed breathing pauses during sleep.",
@@ -1428,7 +1247,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 96,
+     id: 84,
     answer: "Cluster Headache",
     clues: [
       "A 34-year-old man presents with excruciating unilateral orbital pain occurring nightly for the past week.",
@@ -1443,7 +1262,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 97,
+     id: 85,
     answer: "Staphylococcus aureus cellulitis",
     clues: [
       "A 51-year-old man develops a rapidly enlarging painful red area on the lower leg after scratching an insect bite.",
@@ -1458,7 +1277,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 98,
+     id: 86,
     answer: "Lead Poisoning",
     clues: [
       "A 5-year-old boy is brought in for abdominal pain, constipation, and behavioral changes.",
@@ -1473,7 +1292,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 99,
+     id: 87,
     answer: "Endometrial Carcinoma",
     clues: [
       "A 63-year-old postmenopausal woman presents with vaginal bleeding.",
@@ -1488,7 +1307,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 100,
+     id: 88,
     answer: "Meningocele",
     clues: [
       "A newborn is noted to have a cystic midline lumbosacral mass.",
@@ -1503,7 +1322,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 101,
+     id: 89,
     answer: "Squamous Cell Carcinoma of the Skin",
     clues: [
       "A 72-year-old man presents with a slowly enlarging scaly lesion on the lower lip.",
@@ -1518,7 +1337,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 102,
+     id: 90,
     answer: "Thyroid medullary carcinoma",
     clues: [
       "A 45-year-old woman presents with a firm thyroid nodule and chronic watery diarrhea.",
@@ -1533,7 +1352,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 103,
+     id: 91,
     answer: "Subarachnoid Hemorrhage (SAH) / Berry Aneurysm Rupture",
     clues: [
       "A 54-year-old woman develops the worst headache of her life while exercising.",
@@ -1548,7 +1367,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 104,
+     id: 92,
     answer: "Coxiella burnetii (Q Fever)",
     clues: [
       "A 38-year-old veterinarian presents with fever, severe headache, and dry cough.",
@@ -1563,187 +1382,187 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 105,
-    answer: "Hepatic hemangioma",
+     id: 93,
+    answer: "Type 1 Diabetes Mellitus",
     clues: [
-      "A 47-year-old woman is found to have an incidental liver lesion during ultrasound for gallbladder symptoms.",
-      "She has no weight loss, jaundice, or abdominal tenderness.",
-      "MRI shows a well-circumscribed vascular lesion with peripheral nodular enhancement and centripetal fill-in.",
-      "Liver function tests are normal.",
-      "The lesion is stable on repeat imaging.",
-      "This is the most common benign tumor of the liver."
+      "A 13-year-old boy presents with several weeks of polyuria, polydipsia, and weight loss.",
+      "He has nighttime urination and increasing fatigue.",
+      "Finger-stick glucose is 312 mg-dL.",
+      "Urinalysis shows glucosuria and ketonuria.",
+      "Autoantibodies against pancreatic islet antigens are present.",
+      "This disease results from autoimmune destruction of beta cells causing absolute insulin deficiency."
     ],
-    description: "Hepatic hemangioma is a benign vascular liver lesion often discovered incidentally. Most are asymptomatic and require no treatment unless very large or symptomatic.",
+    description: "Type 1 diabetes mellitus is an autoimmune disease that destroys pancreatic beta cells and causes absolute insulin deficiency. It usually presents in childhood or adolescence with hyperglycemia, polyuria, polydipsia, and sometimes ketoacidosis.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 106,
-    answer: "Tricuspid Valve Regurgitation",
+     id: 94,
+    answer: "Pulmonary Valve Regurgitation",
     clues: [
-      "A 58-year-old woman presents with progressive edema and abdominal fullness.",
-      "Exam reveals elevated jugular venous pressure with prominent v waves and a holosystolic murmur at the left lower sternal border.",
+      "A 43-year-old woman with prior repair of congenital heart disease presents for follow-up.",
+      "She has gradually worsening exercise intolerance and a decrescendo early diastolic murmur at the left upper sternal border.",
       "The murmur becomes louder with inspiration.",
-      "There is pulsatile hepatomegaly and mild ascites.",
-      "Echocardiography shows incomplete closure of the tricuspid valve with systolic backflow into the right atrium.",
-      "Functional disease is often caused by right ventricular dilation or pulmonary hypertension."
+      "Echocardiography shows backflow from the pulmonary artery into the right ventricle during diastole.",
+      "Right ventricular dilation is developing over time.",
+      "This lesion often follows pulmonary hypertension or prior surgical intervention on the outflow tract."
     ],
-    description: "Tricuspid regurgitation produces a holosystolic murmur that increases with inspiration and can cause systemic venous congestion. Etiologies include pulmonary hypertension, endocarditis, carcinoid disease, and right ventricular dilation.",
+    description: "Pulmonary regurgitation is usually secondary to pulmonary hypertension or prior valve surgery and can lead to right ventricular dilation. Many mild cases are asymptomatic; severe chronic regurgitation causes exertional intolerance and right-sided failure.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 107,
-    answer: "Seborrheic Keratosis",
+     id: 95,
+    answer: "Premature Ventricular Contractions (PVCs)",
     clues: [
-      "A 69-year-old man asks about several brown plaques that have appeared on his trunk over the years.",
-      "They are waxy, slightly raised, and look as though they are stuck onto the skin.",
-      "The lesions are not tender and rarely itch.",
-      "Dermoscopy is benign, and no biopsy is needed for classic appearance.",
-      "There is no ulceration, bleeding, or rapid destructive growth.",
-      "This is a common benign epidermal proliferation in older adults."
+      "A 46-year-old man complains of occasional skipped beats and thumps in the chest.",
+      "Symptoms worsen after several cups of coffee and poor sleep.",
+      "He has no syncope and no known structural heart disease.",
+      "ECG monitoring shows early wide QRS complexes without preceding P waves followed by full compensatory pauses.",
+      "Between episodes his rhythm is normal sinus.",
+      "These ectopic beats originate in the ventricles rather than the atria."
     ],
-    description: "Seborrheic keratoses are benign skin lesions with a waxy, stuck-on appearance. They are extremely common with aging and generally require no treatment unless irritated or cosmetically bothersome.",
+    description: "PVCs are early ventricular depolarizations that produce palpitations and a compensatory pause. They are often benign in structurally normal hearts but become more concerning when frequent or associated with cardiomyopathy or ischemia.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 108,
-    answer: "Chronic Pyelonephritis",
+     id: 96,
+    answer: "Primary hyperaldosteronism (Conn syndrome)",
     clues: [
-      "A 43-year-old woman with a history of recurrent urinary tract infections develops slowly worsening kidney function.",
-      "She reports intermittent flank discomfort over several years.",
-      "Urinalysis shows mild proteinuria and leukocytes but no nephrotic-range protein loss.",
-      "Imaging reveals asymmetric small kidneys with coarse corticomedullary scarring.",
-      "There is a history of vesicoureteral reflux since childhood.",
-      "The disease reflects recurrent ascending infection and scarring of the renal parenchyma."
+      "A 41-year-old woman has difficult-to-control hypertension despite two medications.",
+      "She also reports muscle weakness and intermittent leg cramps.",
+      "Labs show hypokalemia and metabolic alkalosis.",
+      "Plasma aldosterone is elevated while renin is suppressed.",
+      "CT adrenal imaging identifies a unilateral adrenal adenoma.",
+      "Excess mineralocorticoid production causes sodium retention and renal potassium wasting."
     ],
-    description: "Chronic pyelonephritis results from recurrent kidney infection or reflux nephropathy and leads to tubulointerstitial scarring. It can cause progressive renal insufficiency and uneven renal cortical scarring.",
+    description: "Primary hyperaldosteronism causes hypertension, hypokalemia, and metabolic alkalosis due to autonomous aldosterone secretion, usually from an adrenal adenoma or bilateral hyperplasia. Screening uses the aldosterone-renin ratio.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 109,
-    answer: "Hypersensitivity Pneumonitis",
+     id: 97,
+    answer: "Keratosis Pilaris",
     clues: [
-      "A 48-year-old bird breeder develops cough, dyspnea, and fever several hours after cleaning his aviary.",
-      "Symptoms improve when he is away from work and recur with re-exposure.",
-      "Exam reveals inspiratory crackles without wheezing.",
-      "CT chest shows diffuse ground-glass opacities and centrilobular nodules.",
-      "Pulmonary function tests show a restrictive pattern with reduced diffusion capacity.",
-      "This immune-mediated disease is caused by repeated inhalation of organic antigens."
+      "A 15-year-old girl complains of rough bumps on the backs of her upper arms.",
+      "The lesions are more noticeable during dry winter months.",
+      "Exam shows numerous tiny follicular keratotic papules with mild surrounding erythema.",
+      "They are not pustular, painful, or infectious appearing.",
+      "She has a history of atopic dermatitis.",
+      "This benign condition reflects keratin plugging of hair follicles."
     ],
-    description: "Hypersensitivity pneumonitis is an inflammatory interstitial lung disease triggered by inhaled organic antigens such as bird proteins or mold. The key management step is antigen avoidance, with steroids used in selected cases.",
+    description: "Keratosis pilaris is a common benign skin condition causing rough follicular papules, especially on the upper arms and thighs. It is often associated with dry skin and atopy and improves with emollients and keratolytics.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 110,
-    answer: "Retinopathy of Prematurity",
+     id: 98,
+    answer: "Anorexia Nervosa",
     clues: [
-      "A premature infant born at 27 weeks receives prolonged supplemental oxygen in the NICU.",
-      "He is screened ophthalmologically because of very low birth weight and prematurity.",
-      "The retina shows abnormal neovascularization at the junction of vascular and avascular retina.",
-      "Later scarring can lead to retinal detachment if untreated.",
-      "The disease results from oxygen-related disruption of normal retinal vascular development.",
-      "Careful oxygen targeting reduces but does not eliminate the risk."
+      "A 17-year-old girl is brought in for weight loss, fatigue, and feeling cold all the time.",
+      "She counts calories rigidly and exercises excessively despite being underweight.",
+      "Her BMI is well below expected, and she expresses intense fear of gaining weight.",
+      "Exam shows bradycardia, lanugo, and orthostatic hypotension.",
+      "Labs may reveal electrolyte abnormalities from purging behaviors.",
+      "This disorder is defined by restriction of intake leading to significantly low body weight and distorted body image."
     ],
-    description: "Retinopathy of prematurity occurs in very premature infants exposed to fluctuating oxygen levels. Abnormal retinal neovascularization can progress to fibrosis and retinal detachment, so regular screening is essential.",
+    description: "Anorexia nervosa is an eating disorder marked by restriction of caloric intake, low body weight, fear of weight gain, and body image disturbance. Medical complications include arrhythmias, amenorrhea, osteopenia, and refeeding syndrome.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 111,
-    answer: "Restrictive Cardiomyopathy",
+     id: 99,
+    answer: "Acute Dystonia",
     clues: [
-      "A 67-year-old woman presents with progressive exertional dyspnea and leg swelling.",
-      "Jugular venous pressure is elevated, and an S4 is heard.",
-      "Echocardiography shows preserved ejection fraction with biatrial enlargement and impaired diastolic filling.",
-      "The ventricular walls are not markedly dilated.",
-      "She has a history of infiltrative systemic disease.",
-      "The main physiologic problem is impaired ventricular compliance rather than poor systolic contraction."
+      "A 19-year-old man develops painful neck twisting and upward deviation of the eyes several hours after receiving an antipsychotic in the emergency department.",
+      "He is frightened but fully conscious.",
+      "There is no fever, rigidity, or autonomic instability.",
+      "Exam shows sustained involuntary contractions of the neck muscles and extraocular muscles.",
+      "Symptoms improve rapidly after diphenhydramine administration.",
+      "This extrapyramidal reaction reflects dopamine blockade in the nigrostriatal pathway."
     ],
-    description: "Restrictive cardiomyopathy causes heart failure from stiff ventricles and impaired filling, often with preserved systolic function early on. Common causes include amyloidosis, sarcoidosis, hemochromatosis, and endomyocardial fibrosis.",
+    description: "Acute dystonia is an early extrapyramidal side effect of dopamine-blocking medications. It presents with sustained muscle contractions such as torticollis or oculogyric crisis and is treated with anticholinergics or antihistamines.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 112,
-    answer: "Prepatellar Bursitis",
+     id: 100,
+    answer: "Superficial Spreading Melanoma",
     clues: [
-      "A 46-year-old floor installer presents with swelling directly over the kneecap.",
-      "He spends hours kneeling at work and denies a twisting injury.",
-      "Exam shows a fluctuant tender collection superficial to the patella with preserved knee range of motion.",
-      "There is no joint effusion.",
-      "Aspiration yields inflammatory fluid from the bursa rather than the joint space.",
-      "Chronic repetitive kneeling compresses and irritates the fluid-filled sac overlying the patella."
+      "A 49-year-old man notices that a long-standing mole on his upper back has enlarged and changed color.",
+      "It now has asymmetry, irregular borders, and multiple shades of brown and black.",
+      "Dermatoscopy is concerning, and excisional biopsy is performed.",
+      "Pathology shows atypical melanocytes spreading along the epidermis in a radial growth phase.",
+      "There is intermittent bleeding after minor trauma.",
+      "This is the most common melanoma subtype."
     ],
-    description: "Prepatellar bursitis is inflammation of the bursa overlying the patella, often caused by repetitive kneeling or direct trauma. Septic bursitis should be considered if there is marked erythema, warmth, or systemic symptoms.",
+    description: "Superficial spreading melanoma is the most common form of melanoma and typically shows prolonged radial growth with irregular color and borders. Definitive diagnosis and staging depend on excisional biopsy and Breslow depth.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 113,
-    answer: "Squamous Cell Carcinoma of the Bladder",
+     id: 101,
+    answer: "Myelodysplastic Syndrome",
     clues: [
-      "A 58-year-old man from an endemic area presents with painless gross hematuria.",
-      "He has no flank pain and no urinary frequency.",
-      "Cystoscopy reveals an invasive bladder mass.",
-      "Biopsy shows keratinizing malignant squamous cells.",
-      "History is notable for chronic Schistosoma haematobium exposure.",
-      "Chronic irritation and inflammation are important risk factors for this bladder cancer subtype."
+      "A 73-year-old man presents with fatigue and recurrent infections.",
+      "CBC shows anemia and neutropenia, and platelets are mildly decreased.",
+      "Peripheral smear demonstrates dysplastic neutrophils and macrocytosis.",
+      "Bone marrow biopsy is hypercellular with ineffective hematopoiesis.",
+      "Cytogenetic abnormalities are identified.",
+      "This clonal stem-cell disorder carries a risk of progression to acute myeloid leukemia."
     ],
-    description: "Squamous cell carcinoma of the bladder is associated with chronic inflammation, especially Schistosoma haematobium infection or long-term irritation from catheters or stones. It often presents with painless hematuria.",
+    description: "Myelodysplastic syndrome is a clonal bone marrow disorder characterized by ineffective hematopoiesis, cytopenias, and dysplastic cell morphology. It is most common in older adults and may evolve into AML.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 114,
-    answer: "Focal Aware Seizure (Simple Partial Seizure)",
+     id: 102,
+    answer: "Follicular Lymphoma",
     clues: [
-      "A 29-year-old woman experiences repeated brief spells of jerking in the right hand.",
-      "She remains fully conscious and can describe the event afterward.",
-      "At times the movement spreads up the arm over seconds.",
-      "There is no postictal confusion.",
-      "EEG localizes epileptiform activity to the left motor cortex.",
-      "This seizure type begins focally without impairment of awareness."
+      "A 61-year-old woman presents with several months of painless enlarged cervical and axillary lymph nodes.",
+      "She denies acute infectious symptoms but notes occasional night sweats.",
+      "Excisional biopsy shows a nodular follicular pattern of small cleaved lymphocytes.",
+      "Flow cytometry reveals a B-cell neoplasm.",
+      "Cytogenetics demonstrate t(14;18) with BCL2 overexpression.",
+      "This indolent lymphoma often presents with widespread painless lymphadenopathy."
     ],
-    description: "Focal aware seizures originate in one cerebral hemisphere and do not impair consciousness. Symptoms depend on the cortical region involved and may include motor, sensory, autonomic, or psychic phenomena.",
+    description: "Follicular lymphoma is an indolent B-cell non-Hodgkin lymphoma associated with BCL2 overexpression from t(14;18). Patients often present with painless generalized lymphadenopathy and recurrent relapses over time.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 115,
-    answer: "Hidradenitis Suppurativa",
+     id: 103,
+    answer: "Large Cell Carcinoma of the Lung",
     clues: [
-      "A 30-year-old woman presents with recurrent painful nodules in both axillae.",
-      "Some lesions drain malodorous material and heal with scarring.",
-      "She also has similar lesions in the groin.",
-      "The problem has persisted for years with intermittent flares.",
-      "Exam reveals sinus tracts and double comedones.",
-      "This chronic inflammatory follicular disorder affects apocrine-bearing regions."
+      "A 67-year-old heavy smoker presents with cough, weight loss, and chest discomfort.",
+      "Imaging reveals a large peripheral lung mass.",
+      "Biopsy shows poorly differentiated malignant cells lacking gland formation or keratinization.",
+      "Immunostaining does not support adenocarcinoma or squamous differentiation.",
+      "Mediastinal nodes are enlarged.",
+      "This diagnosis is made when a non-small cell lung cancer remains undifferentiated after pathologic evaluation."
     ],
-    description: "Hidradenitis suppurativa is a chronic inflammatory disorder of follicular occlusion in intertriginous areas such as the axillae and groin. It causes painful nodules, abscesses, sinus tracts, and scarring.",
+    description: "Large cell carcinoma is a poorly differentiated non-small cell lung carcinoma that lacks the features of adenocarcinoma or squamous cell carcinoma. It is strongly associated with smoking and may arise peripherally.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 116,
-    answer: "CHARGE Syndrome",
+     id: 104,
+    answer: "Intraparenchymal Hemorrhage (Intracerebral Hemorrhage)",
     clues: [
-      "A newborn has cyanosis with feeding, abnormal external ears, and failure of newborn hearing screening.",
-      "Exam also reveals a coloboma and choanal atresia.",
-      "Cardiac imaging identifies a congenital heart defect.",
-      "Genital hypoplasia is noted.",
-      "Developmental delays become apparent during infancy.",
-      "Mutation in a chromatin-remodeling gene underlies this congenital syndrome affecting multiple organ systems."
+      "A 66-year-old man with long-standing poorly controlled hypertension suddenly develops headache, vomiting, and left-sided weakness.",
+      "He becomes progressively somnolent over the next hour.",
+      "Blood pressure is 228-118 mmHg.",
+      "Noncontrast head CT shows a hyperdense bleed in the right basal ganglia with surrounding edema.",
+      "There is no history of trauma.",
+      "Chronic hypertensive damage to small penetrating vessels is a common cause of this type of stroke."
     ],
-    description: "CHARGE syndrome is a congenital disorder often caused by CHD7 mutations. It is characterized by coloboma, heart defects, choanal atresia, growth/developmental delay, genital abnormalities, and ear anomalies.",
+    description: "Intracerebral hemorrhage commonly results from chronic hypertension causing rupture of small penetrating arteries. It presents with acute neurologic deficits, headache, vomiting, and decreased consciousness and is diagnosed by noncontrast CT.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 117,
+     id: 105,
     answer: "Post-Streptococcal Glomerulonephritis",
     clues: [
       "A 9-year-old boy presents with tea-colored urine and facial puffiness 2 weeks after impetigo.",
@@ -1758,7 +1577,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 118,
+     id: 106,
     answer: "Dumping Syndrome",
     clues: [
       "A 55-year-old woman develops abdominal cramping, diarrhea, and palpitations shortly after meals.",
@@ -1773,7 +1592,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 119,
+     id: 107,
     answer: "Pyogenic Granuloma",
     clues: [
       "A 24-year-old pregnant woman notices a rapidly growing red papule on her finger.",
@@ -1788,7 +1607,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 120,
+     id: 108,
     answer: "Cingulate Herniation / Subfalcine Herniation",
     clues: [
       "A 63-year-old man with a large frontal lobe mass becomes progressively lethargic.",
@@ -1803,7 +1622,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 121,
+     id: 109,
     answer: "Pulmonary Embolism (PE)",
     clues: [
       "A 62-year-old woman develops sudden pleuritic chest pain and shortness of breath 1 week after hip surgery.",
@@ -1818,7 +1637,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 122,
+     id: 110,
     answer: "Sick Sinus Syndrome",
     clues: [
       "A 76-year-old woman has recurrent dizziness and several unexplained falls.",
@@ -1833,7 +1652,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 123,
+     id: 111,
     answer: "Distributive Shock (Septic Shock)",
     clues: [
       "A 67-year-old man with pneumonia becomes confused and hypotensive despite fluids.",
@@ -1848,7 +1667,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 124,
+     id: 112,
     answer: "Primary Testicular Lymphoma",
     clues: [
       "A 71-year-old man presents with a painless unilateral testicular enlargement.",
@@ -1863,7 +1682,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 125,
+     id: 113,
     answer: "Hereditary Hemochromatosis",
     clues: [
       "A 52-year-old man presents with fatigue, joint pain, and decreased libido.",
@@ -1878,7 +1697,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 126,
+     id: 114,
     answer: "Trigeminal Neuralgia",
     clues: [
       "A 59-year-old woman reports sudden electric shock-like pain on the right side of her face.",
@@ -1893,7 +1712,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 127,
+     id: 115,
     answer: "Coccidioidomycosis",
     clues: [
       "A 34-year-old construction worker in Arizona presents with fever, cough, and pleuritic chest pain.",
@@ -1908,7 +1727,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 128,
+     id: 116,
     answer: "Nephrogenic diabetes insipidus",
     clues: [
       "A 42-year-old man on chronic lithium therapy reports excessive thirst and urination.",
@@ -1923,187 +1742,187 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 129,
-    answer: "Turcot syndrome",
+     id: 117,
+    answer: "Hepatic hemangioma",
     clues: [
-      "A 16-year-old boy is found to have numerous colonic adenomatous polyps during evaluation of chronic rectal bleeding.",
-      "Months later he develops headaches and vomiting.",
-      "Brain MRI reveals a cerebellar mass.",
-      "Family history is notable for hereditary gastrointestinal malignancy.",
-      "This syndrome combines colorectal polyposis with CNS tumors.",
-      "It is classically associated with APC or mismatch repair gene abnormalities depending on the subtype."
+      "A 47-year-old woman is found to have an incidental liver lesion during ultrasound for gallbladder symptoms.",
+      "She has no weight loss, jaundice, or abdominal tenderness.",
+      "MRI shows a well-circumscribed vascular lesion with peripheral nodular enhancement and centripetal fill-in.",
+      "Liver function tests are normal.",
+      "The lesion is stable on repeat imaging.",
+      "This is the most common benign tumor of the liver."
     ],
-    description: "Turcot syndrome refers to the association of hereditary colorectal polyposis with primary CNS tumors, especially medulloblastoma or glioblastoma depending on the genetic background. It overlaps with APC-associated and Lynch-associated syndromes.",
+    description: "Hepatic hemangioma is a benign vascular liver lesion often discovered incidentally. Most are asymptomatic and require no treatment unless very large or symptomatic.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 130,
-    answer: "Infective Endocarditis",
+     id: 118,
+    answer: "Tricuspid Valve Regurgitation",
     clues: [
-      "A 47-year-old man with a history of injection drug use presents with fever and malaise.",
-      "A new systolic murmur is heard, and he has painful fingertip nodules and splinter hemorrhages.",
-      "Blood cultures are repeatedly positive for Staphylococcus aureus.",
-      "Echocardiography shows a mobile vegetation on the tricuspid valve.",
-      "Urinalysis reveals microscopic hematuria from immune complex injury.",
-      "This infection involves colonization of the endocardial surface and can embolize systemically or to the lungs."
+      "A 58-year-old woman presents with progressive edema and abdominal fullness.",
+      "Exam reveals elevated jugular venous pressure with prominent v waves and a holosystolic murmur at the left lower sternal border.",
+      "The murmur becomes louder with inspiration.",
+      "There is pulsatile hepatomegaly and mild ascites.",
+      "Echocardiography shows incomplete closure of the tricuspid valve with systolic backflow into the right atrium.",
+      "Functional disease is often caused by right ventricular dilation or pulmonary hypertension."
     ],
-    description: "Infective endocarditis is infection of the endocardial surface, usually involving a valve. Persistent bacteremia, new murmur, and vascular or immunologic phenomena are typical findings, and echocardiography is central to diagnosis.",
+    description: "Tricuspid regurgitation produces a holosystolic murmur that increases with inspiration and can cause systemic venous congestion. Etiologies include pulmonary hypertension, endocarditis, carcinoid disease, and right ventricular dilation.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 131,
-    answer: "Retinoblastoma",
+     id: 119,
+    answer: "Seborrheic Keratosis",
     clues: [
-      "An 18-month-old child is brought in because one pupil appears white in flash photographs.",
-      "Parents also noticed intermittent eye deviation.",
-      "Funduscopic exam reveals a retinal mass.",
-      "MRI confirms an intraocular tumor without optic nerve extension.",
-      "The child has a family history of early-onset eye cancer.",
-      "This tumor arises from biallelic loss of the RB tumor suppressor gene."
+      "A 69-year-old man asks about several brown plaques that have appeared on his trunk over the years.",
+      "They are waxy, slightly raised, and look as though they are stuck onto the skin.",
+      "The lesions are not tender and rarely itch.",
+      "Dermoscopy is benign, and no biopsy is needed for classic appearance.",
+      "There is no ulceration, bleeding, or rapid destructive growth.",
+      "This is a common benign epidermal proliferation in older adults."
     ],
-    description: "Retinoblastoma is the most common intraocular malignancy of childhood and presents with leukocoria or strabismus. Heritable cases involve germline RB mutation and are associated with bilateral disease and later osteosarcoma risk.",
+    description: "Seborrheic keratoses are benign skin lesions with a waxy, stuck-on appearance. They are extremely common with aging and generally require no treatment unless irritated or cosmetically bothersome.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 132,
-    answer: "Actinic Keratosis",
+     id: 120,
+    answer: "Chronic Pyelonephritis",
     clues: [
-      "A 68-year-old fair-skinned man has several rough scaly papules on the bald scalp.",
-      "They are easier to feel than to see.",
-      "The lesions are persistent but slow-growing.",
-      "He has extensive cumulative sun exposure.",
-      "Biopsy of one lesion shows atypical keratinocytes confined to the lower epidermis.",
-      "These premalignant lesions can progress to squamous cell carcinoma."
+      "A 43-year-old woman with a history of recurrent urinary tract infections develops slowly worsening kidney function.",
+      "She reports intermittent flank discomfort over several years.",
+      "Urinalysis shows mild proteinuria and leukocytes but no nephrotic-range protein loss.",
+      "Imaging reveals asymmetric small kidneys with coarse corticomedullary scarring.",
+      "There is a history of vesicoureteral reflux since childhood.",
+      "The disease reflects recurrent ascending infection and scarring of the renal parenchyma."
     ],
-    description: "Actinic keratoses are sun-induced premalignant lesions made of atypical keratinocytes. They occur on chronically sun-exposed skin and are treated because some progress to squamous cell carcinoma.",
+    description: "Chronic pyelonephritis results from recurrent kidney infection or reflux nephropathy and leads to tubulointerstitial scarring. It can cause progressive renal insufficiency and uneven renal cortical scarring.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 133,
-    answer: "Truncus Arteriosus",
+     id: 121,
+    answer: "Hypersensitivity Pneumonitis",
     clues: [
-      "A newborn develops cyanosis and signs of heart failure within the first weeks of life.",
-      "Echocardiography reveals a single large arterial trunk leaving the heart and overriding a VSD.",
-      "Oxygen saturation is low despite increased pulmonary blood flow.",
-      "There is no separate pulmonary artery originating from the right ventricle.",
-      "The lesion results from failure of the truncus arteriosus to divide properly during development.",
-      "This conotruncal anomaly is associated with 22q11 deletion syndromes."
+      "A 48-year-old bird breeder develops cough, dyspnea, and fever several hours after cleaning his aviary.",
+      "Symptoms improve when he is away from work and recur with re-exposure.",
+      "Exam reveals inspiratory crackles without wheezing.",
+      "CT chest shows diffuse ground-glass opacities and centrilobular nodules.",
+      "Pulmonary function tests show a restrictive pattern with reduced diffusion capacity.",
+      "This immune-mediated disease is caused by repeated inhalation of organic antigens."
     ],
-    description: "Truncus arteriosus is a congenital defect in which a single arterial trunk gives rise to the systemic, coronary, and pulmonary circulations. It results from failed neural crest migration and requires early surgical repair.",
+    description: "Hypersensitivity pneumonitis is an inflammatory interstitial lung disease triggered by inhaled organic antigens such as bird proteins or mold. The key management step is antigen avoidance, with steroids used in selected cases.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 134,
-    answer: "Binge-Eating Disorder",
+     id: 122,
+    answer: "Retinopathy of Prematurity",
     clues: [
-      "A 29-year-old woman reports repeated episodes of eating very large amounts of food in secret.",
-      "She feels unable to stop during the episodes and is distressed afterward.",
-      "Unlike bulimia, she does not regularly induce vomiting or misuse laxatives.",
-      "Her weight has increased steadily over the last few years.",
-      "The episodes occur at least weekly.",
-      "This eating disorder is characterized by binge episodes without compensatory behaviors."
+      "A premature infant born at 27 weeks receives prolonged supplemental oxygen in the NICU.",
+      "He is screened ophthalmologically because of very low birth weight and prematurity.",
+      "The retina shows abnormal neovascularization at the junction of vascular and avascular retina.",
+      "Later scarring can lead to retinal detachment if untreated.",
+      "The disease results from oxygen-related disruption of normal retinal vascular development.",
+      "Careful oxygen targeting reduces but does not eliminate the risk."
     ],
-    description: "Binge-eating disorder involves recurrent binge episodes with loss of control and marked distress, but without recurrent inappropriate compensatory behaviors. It is associated with obesity and psychiatric comorbidity.",
+    description: "Retinopathy of prematurity occurs in very premature infants exposed to fluctuating oxygen levels. Abnormal retinal neovascularization can progress to fibrosis and retinal detachment, so regular screening is essential.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 135,
-    answer: "Metabolic-Associated Fatty Liver Disease (MAFLD)",
+     id: 123,
+    answer: "Restrictive Cardiomyopathy",
     clues: [
-      "A 51-year-old man with obesity and type 2 diabetes is found to have mildly elevated ALT on routine labs.",
-      "He drinks very little alcohol.",
-      "Ultrasound shows increased hepatic echogenicity consistent with steatosis.",
-      "There is no viral hepatitis.",
-      "Liver biopsy, if done, may show steatosis with ballooning degeneration and inflammation.",
-      "This liver disease is strongly linked to insulin resistance and metabolic syndrome."
+      "A 67-year-old woman presents with progressive exertional dyspnea and leg swelling.",
+      "Jugular venous pressure is elevated, and an S4 is heard.",
+      "Echocardiography shows preserved ejection fraction with biatrial enlargement and impaired diastolic filling.",
+      "The ventricular walls are not markedly dilated.",
+      "She has a history of infiltrative systemic disease.",
+      "The main physiologic problem is impaired ventricular compliance rather than poor systolic contraction."
     ],
-    description: "MAFLD, formerly termed NAFLD, encompasses hepatic steatosis related to metabolic dysfunction. It can progress from simple steatosis to steatohepatitis, fibrosis, cirrhosis, and hepatocellular carcinoma.",
+    description: "Restrictive cardiomyopathy causes heart failure from stiff ventricles and impaired filling, often with preserved systolic function early on. Common causes include amyloidosis, sarcoidosis, hemochromatosis, and endomyocardial fibrosis.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 136,
-    answer: "Poliomyelitis",
+     id: 124,
+    answer: "Prepatellar Bursitis",
     clues: [
-      "A 6-year-old unvaccinated child develops fever and sore throat followed by asymmetric leg weakness.",
-      "Sensation remains intact despite profound motor deficits.",
-      "Deep tendon reflexes are decreased in the affected limb.",
-      "CSF shows a viral pattern, and stool PCR detects enterovirus.",
-      "There is no upper motor neuron spasticity.",
-      "The virus selectively damages anterior horn cells in the spinal cord."
+      "A 46-year-old floor installer presents with swelling directly over the kneecap.",
+      "He spends hours kneeling at work and denies a twisting injury.",
+      "Exam shows a fluctuant tender collection superficial to the patella with preserved knee range of motion.",
+      "There is no joint effusion.",
+      "Aspiration yields inflammatory fluid from the bursa rather than the joint space.",
+      "Chronic repetitive kneeling compresses and irritates the fluid-filled sac overlying the patella."
     ],
-    description: "Poliomyelitis is an enteroviral infection that can invade the central nervous system and destroy anterior horn cells, causing asymmetric flaccid paralysis. Vaccination has made the disease rare in most of the world.",
+    description: "Prepatellar bursitis is inflammation of the bursa overlying the patella, often caused by repetitive kneeling or direct trauma. Septic bursitis should be considered if there is marked erythema, warmth, or systemic symptoms.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 137,
-    answer: "Pneumococcal Pneumonia (Streptococcus pneumoniae)",
+     id: 125,
+    answer: "Squamous Cell Carcinoma of the Bladder",
     clues: [
-      "A 66-year-old man presents with abrupt fever, productive cough, and pleuritic chest pain.",
-      "He produces rust-colored sputum.",
-      "Exam shows focal crackles and bronchial breath sounds over the right lower lobe.",
-      "Chest x-ray reveals lobar consolidation.",
-      "Blood culture grows alpha-hemolytic gram-positive diplococci that are optochin sensitive.",
-      "This is the most common cause of community-acquired lobar pneumonia."
+      "A 58-year-old man from an endemic area presents with painless gross hematuria.",
+      "He has no flank pain and no urinary frequency.",
+      "Cystoscopy reveals an invasive bladder mass.",
+      "Biopsy shows keratinizing malignant squamous cells.",
+      "History is notable for chronic Schistosoma haematobium exposure.",
+      "Chronic irritation and inflammation are important risk factors for this bladder cancer subtype."
     ],
-    description: "Streptococcus pneumoniae classically causes abrupt-onset lobar pneumonia with fever, cough, pleuritic pain, and rusty sputum. It is also a common cause of otitis, sinusitis, and meningitis.",
+    description: "Squamous cell carcinoma of the bladder is associated with chronic inflammation, especially Schistosoma haematobium infection or long-term irritation from catheters or stones. It often presents with painless hematuria.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 138,
-    answer: "Total Anomalous Pulmonary Venous Return (TAPVR)",
+     id: 126,
+    answer: "Focal Aware Seizure (Simple Partial Seizure)",
     clues: [
-      "A cyanotic newborn becomes more tachypneic shortly after birth.",
-      "Echocardiography shows all pulmonary veins draining into the systemic venous circulation rather than the left atrium.",
-      "An atrial septal defect is present and necessary for survival.",
-      "Chest imaging may show a snowman silhouette in certain supracardiac forms.",
-      "Pulmonary edema can be severe if venous return is obstructed.",
-      "This congenital anomaly requires surgical correction."
+      "A 29-year-old woman experiences repeated brief spells of jerking in the right hand.",
+      "She remains fully conscious and can describe the event afterward.",
+      "At times the movement spreads up the arm over seconds.",
+      "There is no postictal confusion.",
+      "EEG localizes epileptiform activity to the left motor cortex.",
+      "This seizure type begins focally without impairment of awareness."
     ],
-    description: "TAPVR is a congenital defect in which pulmonary venous blood reaches the right side of the heart instead of the left atrium. An interatrial communication is necessary to maintain systemic output, and repair is surgical.",
+    description: "Focal aware seizures originate in one cerebral hemisphere and do not impair consciousness. Symptoms depend on the cortical region involved and may include motor, sensory, autonomic, or psychic phenomena.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 139,
-    answer: "Nicotine Withdrawal",
+     id: 127,
+    answer: "Hidradenitis Suppurativa",
     clues: [
-      "A 39-year-old man stopped smoking 2 days ago and now feels irritable and restless.",
-      "He reports strong cravings, poor concentration, and increased appetite.",
-      "Sleep has become fragmented.",
-      "There is no intoxication, hallucination, or autonomic collapse.",
-      "He asks for help because he is worried he will relapse.",
-      "This syndrome commonly follows abrupt cessation of chronic tobacco use."
+      "A 30-year-old woman presents with recurrent painful nodules in both axillae.",
+      "Some lesions drain malodorous material and heal with scarring.",
+      "She also has similar lesions in the groin.",
+      "The problem has persisted for years with intermittent flares.",
+      "Exam reveals sinus tracts and double comedones.",
+      "This chronic inflammatory follicular disorder affects apocrine-bearing regions."
     ],
-    description: "Nicotine withdrawal causes irritability, anxiety, increased appetite, concentration difficulty, insomnia, and craving after stopping tobacco. Behavioral support and pharmacotherapy such as nicotine replacement, varenicline, or bupropion improve quit success.",
+    description: "Hidradenitis suppurativa is a chronic inflammatory disorder of follicular occlusion in intertriginous areas such as the axillae and groin. It causes painful nodules, abscesses, sinus tracts, and scarring.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 140,
-    answer: "Brugada Syndrome",
+     id: 128,
+    answer: "CHARGE Syndrome",
     clues: [
-      "A 32-year-old man experiences nocturnal syncope without warning.",
-      "His brother died suddenly at age 29.",
-      "ECG shows coved ST elevation in leads V1 through V3 with a pseudo-right bundle branch block pattern.",
-      "Echocardiography reveals no structural heart disease.",
-      "Fever previously worsened his ECG changes.",
-      "This inherited sodium channelopathy predisposes to ventricular arrhythmias and sudden death."
+      "A newborn has cyanosis with feeding, abnormal external ears, and failure of newborn hearing screening.",
+      "Exam also reveals a coloboma and choanal atresia.",
+      "Cardiac imaging identifies a congenital heart defect.",
+      "Genital hypoplasia is noted.",
+      "Developmental delays become apparent during infancy.",
+      "Mutation in a chromatin-remodeling gene underlies this congenital syndrome affecting multiple organ systems."
     ],
-    description: "Brugada syndrome is an inherited arrhythmia syndrome characterized by ST-segment elevation in V1-V3 and risk of ventricular tachyarrhythmias. Management often includes ICD placement in high-risk patients.",
+    description: "CHARGE syndrome is a congenital disorder often caused by CHD7 mutations. It is characterized by coloboma, heart defects, choanal atresia, growth/developmental delay, genital abnormalities, and ear anomalies.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 141,
+     id: 129,
     answer: "Alcohol Withdrawal",
     clues: [
       "A 44-year-old man is hospitalized and becomes tremulous about 12 hours after his last drink.",
@@ -2118,7 +1937,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 142,
+     id: 130,
     answer: "Wernicke-Korsakoff Syndrome",
     clues: [
       "A 58-year-old man with alcohol use disorder presents with confusion and unsteady gait.",
@@ -2133,7 +1952,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 143,
+     id: 131,
     answer: "Congestive Heart Failure (CHF)",
     clues: [
       "A 72-year-old man presents with progressive shortness of breath, orthopnea, and ankle swelling.",
@@ -2148,7 +1967,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 144,
+     id: 132,
     answer: "Absence Seizure",
     clues: [
       "A 7-year-old girl has repeated brief staring spells during class.",
@@ -2163,7 +1982,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 145,
+     id: 133,
     answer: "Acoustic Neuroma / Vestibular Schwannoma",
     clues: [
       "A 52-year-old woman reports progressive unilateral hearing loss and tinnitus.",
@@ -2178,7 +1997,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 146,
+     id: 134,
     answer: "Alport Syndrome",
     clues: [
       "A 14-year-old boy presents with lifelong microscopic hematuria and progressive hearing difficulty.",
@@ -2193,7 +2012,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 147,
+     id: 135,
     answer: "Complex Regional Pain Syndrome (CRPS)",
     clues: [
       "A 38-year-old woman develops severe burning pain in the hand weeks after a distal radius fracture.",
@@ -2208,7 +2027,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 148,
+     id: 136,
     answer: "Aortic Valve Regurgitation",
     clues: [
       "A 56-year-old man complains of exertional dyspnea and awareness of forceful heartbeats when lying down.",
@@ -2223,7 +2042,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 149,
+     id: 137,
     answer: "Acute Lymphoblastic Leukemia (ALL)",
     clues: [
       "A 6-year-old boy presents with fatigue, bruising, and leg pain.",
@@ -2238,7 +2057,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 150,
+     id: 138,
     answer: "Mucoepidermoid carcinoma",
     clues: [
       "A 45-year-old woman has a slowly enlarging painless mass near the angle of the jaw.",
@@ -2253,7 +2072,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 151,
+     id: 139,
     answer: "Achondroplasia",
     clues: [
       "A newborn has shortened proximal limbs with normal trunk length.",
@@ -2268,7 +2087,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 152,
+     id: 140,
     answer: "Cardiac Myxoma",
     clues: [
       "A 46-year-old woman has exertional dyspnea and several recent episodes of near-syncope.",
@@ -2283,187 +2102,187 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 153,
-    answer: "Burkitt Lymphoma",
+     id: 141,
+    answer: "Turcot syndrome",
     clues: [
-      "A 9-year-old boy presents with rapidly enlarging abdominal distension and pain.",
-      "Imaging reveals an ileocecal mass and mesenteric lymphadenopathy.",
-      "Biopsy shows sheets of medium-sized B cells with numerous tingible-body macrophages, creating a starry-sky appearance.",
-      "Ki-67 proliferation index is extremely high.",
-      "Cytogenetics reveal a MYC translocation, classically t(8;14).",
-      "This is an aggressive but potentially highly chemosensitive lymphoma."
+      "A 16-year-old boy is found to have numerous colonic adenomatous polyps during evaluation of chronic rectal bleeding.",
+      "Months later he develops headaches and vomiting.",
+      "Brain MRI reveals a cerebellar mass.",
+      "Family history is notable for hereditary gastrointestinal malignancy.",
+      "This syndrome combines colorectal polyposis with CNS tumors.",
+      "It is classically associated with APC or mismatch repair gene abnormalities depending on the subtype."
     ],
-    description: "Burkitt lymphoma is a high-grade B-cell lymphoma driven by MYC translocation. Endemic forms often involve the jaw, whereas sporadic forms frequently involve the abdomen, especially the ileocecal region.",
+    description: "Turcot syndrome refers to the association of hereditary colorectal polyposis with primary CNS tumors, especially medulloblastoma or glioblastoma depending on the genetic background. It overlaps with APC-associated and Lynch-associated syndromes.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 154,
-    answer: "Escherichia coli (E. coli) prostatitis",
+     id: 142,
+    answer: "Infective Endocarditis",
     clues: [
-      "A 61-year-old man presents with fever, dysuria, perineal pain, and urinary frequency.",
-      "He appears ill and has a tender boggy prostate on gentle exam.",
-      "Urinalysis shows pyuria and bacteriuria.",
-      "Urine culture grows a lactose-fermenting gram-negative rod.",
-      "He has no testicular swelling.",
-      "This is the most common bacterial cause of acute prostatitis."
+      "A 47-year-old man with a history of injection drug use presents with fever and malaise.",
+      "A new systolic murmur is heard, and he has painful fingertip nodules and splinter hemorrhages.",
+      "Blood cultures are repeatedly positive for Staphylococcus aureus.",
+      "Echocardiography shows a mobile vegetation on the tricuspid valve.",
+      "Urinalysis reveals microscopic hematuria from immune complex injury.",
+      "This infection involves colonization of the endocardial surface and can embolize systemically or to the lungs."
     ],
-    description: "Acute bacterial prostatitis usually presents with fever, dysuria, pelvic pain, and a tender boggy prostate. E. coli is the most common pathogen, and prostatic massage is avoided during acute infection.",
+    description: "Infective endocarditis is infection of the endocardial surface, usually involving a valve. Persistent bacteremia, new murmur, and vascular or immunologic phenomena are typical findings, and echocardiography is central to diagnosis.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 155,
-    answer: "Uterine Atony",
+     id: 143,
+    answer: "Retinoblastoma",
     clues: [
-      "A 31-year-old woman has heavy vaginal bleeding minutes after delivery.",
-      "The placenta has already been delivered completely.",
-      "Her uterus feels enlarged, soft, and boggy on exam.",
-      "She received prolonged oxytocin augmentation during labor and delivered a large infant.",
-      "Massage and uterotonic therapy improve the bleeding.",
-      "This is the most common cause of postpartum hemorrhage."
+      "An 18-month-old child is brought in because one pupil appears white in flash photographs.",
+      "Parents also noticed intermittent eye deviation.",
+      "Funduscopic exam reveals a retinal mass.",
+      "MRI confirms an intraocular tumor without optic nerve extension.",
+      "The child has a family history of early-onset eye cancer.",
+      "This tumor arises from biallelic loss of the RB tumor suppressor gene."
     ],
-    description: "Uterine atony is failure of the uterus to contract effectively after delivery, causing postpartum hemorrhage. Risk factors include uterine overdistension, prolonged labor, chorioamnionitis, and prior oxytocin exposure.",
+    description: "Retinoblastoma is the most common intraocular malignancy of childhood and presents with leukocoria or strabismus. Heritable cases involve germline RB mutation and are associated with bilateral disease and later osteosarcoma risk.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 156,
-    answer: "Primary sclerosing cholangitis (PSC)",
+     id: 144,
+    answer: "Actinic Keratosis",
     clues: [
-      "A 36-year-old man presents with fatigue and pruritus.",
-      "He has a known history of ulcerative colitis.",
-      "Labs show elevated alkaline phosphatase and bilirubin.",
-      "MRCP reveals multifocal strictures and dilatations of intrahepatic and extrahepatic bile ducts.",
-      "Autoimmune markers may be present, but antimitochondrial antibodies are negative.",
-      "This cholestatic disease increases the risk of cholangiocarcinoma."
+      "A 68-year-old fair-skinned man has several rough scaly papules on the bald scalp.",
+      "They are easier to feel than to see.",
+      "The lesions are persistent but slow-growing.",
+      "He has extensive cumulative sun exposure.",
+      "Biopsy of one lesion shows atypical keratinocytes confined to the lower epidermis.",
+      "These premalignant lesions can progress to squamous cell carcinoma."
     ],
-    description: "PSC is a chronic cholestatic liver disease strongly associated with ulcerative colitis. Imaging classically shows a beaded biliary tree due to alternating strictures and dilations.",
+    description: "Actinic keratoses are sun-induced premalignant lesions made of atypical keratinocytes. They occur on chronically sun-exposed skin and are treated because some progress to squamous cell carcinoma.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 157,
-    answer: "Urothelial Carcinoma of the Bladder",
+     id: 145,
+    answer: "Truncus Arteriosus",
     clues: [
-      "A 67-year-old man presents with painless gross hematuria.",
-      "He has a long smoking history.",
-      "There is no dysuria or flank pain.",
-      "Cystoscopy identifies a papillary bladder mass.",
-      "Biopsy confirms malignant urothelial cells.",
-      "This is the most common bladder cancer in developed countries."
+      "A newborn develops cyanosis and signs of heart failure within the first weeks of life.",
+      "Echocardiography reveals a single large arterial trunk leaving the heart and overriding a VSD.",
+      "Oxygen saturation is low despite increased pulmonary blood flow.",
+      "There is no separate pulmonary artery originating from the right ventricle.",
+      "The lesion results from failure of the truncus arteriosus to divide properly during development.",
+      "This conotruncal anomaly is associated with 22q11 deletion syndromes."
     ],
-    description: "Urothelial carcinoma usually presents with painless hematuria and is strongly associated with smoking, aromatic amine exposure, and cyclophosphamide. It can range from superficial papillary tumors to invasive disease.",
+    description: "Truncus arteriosus is a congenital defect in which a single arterial trunk gives rise to the systemic, coronary, and pulmonary circulations. It results from failed neural crest migration and requires early surgical repair.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 158,
-    answer: "Renal Cell Carcinoma",
+     id: 146,
+    answer: "Binge-Eating Disorder",
     clues: [
-      "A 64-year-old man presents with intermittent gross hematuria and flank pain.",
-      "He has lost weight and has a history of smoking.",
-      "Abdominal CT shows a solid enhancing renal cortical mass.",
-      "Labs reveal polycythemia.",
-      "The tumor can extend into the renal vein.",
-      "This kidney malignancy often arises from the proximal tubular epithelium."
+      "A 29-year-old woman reports repeated episodes of eating very large amounts of food in secret.",
+      "She feels unable to stop during the episodes and is distressed afterward.",
+      "Unlike bulimia, she does not regularly induce vomiting or misuse laxatives.",
+      "Her weight has increased steadily over the last few years.",
+      "The episodes occur at least weekly.",
+      "This eating disorder is characterized by binge episodes without compensatory behaviors."
     ],
-    description: "Renal cell carcinoma classically presents with hematuria, flank pain, and a mass, though the full triad is uncommon. It is associated with smoking, obesity, hypertension, and paraneoplastic syndromes such as polycythemia.",
+    description: "Binge-eating disorder involves recurrent binge episodes with loss of control and marked distress, but without recurrent inappropriate compensatory behaviors. It is associated with obesity and psychiatric comorbidity.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 159,
-    answer: "Kidney Stones (Nephrolithiasis)",
+     id: 147,
+    answer: "Metabolic-Associated Fatty Liver Disease (MAFLD)",
     clues: [
-      "A 37-year-old man presents with sudden severe right flank pain radiating to the groin.",
-      "He cannot sit still and is nauseated.",
-      "Urinalysis shows microscopic hematuria.",
-      "Noncontrast CT shows a 4-mm ureteral stone near the ureterovesical junction.",
-      "There is mild hydronephrosis.",
-      "This syndrome is one of the most common causes of colicky flank pain."
+      "A 51-year-old man with obesity and type 2 diabetes is found to have mildly elevated ALT on routine labs.",
+      "He drinks very little alcohol.",
+      "Ultrasound shows increased hepatic echogenicity consistent with steatosis.",
+      "There is no viral hepatitis.",
+      "Liver biopsy, if done, may show steatosis with ballooning degeneration and inflammation.",
+      "This liver disease is strongly linked to insulin resistance and metabolic syndrome."
     ],
-    description: "Nephrolithiasis causes acute colicky flank pain, hematuria, and sometimes hydronephrosis. Management depends on stone size, location, symptoms, and whether obstruction or infection is present.",
+    description: "MAFLD, formerly termed NAFLD, encompasses hepatic steatosis related to metabolic dysfunction. It can progress from simple steatosis to steatohepatitis, fibrosis, cirrhosis, and hepatocellular carcinoma.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 160,
-    answer: "Cystic Fibrosis",
+     id: 148,
+    answer: "Poliomyelitis",
     clues: [
-      "A 3-year-old boy has recurrent sinopulmonary infections, greasy stools, and poor weight gain.",
-      "Parents say his skin tastes salty.",
-      "Exam reveals nasal polyps and digital clubbing later in childhood.",
-      "Sweat chloride testing is elevated.",
-      "Genetic testing identifies a CFTR mutation.",
-      "This disorder causes thick secretions affecting the lungs, pancreas, and reproductive tract."
+      "A 6-year-old unvaccinated child develops fever and sore throat followed by asymmetric leg weakness.",
+      "Sensation remains intact despite profound motor deficits.",
+      "Deep tendon reflexes are decreased in the affected limb.",
+      "CSF shows a viral pattern, and stool PCR detects enterovirus.",
+      "There is no upper motor neuron spasticity.",
+      "The virus selectively damages anterior horn cells in the spinal cord."
     ],
-    description: "Cystic fibrosis is an autosomal recessive CFTR disorder causing chronic lung disease, pancreatic insufficiency, malabsorption, and infertility in most males. Newborn screening and sweat chloride testing aid diagnosis.",
+    description: "Poliomyelitis is an enteroviral infection that can invade the central nervous system and destroy anterior horn cells, causing asymmetric flaccid paralysis. Vaccination has made the disease rare in most of the world.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 161,
-    answer: "Necrotizing enterocolitis",
+     id: 149,
+    answer: "Pneumococcal Pneumonia (Streptococcus pneumoniae)",
     clues: [
-      "A premature infant develops abdominal distension and feeding intolerance on day 10 of life.",
-      "He becomes lethargic and has bloody stools.",
-      "Exam shows a tense tender abdomen.",
-      "Abdominal radiograph reveals pneumatosis intestinalis.",
-      "Broad-spectrum antibiotics and bowel rest are started urgently.",
-      "This disease primarily affects premature infants after enteral feeding is initiated."
+      "A 66-year-old man presents with abrupt fever, productive cough, and pleuritic chest pain.",
+      "He produces rust-colored sputum.",
+      "Exam shows focal crackles and bronchial breath sounds over the right lower lobe.",
+      "Chest x-ray reveals lobar consolidation.",
+      "Blood culture grows alpha-hemolytic gram-positive diplococci that are optochin sensitive.",
+      "This is the most common cause of community-acquired lobar pneumonia."
     ],
-    description: "Necrotizing enterocolitis is an inflammatory bowel necrosis of premature infants characterized by abdominal distension, feeding intolerance, bloody stools, and pneumatosis intestinalis. It is a neonatal emergency.",
+    description: "Streptococcus pneumoniae classically causes abrupt-onset lobar pneumonia with fever, cough, pleuritic pain, and rusty sputum. It is also a common cause of otitis, sinusitis, and meningitis.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 162,
-    answer: "Hemophilia B (Christmas disease)",
+     id: 150,
+    answer: "Total Anomalous Pulmonary Venous Return (TAPVR)",
     clues: [
-      "A 6-year-old boy develops recurrent hemarthroses after minor trauma.",
-      "His maternal uncle had a similar bleeding disorder.",
-      "PT is normal, but aPTT is prolonged.",
-      "Mixing study corrects the abnormality.",
-      "Factor assay shows low factor IX activity.",
-      "This is an X-linked deficiency of a coagulation factor in the intrinsic pathway."
+      "A cyanotic newborn becomes more tachypneic shortly after birth.",
+      "Echocardiography shows all pulmonary veins draining into the systemic venous circulation rather than the left atrium.",
+      "An atrial septal defect is present and necessary for survival.",
+      "Chest imaging may show a snowman silhouette in certain supracardiac forms.",
+      "Pulmonary edema can be severe if venous return is obstructed.",
+      "This congenital anomaly requires surgical correction."
     ],
-    description: "Hemophilia B is an X-linked deficiency of factor IX that causes deep tissue bleeding, hemarthroses, and prolonged aPTT with normal PT. Treatment is factor IX replacement.",
+    description: "TAPVR is a congenital defect in which pulmonary venous blood reaches the right side of the heart instead of the left atrium. An interatrial communication is necessary to maintain systemic output, and repair is surgical.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 163,
-    answer: "Dermatomyositis",
+     id: 151,
+    answer: "Nicotine Withdrawal",
     clues: [
-      "A 49-year-old woman develops progressive difficulty climbing stairs and lifting objects overhead.",
-      "She also has a violaceous rash around the eyelids and scaly papules over the knuckles.",
-      "Muscle enzymes are elevated.",
-      "Electromyography suggests an inflammatory myopathy.",
-      "Biopsy shows perifascicular atrophy with perimysial inflammation.",
-      "This condition can be associated with underlying malignancy in adults."
+      "A 39-year-old man stopped smoking 2 days ago and now feels irritable and restless.",
+      "He reports strong cravings, poor concentration, and increased appetite.",
+      "Sleep has become fragmented.",
+      "There is no intoxication, hallucination, or autonomic collapse.",
+      "He asks for help because he is worried he will relapse.",
+      "This syndrome commonly follows abrupt cessation of chronic tobacco use."
     ],
-    description: "Dermatomyositis is an inflammatory myopathy characterized by proximal muscle weakness and distinctive skin findings such as heliotrope rash and Gottron papules. Adults should be evaluated for associated malignancy.",
+    description: "Nicotine withdrawal causes irritability, anxiety, increased appetite, concentration difficulty, insomnia, and craving after stopping tobacco. Behavioral support and pharmacotherapy such as nicotine replacement, varenicline, or bupropion improve quit success.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 164,
-    answer: "Melanocytic Nevus",
+     id: 152,
+    answer: "Brugada Syndrome",
     clues: [
-      "A 28-year-old woman asks about a stable symmetric brown mole on her shoulder.",
-      "It has been unchanged for years and has a uniform tan-brown color.",
-      "Borders are smooth and regular.",
-      "There is no bleeding, ulceration, or rapid growth.",
-      "Excisional biopsy, if done, would show nests of benign melanocytes.",
-      "This lesion is a common benign proliferation of melanocytes."
+      "A 32-year-old man experiences nocturnal syncope without warning.",
+      "His brother died suddenly at age 29.",
+      "ECG shows coved ST elevation in leads V1 through V3 with a pseudo-right bundle branch block pattern.",
+      "Echocardiography reveals no structural heart disease.",
+      "Fever previously worsened his ECG changes.",
+      "This inherited sodium channelopathy predisposes to ventricular arrhythmias and sudden death."
     ],
-    description: "Melanocytic nevi are benign melanocyte proliferations that are usually symmetric, uniformly pigmented, and stable over time. Change in asymmetry, color, border, size, or symptoms raises concern for melanoma.",
+    description: "Brugada syndrome is an inherited arrhythmia syndrome characterized by ST-segment elevation in V1-V3 and risk of ventricular tachyarrhythmias. Management often includes ICD placement in high-risk patients.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 165,
+     id: 153,
     answer: "Thromboangiitis Obliterans (Buerger's Disease)",
     clues: [
       "A 33-year-old man presents with hand pain and toe ulcers.",
@@ -2478,7 +2297,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 166,
+     id: 154,
     answer: "Embryonal Carcinoma",
     clues: [
       "A 28-year-old man notices a painless enlarging testicular mass.",
@@ -2493,7 +2312,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 167,
+     id: 155,
     answer: "Erythema Nodosum",
     clues: [
       "A 26-year-old woman develops tender red nodules on both shins.",
@@ -2508,7 +2327,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 168,
+     id: 156,
     answer: "Holiday Heart Syndrome (Alcohol-Induced Atrial Fibrillation)",
     clues: [
       "A 41-year-old man develops palpitations the morning after a weekend binge.",
@@ -2523,7 +2342,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 169,
+     id: 157,
     answer: "Radial Neuropathy (Saturday Night Palsy)",
     clues: [
       "A 36-year-old man wakes after sleeping heavily in a chair and cannot extend his wrist.",
@@ -2538,7 +2357,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 170,
+     id: 158,
     answer: "Hemolytic Uremic Syndrome (Enterohemorrhagic E. coli / EHEC)",
     clues: [
       "A 4-year-old child develops decreased urine output several days after a bloody diarrheal illness.",
@@ -2553,7 +2372,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 171,
+     id: 159,
     answer: "Peripheral Artery Disease (PAD)",
     clues: [
       "A 67-year-old smoker reports calf pain after walking two blocks that resolves with rest.",
@@ -2568,7 +2387,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 172,
+     id: 160,
     answer: "Squamous Cell Carcinoma of the Lung",
     clues: [
       "A 69-year-old man with a heavy smoking history presents with cough and weight loss.",
@@ -2583,7 +2402,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 173,
+     id: 161,
     answer: "Anemia of Chronic Disease",
     clues: [
       "A 58-year-old woman with long-standing rheumatoid arthritis reports worsening fatigue.",
@@ -2598,7 +2417,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 174,
+     id: 162,
     answer: "Schizophreniform Disorder",
     clues: [
       "A 22-year-old man presents with 2 months of auditory hallucinations, paranoid delusions, and disorganized speech.",
@@ -2613,7 +2432,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 175,
+     id: 163,
     answer: "Retinitis Pigmentosa",
     clues: [
       "A 17-year-old boy reports difficulty seeing in dim light.",
@@ -2628,7 +2447,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 176,
+     id: 164,
     answer: "Benign Paroxysmal Positional Vertigo (BPPV)",
     clues: [
       "A 61-year-old woman experiences brief spinning sensations when rolling over in bed.",
@@ -2643,187 +2462,187 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 177,
-    answer: "Insulinoma",
+     id: 165,
+    answer: "Burkitt Lymphoma",
     clues: [
-      "A 44-year-old woman has recurrent episodes of sweating, tremor, and confusion that improve quickly after eating.",
-      "Several episodes occurred during fasting and one caused syncope.",
-      "During a supervised fast, plasma glucose is low while insulin and C-peptide remain inappropriately high.",
-      "Sulfonylurea screen is negative.",
-      "Imaging localizes a pancreatic neuroendocrine tumor.",
-      "This tumor causes endogenous hyperinsulinemic hypoglycemia."
+      "A 9-year-old boy presents with rapidly enlarging abdominal distension and pain.",
+      "Imaging reveals an ileocecal mass and mesenteric lymphadenopathy.",
+      "Biopsy shows sheets of medium-sized B cells with numerous tingible-body macrophages, creating a starry-sky appearance.",
+      "Ki-67 proliferation index is extremely high.",
+      "Cytogenetics reveal a MYC translocation, classically t(8;14).",
+      "This is an aggressive but potentially highly chemosensitive lymphoma."
     ],
-    description: "Insulinoma is a pancreatic beta-cell tumor that causes fasting hypoglycemia with inappropriately high insulin and C-peptide levels. Whipple triad is classically present.",
+    description: "Burkitt lymphoma is a high-grade B-cell lymphoma driven by MYC translocation. Endemic forms often involve the jaw, whereas sporadic forms frequently involve the abdomen, especially the ileocecal region.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 178,
-    answer: "Otitis Externa",
+     id: 166,
+    answer: "Escherichia coli (E. coli) prostatitis",
     clues: [
-      "A 23-year-old swimmer presents with ear pain and itching.",
-      "Pulling on the pinna worsens the pain.",
-      "The external auditory canal is erythematous and edematous with debris.",
-      "The tympanic membrane is difficult to visualize but not obviously bulging.",
-      "There is no URI preceding the symptoms.",
-      "This infection of the ear canal is commonly associated with water exposure and trauma from cotton swabs."
+      "A 61-year-old man presents with fever, dysuria, perineal pain, and urinary frequency.",
+      "He appears ill and has a tender boggy prostate on gentle exam.",
+      "Urinalysis shows pyuria and bacteriuria.",
+      "Urine culture grows a lactose-fermenting gram-negative rod.",
+      "He has no testicular swelling.",
+      "This is the most common bacterial cause of acute prostatitis."
     ],
-    description: "Otitis externa is an infection or inflammation of the external auditory canal, often caused by moisture and minor trauma. Pseudomonas and Staphylococcus aureus are common pathogens.",
+    description: "Acute bacterial prostatitis usually presents with fever, dysuria, pelvic pain, and a tender boggy prostate. E. coli is the most common pathogen, and prostatic massage is avoided during acute infection.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 179,
-    answer: "Asbestosis",
+     id: 167,
+    answer: "Uterine Atony",
     clues: [
-      "A 68-year-old retired shipyard worker develops slowly progressive exertional dyspnea.",
-      "Exam shows bibasilar crackles and clubbing.",
-      "Chest imaging reveals diffuse interstitial fibrosis and pleural plaques.",
-      "Pulmonary function tests show restriction with reduced diffusion capacity.",
-      "He smoked for many years.",
-      "This occupational exposure increases the risk of bronchogenic carcinoma and mesothelioma."
+      "A 31-year-old woman has heavy vaginal bleeding minutes after delivery.",
+      "The placenta has already been delivered completely.",
+      "Her uterus feels enlarged, soft, and boggy on exam.",
+      "She received prolonged oxytocin augmentation during labor and delivered a large infant.",
+      "Massage and uterotonic therapy improve the bleeding.",
+      "This is the most common cause of postpartum hemorrhage."
     ],
-    description: "Asbestosis is a fibrosing interstitial lung disease caused by asbestos exposure. Pleural plaques are classic, and smoking markedly increases the risk of bronchogenic carcinoma in exposed individuals.",
+    description: "Uterine atony is failure of the uterus to contract effectively after delivery, causing postpartum hemorrhage. Risk factors include uterine overdistension, prolonged labor, chorioamnionitis, and prior oxytocin exposure.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 180,
-    answer: "Mammary Duct Ectasia",
+     id: 168,
+    answer: "Primary sclerosing cholangitis (PSC)",
     clues: [
-      "A 52-year-old multiparous woman presents with sticky green-brown nipple discharge.",
-      "She has mild periareolar tenderness and nipple retraction.",
-      "Imaging shows dilated subareolar ducts without a suspicious mass.",
-      "Biopsy reveals dilated ducts with plasma cell-rich inflammation.",
-      "She is worried about cancer, but no malignant cells are seen.",
-      "This benign inflammatory condition usually affects perimenopausal women."
+      "A 36-year-old man presents with fatigue and pruritus.",
+      "He has a known history of ulcerative colitis.",
+      "Labs show elevated alkaline phosphatase and bilirubin.",
+      "MRCP reveals multifocal strictures and dilatations of intrahepatic and extrahepatic bile ducts.",
+      "Autoimmune markers may be present, but antimitochondrial antibodies are negative.",
+      "This cholestatic disease increases the risk of cholangiocarcinoma."
     ],
-    description: "Mammary duct ectasia is a benign breast condition caused by dilation of subareolar ducts with chronic inflammation. It can cause nipple discharge, periareolar pain, and nipple inversion and may mimic malignancy.",
+    description: "PSC is a chronic cholestatic liver disease strongly associated with ulcerative colitis. Imaging classically shows a beaded biliary tree due to alternating strictures and dilations.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 181,
-    answer: "Gigantism",
+     id: 169,
+    answer: "Urothelial Carcinoma of the Bladder",
     clues: [
-      "A 12-year-old boy is referred for extreme linear growth crossing several height percentiles.",
-      "He has large hands and feet and complains of headaches.",
-      "Growth velocity has accelerated before epiphyseal closure.",
-      "IGF-1 is elevated, and GH does not suppress with oral glucose.",
-      "MRI shows a pituitary macroadenoma.",
-      "Excess growth hormone before closure of growth plates causes this condition."
+      "A 67-year-old man presents with painless gross hematuria.",
+      "He has a long smoking history.",
+      "There is no dysuria or flank pain.",
+      "Cystoscopy identifies a papillary bladder mass.",
+      "Biopsy confirms malignant urothelial cells.",
+      "This is the most common bladder cancer in developed countries."
     ],
-    description: "Gigantism results from growth hormone excess in childhood before epiphyseal closure. It causes excessive linear growth and often shares other features with acromegaly.",
+    description: "Urothelial carcinoma usually presents with painless hematuria and is strongly associated with smoking, aromatic amine exposure, and cyclophosphamide. It can range from superficial papillary tumors to invasive disease.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 182,
-    answer: "Toxic Megacolon",
+     id: 170,
+    answer: "Renal Cell Carcinoma",
     clues: [
-      "A 29-year-old man with ulcerative colitis presents with severe abdominal pain, bloody diarrhea, and fever.",
-      "He is tachycardic and appears toxic.",
-      "His abdomen is distended and diffusely tender.",
-      "Abdominal radiograph shows marked colonic dilation greater than 6 cm.",
-      "Inflammatory markers are elevated.",
-      "This is a life-threatening complication of severe colitis with risk of perforation."
+      "A 64-year-old man presents with intermittent gross hematuria and flank pain.",
+      "He has lost weight and has a history of smoking.",
+      "Abdominal CT shows a solid enhancing renal cortical mass.",
+      "Labs reveal polycythemia.",
+      "The tumor can extend into the renal vein.",
+      "This kidney malignancy often arises from the proximal tubular epithelium."
     ],
-    description: "Toxic megacolon is acute nonobstructive colonic dilation associated with systemic toxicity, often complicating inflammatory bowel disease or infectious colitis. Management includes bowel rest, resuscitation, and urgent surgical evaluation.",
+    description: "Renal cell carcinoma classically presents with hematuria, flank pain, and a mass, though the full triad is uncommon. It is associated with smoking, obesity, hypertension, and paraneoplastic syndromes such as polycythemia.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 183,
-    answer: "Human Papillomavirus (HPV) Laryngeal Papillomatosis",
+     id: 171,
+    answer: "Kidney Stones (Nephrolithiasis)",
     clues: [
-      "A 5-year-old child has progressive hoarseness and intermittent noisy breathing.",
-      "There is no fever or acute upper respiratory infection.",
-      "Laryngoscopy shows multiple papillary wart-like growths on the vocal cords.",
-      "The child's mother had a history of genital warts during pregnancy.",
-      "Biopsy confirms squamous papillomas.",
-      "This recurrent respiratory papillomatosis is commonly associated with low-risk HPV types 6 and 11."
+      "A 37-year-old man presents with sudden severe right flank pain radiating to the groin.",
+      "He cannot sit still and is nauseated.",
+      "Urinalysis shows microscopic hematuria.",
+      "Noncontrast CT shows a 4-mm ureteral stone near the ureterovesical junction.",
+      "There is mild hydronephrosis.",
+      "This syndrome is one of the most common causes of colicky flank pain."
     ],
-    description: "Laryngeal papillomatosis is caused by HPV infection of the respiratory epithelium and leads to recurrent papillomas causing hoarseness and airway symptoms. It may require repeated surgical management.",
+    description: "Nephrolithiasis causes acute colicky flank pain, hematuria, and sometimes hydronephrosis. Management depends on stone size, location, symptoms, and whether obstruction or infection is present.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 184,
-    answer: "Atrial Septal Defect (ASD)",
+     id: 172,
+    answer: "Cystic Fibrosis",
     clues: [
-      "A 14-year-old girl is evaluated for exercise intolerance and a heart murmur.",
-      "Exam shows a systolic ejection murmur at the left upper sternal border with fixed wide splitting of S2.",
-      "Echocardiography reveals a defect in the interatrial septum with left-to-right shunting.",
-      "Right atrial and right ventricular enlargement are present.",
-      "She has no cyanosis.",
-      "This congenital lesion increases pulmonary blood flow and may present late if small."
+      "A 3-year-old boy has recurrent sinopulmonary infections, greasy stools, and poor weight gain.",
+      "Parents say his skin tastes salty.",
+      "Exam reveals nasal polyps and digital clubbing later in childhood.",
+      "Sweat chloride testing is elevated.",
+      "Genetic testing identifies a CFTR mutation.",
+      "This disorder causes thick secretions affecting the lungs, pancreas, and reproductive tract."
     ],
-    description: "ASD causes left-to-right shunting at the atrial level and often presents with fixed split S2 and increased flow murmur across the pulmonary valve. Large unrepaired defects can eventually lead to pulmonary hypertension and paradoxical emboli.",
+    description: "Cystic fibrosis is an autosomal recessive CFTR disorder causing chronic lung disease, pancreatic insufficiency, malabsorption, and infertility in most males. Newborn screening and sweat chloride testing aid diagnosis.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 185,
-    answer: "Avoidant Personality Disorder",
+     id: 173,
+    answer: "Necrotizing enterocolitis",
     clues: [
-      "A 31-year-old man wants close relationships but avoids social situations because he fears criticism and rejection.",
-      "He turns down promotions that would require interacting with new people.",
-      "He describes himself as socially inept and inferior.",
-      "There are no psychotic symptoms or cognitive deficits.",
-      "He is distressed by his isolation rather than indifferent to it.",
-      "This cluster C personality disorder is characterized by pervasive social inhibition and hypersensitivity to negative evaluation."
+      "A premature infant develops abdominal distension and feeding intolerance on day 10 of life.",
+      "He becomes lethargic and has bloody stools.",
+      "Exam shows a tense tender abdomen.",
+      "Abdominal radiograph reveals pneumatosis intestinalis.",
+      "Broad-spectrum antibiotics and bowel rest are started urgently.",
+      "This disease primarily affects premature infants after enteral feeding is initiated."
     ],
-    description: "Avoidant personality disorder involves social inhibition, feelings of inadequacy, and hypersensitivity to criticism despite a desire for relationships. It differs from schizoid personality disorder, in which patients usually do not desire close relationships.",
+    description: "Necrotizing enterocolitis is an inflammatory bowel necrosis of premature infants characterized by abdominal distension, feeding intolerance, bloody stools, and pneumatosis intestinalis. It is a neonatal emergency.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 186,
-    answer: "Dyslexia",
+     id: 174,
+    answer: "Hemophilia B (Christmas disease)",
     clues: [
-      "An 8-year-old boy with normal intelligence struggles to decode words and read fluently.",
-      "He has difficulty matching sounds to symbols and frequently guesses at unfamiliar words.",
-      "Vision and hearing testing are normal.",
-      "He performs well in conversation and nonreading tasks.",
-      "The problem has caused academic underachievement despite appropriate instruction.",
-      "This specific learning disorder primarily affects reading accuracy and fluency."
+      "A 6-year-old boy develops recurrent hemarthroses after minor trauma.",
+      "His maternal uncle had a similar bleeding disorder.",
+      "PT is normal, but aPTT is prolonged.",
+      "Mixing study corrects the abnormality.",
+      "Factor assay shows low factor IX activity.",
+      "This is an X-linked deficiency of a coagulation factor in the intrinsic pathway."
     ],
-    description: "Dyslexia is a specific learning disorder involving difficulty with word recognition, decoding, and spelling despite normal intelligence and adequate educational opportunity. Early educational support is important.",
+    description: "Hemophilia B is an X-linked deficiency of factor IX that causes deep tissue bleeding, hemarthroses, and prolonged aPTT with normal PT. Treatment is factor IX replacement.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 187,
-    answer: "Hepatocellular carcinoma (HCC)",
+     id: 175,
+    answer: "Dermatomyositis",
     clues: [
-      "A 63-year-old man with cirrhosis presents with weight loss and worsening right upper quadrant pain.",
-      "His alpha-fetoprotein is elevated.",
-      "Ultrasound surveillance identifies a liver mass, and triple-phase CT shows arterial enhancement with venous washout.",
-      "He has chronic hepatitis C.",
-      "There is no primary tumor identified elsewhere.",
-      "This is the most common primary malignant tumor of the liver."
+      "A 49-year-old woman develops progressive difficulty climbing stairs and lifting objects overhead.",
+      "She also has a violaceous rash around the eyelids and scaly papules over the knuckles.",
+      "Muscle enzymes are elevated.",
+      "Electromyography suggests an inflammatory myopathy.",
+      "Biopsy shows perifascicular atrophy with perimysial inflammation.",
+      "This condition can be associated with underlying malignancy in adults."
     ],
-    description: "Hepatocellular carcinoma usually arises in cirrhotic livers and is linked to viral hepatitis, alcohol-related liver disease, and metabolic liver disease. Surveillance in high-risk patients is important for early detection.",
+    description: "Dermatomyositis is an inflammatory myopathy characterized by proximal muscle weakness and distinctive skin findings such as heliotrope rash and Gottron papules. Adults should be evaluated for associated malignancy.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 188,
-    answer: "Turner Syndrome",
+     id: 176,
+    answer: "Melanocytic Nevus",
     clues: [
-      "A 15-year-old girl is evaluated for short stature and absent menses.",
-      "Exam shows a broad chest, widely spaced nipples, and webbed neck.",
-      "She has no breast development, and gonadotropins are elevated.",
-      "Echocardiography reveals coarctation of the aorta.",
-      "Karyotype confirms monosomy X.",
-      "This condition causes streak ovaries and primary ovarian insufficiency."
+      "A 28-year-old woman asks about a stable symmetric brown mole on her shoulder.",
+      "It has been unchanged for years and has a uniform tan-brown color.",
+      "Borders are smooth and regular.",
+      "There is no bleeding, ulceration, or rapid growth.",
+      "Excisional biopsy, if done, would show nests of benign melanocytes.",
+      "This lesion is a common benign proliferation of melanocytes."
     ],
-    description: "Turner syndrome is caused by complete or partial monosomy X and presents with short stature, gonadal dysgenesis, and characteristic physical findings. Associated anomalies include bicuspid aortic valve, coarctation, and horseshoe kidney.",
+    description: "Melanocytic nevi are benign melanocyte proliferations that are usually symmetric, uniformly pigmented, and stable over time. Change in asymmetry, color, border, size, or symptoms raises concern for melanoma.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 189,
+      id: 177,
     answer: "Mitral Valve Prolapse (MVP)",
     clues: [
       "A 28-year-old woman reports intermittent palpitations and atypical chest discomfort.",
@@ -2838,7 +2657,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 190,
+     id: 178,
     answer: "Post-MI Papillary Muscle Rupture",
     clues: [
       "A 69-year-old man develops sudden severe shortness of breath 3 days after an inferior myocardial infarction.",
@@ -2853,7 +2672,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 191,
+     id: 179,
     answer: "Menopause",
     clues: [
       "A 51-year-old woman reports 12 months without a menstrual period.",
@@ -2868,7 +2687,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 192,
+     id: 180,
     answer: "Roseola (HHV-6)",
     clues: [
       "A 14-month-old child has 3 days of high fever with mild irritability.",
@@ -2883,7 +2702,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 193,
+     id: 181,
     answer: "Phyllodes Tumor",
     clues: [
       "A 45-year-old woman notices a rapidly enlarging painless breast mass.",
@@ -2898,7 +2717,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 194,
+     id: 182,
     answer: "Acute pancreatitis",
     clues: [
       "A 48-year-old man presents with severe epigastric pain radiating to the back after a weekend of heavy drinking.",
@@ -2913,7 +2732,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 195,
+     id: 183,
     answer: "Gestational Hypertension",
     clues: [
       "A 29-year-old primigravida at 33 weeks is noted to have new blood pressure readings around 148-94 mmHg.",
@@ -2928,7 +2747,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 196,
+     id: 184,
     answer: "Loa loa (African Eye Worm) Infection",
     clues: [
       "A 37-year-old missionary returns from West Africa with intermittent transient itchy swellings on the arms.",
@@ -2943,7 +2762,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 197,
+     id: 185,
     answer: "Conversion Disorder",
     clues: [
       "A 24-year-old woman develops sudden inability to move her legs after witnessing a traumatic event.",
@@ -2958,7 +2777,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 198,
+     id: 186,
     answer: "Thyroid papillary carcinoma",
     clues: [
       "A 36-year-old woman is found to have a painless thyroid nodule.",
@@ -2973,7 +2792,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 199,
+     id: 187,
     answer: "Fibromyalgia",
     clues: [
       "A 42-year-old woman reports widespread musculoskeletal pain for more than a year.",
@@ -2988,7 +2807,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 200,
+     id: 188,
     answer: "Carcinoid Syndrome",
     clues: [
       "A 59-year-old woman has episodic facial flushing, wheezing, and watery diarrhea.",
@@ -3003,187 +2822,187 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 201,
-    answer: "Mycosis fungoides (Cutaneous T-Cell Lymphoma)",
+     id: 189,
+    answer: "Insulinoma",
     clues: [
-      "A 58-year-old man has had slowly enlarging itchy scaly patches on the trunk for years.",
-      "Topical steroids gave only partial relief.",
-      "Some lesions have progressed from patches to plaques.",
-      "Skin biopsy shows epidermotropic atypical T cells with cerebriform nuclei.",
-      "Pautrier microabscesses are noted on pathology.",
-      "This is the most common cutaneous T-cell lymphoma."
+      "A 44-year-old woman has recurrent episodes of sweating, tremor, and confusion that improve quickly after eating.",
+      "Several episodes occurred during fasting and one caused syncope.",
+      "During a supervised fast, plasma glucose is low while insulin and C-peptide remain inappropriately high.",
+      "Sulfonylurea screen is negative.",
+      "Imaging localizes a pancreatic neuroendocrine tumor.",
+      "This tumor causes endogenous hyperinsulinemic hypoglycemia."
     ],
-    description: "Mycosis fungoides is a cutaneous T-cell lymphoma that typically progresses from patches to plaques and tumors over time. It often resembles eczema or psoriasis early in the course.",
+    description: "Insulinoma is a pancreatic beta-cell tumor that causes fasting hypoglycemia with inappropriately high insulin and C-peptide levels. Whipple triad is classically present.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 202,
-    answer: "Familial Chylomicronemia Syndrome (Type 1 dyslipidemia)",
+     id: 190,
+    answer: "Otitis Externa",
     clues: [
-      "A 9-year-old boy presents with recurrent episodes of pancreatitis.",
-      "He has eruptive xanthomas over the extensor surfaces.",
-      "Fasting serum appears milky, and triglycerides are extremely elevated.",
-      "There is no obesity or insulin resistance.",
-      "Genetic testing shows absent lipoprotein lipase activity.",
-      "This disorder causes marked chylomicron accumulation from childhood."
+      "A 23-year-old swimmer presents with ear pain and itching.",
+      "Pulling on the pinna worsens the pain.",
+      "The external auditory canal is erythematous and edematous with debris.",
+      "The tympanic membrane is difficult to visualize but not obviously bulging.",
+      "There is no URI preceding the symptoms.",
+      "This infection of the ear canal is commonly associated with water exposure and trauma from cotton swabs."
     ],
-    description: "Familial chylomicronemia syndrome is usually caused by lipoprotein lipase or ApoC-II deficiency. It leads to severe hypertriglyceridemia, eruptive xanthomas, lipemia retinalis, and pancreatitis.",
+    description: "Otitis externa is an infection or inflammation of the external auditory canal, often caused by moisture and minor trauma. Pseudomonas and Staphylococcus aureus are common pathogens.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 203,
-    answer: "Interventricular Septal Rupture",
+     id: 191,
+    answer: "Asbestosis",
     clues: [
-      "A 70-year-old man worsens suddenly 4 days after an anterior myocardial infarction.",
-      "He becomes hypotensive and dyspneic.",
-      "A new harsh holosystolic murmur is heard at the lower left sternal border.",
-      "A palpable thrill is present.",
-      "Echocardiography demonstrates a left-to-right shunt through the interventricular septum.",
-      "This mechanical complication can rapidly cause cardiogenic shock."
+      "A 68-year-old retired shipyard worker develops slowly progressive exertional dyspnea.",
+      "Exam shows bibasilar crackles and clubbing.",
+      "Chest imaging reveals diffuse interstitial fibrosis and pleural plaques.",
+      "Pulmonary function tests show restriction with reduced diffusion capacity.",
+      "He smoked for many years.",
+      "This occupational exposure increases the risk of bronchogenic carcinoma and mesothelioma."
     ],
-    description: "Ventricular septal rupture is a catastrophic post-MI complication that usually occurs several days after infarction. It produces acute left-to-right shunting, a new harsh murmur, and hemodynamic collapse.",
+    description: "Asbestosis is a fibrosing interstitial lung disease caused by asbestos exposure. Pleural plaques are classic, and smoking markedly increases the risk of bronchogenic carcinoma in exposed individuals.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 204,
-    answer: "Primary adrenal insufficiency (Addison's Disease)",
+     id: 192,
+    answer: "Mammary Duct Ectasia",
     clues: [
-      "A 39-year-old woman presents with fatigue, weight loss, and dizziness.",
-      "She also reports salt craving and abdominal discomfort.",
-      "Exam shows diffuse hyperpigmentation, especially in skin creases.",
-      "Labs reveal hyponatremia, hyperkalemia, and eosinophilia.",
-      "Morning cortisol is low and ACTH is elevated.",
-      "This disorder reflects destruction of the adrenal cortex."
+      "A 52-year-old multiparous woman presents with sticky green-brown nipple discharge.",
+      "She has mild periareolar tenderness and nipple retraction.",
+      "Imaging shows dilated subareolar ducts without a suspicious mass.",
+      "Biopsy reveals dilated ducts with plasma cell-rich inflammation.",
+      "She is worried about cancer, but no malignant cells are seen.",
+      "This benign inflammatory condition usually affects perimenopausal women."
     ],
-    description: "Primary adrenal insufficiency causes deficient cortisol and aldosterone production. Common findings include hypotension, hyperpigmentation, hyponatremia, hyperkalemia, and elevated ACTH.",
+    description: "Mammary duct ectasia is a benign breast condition caused by dilation of subareolar ducts with chronic inflammation. It can cause nipple discharge, periareolar pain, and nipple inversion and may mimic malignancy.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 205,
-    answer: "Stevens-Johnson Syndrome (SJS)",
+     id: 193,
+    answer: "Gigantism",
     clues: [
-      "A 27-year-old woman develops fever and sore throat 1 week after starting a new anticonvulsant.",
-      "She then develops painful dusky macules and blistering skin lesions.",
-      "Oral mucosa and conjunctiva are extensively involved.",
-      "Nikolsky sign is positive.",
-      "Skin biopsy shows full-thickness epidermal necrosis.",
-      "This severe mucocutaneous reaction is often medication triggered."
+      "A 12-year-old boy is referred for extreme linear growth crossing several height percentiles.",
+      "He has large hands and feet and complains of headaches.",
+      "Growth velocity has accelerated before epiphyseal closure.",
+      "IGF-1 is elevated, and GH does not suppress with oral glucose.",
+      "MRI shows a pituitary macroadenoma.",
+      "Excess growth hormone before closure of growth plates causes this condition."
     ],
-    description: "SJS is a severe immune-mediated mucocutaneous reaction usually triggered by medications or infection. It causes epidermal necrosis, blistering, and prominent mucosal involvement and requires immediate withdrawal of the offending agent.",
+    description: "Gigantism results from growth hormone excess in childhood before epiphyseal closure. It causes excessive linear growth and often shares other features with acromegaly.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 206,
-    answer: "Acute Promyelocytic Leukemia (APL)",
+     id: 194,
+    answer: "Toxic Megacolon",
     clues: [
-      "A 34-year-old woman presents with fatigue, bruising, and gum bleeding.",
-      "CBC shows pancytopenia with circulating abnormal promyelocytes.",
-      "Coagulation studies suggest disseminated intravascular coagulation.",
-      "Bone marrow shows promyelocytes with multiple Auer rods.",
-      "Cytogenetics reveal t(15;17).",
-      "This leukemia responds to all-trans retinoic acid."
-    ],
-    description: "APL is a subtype of AML caused by PML-RARA fusion. It is highly associated with DIC and is treated with ATRA and arsenic-based regimens.",
-    ankiStep1: "",
-    ankiStep2: ""
-  },
-  {
-    id: 207,
-    answer: "Crigler-Najjar syndrome type 1",
-    clues: [
-      "A newborn develops profound unconjugated hyperbilirubinemia within days of birth.",
-      "There is no evidence of hemolysis or biliary obstruction.",
-      "Phototherapy offers only partial temporary benefit.",
-      "Phenobarbital does not lower bilirubin.",
-      "Neurologic symptoms raise concern for kernicterus.",
-      "This condition reflects complete absence of UDP-glucuronosyltransferase activity."
-    ],
-    description: "Crigler-Najjar type 1 is a severe inherited unconjugated hyperbilirubinemia caused by complete UGT deficiency. It presents in infancy and carries high risk of kernicterus without aggressive management.",
-    ankiStep1: "",
-    ankiStep2: ""
-  },
-  {
-    id: 208,
-    answer: "Anencephaly",
-    clues: [
-      "Prenatal ultrasound reveals absence of a large portion of the cranial vault and cerebral hemispheres.",
-      "Maternal serum alpha-fetoprotein is elevated.",
-      "The infant is born without forebrain structures compatible with long-term survival.",
-      "Polyhydramnios complicated the pregnancy.",
-      "Folate supplementation had not been taken before conception.",
-      "This neural tube defect results from failure of rostral neuropore closure."
-    ],
-    description: "Anencephaly is a fatal neural tube defect caused by failure of closure of the anterior neuropore. It is associated with elevated AFP and can be reduced by periconceptional folate supplementation.",
-    ankiStep1: "",
-    ankiStep2: ""
-  },
-  {
-    id: 209,
-    answer: "Chronic Obstructive Pulmonary Disease (COPD)",
-    clues: [
-      "A 65-year-old smoker presents with chronic cough, sputum production, and progressive dyspnea.",
-      "He has a prolonged expiratory phase and decreased breath sounds.",
-      "Pulmonary function tests show a reduced FEV1/FVC ratio.",
-      "Symptoms persist despite treatment of several presumed bronchitis flares.",
-      "Chest imaging shows hyperinflation.",
-      "This chronic airflow limitation is usually caused by smoking-related emphysema and chronic bronchitis."
-    ],
-    description: "COPD is a progressive obstructive lung disease characterized by persistent airflow limitation. Smoking is the most common cause, and exacerbations are common triggers of hospitalization.",
-    ankiStep1: "",
-    ankiStep2: ""
-  },
-  {
-    id: 210,
-    answer: "Hepatitis A Virus (HAV)",
-    clues: [
-      "A 22-year-old student develops fever, malaise, nausea, and jaundice.",
-      "Several people at a restaurant outbreak had similar symptoms.",
-      "Liver enzymes are markedly elevated.",
-      "Serology shows anti-HAV IgM positivity.",
-      "There is no chronic liver disease history.",
-      "This virus spreads by the fecal-oral route and does not cause chronic infection."
-    ],
-    description: "HAV causes acute self-limited hepatitis transmitted by the fecal-oral route, often in foodborne outbreaks. Vaccination and immune globulin are key preventive tools.",
-    ankiStep1: "",
-    ankiStep2: ""
-  },
-  {
-    id: 211,
-    answer: "Vitiligo",
-    clues: [
-      "A 24-year-old woman notices expanding depigmented patches on the hands and around the mouth.",
-      "The lesions are sharply demarcated and asymptomatic.",
-      "Wood lamp exam accentuates the pigment loss.",
-      "She has autoimmune thyroid disease.",
-      "There is no scale or inflammation.",
-      "This condition is caused by autoimmune destruction of melanocytes."
-    ],
-    description: "Vitiligo is an acquired depigmenting disorder caused by loss of melanocytes. It is associated with autoimmune disease and classically presents with well-demarcated chalk-white patches.",
-    ankiStep1: "",
-    ankiStep2: ""
-  },
-  {
-    id: 212,
-    answer: "Takayasu Arteritis",
-    clues: [
-      "A 28-year-old woman presents with fatigue, arm claudication, and dizziness.",
-      "Blood pressure is much lower in the left arm than in the right.",
-      "The left radial pulse is weak.",
+      "A 29-year-old man with ulcerative colitis presents with severe abdominal pain, bloody diarrhea, and fever.",
+      "He is tachycardic and appears toxic.",
+      "His abdomen is distended and diffusely tender.",
+      "Abdominal radiograph shows marked colonic dilation greater than 6 cm.",
       "Inflammatory markers are elevated.",
-      "Angiography reveals narrowing of the aortic arch branches.",
-      "This large-vessel vasculitis is sometimes called pulseless disease."
+      "This is a life-threatening complication of severe colitis with risk of perforation."
     ],
-    description: "Takayasu arteritis is a granulomatous large-vessel vasculitis affecting the aorta and its major branches, usually in young women. It causes constitutional symptoms, pulse deficits, bruits, and limb ischemia.",
+    description: "Toxic megacolon is acute nonobstructive colonic dilation associated with systemic toxicity, often complicating inflammatory bowel disease or infectious colitis. Management includes bowel rest, resuscitation, and urgent surgical evaluation.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 213,
+     id: 195,
+    answer: "Human Papillomavirus (HPV) Laryngeal Papillomatosis",
+    clues: [
+      "A 5-year-old child has progressive hoarseness and intermittent noisy breathing.",
+      "There is no fever or acute upper respiratory infection.",
+      "Laryngoscopy shows multiple papillary wart-like growths on the vocal cords.",
+      "The child's mother had a history of genital warts during pregnancy.",
+      "Biopsy confirms squamous papillomas.",
+      "This recurrent respiratory papillomatosis is commonly associated with low-risk HPV types 6 and 11."
+    ],
+    description: "Laryngeal papillomatosis is caused by HPV infection of the respiratory epithelium and leads to recurrent papillomas causing hoarseness and airway symptoms. It may require repeated surgical management.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+     id: 196,
+    answer: "Atrial Septal Defect (ASD)",
+    clues: [
+      "A 14-year-old girl is evaluated for exercise intolerance and a heart murmur.",
+      "Exam shows a systolic ejection murmur at the left upper sternal border with fixed wide splitting of S2.",
+      "Echocardiography reveals a defect in the interatrial septum with left-to-right shunting.",
+      "Right atrial and right ventricular enlargement are present.",
+      "She has no cyanosis.",
+      "This congenital lesion increases pulmonary blood flow and may present late if small."
+    ],
+    description: "ASD causes left-to-right shunting at the atrial level and often presents with fixed split S2 and increased flow murmur across the pulmonary valve. Large unrepaired defects can eventually lead to pulmonary hypertension and paradoxical emboli.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+     id: 197,
+    answer: "Avoidant Personality Disorder",
+    clues: [
+      "A 31-year-old man wants close relationships but avoids social situations because he fears criticism and rejection.",
+      "He turns down promotions that would require interacting with new people.",
+      "He describes himself as socially inept and inferior.",
+      "There are no psychotic symptoms or cognitive deficits.",
+      "He is distressed by his isolation rather than indifferent to it.",
+      "This cluster C personality disorder is characterized by pervasive social inhibition and hypersensitivity to negative evaluation."
+    ],
+    description: "Avoidant personality disorder involves social inhibition, feelings of inadequacy, and hypersensitivity to criticism despite a desire for relationships. It differs from schizoid personality disorder, in which patients usually do not desire close relationships.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+     id: 198,
+    answer: "Dyslexia",
+    clues: [
+      "An 8-year-old boy with normal intelligence struggles to decode words and read fluently.",
+      "He has difficulty matching sounds to symbols and frequently guesses at unfamiliar words.",
+      "Vision and hearing testing are normal.",
+      "He performs well in conversation and nonreading tasks.",
+      "The problem has caused academic underachievement despite appropriate instruction.",
+      "This specific learning disorder primarily affects reading accuracy and fluency."
+    ],
+    description: "Dyslexia is a specific learning disorder involving difficulty with word recognition, decoding, and spelling despite normal intelligence and adequate educational opportunity. Early educational support is important.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+     id: 199,
+    answer: "Hepatocellular carcinoma (HCC)",
+    clues: [
+      "A 63-year-old man with cirrhosis presents with weight loss and worsening right upper quadrant pain.",
+      "His alpha-fetoprotein is elevated.",
+      "Ultrasound surveillance identifies a liver mass, and triple-phase CT shows arterial enhancement with venous washout.",
+      "He has chronic hepatitis C.",
+      "There is no primary tumor identified elsewhere.",
+      "This is the most common primary malignant tumor of the liver."
+    ],
+    description: "Hepatocellular carcinoma usually arises in cirrhotic livers and is linked to viral hepatitis, alcohol-related liver disease, and metabolic liver disease. Surveillance in high-risk patients is important for early detection.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+     id: 200,
+    answer: "Turner Syndrome",
+    clues: [
+      "A 15-year-old girl is evaluated for short stature and absent menses.",
+      "Exam shows a broad chest, widely spaced nipples, and webbed neck.",
+      "She has no breast development, and gonadotropins are elevated.",
+      "Echocardiography reveals coarctation of the aorta.",
+      "Karyotype confirms monosomy X.",
+      "This condition causes streak ovaries and primary ovarian insufficiency."
+    ],
+    description: "Turner syndrome is caused by complete or partial monosomy X and presents with short stature, gonadal dysgenesis, and characteristic physical findings. Associated anomalies include bicuspid aortic valve, coarctation, and horseshoe kidney.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+      id: 201,
     answer: "Broken-heart syndrome (takotsubo cardiomyopathy)",
     clues: [
       "A 63-year-old woman develops crushing chest pain shortly after learning of a family tragedy.",
@@ -3198,7 +3017,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 214,
+     id: 202,
     answer: "Infantile Strawberry Hemangioma",
     clues: [
       "A 4-month-old infant has a bright red raised lesion on the cheek that has enlarged rapidly over the last several weeks.",
@@ -3213,7 +3032,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 215,
+     id: 203,
     answer: "Esophageal Adenocarcinoma",
     clues: [
       "A 61-year-old man presents with progressive dysphagia, first to solids and then to liquids.",
@@ -3228,7 +3047,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 216,
+     id: 204,
     answer: "Mycoplasma pneumoniae",
     clues: [
       "A 19-year-old college student presents with persistent dry cough and low-grade fever.",
@@ -3243,7 +3062,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 217,
+     id: 205,
     answer: "Midgut Volvulus",
     clues: [
       "A 2-week-old infant suddenly develops bilious vomiting and abdominal distension.",
@@ -3258,7 +3077,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 218,
+     id: 206,
     answer: "Testicular Torsion",
     clues: [
       "A 16-year-old boy presents with sudden severe unilateral scrotal pain and nausea.",
@@ -3273,7 +3092,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 219,
+     id: 207,
     answer: "Extramammary Paget Disease",
     clues: [
       "A 68-year-old woman has a chronic itchy erythematous plaque on the vulva.",
@@ -3288,7 +3107,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 220,
+     id: 208,
     answer: "Biliary colic / Cholelithiasis",
     clues: [
       "A 41-year-old woman has episodic right upper quadrant pain after fatty meals.",
@@ -3304,7 +3123,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 221,
+     id: 209,
     answer: "Pilocytic Astrocytoma",
     clues: [
       "A 10-year-old child develops headaches, morning vomiting, and gait instability.",
@@ -3319,7 +3138,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 222,
+     id: 210,
     answer: "Allergic Conjunctivitis",
     clues: [
       "A 17-year-old girl develops bilateral itchy red eyes every spring.",
@@ -3334,7 +3153,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 223,
+     id: 211,
     answer: "Syringomyelia",
     clues: [
       "A 29-year-old woman develops progressive numbness over both shoulders and hands.",
@@ -3349,7 +3168,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 224,
+     id: 212,
     answer: "Bernard-Soulier Syndrome",
     clues: [
       "A 12-year-old boy has lifelong easy bruising, epistaxis, and prolonged bleeding after dental work.",
@@ -3364,187 +3183,187 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 225,
-    answer: "Ascending Cholangitis",
+     id: 213,
+    answer: "Mycosis fungoides (Cutaneous T-Cell Lymphoma)",
     clues: [
-      "A 62-year-old woman presents with fever, jaundice, and right upper quadrant pain.",
-      "She is hypotensive and mildly confused.",
-      "Labs show elevated bilirubin and alkaline phosphatase.",
-      "Ultrasound demonstrates biliary ductal dilation.",
-      "ERCP reveals a common bile duct stone with purulent drainage.",
-      "This infection occurs when biliary obstruction becomes infected."
+      "A 58-year-old man has had slowly enlarging itchy scaly patches on the trunk for years.",
+      "Topical steroids gave only partial relief.",
+      "Some lesions have progressed from patches to plaques.",
+      "Skin biopsy shows epidermotropic atypical T cells with cerebriform nuclei.",
+      "Pautrier microabscesses are noted on pathology.",
+      "This is the most common cutaneous T-cell lymphoma."
     ],
-    description: "Ascending cholangitis is an infection of the biliary tree usually caused by obstruction from choledocholithiasis. Charcot triad and Reynolds pentad are classic, and urgent biliary decompression is often required.",
+    description: "Mycosis fungoides is a cutaneous T-cell lymphoma that typically progresses from patches to plaques and tumors over time. It often resembles eczema or psoriasis early in the course.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 226,
-    answer: "Illness Anxiety Disorder",
+     id: 214,
+    answer: "Familial Chylomicronemia Syndrome (Type 1 dyslipidemia)",
     clues: [
-      "A 33-year-old man repeatedly seeks evaluation for fear that he has cancer despite minimal symptoms.",
-      "Extensive prior testing has been reassuring.",
-      "He spends hours checking his body and searching online for diseases.",
-      "He is highly anxious about health but does not have prominent somatic complaints.",
-      "The preoccupation has lasted more than 6 months.",
-      "This disorder centers on fear of serious illness rather than severe physical symptoms."
+      "A 9-year-old boy presents with recurrent episodes of pancreatitis.",
+      "He has eruptive xanthomas over the extensor surfaces.",
+      "Fasting serum appears milky, and triglycerides are extremely elevated.",
+      "There is no obesity or insulin resistance.",
+      "Genetic testing shows absent lipoprotein lipase activity.",
+      "This disorder causes marked chylomicron accumulation from childhood."
     ],
-    description: "Illness anxiety disorder is excessive preoccupation with having or acquiring a serious illness despite little or no somatic symptom burden. Reassurance offers only transient relief.",
+    description: "Familial chylomicronemia syndrome is usually caused by lipoprotein lipase or ApoC-II deficiency. It leads to severe hypertriglyceridemia, eruptive xanthomas, lipemia retinalis, and pancreatitis.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 227,
-    answer: "Diffuse esophageal spasm (DES)",
+     id: 215,
+    answer: "Interventricular Septal Rupture",
     clues: [
-      "A 50-year-old woman has intermittent chest pain and dysphagia to both solids and liquids.",
-      "Episodes are unpredictable and sometimes triggered by hot or cold beverages.",
-      "Cardiac workup is negative.",
-      "Barium swallow shows a corkscrew appearance of the esophagus.",
-      "Manometry demonstrates uncoordinated, simultaneous contractions.",
-      "This motility disorder can mimic angina."
+      "A 70-year-old man worsens suddenly 4 days after an anterior myocardial infarction.",
+      "He becomes hypotensive and dyspneic.",
+      "A new harsh holosystolic murmur is heard at the lower left sternal border.",
+      "A palpable thrill is present.",
+      "Echocardiography demonstrates a left-to-right shunt through the interventricular septum.",
+      "This mechanical complication can rapidly cause cardiogenic shock."
     ],
-    description: "Diffuse esophageal spasm causes episodic noncardiac chest pain and dysphagia due to disordered esophageal contractions. Nitrates and calcium channel blockers may help symptoms.",
+    description: "Ventricular septal rupture is a catastrophic post-MI complication that usually occurs several days after infarction. It produces acute left-to-right shunting, a new harsh murmur, and hemodynamic collapse.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 228,
-    answer: "Medial Epicondylitis (Golfer's Elbow)",
+     id: 216,
+    answer: "Primary adrenal insufficiency (Addison's Disease)",
     clues: [
-      "A 44-year-old recreational golfer develops pain over the inner elbow.",
-      "Symptoms worsen with wrist flexion and forearm pronation.",
-      "There is focal tenderness just distal to the medial epicondyle.",
-      "Neurologic exam is normal.",
-      "No acute fracture is seen on radiographs.",
-      "This is an overuse tendinopathy of the common flexor tendon origin."
+      "A 39-year-old woman presents with fatigue, weight loss, and dizziness.",
+      "She also reports salt craving and abdominal discomfort.",
+      "Exam shows diffuse hyperpigmentation, especially in skin creases.",
+      "Labs reveal hyponatremia, hyperkalemia, and eosinophilia.",
+      "Morning cortisol is low and ACTH is elevated.",
+      "This disorder reflects destruction of the adrenal cortex."
     ],
-    description: "Medial epicondylitis is a tendinopathy caused by repetitive wrist flexion and pronation. Treatment is usually conservative with activity modification, physical therapy, and anti-inflammatory measures.",
+    description: "Primary adrenal insufficiency causes deficient cortisol and aldosterone production. Common findings include hypotension, hyperpigmentation, hyponatremia, hyperkalemia, and elevated ACTH.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 229,
-    answer: "Status Epilepticus",
+     id: 217,
+    answer: "Stevens-Johnson Syndrome (SJS)",
     clues: [
-      "A 48-year-old man is brought in actively convulsing for more than 10 minutes.",
-      "He does not regain consciousness between episodes.",
-      "Point-of-care glucose is normal.",
-      "Airway protection and benzodiazepine therapy are initiated immediately.",
-      "Second-line antiseizure medication is required because seizures persist.",
-      "This neurologic emergency is defined by prolonged seizure activity or recurrent seizures without recovery."
+      "A 27-year-old woman develops fever and sore throat 1 week after starting a new anticonvulsant.",
+      "She then develops painful dusky macules and blistering skin lesions.",
+      "Oral mucosa and conjunctiva are extensively involved.",
+      "Nikolsky sign is positive.",
+      "Skin biopsy shows full-thickness epidermal necrosis.",
+      "This severe mucocutaneous reaction is often medication triggered."
     ],
-    description: "Status epilepticus is a medical emergency requiring immediate stabilization and rapid treatment to prevent neuronal injury. Continuous seizures or failure to recover between seizures meet criteria.",
+    description: "SJS is a severe immune-mediated mucocutaneous reaction usually triggered by medications or infection. It causes epidermal necrosis, blistering, and prominent mucosal involvement and requires immediate withdrawal of the offending agent.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 230,
-    answer: "Glucose-6-phosphate dehydrogenase (G6PD) Deficiency",
+     id: 218,
+    answer: "Acute Promyelocytic Leukemia (APL)",
     clues: [
-      "A 23-year-old man develops jaundice and dark urine after taking trimethoprim-sulfamethoxazole.",
-      "He has back pain and fatigue.",
-      "Labs show hemolytic anemia with elevated LDH and low haptoglobin.",
-      "Peripheral smear shows bite cells and Heinz bodies on supravital staining.",
-      "He is otherwise healthy between episodes.",
-      "This X-linked enzyme deficiency impairs protection against oxidative stress."
+      "A 34-year-old woman presents with fatigue, bruising, and gum bleeding.",
+      "CBC shows pancytopenia with circulating abnormal promyelocytes.",
+      "Coagulation studies suggest disseminated intravascular coagulation.",
+      "Bone marrow shows promyelocytes with multiple Auer rods.",
+      "Cytogenetics reveal t(15;17).",
+      "This leukemia responds to all-trans retinoic acid."
     ],
-    description: "G6PD deficiency causes episodic oxidative hemolysis after triggers such as sulfa drugs, antimalarials, infection, or fava beans. It is one of the most common enzyme deficiencies worldwide.",
-    ankiStep1: "#AK_Step1_v12::#FirstAid::01_Biochem::06_Metabolism::17_Glucose-6-phosphate_dehydrogenase_deficiency::*G6PD_Deficiency",
-    ankiStep2: "#AK_Step2_v12::#FirstAid::07_Hematology::04_Red_Blood_Cell_Disorders::05_G6PD_Deficiency"
-  },
-  {
-    id: 231,
-    answer: "Bronchiectasis",
-    clues: [
-      "A 47-year-old woman has chronic productive cough with large volumes of purulent sputum.",
-      "She reports repeated pneumonias over many years.",
-      "Exam shows crackles and digital clubbing.",
-      "High-resolution CT reveals permanently dilated thick-walled bronchi.",
-      "Sputum cultures often grow Pseudomonas.",
-      "This chronic airway disease results from recurrent infection and inflammation destroying bronchial walls."
-    ],
-    description: "Bronchiectasis is irreversible bronchial dilation caused by chronic infection and inflammation. Patients present with chronic productive cough, recurrent infections, and characteristic CT findings.",
+    description: "APL is a subtype of AML caused by PML-RARA fusion. It is highly associated with DIC and is treated with ATRA and arsenic-based regimens.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 232,
-    answer: "Leptospirosis (Leptospira interrogans)",
+     id: 219,
+    answer: "Crigler-Najjar syndrome type 1",
     clues: [
-      "A 29-year-old man develops fever, myalgias, and headache after wading through floodwater.",
-      "He has marked calf tenderness and conjunctival suffusion.",
-      "Days later he becomes jaundiced and develops acute kidney injury.",
-      "Serology confirms infection by a spirochete.",
-      "He reports rat exposure near his workplace.",
-      "This zoonosis is transmitted through water contaminated with animal urine."
+      "A newborn develops profound unconjugated hyperbilirubinemia within days of birth.",
+      "There is no evidence of hemolysis or biliary obstruction.",
+      "Phototherapy offers only partial temporary benefit.",
+      "Phenobarbital does not lower bilirubin.",
+      "Neurologic symptoms raise concern for kernicterus.",
+      "This condition reflects complete absence of UDP-glucuronosyltransferase activity."
     ],
-    description: "Leptospirosis is a spirochetal infection acquired from water contaminated by animal urine. Severe disease, called Weil disease, can cause jaundice, renal failure, and hemorrhage.",
+    description: "Crigler-Najjar type 1 is a severe inherited unconjugated hyperbilirubinemia caused by complete UGT deficiency. It presents in infancy and carries high risk of kernicterus without aggressive management.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 233,
-    answer: "Pleomorphic adenoma",
+     id: 220,
+    answer: "Anencephaly",
     clues: [
-      "A 43-year-old woman notices a painless slow-growing mass near the angle of the jaw.",
-      "The lesion is mobile and facial nerve function is intact.",
-      "Imaging localizes the mass to the parotid gland.",
-      "Pathology shows a mixture of epithelial and mesenchymal-like stromal elements.",
-      "The capsule is incomplete, so careful excision is needed to avoid recurrence.",
-      "This is the most common benign salivary gland tumor."
+      "Prenatal ultrasound reveals absence of a large portion of the cranial vault and cerebral hemispheres.",
+      "Maternal serum alpha-fetoprotein is elevated.",
+      "The infant is born without forebrain structures compatible with long-term survival.",
+      "Polyhydramnios complicated the pregnancy.",
+      "Folate supplementation had not been taken before conception.",
+      "This neural tube defect results from failure of rostral neuropore closure."
     ],
-    description: "Pleomorphic adenoma is the most common benign salivary gland tumor, usually arising in the parotid. It contains epithelial and stromal components and can recur if not completely excised.",
+    description: "Anencephaly is a fatal neural tube defect caused by failure of closure of the anterior neuropore. It is associated with elevated AFP and can be reduced by periconceptional folate supplementation.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 234,
-    answer: "Crigler-Najjar syndrome type 2",
+     id: 221,
+    answer: "Chronic Obstructive Pulmonary Disease (COPD)",
     clues: [
-      "A 12-year-old boy is evaluated for chronic unconjugated hyperbilirubinemia.",
-      "He has intermittent jaundice but normal liver enzymes and no hemolysis.",
-      "Phenobarbital lowers the bilirubin level.",
-      "Neurologic injury has not occurred.",
-      "Family history is notable for mild similar findings.",
-      "This disorder results from partial rather than complete UGT deficiency."
+      "A 65-year-old smoker presents with chronic cough, sputum production, and progressive dyspnea.",
+      "He has a prolonged expiratory phase and decreased breath sounds.",
+      "Pulmonary function tests show a reduced FEV1/FVC ratio.",
+      "Symptoms persist despite treatment of several presumed bronchitis flares.",
+      "Chest imaging shows hyperinflation.",
+      "This chronic airflow limitation is usually caused by smoking-related emphysema and chronic bronchitis."
     ],
-    description: "Crigler-Najjar type 2 is a milder inherited unconjugated hyperbilirubinemia due to partial UDP-glucuronosyltransferase deficiency. It responds to phenobarbital and carries far less kernicterus risk than type 1.",
+    description: "COPD is a progressive obstructive lung disease characterized by persistent airflow limitation. Smoking is the most common cause, and exacerbations are common triggers of hospitalization.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 235,
-    answer: "Rosacea",
+     id: 222,
+    answer: "Hepatitis A Virus (HAV)",
     clues: [
-      "A 44-year-old woman has chronic facial redness with intermittent flushing.",
-      "She develops papules and pustules on the cheeks and nose but no comedones.",
-      "Hot drinks and alcohol worsen symptoms.",
-      "Exam shows telangiectasias on the central face.",
-      "Topical metronidazole is prescribed.",
-      "This chronic inflammatory facial dermatosis often affects adults with fair skin."
+      "A 22-year-old student develops fever, malaise, nausea, and jaundice.",
+      "Several people at a restaurant outbreak had similar symptoms.",
+      "Liver enzymes are markedly elevated.",
+      "Serology shows anti-HAV IgM positivity.",
+      "There is no chronic liver disease history.",
+      "This virus spreads by the fecal-oral route and does not cause chronic infection."
     ],
-    description: "Rosacea causes central facial flushing, persistent erythema, telangiectasias, and inflammatory papules or pustules. Trigger avoidance and topical or oral therapies are commonly used.",
+    description: "HAV causes acute self-limited hepatitis transmitted by the fecal-oral route, often in foodborne outbreaks. Vaccination and immune globulin are key preventive tools.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 236,
-    answer: "Fanconi Syndrome",
+     id: 223,
+    answer: "Vitiligo",
     clues: [
-      "A 6-year-old child has poor growth, rickets, and polyuria.",
-      "Labs show metabolic acidosis, hypophosphatemia, and hypokalemia.",
-      "Urinalysis reveals glucosuria despite normal serum glucose and generalized aminoaciduria.",
-      "Bicarbonate wasting is present.",
-      "There is proximal tubular dysfunction involving multiple solutes.",
-      "This syndrome is often described as a generalized defect of the proximal tubule."
+      "A 24-year-old woman notices expanding depigmented patches on the hands and around the mouth.",
+      "The lesions are sharply demarcated and asymptomatic.",
+      "Wood lamp exam accentuates the pigment loss.",
+      "She has autoimmune thyroid disease.",
+      "There is no scale or inflammation.",
+      "This condition is caused by autoimmune destruction of melanocytes."
     ],
-    description: "Fanconi syndrome is generalized proximal tubule dysfunction causing bicarbonate, phosphate, glucose, uric acid, and amino acid wasting. It can lead to type 2 RTA, growth failure, osteomalacia, and dehydration.",
+    description: "Vitiligo is an acquired depigmenting disorder caused by loss of melanocytes. It is associated with autoimmune disease and classically presents with well-demarcated chalk-white patches.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 237,
+     id: 224,
+    answer: "Takayasu Arteritis",
+    clues: [
+      "A 28-year-old woman presents with fatigue, arm claudication, and dizziness.",
+      "Blood pressure is much lower in the left arm than in the right.",
+      "The left radial pulse is weak.",
+      "Inflammatory markers are elevated.",
+      "Angiography reveals narrowing of the aortic arch branches.",
+      "This large-vessel vasculitis is sometimes called pulseless disease."
+    ],
+    description: "Takayasu arteritis is a granulomatous large-vessel vasculitis affecting the aorta and its major branches, usually in young women. It causes constitutional symptoms, pulse deficits, bruits, and limb ischemia.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+     id: 225,
     answer: "Chondroblastoma",
     clues: [
       "A 16-year-old boy presents with gradually worsening knee pain.",
@@ -3559,7 +3378,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 238,
+     id: 226,
     answer: "Tinea Capitis",
     clues: [
       "A 7-year-old child presents with patchy scalp hair loss and itching.",
@@ -3575,7 +3394,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 239,
+     id: 227,
     answer: "Nicotine Intoxication",
     clues: [
       "A toddler is brought in after chewing several nicotine gum pieces.",
@@ -3590,7 +3409,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 240,
+     id: 228,
     answer: "Hemangioblastoma",
     clues: [
       "A 34-year-old man presents with headache, ataxia, and vomiting.",
@@ -3605,7 +3424,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 241,
+     id: 229,
     answer: "Anterior Uveitis (Iritis)",
     clues: [
       "A 29-year-old man presents with a painful red eye and photophobia.",
@@ -3620,7 +3439,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 242,
+     id: 230,
     answer: "Central Cord Syndrome (CCS)",
     clues: [
       "A 73-year-old man falls and hyperextends his neck.",
@@ -3635,7 +3454,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 243,
+     id: 231,
     answer: "Narcolepsy",
     clues: [
       "A 21-year-old college student reports vivid visual experiences just as she wakes up.",
@@ -3650,7 +3469,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 244,
+     id: 232,
     answer: "Alcohol Use Disorder",
     clues: [
       "A 46-year-old man continues drinking despite repeated DUIs and worsening liver disease.",
@@ -3665,7 +3484,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 245,
+     id: 233,
     answer: "Intermittent Explosive Disorder",
     clues: [
       "A 19-year-old man has repeated episodes of disproportionate verbal and physical aggression.",
@@ -3680,7 +3499,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 246,
+     id: 234,
     answer: "Thyroglossal duct cyst",
     clues: [
       "A 9-year-old child has a midline neck mass just below the hyoid bone.",
@@ -3695,7 +3514,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 247,
+     id: 235,
     answer: "Peptic ulcer disease",
     clues: [
       "A 49-year-old man presents with burning epigastric pain.",
@@ -3710,7 +3529,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 248,
+     id: 236,
     answer: "Down Syndrome (Trisomy 21)",
     clues: [
       "A newborn is noted to have hypotonia and a flat facial profile.",
@@ -3725,187 +3544,187 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 249,
-    answer: "Lewy Body Dementia",
+     id: 237,
+    answer: "Ascending Cholangitis",
     clues: [
-      "A 74-year-old man has progressive cognitive decline with marked day-to-day fluctuations.",
-      "He has recurrent vivid visual hallucinations.",
-      "Mild parkinsonian features are also present.",
-      "Family says he had episodes of acting out dreams years before the memory problems began.",
-      "He became severely worse after being given a typical antipsychotic.",
-      "This dementia is associated with cortical Lewy bodies containing alpha-synuclein."
+      "A 62-year-old woman presents with fever, jaundice, and right upper quadrant pain.",
+      "She is hypotensive and mildly confused.",
+      "Labs show elevated bilirubin and alkaline phosphatase.",
+      "Ultrasound demonstrates biliary ductal dilation.",
+      "ERCP reveals a common bile duct stone with purulent drainage.",
+      "This infection occurs when biliary obstruction becomes infected."
     ],
-    description: "Lewy body dementia presents with fluctuating cognition, recurrent visual hallucinations, parkinsonism, and sensitivity to antipsychotics. REM sleep behavior disorder is common.",
+    description: "Ascending cholangitis is an infection of the biliary tree usually caused by obstruction from choledocholithiasis. Charcot triad and Reynolds pentad are classic, and urgent biliary decompression is often required.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 250,
-    answer: "Acanthosis Nigricans",
+     id: 238,
+    answer: "Illness Anxiety Disorder",
     clues: [
-      "A 35-year-old woman with obesity notices dark velvety thickening on the back of her neck and in the axillae.",
-      "The lesions are asymptomatic.",
-      "She has irregular menses and insulin resistance.",
-      "Fasting glucose is elevated.",
-      "In older adults, sudden extensive onset would raise concern for internal malignancy.",
-      "This skin finding commonly reflects hyperinsulinemia."
+      "A 33-year-old man repeatedly seeks evaluation for fear that he has cancer despite minimal symptoms.",
+      "Extensive prior testing has been reassuring.",
+      "He spends hours checking his body and searching online for diseases.",
+      "He is highly anxious about health but does not have prominent somatic complaints.",
+      "The preoccupation has lasted more than 6 months.",
+      "This disorder centers on fear of serious illness rather than severe physical symptoms."
     ],
-    description: "Acanthosis nigricans is a velvety hyperpigmented thickening of intertriginous skin, often associated with insulin resistance, obesity, and endocrine disorders. Rarely, it is a paraneoplastic sign.",
+    description: "Illness anxiety disorder is excessive preoccupation with having or acquiring a serious illness despite little or no somatic symptom burden. Reassurance offers only transient relief.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 251,
-    answer: "Inflammatory Carcinoma of the Breast",
+     id: 239,
+    answer: "Diffuse esophageal spasm (DES)",
     clues: [
-      "A 57-year-old woman develops rapid swelling and redness of one breast.",
-      "The skin appears thickened with peau d'orange changes.",
-      "There is no discrete abscess and antibiotics have not helped.",
-      "Biopsy shows invasive carcinoma with tumor emboli in dermal lymphatics.",
-      "Axillary nodes are enlarged.",
-      "This aggressive breast cancer often presents without a palpable dominant mass."
+      "A 50-year-old woman has intermittent chest pain and dysphagia to both solids and liquids.",
+      "Episodes are unpredictable and sometimes triggered by hot or cold beverages.",
+      "Cardiac workup is negative.",
+      "Barium swallow shows a corkscrew appearance of the esophagus.",
+      "Manometry demonstrates uncoordinated, simultaneous contractions.",
+      "This motility disorder can mimic angina."
     ],
-    description: "Inflammatory breast carcinoma is an aggressive form of invasive breast cancer characterized by erythema, edema, and peau d'orange from dermal lymphatic obstruction. It is often advanced at diagnosis.",
+    description: "Diffuse esophageal spasm causes episodic noncardiac chest pain and dysphagia due to disordered esophageal contractions. Nitrates and calcium channel blockers may help symptoms.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 252,
-    answer: "Amyotrophic Lateral Sclerosis (ALS)",
+     id: 240,
+    answer: "Medial Epicondylitis (Golfer's Elbow)",
     clues: [
-      "A 59-year-old man develops progressive weakness and muscle wasting in one hand.",
-      "Months later he has fasciculations, spasticity, and brisk reflexes in multiple limbs.",
-      "Sensation and eye movements are preserved.",
-      "There is no bowel or bladder dysfunction.",
-      "EMG shows widespread denervation.",
-      "This neurodegenerative disease involves both upper and lower motor neurons."
+      "A 44-year-old recreational golfer develops pain over the inner elbow.",
+      "Symptoms worsen with wrist flexion and forearm pronation.",
+      "There is focal tenderness just distal to the medial epicondyle.",
+      "Neurologic exam is normal.",
+      "No acute fracture is seen on radiographs.",
+      "This is an overuse tendinopathy of the common flexor tendon origin."
     ],
-    description: "ALS is a progressive motor neuron disease causing combined upper and lower motor neuron findings with spared sensation. Bulbar and respiratory involvement drive morbidity and mortality.",
+    description: "Medial epicondylitis is a tendinopathy caused by repetitive wrist flexion and pronation. Treatment is usually conservative with activity modification, physical therapy, and anti-inflammatory measures.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 253,
-    answer: "Hereditary Spherocytosis",
+     id: 241,
+    answer: "Status Epilepticus",
     clues: [
-      "A 12-year-old boy has chronic mild jaundice and intermittent gallstone pain.",
-      "His father had splenectomy in adolescence for a hemolytic anemia.",
-      "CBC shows anemia with elevated MCHC.",
-      "Peripheral smear demonstrates numerous spherocytes.",
-      "Osmotic fragility testing is increased.",
-      "This inherited RBC membrane disorder commonly involves spectrin or ankyrin defects."
+      "A 48-year-old man is brought in actively convulsing for more than 10 minutes.",
+      "He does not regain consciousness between episodes.",
+      "Point-of-care glucose is normal.",
+      "Airway protection and benzodiazepine therapy are initiated immediately.",
+      "Second-line antiseizure medication is required because seizures persist.",
+      "This neurologic emergency is defined by prolonged seizure activity or recurrent seizures without recovery."
     ],
-    description: "Hereditary spherocytosis is a membrane cytoskeleton disorder causing extravascular hemolysis, jaundice, splenomegaly, and pigment gallstones. Splenectomy improves hemolysis in selected patients.",
+    description: "Status epilepticus is a medical emergency requiring immediate stabilization and rapid treatment to prevent neuronal injury. Continuous seizures or failure to recover between seizures meet criteria.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 254,
-    answer: "Reye syndrome",
+     id: 242,
+    answer: "Glucose-6-phosphate dehydrogenase (G6PD) Deficiency",
     clues: [
-      "A 7-year-old child develops vomiting and confusion several days after recovering from influenza.",
-      "Parents gave aspirin during the viral illness.",
-      "Labs show elevated AST and ALT, hyperammonemia, and hypoglycemia.",
-      "There is no jaundice.",
-      "Liver biopsy would show microvesicular fatty change.",
-      "This syndrome causes acute encephalopathy and hepatic mitochondrial dysfunction in children."
+      "A 23-year-old man develops jaundice and dark urine after taking trimethoprim-sulfamethoxazole.",
+      "He has back pain and fatigue.",
+      "Labs show hemolytic anemia with elevated LDH and low haptoglobin.",
+      "Peripheral smear shows bite cells and Heinz bodies on supravital staining.",
+      "He is otherwise healthy between episodes.",
+      "This X-linked enzyme deficiency impairs protection against oxidative stress."
     ],
-    description: "Reye syndrome is a rare but serious pediatric condition associated with aspirin exposure during viral illness. It causes acute encephalopathy, liver dysfunction, and hyperammonemia.",
+    description: "G6PD deficiency causes episodic oxidative hemolysis after triggers such as sulfa drugs, antimalarials, infection, or fava beans. It is one of the most common enzyme deficiencies worldwide.",
+    ankiStep1: "#AK_Step1_v12::#FirstAid::01_Biochem::06_Metabolism::17_Glucose-6-phosphate_dehydrogenase_deficiency::*G6PD_Deficiency",
+    ankiStep2: "#AK_Step2_v12::#FirstAid::07_Hematology::04_Red_Blood_Cell_Disorders::05_G6PD_Deficiency"
+  },
+  {
+     id: 243,
+    answer: "Bronchiectasis",
+    clues: [
+      "A 47-year-old woman has chronic productive cough with large volumes of purulent sputum.",
+      "She reports repeated pneumonias over many years.",
+      "Exam shows crackles and digital clubbing.",
+      "High-resolution CT reveals permanently dilated thick-walled bronchi.",
+      "Sputum cultures often grow Pseudomonas.",
+      "This chronic airway disease results from recurrent infection and inflammation destroying bronchial walls."
+    ],
+    description: "Bronchiectasis is irreversible bronchial dilation caused by chronic infection and inflammation. Patients present with chronic productive cough, recurrent infections, and characteristic CT findings.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 255,
-    answer: "Mucormycosis",
+     id: 244,
+    answer: "Leptospirosis (Leptospira interrogans)",
     clues: [
-      "A 55-year-old man with diabetic ketoacidosis develops facial pain and black nasal discharge.",
-      "Exam shows periorbital swelling and necrotic tissue on the palate.",
-      "CT reveals invasive sinus disease extending toward the orbit.",
-      "Biopsy demonstrates broad nonseptate hyphae with right-angle branching.",
-      "Urgent debridement and amphotericin are started.",
-      "This angioinvasive fungal infection is strongly associated with ketoacidosis and immunosuppression."
+      "A 29-year-old man develops fever, myalgias, and headache after wading through floodwater.",
+      "He has marked calf tenderness and conjunctival suffusion.",
+      "Days later he becomes jaundiced and develops acute kidney injury.",
+      "Serology confirms infection by a spirochete.",
+      "He reports rat exposure near his workplace.",
+      "This zoonosis is transmitted through water contaminated with animal urine."
     ],
-    description: "Mucormycosis is a rapidly invasive fungal infection that can cause rhino-orbital-cerebral disease, especially in diabetic ketoacidosis. It is a medical and surgical emergency.",
+    description: "Leptospirosis is a spirochetal infection acquired from water contaminated by animal urine. Severe disease, called Weil disease, can cause jaundice, renal failure, and hemorrhage.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 256,
-    answer: "Branchial Cleft Cyst",
+     id: 245,
+    answer: "Pleomorphic adenoma",
     clues: [
-      "A 12-year-old girl presents with a painless lateral neck mass.",
-      "The swelling lies anterior to the sternocleidomastoid muscle.",
-      "It became more prominent after an upper respiratory infection.",
-      "Ultrasound shows a well-defined cystic lesion.",
-      "The thyroid gland is normal.",
-      "This congenital lesion arises from persistence of branchial apparatus remnants."
+      "A 43-year-old woman notices a painless slow-growing mass near the angle of the jaw.",
+      "The lesion is mobile and facial nerve function is intact.",
+      "Imaging localizes the mass to the parotid gland.",
+      "Pathology shows a mixture of epithelial and mesenchymal-like stromal elements.",
+      "The capsule is incomplete, so careful excision is needed to avoid recurrence.",
+      "This is the most common benign salivary gland tumor."
     ],
-    description: "Branchial cleft cysts are congenital lateral neck cysts that often present in childhood or adolescence. They may become infected after URI and are usually located along the anterior SCM border.",
+    description: "Pleomorphic adenoma is the most common benign salivary gland tumor, usually arising in the parotid. It contains epithelial and stromal components and can recur if not completely excised.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 257,
-    answer: "Polycystic Ovary Syndrome (PCOS)",
+     id: 246,
+    answer: "Crigler-Najjar syndrome type 2",
     clues: [
-      "A 24-year-old woman presents with irregular menses and difficulty conceiving.",
-      "She also has acne, obesity, and coarse hair growth on the chin.",
-      "Labs show elevated LH-to-FSH ratio and biochemical hyperandrogenism.",
-      "Ultrasound reveals enlarged ovaries with multiple peripheral follicles.",
-      "Fasting insulin is elevated.",
-      "This endocrine disorder is commonly associated with chronic anovulation and insulin resistance."
+      "A 12-year-old boy is evaluated for chronic unconjugated hyperbilirubinemia.",
+      "He has intermittent jaundice but normal liver enzymes and no hemolysis.",
+      "Phenobarbital lowers the bilirubin level.",
+      "Neurologic injury has not occurred.",
+      "Family history is notable for mild similar findings.",
+      "This disorder results from partial rather than complete UGT deficiency."
     ],
-    description: "PCOS is characterized by hyperandrogenism, ovulatory dysfunction, and often polycystic ovarian morphology. It is associated with insulin resistance, infertility, and long-term metabolic risk.",
+    description: "Crigler-Najjar type 2 is a milder inherited unconjugated hyperbilirubinemia due to partial UDP-glucuronosyltransferase deficiency. It responds to phenobarbital and carries far less kernicterus risk than type 1.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 258,
-    answer: "Neuropathic Ulcer / Diabetic Foot Ulcer",
+     id: 247,
+    answer: "Rosacea",
     clues: [
-      "A 61-year-old man with long-standing diabetes presents with a painless plantar foot wound.",
-      "He noticed it only after seeing drainage on his sock.",
-      "Exam shows diminished vibration sensation and loss of monofilament sensation.",
-      "The ulcer overlies a pressure point and is surrounded by callus.",
-      "Peripheral pulses are present.",
-      "This lesion results from repetitive trauma in an insensate foot."
+      "A 44-year-old woman has chronic facial redness with intermittent flushing.",
+      "She develops papules and pustules on the cheeks and nose but no comedones.",
+      "Hot drinks and alcohol worsen symptoms.",
+      "Exam shows telangiectasias on the central face.",
+      "Topical metronidazole is prescribed.",
+      "This chronic inflammatory facial dermatosis often affects adults with fair skin."
     ],
-    description: "Neuropathic diabetic foot ulcers typically occur on weight-bearing surfaces in patients with peripheral sensory loss. Offloading, wound care, glycemic control, and infection assessment are critical.",
+    description: "Rosacea causes central facial flushing, persistent erythema, telangiectasias, and inflammatory papules or pustules. Trigger avoidance and topical or oral therapies are commonly used.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 259,
-    answer: "Malingering",
+     id: 248,
+    answer: "Fanconi Syndrome",
     clues: [
-      "A 28-year-old man in police custody claims new severe back pain and inability to walk.",
-      "Exam findings vary dramatically when he is distracted.",
-      "MRI and neurologic testing are normal.",
-      "He later admits he hoped to delay a court appearance.",
-      "There is an obvious external incentive for the behavior.",
-      "This is intentional symptom production for secondary gain."
+      "A 6-year-old child has poor growth, rickets, and polyuria.",
+      "Labs show metabolic acidosis, hypophosphatemia, and hypokalemia.",
+      "Urinalysis reveals glucosuria despite normal serum glucose and generalized aminoaciduria.",
+      "Bicarbonate wasting is present.",
+      "There is proximal tubular dysfunction involving multiple solutes.",
+      "This syndrome is often described as a generalized defect of the proximal tubule."
     ],
-    description: "Malingering is the deliberate fabrication or exaggeration of symptoms for external benefit such as money, drugs, avoiding work, or evading legal consequences. It is not a psychiatric disorder.",
+    description: "Fanconi syndrome is generalized proximal tubule dysfunction causing bicarbonate, phosphate, glucose, uric acid, and amino acid wasting. It can lead to type 2 RTA, growth failure, osteomalacia, and dehydration.",
     ankiStep1: "",
     ankiStep2: ""
   },
   {
-    id: 260,
-    answer: "Biliary atresia",
-    clues: [
-      "A 5-week-old infant has persistent jaundice and pale stools.",
-      "Urine is dark, and the liver is enlarged.",
-      "Direct bilirubin is elevated.",
-      "Ultrasound shows abnormal biliary anatomy, and hepatobiliary scan shows no bile reaching the intestine.",
-      "The infant is otherwise feeding reasonably well.",
-      "This progressive fibro-obliterative disease of the extrahepatic bile ducts requires early surgery."
-    ],
-    description: "Biliary atresia is a neonatal cholestatic disease causing conjugated hyperbilirubinemia, acholic stools, and progressive liver fibrosis. Early Kasai portoenterostomy improves outcomes.",
-    ankiStep1: "",
-    ankiStep2: ""
-  },
-  {
-    id: 261,
+     id: 249,
     answer: "Ischemic Stroke - Posterior Cerebral Artery (PCA)",
     clues: [
       "A 69-year-old woman suddenly cannot see the right side of the world in both eyes.",
@@ -3920,7 +3739,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 262,
+     id: 250,
     answer: "Lacunar Stroke",
     clues: [
       "A 64-year-old man with long-standing hypertension develops sudden pure right-sided weakness.",
@@ -3935,7 +3754,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 263,
+     id: 251,
     answer: "Benzodiazepine Withdrawal",
     clues: [
       "A 42-year-old woman abruptly stops long-term alprazolam use.",
@@ -3950,7 +3769,7 @@ const GAMES = [
     ankiStep2: "#AK_Step2_v12::#Subjects::*Pharm_Extra::Neuro/Psych::Benzodiazepines"
   },
   {
-    id: 264,
+     id: 252,
     answer: "Pancreatic adenocarcinoma",
     clues: [
       "A 68-year-old man presents with weight loss, epigastric discomfort, and new painless jaundice.",
@@ -3965,7 +3784,7 @@ const GAMES = [
     ankiStep2: "#AK_Step2_v12::#FirstAid::06_Gastrointestinal::12_Pancreatic_Disease::04_Pancreatic_Cancer"
   },
   {
-    id: 265,
+     id: 253,
     answer: "Pre-Renal Acute Kidney Injury (AKI)",
     clues: [
       "A 76-year-old man is admitted with vomiting, diarrhea, and dizziness.",
@@ -3980,7 +3799,7 @@ const GAMES = [
     ankiStep2: "#AK_Step2_v12::#Subjects::Nephrology_&_Urology::01_Kidneys::Acute_Kidney_Injury::Prerenal_Failure"
   },
   {
-    id: 266,
+     id: 254,
     answer: "Neonatal Intraventricular Hemorrhage",
     clues: [
       "A premature infant in the NICU develops apnea, pallor, and a bulging fontanelle.",
@@ -3995,7 +3814,7 @@ const GAMES = [
     ankiStep2: "#AK_Step2_v12::#Subjects::Neurology::06_Intracranial_Hemorrhage::Neonatal_Intraventricular_Hemorrhage"
   },
   {
-    id: 267,
+     id: 255,
     answer: "Atelectasis",
     clues: [
       "A 63-year-old woman develops low-grade fever and shortness of breath on the first day after abdominal surgery.",
@@ -4010,7 +3829,7 @@ const GAMES = [
     ankiStep2: "#AK_Step2_v12::#Subjects::Pulmonology::05_Lungs::Atelectasis"
   },
   {
-    id: 268,
+     id: 256,
     answer: "Erectile Dysfunction",
     clues: [
       "A 57-year-old man reports difficulty achieving and maintaining erections.",
@@ -4025,7 +3844,7 @@ const GAMES = [
     ankiStep2: "#AK_Step2_v12::#FirstAid::13_Psych::12_Sexual_Disorders::04_Sexual_Dysfunction"
   },
   {
-    id: 269,
+     id: 257,
     answer: "Cytomegalovirus (CMV)",
     clues: [
       "A 33-year-old renal transplant recipient develops fever, malaise, and leukopenia.",
@@ -4040,7 +3859,7 @@ const GAMES = [
     ankiStep2: "#AK_Step2_v12::#FirstAid::16_Multisystem::05_Human_Immunodeficiency_Virus::09_Cytomegalovirus"
   },
   {
-    id: 270,
+     id: 258,
     answer: "Eosinophilic Esophagitis",
     clues: [
       "A 19-year-old man with asthma presents with intermittent solid-food dysphagia.",
@@ -4055,7 +3874,7 @@ const GAMES = [
     ankiStep2: "#AK_Step2_v12::#FirstAid::06_Gastrointestinal::02_Esophageal_Disease::04_Eosinophilic_Esophagitis"
   },
   {
-    id: 271,
+     id: 259,
     answer: "Non-ST-Elevation Myocardial Infarction (NSTEMI)",
     clues: [
       "A 63-year-old man presents with pressure-like substernal chest pain radiating to the left arm.",
@@ -4070,7 +3889,7 @@ const GAMES = [
     ankiStep2: "#AK_Step2_v12::#SketchyIM::01_Cardiology::01_Ischemic_Heart_Disease::05_Unstable_Angina/NSTEMI"
   },
   {
-    id: 272,
+     id: 260,
     answer: "Kartagener Syndrome",
     clues: [
       "A 12-year-old boy has chronic sinusitis, recurrent otitis media, and daily wet cough.",
@@ -4085,187 +3904,187 @@ const GAMES = [
     ankiStep2: "#AK_Step2_v12::#Subjects::Pulmonology::05_Lungs::Embryology::Kartagener_Syndrome"
   },
   {
-    id: 273,
-    answer: "Testicular Sertoli Cell Tumor",
+     id: 261,
+    answer: "Lewy Body Dementia",
     clues: [
-      "A 27-year-old man notices a painless testicular mass.",
-      "Hormone levels show elevated estrogen effect with gynecomastia.",
-      "Tumor markers AFP and beta-hCG are not elevated.",
-      "Pathology reveals sex cord-stromal cells resembling seminiferous tubule support cells.",
-      "Most tumors are benign.",
-      "This neoplasm arises from Sertoli cells rather than germ cells."
+      "A 74-year-old man has progressive cognitive decline with marked day-to-day fluctuations.",
+      "He has recurrent vivid visual hallucinations.",
+      "Mild parkinsonian features are also present.",
+      "Family says he had episodes of acting out dreams years before the memory problems began.",
+      "He became severely worse after being given a typical antipsychotic.",
+      "This dementia is associated with cortical Lewy bodies containing alpha-synuclein."
     ],
-    description: "Sertoli cell tumors are uncommon testicular sex cord-stromal tumors that may secrete estrogen and cause gynecomastia. Most are benign, but some can behave malignantly.",
-    ankiStep1: "#AK_Step1_v12::#Physeo::11_Pathology::09_Reproductive_Pathology::03_Testicular_Tumors",
-    ankiStep2: ""
-  },
-  {
-    id: 274,
-    answer: "Cryptosporidiosis",
-    clues: [
-      "A 36-year-old man with advanced HIV presents with profuse watery diarrhea and weight loss.",
-      "He recently drank untreated water while camping.",
-      "Stool microscopy with acid-fast staining reveals oocysts.",
-      "There is no blood in the stool.",
-      "Symptoms are self-limited in healthy hosts but can be chronic in immunocompromised patients.",
-      "This protozoan is transmitted by ingestion of contaminated water."
-    ],
-    description: "Cryptosporidium causes watery diarrhea, especially in patients with AIDS or other immunocompromising conditions. Infection is commonly waterborne and diagnosed by stool antigen testing or acid-fast stain.",
-    ankiStep1: "#AK_Step1_v12::#FirstAid::03_Microbiology::04_Parasitology::01_Protozoa-gastrointestinal_infections::*Cryptosporidium",
-    ankiStep2: "#AK_Step2_v12::#Subjects::Microbiology::04_Parasites::01_Intestinal_Protozoa::Cryptosporidium"
-  },
-  {
-    id: 275,
-    answer: "Lactose intolerance",
-    clues: [
-      "A 23-year-old woman has bloating, crampy abdominal pain, and loose stools after milkshakes.",
-      "Symptoms improve when she avoids dairy.",
-      "There is no weight loss or blood in the stool.",
-      "Hydrogen breath testing is positive.",
-      "Celiac testing is negative.",
-      "This condition results from deficiency of brush-border lactase."
-    ],
-    description: "Lactose intolerance is caused by reduced lactase activity in the small intestine, leading to osmotic diarrhea and gas after dairy ingestion. Management centers on dietary modification and lactase supplementation.",
-    ankiStep1: "#AK_Step1_v12::#FirstAid::01_Biochem::06_Metabolism::21_Lactase_deficiency::*Lactose_Intolerance",
-    ankiStep2: "#AK_Step2_v12::#Subjects::Gastroenterology::05_Small_Intestine::Malabsorption_Syndromes::Lactose_Intolerance"
-  },
-  {
-    id: 276,
-    answer: "Botulism",
-    clues: [
-      "A 38-year-old woman develops blurred vision, dysarthria, and dry mouth after eating home-canned vegetables.",
-      "Weakness descends from cranial nerves to the arms and then legs.",
-      "Sensation remains intact and fever is absent.",
-      "Pupils are dilated and poorly reactive.",
-      "She develops respiratory compromise.",
-      "The toxin blocks acetylcholine release at the neuromuscular junction."
-    ],
-    description: "Botulism causes a symmetric descending flaccid paralysis due to presynaptic inhibition of acetylcholine release. Foodborne botulism follows ingestion of preformed toxin, while infant botulism follows ingestion of spores.",
-    ankiStep1: "#AK_Step1_v12::#FirstAid::03_Microbiology::02_Clinical_Bacteriology::15_Clostridia::02_Clostridium_botulinum",
-    ankiStep2: "#AK_Step2_v12::#Subjects::Microbiology::01_Bacteria::02_Gram_Positive_Bacilli::Clostridium_Botulinum"
-  },
-  {
-    id: 277,
-    answer: "Diamond-Blackfan Anemia",
-    clues: [
-      "A 5-month-old infant is evaluated for pallor and poor feeding.",
-      "CBC shows severe macrocytic anemia with reticulocytopenia.",
-      "White cell and platelet counts are normal.",
-      "Bone marrow demonstrates marked reduction of erythroid precursors.",
-      "Physical exam reveals thumb abnormalities.",
-      "This congenital pure red cell aplasia often presents in early infancy."
-    ],
-    description: "Diamond-Blackfan anemia is a congenital ribosomopathy causing pure red cell aplasia, macrocytic anemia, and congenital anomalies. Many patients require steroids or transfusion support.",
-    ankiStep1: "#AK_Step1_v12::#FirstAid::10_Hematology_and_Oncology::04_Pathology::08_Macrocytic_anemias::*Nonmegaloblastic_Macrocytic_Anemia::Diamond-Blackfan",
-    ankiStep2: "#AK_Step2_v12::#FirstAid::12_Pediatrics::10_Pediatric_Hematology::01_Diamond-Blackfan_Anemia"
-  },
-  {
-    id: 278,
-    answer: "Portal hypertension",
-    clues: [
-      "A 59-year-old man with cirrhosis presents with abdominal distension and hematemesis.",
-      "Exam shows ascites, splenomegaly, and caput medusae.",
-      "Endoscopy reveals esophageal varices.",
-      "Platelet count is low from splenic sequestration.",
-      "The hepatic venous pressure gradient is elevated.",
-      "This syndrome results from increased resistance to portal blood flow, most often from cirrhosis."
-    ],
-    description: "Portal hypertension produces varices, splenomegaly, ascites, and collateral venous circulation. Cirrhosis is the most common cause, though prehepatic and posthepatic causes also exist.",
-    ankiStep1: "#AK_Step1_v12::#FirstAid::09_Gastrointestinal::04_Pathology::31_Cirrhosis_and_portal_hypertension::*Portal_Hypertension",
-    ankiStep2: ""
-  },
-  {
-    id: 279,
-    answer: "Coarctation of the Aorta",
-    clues: [
-      "A 15-year-old boy is referred for hypertension found on sports screening.",
-      "Blood pressure is higher in the arms than in the legs.",
-      "Femoral pulses are delayed and weak.",
-      "A systolic murmur is heard over the back.",
-      "Chest x-ray shows rib notching.",
-      "This congenital narrowing of the aorta is associated with bicuspid aortic valve and Turner syndrome."
-    ],
-    description: "Coarctation of the aorta causes upper-extremity hypertension with diminished lower-extremity perfusion. Long-standing disease can cause collateral intercostal enlargement and rib notching.",
-    ankiStep1: "#AK_Step1_v12::#FirstAid::07_Cardiovascular::04_Pathology::01_Congenital_Heart_Diseases::02_Left-to-right_Shunts::*Coarctation_of_the_Aorta",
-    ankiStep2: "#AK_Step2_v12::#FirstAid::12_Pediatrics::04_Congenital_Heart_Disease::05_Coarctation_of_the_Aorta"
-  },
-  {
-    id: 280,
-    answer: "Obsessive-Compulsive Personality Disorder (OCPD)",
-    clues: [
-      "A 41-year-old accountant is preoccupied with lists, schedules, and perfect order.",
-      "He spends so much time trying to make work flawless that deadlines are missed.",
-      "Coworkers describe him as rigid and inflexible.",
-      "He does not report intrusive unwanted thoughts or ritual behaviors that relieve anxiety.",
-      "Relationships suffer because he insists others follow his exact way of doing things.",
-      "This personality disorder is characterized by perfectionism and control rather than true obsessions and compulsions."
-    ],
-    description: "OCPD involves pervasive perfectionism, orderliness, and control at the expense of flexibility and efficiency. Unlike OCD, behaviors are generally ego-syntonic and not driven by intrusive obsessions.",
-    ankiStep1: "#AK_Step1_v12::#FirstAid::13_Psych::02_Pathology::26_Personality_disorders::03_Cluster_C::*Cluster_C_Personality_Disorders::Obsessive_Compulsive_Personality_Disorder",
-    ankiStep2: "#AK_Step2_v12::#FirstAid::13_Psych::09_Personality_Disorders::01_Personality_Disorders"
-  },
-  {
-    id: 281,
-    answer: "Central diabetes insipidus",
-    clues: [
-      "A 30-year-old woman develops severe polyuria and polydipsia after transsphenoidal pituitary surgery.",
-      "Serum sodium rises and urine remains very dilute.",
-      "Water deprivation fails to concentrate the urine.",
-      "Desmopressin produces a marked increase in urine osmolality.",
-      "There is no glucosuria.",
-      "This condition results from deficient ADH production or release."
-    ],
-    description: "Central diabetes insipidus is caused by insufficient ADH secretion from the hypothalamus or posterior pituitary. Patients excrete large volumes of dilute urine and respond to desmopressin.",
-    ankiStep1: "#AK_Step1_v12::#FirstAid::08_Endocrine::04_Pathology::02_Primary_polydipsia_and_diabetes_insipidus::*Central_Diabetes_Insipidus",
-    ankiStep2: "#AK_Step2_v12::#Subjects::Endocrinology::02_Pituitary_Gland::Posterior_Pituitary::Diabetes_Insipidus::Central_Diabetes_Insipidus"
-  },
-  {
-    id: 282,
-    answer: "Congenital Muscular Torticollis",
-    clues: [
-      "A 2-month-old infant persistently tilts the head to one side.",
-      "The chin rotates to the opposite shoulder.",
-      "Exam finds a firm palpable mass within the sternocleidomastoid muscle.",
-      "Range of motion is limited but neurologic exam is otherwise normal.",
-      "Pregnancy and delivery were complicated by breech presentation.",
-      "This condition is commonly managed with stretching and physical therapy."
-    ],
-    description: "Congenital muscular torticollis results from shortening or fibrosis of the sternocleidomastoid muscle, often related to intrauterine positioning or birth trauma. Early stretching therapy is usually effective.",
+    description: "Lewy body dementia presents with fluctuating cognition, recurrent visual hallucinations, parkinsonism, and sensitivity to antipsychotics. REM sleep behavior disorder is common.",
     ankiStep1: "",
-    ankiStep2: "#AK_Step2_v12::#Subjects::Pulmonology::01_ENT::Neck::Torticollis"
+    ankiStep2: ""
   },
   {
-    id: 283,
-    answer: "Epididymitis",
+     id: 262,
+    answer: "Acanthosis Nigricans",
     clues: [
-      "A 24-year-old man presents with gradually worsening unilateral scrotal pain and dysuria.",
-      "Exam shows tenderness and swelling posterior to the testis.",
-      "The cremasteric reflex is present.",
-      "Symptoms developed over days rather than beginning abruptly, and STI testing supports an infectious cause.",
-      "Urine testing is positive for chlamydia.",
-      "This is a common cause of subacute scrotal pain in sexually active men."
+      "A 35-year-old woman with obesity notices dark velvety thickening on the back of her neck and in the axillae.",
+      "The lesions are asymptomatic.",
+      "She has irregular menses and insulin resistance.",
+      "Fasting glucose is elevated.",
+      "In older adults, sudden extensive onset would raise concern for internal malignancy.",
+      "This skin finding commonly reflects hyperinsulinemia."
     ],
-    description: "Epididymitis causes gradual scrotal pain and swelling, often from sexually transmitted infection in younger men or enteric organisms in older men. It must be distinguished from testicular torsion.",
-    ankiStep1: "#AK_Step1_v12::#FirstAid::15_Repro::04_Pathology::41_Epididymitis_and_orchitis",
-    ankiStep2: "#AK_Step2_v12::#Subjects::Nephrology_&_Urology::03_Male_Reproduction::Scrotum::Epididymitis"
+    description: "Acanthosis nigricans is a velvety hyperpigmented thickening of intertriginous skin, often associated with insulin resistance, obesity, and endocrine disorders. Rarely, it is a paraneoplastic sign.",
+    ankiStep1: "",
+    ankiStep2: ""
   },
   {
-    id: 284,
-    answer: "Tic Disorder",
+     id: 263,
+    answer: "Inflammatory Carcinoma of the Breast",
     clues: [
-      "A 10-year-old boy has repeated blinking and throat-clearing that worsen with stress.",
-      "He describes a buildup of inner tension before the movements.",
-      "He can suppress them briefly during class but then they return.",
-      "Neurologic exam is normal.",
-      "Symptoms wax and wane over time.",
-      "This disorder involves sudden recurrent nonrhythmic motor or vocal behaviors."
+      "A 57-year-old woman develops rapid swelling and redness of one breast.",
+      "The skin appears thickened with peau d'orange changes.",
+      "There is no discrete abscess and antibiotics have not helped.",
+      "Biopsy shows invasive carcinoma with tumor emboli in dermal lymphatics.",
+      "Axillary nodes are enlarged.",
+      "This aggressive breast cancer often presents without a palpable dominant mass."
     ],
-    description: "Tic disorders cause brief stereotyped motor movements or vocalizations that can often be suppressed transiently. Severity often fluctuates, and symptoms commonly worsen with anxiety or excitement.",
-    ankiStep1: "#AK_Step1_v12::#FirstAid::13_Psych::02_Pathology::03_Childhood_and_early-onset_disorders::11_Tourette_syndrome",
-    ankiStep2: "#AK_Step2_v12::#FirstAid::13_Psych::01_Childhood_and_Adolescent_Disorders::05_Tourette_Syndrome"
+    description: "Inflammatory breast carcinoma is an aggressive form of invasive breast cancer characterized by erythema, edema, and peau d'orange from dermal lymphatic obstruction. It is often advanced at diagnosis.",
+    ankiStep1: "",
+    ankiStep2: ""
   },
   {
-    id: 285,
+     id: 264,
+    answer: "Amyotrophic Lateral Sclerosis (ALS)",
+    clues: [
+      "A 59-year-old man develops progressive weakness and muscle wasting in one hand.",
+      "Months later he has fasciculations, spasticity, and brisk reflexes in multiple limbs.",
+      "Sensation and eye movements are preserved.",
+      "There is no bowel or bladder dysfunction.",
+      "EMG shows widespread denervation.",
+      "This neurodegenerative disease involves both upper and lower motor neurons."
+    ],
+    description: "ALS is a progressive motor neuron disease causing combined upper and lower motor neuron findings with spared sensation. Bulbar and respiratory involvement drive morbidity and mortality.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+     id: 265,
+    answer: "Hereditary Spherocytosis",
+    clues: [
+      "A 12-year-old boy has chronic mild jaundice and intermittent gallstone pain.",
+      "His father had splenectomy in adolescence for a hemolytic anemia.",
+      "CBC shows anemia with elevated MCHC.",
+      "Peripheral smear demonstrates numerous spherocytes.",
+      "Osmotic fragility testing is increased.",
+      "This inherited RBC membrane disorder commonly involves spectrin or ankyrin defects."
+    ],
+    description: "Hereditary spherocytosis is a membrane cytoskeleton disorder causing extravascular hemolysis, jaundice, splenomegaly, and pigment gallstones. Splenectomy improves hemolysis in selected patients.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+     id: 266,
+    answer: "Reye syndrome",
+    clues: [
+      "A 7-year-old child develops vomiting and confusion several days after recovering from influenza.",
+      "Parents gave aspirin during the viral illness.",
+      "Labs show elevated AST and ALT, hyperammonemia, and hypoglycemia.",
+      "There is no jaundice.",
+      "Liver biopsy would show microvesicular fatty change.",
+      "This syndrome causes acute encephalopathy and hepatic mitochondrial dysfunction in children."
+    ],
+    description: "Reye syndrome is a rare but serious pediatric condition associated with aspirin exposure during viral illness. It causes acute encephalopathy, liver dysfunction, and hyperammonemia.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+     id: 267,
+    answer: "Mucormycosis",
+    clues: [
+      "A 55-year-old man with diabetic ketoacidosis develops facial pain and black nasal discharge.",
+      "Exam shows periorbital swelling and necrotic tissue on the palate.",
+      "CT reveals invasive sinus disease extending toward the orbit.",
+      "Biopsy demonstrates broad nonseptate hyphae with right-angle branching.",
+      "Urgent debridement and amphotericin are started.",
+      "This angioinvasive fungal infection is strongly associated with ketoacidosis and immunosuppression."
+    ],
+    description: "Mucormycosis is a rapidly invasive fungal infection that can cause rhino-orbital-cerebral disease, especially in diabetic ketoacidosis. It is a medical and surgical emergency.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+     id: 268,
+    answer: "Branchial Cleft Cyst",
+    clues: [
+      "A 12-year-old girl presents with a painless lateral neck mass.",
+      "The swelling lies anterior to the sternocleidomastoid muscle.",
+      "It became more prominent after an upper respiratory infection.",
+      "Ultrasound shows a well-defined cystic lesion.",
+      "The thyroid gland is normal.",
+      "This congenital lesion arises from persistence of branchial apparatus remnants."
+    ],
+    description: "Branchial cleft cysts are congenital lateral neck cysts that often present in childhood or adolescence. They may become infected after URI and are usually located along the anterior SCM border.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+     id: 269,
+    answer: "Polycystic Ovary Syndrome (PCOS)",
+    clues: [
+      "A 24-year-old woman presents with irregular menses and difficulty conceiving.",
+      "She also has acne, obesity, and coarse hair growth on the chin.",
+      "Labs show elevated LH-to-FSH ratio and biochemical hyperandrogenism.",
+      "Ultrasound reveals enlarged ovaries with multiple peripheral follicles.",
+      "Fasting insulin is elevated.",
+      "This endocrine disorder is commonly associated with chronic anovulation and insulin resistance."
+    ],
+    description: "PCOS is characterized by hyperandrogenism, ovulatory dysfunction, and often polycystic ovarian morphology. It is associated with insulin resistance, infertility, and long-term metabolic risk.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+     id: 270,
+    answer: "Neuropathic Ulcer / Diabetic Foot Ulcer",
+    clues: [
+      "A 61-year-old man with long-standing diabetes presents with a painless plantar foot wound.",
+      "He noticed it only after seeing drainage on his sock.",
+      "Exam shows diminished vibration sensation and loss of monofilament sensation.",
+      "The ulcer overlies a pressure point and is surrounded by callus.",
+      "Peripheral pulses are present.",
+      "This lesion results from repetitive trauma in an insensate foot."
+    ],
+    description: "Neuropathic diabetic foot ulcers typically occur on weight-bearing surfaces in patients with peripheral sensory loss. Offloading, wound care, glycemic control, and infection assessment are critical.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+     id: 271,
+    answer: "Malingering",
+    clues: [
+      "A 28-year-old man in police custody claims new severe back pain and inability to walk.",
+      "Exam findings vary dramatically when he is distracted.",
+      "MRI and neurologic testing are normal.",
+      "He later admits he hoped to delay a court appearance.",
+      "There is an obvious external incentive for the behavior.",
+      "This is intentional symptom production for secondary gain."
+    ],
+    description: "Malingering is the deliberate fabrication or exaggeration of symptoms for external benefit such as money, drugs, avoiding work, or evading legal consequences. It is not a psychiatric disorder.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+     id: 272,
+    answer: "Biliary atresia",
+    clues: [
+      "A 5-week-old infant has persistent jaundice and pale stools.",
+      "Urine is dark, and the liver is enlarged.",
+      "Direct bilirubin is elevated.",
+      "Ultrasound shows abnormal biliary anatomy, and hepatobiliary scan shows no bile reaching the intestine.",
+      "The infant is otherwise feeding reasonably well.",
+      "This progressive fibro-obliterative disease of the extrahepatic bile ducts requires early surgery."
+    ],
+    description: "Biliary atresia is a neonatal cholestatic disease causing conjugated hyperbilirubinemia, acholic stools, and progressive liver fibrosis. Early Kasai portoenterostomy improves outcomes.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+     id: 273,
     answer: "Tinea Versicolor",
     clues: [
       "A 22-year-old man notices patches on the upper trunk that become more obvious after tanning.",
@@ -4280,7 +4099,7 @@ const GAMES = [
     ankiStep2: "#AK_Step2_v12::#Subjects::Dermatology::05_Infections::Tinea_Versicolor"
   },
   {
-    id: 286,
+     id: 274,
     answer: "Whipple disease",
     clues: [
       "A 55-year-old man presents with chronic diarrhea, weight loss, and migratory joint pain.",
@@ -4295,7 +4114,7 @@ const GAMES = [
     ankiStep2: "#AK_Step2_v12::#Subjects::Gastroenterology::05_Small_Intestine::Malabsorption_Syndromes::Whipple_Disease"
   },
   {
-    id: 287,
+     id: 275,
     answer: "Paget Disease of the Breast / Mammary Paget Disease",
     clues: [
       "A 62-year-old woman has chronic eczematous change of the nipple with crusting and serous discharge.",
@@ -4310,7 +4129,7 @@ const GAMES = [
     ankiStep2: "#AK_Step2_v12::#Subjects::Obstetrics_&_Gynecology::01_Gynecology::Breast::Mammary_Paget_Disease"
   },
   {
-    id: 288,
+     id: 276,
     answer: "IgA Vasculitis (Henoch-Schönlein Purpura)",
     clues: [
       "An 8-year-old boy develops a purpuric rash on the buttocks and legs after an upper respiratory infection.",
@@ -4325,7 +4144,7 @@ const GAMES = [
     ankiStep2: "#AK_Step2_v12::#Subjects::Cardiology::12_Vascular_Pathology::Vasculitis::Henoch_Schonlein_Purpura"
   },
   {
-    id: 289,
+     id: 277,
     answer: "3rd Degree AV Block (Complete Heart Block)",
     clues: [
       "A 78-year-old man presents with syncope and fatigue.",
@@ -4340,7 +4159,7 @@ const GAMES = [
     ankiStep2: "#AK_Step2_v12::#Subjects::Cardiology::10_Arrhythmias::AV_Block::3rd_Degree"
   },
   {
-    id: 290,
+     id: 278,
     answer: "Scleroderma (Systemic Sclerosis)",
     clues: [
       "A 47-year-old woman presents with Raynaud phenomenon and progressively tight skin on the fingers.",
@@ -4355,7 +4174,7 @@ const GAMES = [
     ankiStep2: "#AK_Step2_v12::#Subjects::Immunology_&_Pathology::02_Immunology::Autoimmune_Disorders::Scleroderma"
   },
   {
-    id: 291,
+     id: 279,
     answer: "Actinomycosis",
     clues: [
       "A 45-year-old man presents with a painful, slowly enlarging swelling of the jaw and lower face.",
@@ -4370,7 +4189,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 292,
+     id: 280,
     answer: "Obstructive Shock",
     clues: [
       "A 52-year-old woman presents with acute hypotension, tachycardia, and elevated JVP.",
@@ -4385,7 +4204,7 @@ const GAMES = [
     ankiStep2: "#AK_Step2_v12::#FirstAid::08_MSK::01_Whole_Body::08_Osteomyelitis"
   },
   {
-    id: 293,
+     id: 281,
     answer: "Hyperosmolar hyperglycemic state (HHS)",
     clues: [
       "A 68-year-old man is found confused at home after several days of poor fluid intake.",
@@ -4400,7 +4219,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 294,
+     id: 282,
     answer: "Bacterial parotitis",
     clues: [
       "A 61-year-old postoperative man develops acute unilateral parotid swelling and severe pain.",
@@ -4415,7 +4234,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 295,
+     id: 283,
     answer: "Iodine-deficiency hypothyroidism",
     clues: [
       "A 35-year-old woman from a region with no iodized salt reports fatigue, weight gain, and cold intolerance.",
@@ -4430,7 +4249,7 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 296,
+     id: 284,
     answer: "Subacute Combined Degeneration",
     clues: [
       "A 58-year-old man with pernicious anemia develops progressive lower extremity weakness and paresthesias.",
@@ -4443,6 +4262,186 @@ const GAMES = [
     description: "Subacute combined degeneration results from vitamin B12 deficiency and affects both dorsal columns and corticospinal tracts. Patients develop sensory ataxia, weakness, and hyperreflexia, and early B12 replacement is critical to limit permanent injury.",
     ankiStep1: "",
     ankiStep2: ""
+  },
+  {
+     id: 285,
+    answer: "Testicular Sertoli Cell Tumor",
+    clues: [
+      "A 27-year-old man notices a painless testicular mass.",
+      "Hormone levels show elevated estrogen effect with gynecomastia.",
+      "Tumor markers AFP and beta-hCG are not elevated.",
+      "Pathology reveals sex cord-stromal cells resembling seminiferous tubule support cells.",
+      "Most tumors are benign.",
+      "This neoplasm arises from Sertoli cells rather than germ cells."
+    ],
+    description: "Sertoli cell tumors are uncommon testicular sex cord-stromal tumors that may secrete estrogen and cause gynecomastia. Most are benign, but some can behave malignantly.",
+    ankiStep1: "#AK_Step1_v12::#Physeo::11_Pathology::09_Reproductive_Pathology::03_Testicular_Tumors",
+    ankiStep2: ""
+  },
+  {
+     id: 286,
+    answer: "Cryptosporidiosis",
+    clues: [
+      "A 36-year-old man with advanced HIV presents with profuse watery diarrhea and weight loss.",
+      "He recently drank untreated water while camping.",
+      "Stool microscopy with acid-fast staining reveals oocysts.",
+      "There is no blood in the stool.",
+      "Symptoms are self-limited in healthy hosts but can be chronic in immunocompromised patients.",
+      "This protozoan is transmitted by ingestion of contaminated water."
+    ],
+    description: "Cryptosporidium causes watery diarrhea, especially in patients with AIDS or other immunocompromising conditions. Infection is commonly waterborne and diagnosed by stool antigen testing or acid-fast stain.",
+    ankiStep1: "#AK_Step1_v12::#FirstAid::03_Microbiology::04_Parasitology::01_Protozoa-gastrointestinal_infections::*Cryptosporidium",
+    ankiStep2: "#AK_Step2_v12::#Subjects::Microbiology::04_Parasites::01_Intestinal_Protozoa::Cryptosporidium"
+  },
+  {
+     id: 287,
+    answer: "Lactose intolerance",
+    clues: [
+      "A 23-year-old woman has bloating, crampy abdominal pain, and loose stools after milkshakes.",
+      "Symptoms improve when she avoids dairy.",
+      "There is no weight loss or blood in the stool.",
+      "Hydrogen breath testing is positive.",
+      "Celiac testing is negative.",
+      "This condition results from deficiency of brush-border lactase."
+    ],
+    description: "Lactose intolerance is caused by reduced lactase activity in the small intestine, leading to osmotic diarrhea and gas after dairy ingestion. Management centers on dietary modification and lactase supplementation.",
+    ankiStep1: "#AK_Step1_v12::#FirstAid::01_Biochem::06_Metabolism::21_Lactase_deficiency::*Lactose_Intolerance",
+    ankiStep2: "#AK_Step2_v12::#Subjects::Gastroenterology::05_Small_Intestine::Malabsorption_Syndromes::Lactose_Intolerance"
+  },
+  {
+     id: 288,
+    answer: "Botulism",
+    clues: [
+      "A 38-year-old woman develops blurred vision, dysarthria, and dry mouth after eating home-canned vegetables.",
+      "Weakness descends from cranial nerves to the arms and then legs.",
+      "Sensation remains intact and fever is absent.",
+      "Pupils are dilated and poorly reactive.",
+      "She develops respiratory compromise.",
+      "The toxin blocks acetylcholine release at the neuromuscular junction."
+    ],
+    description: "Botulism causes a symmetric descending flaccid paralysis due to presynaptic inhibition of acetylcholine release. Foodborne botulism follows ingestion of preformed toxin, while infant botulism follows ingestion of spores.",
+    ankiStep1: "#AK_Step1_v12::#FirstAid::03_Microbiology::02_Clinical_Bacteriology::15_Clostridia::02_Clostridium_botulinum",
+    ankiStep2: "#AK_Step2_v12::#Subjects::Microbiology::01_Bacteria::02_Gram_Positive_Bacilli::Clostridium_Botulinum"
+  },
+  {
+     id: 289,
+    answer: "Diamond-Blackfan Anemia",
+    clues: [
+      "A 5-month-old infant is evaluated for pallor and poor feeding.",
+      "CBC shows severe macrocytic anemia with reticulocytopenia.",
+      "White cell and platelet counts are normal.",
+      "Bone marrow demonstrates marked reduction of erythroid precursors.",
+      "Physical exam reveals thumb abnormalities.",
+      "This congenital pure red cell aplasia often presents in early infancy."
+    ],
+    description: "Diamond-Blackfan anemia is a congenital ribosomopathy causing pure red cell aplasia, macrocytic anemia, and congenital anomalies. Many patients require steroids or transfusion support.",
+    ankiStep1: "#AK_Step1_v12::#FirstAid::10_Hematology_and_Oncology::04_Pathology::08_Macrocytic_anemias::*Nonmegaloblastic_Macrocytic_Anemia::Diamond-Blackfan",
+    ankiStep2: "#AK_Step2_v12::#FirstAid::12_Pediatrics::10_Pediatric_Hematology::01_Diamond-Blackfan_Anemia"
+  },
+  {
+     id: 290,
+    answer: "Portal hypertension",
+    clues: [
+      "A 59-year-old man with cirrhosis presents with abdominal distension and hematemesis.",
+      "Exam shows ascites, splenomegaly, and caput medusae.",
+      "Endoscopy reveals esophageal varices.",
+      "Platelet count is low from splenic sequestration.",
+      "The hepatic venous pressure gradient is elevated.",
+      "This syndrome results from increased resistance to portal blood flow, most often from cirrhosis."
+    ],
+    description: "Portal hypertension produces varices, splenomegaly, ascites, and collateral venous circulation. Cirrhosis is the most common cause, though prehepatic and posthepatic causes also exist.",
+    ankiStep1: "#AK_Step1_v12::#FirstAid::09_Gastrointestinal::04_Pathology::31_Cirrhosis_and_portal_hypertension::*Portal_Hypertension",
+    ankiStep2: ""
+  },
+  {
+     id: 291,
+    answer: "Coarctation of the Aorta",
+    clues: [
+      "A 15-year-old boy is referred for hypertension found on sports screening.",
+      "Blood pressure is higher in the arms than in the legs.",
+      "Femoral pulses are delayed and weak.",
+      "A systolic murmur is heard over the back.",
+      "Chest x-ray shows rib notching.",
+      "This congenital narrowing of the aorta is associated with bicuspid aortic valve and Turner syndrome."
+    ],
+    description: "Coarctation of the aorta causes upper-extremity hypertension with diminished lower-extremity perfusion. Long-standing disease can cause collateral intercostal enlargement and rib notching.",
+    ankiStep1: "#AK_Step1_v12::#FirstAid::07_Cardiovascular::04_Pathology::01_Congenital_Heart_Diseases::02_Left-to-right_Shunts::*Coarctation_of_the_Aorta",
+    ankiStep2: "#AK_Step2_v12::#FirstAid::12_Pediatrics::04_Congenital_Heart_Disease::05_Coarctation_of_the_Aorta"
+  },
+  {
+     id: 292,
+    answer: "Obsessive-Compulsive Personality Disorder (OCPD)",
+    clues: [
+      "A 41-year-old accountant is preoccupied with lists, schedules, and perfect order.",
+      "He spends so much time trying to make work flawless that deadlines are missed.",
+      "Coworkers describe him as rigid and inflexible.",
+      "He does not report intrusive unwanted thoughts or ritual behaviors that relieve anxiety.",
+      "Relationships suffer because he insists others follow his exact way of doing things.",
+      "This personality disorder is characterized by perfectionism and control rather than true obsessions and compulsions."
+    ],
+    description: "OCPD involves pervasive perfectionism, orderliness, and control at the expense of flexibility and efficiency. Unlike OCD, behaviors are generally ego-syntonic and not driven by intrusive obsessions.",
+    ankiStep1: "#AK_Step1_v12::#FirstAid::13_Psych::02_Pathology::26_Personality_disorders::03_Cluster_C::*Cluster_C_Personality_Disorders::Obsessive_Compulsive_Personality_Disorder",
+    ankiStep2: "#AK_Step2_v12::#FirstAid::13_Psych::09_Personality_Disorders::01_Personality_Disorders"
+  },
+  {
+     id: 293,
+    answer: "Central diabetes insipidus",
+    clues: [
+      "A 30-year-old woman develops severe polyuria and polydipsia after transsphenoidal pituitary surgery.",
+      "Serum sodium rises and urine remains very dilute.",
+      "Water deprivation fails to concentrate the urine.",
+      "Desmopressin produces a marked increase in urine osmolality.",
+      "There is no glucosuria.",
+      "This condition results from deficient ADH production or release."
+    ],
+    description: "Central diabetes insipidus is caused by insufficient ADH secretion from the hypothalamus or posterior pituitary. Patients excrete large volumes of dilute urine and respond to desmopressin.",
+    ankiStep1: "#AK_Step1_v12::#FirstAid::08_Endocrine::04_Pathology::02_Primary_polydipsia_and_diabetes_insipidus::*Central_Diabetes_Insipidus",
+    ankiStep2: "#AK_Step2_v12::#Subjects::Endocrinology::02_Pituitary_Gland::Posterior_Pituitary::Diabetes_Insipidus::Central_Diabetes_Insipidus"
+  },
+  {
+     id: 294,
+    answer: "Congenital Muscular Torticollis",
+    clues: [
+      "A 2-month-old infant persistently tilts the head to one side.",
+      "The chin rotates to the opposite shoulder.",
+      "Exam finds a firm palpable mass within the sternocleidomastoid muscle.",
+      "Range of motion is limited but neurologic exam is otherwise normal.",
+      "Pregnancy and delivery were complicated by breech presentation.",
+      "This condition is commonly managed with stretching and physical therapy."
+    ],
+    description: "Congenital muscular torticollis results from shortening or fibrosis of the sternocleidomastoid muscle, often related to intrauterine positioning or birth trauma. Early stretching therapy is usually effective.",
+    ankiStep1: "",
+    ankiStep2: "#AK_Step2_v12::#Subjects::Pulmonology::01_ENT::Neck::Torticollis"
+  },
+  {
+     id: 295,
+    answer: "Epididymitis",
+    clues: [
+      "A 24-year-old man presents with gradually worsening unilateral scrotal pain and dysuria.",
+      "Exam shows tenderness and swelling posterior to the testis.",
+      "The cremasteric reflex is present.",
+      "Symptoms developed over days rather than beginning abruptly, and STI testing supports an infectious cause.",
+      "Urine testing is positive for chlamydia.",
+      "This is a common cause of subacute scrotal pain in sexually active men."
+    ],
+    description: "Epididymitis causes gradual scrotal pain and swelling, often from sexually transmitted infection in younger men or enteric organisms in older men. It must be distinguished from testicular torsion.",
+    ankiStep1: "#AK_Step1_v12::#FirstAid::15_Repro::04_Pathology::41_Epididymitis_and_orchitis",
+    ankiStep2: "#AK_Step2_v12::#Subjects::Nephrology_&_Urology::03_Male_Reproduction::Scrotum::Epididymitis"
+  },
+  {
+     id: 296,
+    answer: "Tic Disorder",
+    clues: [
+      "A 10-year-old boy has repeated blinking and throat-clearing that worsen with stress.",
+      "He describes a buildup of inner tension before the movements.",
+      "He can suppress them briefly during class but then they return.",
+      "Neurologic exam is normal.",
+      "Symptoms wax and wane over time.",
+      "This disorder involves sudden recurrent nonrhythmic motor or vocal behaviors."
+    ],
+    description: "Tic disorders cause brief stereotyped motor movements or vocalizations that can often be suppressed transiently. Severity often fluctuates, and symptoms commonly worsen with anxiety or excitement.",
+    ankiStep1: "#AK_Step1_v12::#FirstAid::13_Psych::02_Pathology::03_Childhood_and_early-onset_disorders::11_Tourette_syndrome",
+    ankiStep2: "#AK_Step2_v12::#FirstAid::13_Psych::01_Childhood_and_Adolescent_Disorders::05_Tourette_Syndrome"
   },
   {
     id: 297,
@@ -7164,3 +7163,6 @@ const DISEASE_LIST = [
   "Zika Virus",
   "Zollinger-Ellison syndrome"
 ];
+
+window.__DDLE_CASES__ = GAMES;
+window.__DDLE_DICTIONARY__ = DISEASE_LIST;

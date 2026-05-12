@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
@@ -43,64 +43,81 @@
 </head>
 <body>
 
-<main>
-	<div class="game-title">What's the Diagnosis?</div>
-
-	<div class="card-flip">
-		<div class="card-flip-inner" id="card-flip-inner">
-
-			<div class="card-face">
-				<div class="section-label">Clinical Scenario</div>
-				<ul class="clue-list" id="clue-list"></ul>
-			</div>
-
-			<div class="card-face card-back">
-				<h3>Diagnosis Summary</h3>
-				<p id="back-description"></p>
-				<div class="anki-row" id="anki-row">
-					<button class="anki-btn" id="anki1-btn" style="display:none">📋 Copy Step 1 Anki Tag</button>
-					<button class="anki-btn" id="anki2-btn" style="display:none">📋 Copy Step 2 Anki Tag</button>
+<main class="daily-shell">
+	<section class="brief-band" aria-label="Round header">
+		<p class="brief-kicker">Daily Casefile</p>
+		<div class="brief-grid">
+			<div>
+				<h1 class="brief-headline">Read the case. Guess the diagnosis.</h1>
+				<div class="brief-aside" aria-label="Round rules">
+					<span class="brief-chip">6 calls max</span>
+					<span class="brief-chip">1 clue revealed at the start</span>
+					<span class="brief-chip">Blank guess reveals the next clue</span>
 				</div>
+				<p class="brief-copy">Start with one clue. Each wrong guess reveals another detail. You have six guesses to find the diagnosis.</p>
 			</div>
+		</div>
+	</section>
 
+	<section class="daily-stage" aria-label="Play area">
+	<div class="card-flip case-panel">
+		<div class="caseflip-shell" id="caseflip-panel">
+			<section class="card-face" aria-labelledby="casefile-heading">
+				<div class="section-label" id="casefile-heading">Case</div>
+				<ul class="casefile-list" id="casefile-clues"></ul>
+			</section>
+
+			<section class="card-face card-back" aria-labelledby="roundnotes-heading">
+				<h3 id="roundnotes-heading">Diagnosis Summary</h3>
+				<p id="roundnotes-copy"></p>
+				<div class="study-chip-row" id="study-actions">
+					<button class="anki-btn" id="study-save-step1" style="display:none">Copy Board Tag 1</button>
+					<button class="anki-btn" id="study-save-step2" style="display:none">Copy Board Tag 2</button>
+				</div>
+			</section>
 		</div>
 	</div>
 
-	<div id="guess-history"></div>
-	<div id="result-msg"></div>
-	<button id="summary-btn">+ Diagnosis Summary</button>
+	<div class="round-tools">
+		<div id="round-pulse"></div>
+		<button id="notes-toggle">View Summary</button>
+		<button id="results-toggle">Results &amp; Share</button>
+	</div>
 
-	<div class="input-area">
+	<div id="round-ledger"></div>
+
+	<div class="input-area intake-console" aria-label="Diagnosis entry">
 		<div class="input-row">
-			<input type="text" id="guess-input" placeholder="Diagnosis…" autocomplete="off" />
-			<button id="submit-btn">Submit</button>
+			<input type="text" id="diagnosis-search" placeholder="Search for a diagnosis or leave blank to reveal the next clue" autocomplete="off" />
+			<button id="diagnosis-commit">Submit Guess</button>
 		</div>
-		<div id="suggestions"></div>
+		<div id="diagnosis-menu"></div>
 	</div>
 
-	<p style="font-size:0.78rem;color:#a07050;text-align:center;margin-top:0.5rem">
-		You have <strong>6 guesses</strong>. Each wrong guess reveals a new clue. Leave blank to skip and get the next clue.
+	<p class="intake-helper">
+		Leave the field blank to reveal the next clue. Repeated guesses are blocked.
 	</p>
+	</section>
 </main>
 
-<div class="modal-overlay" id="modal-overlay">
+<div class="roundsheet" id="roundsheet-modal">
 	<div class="modal-box">
-		<button class="modal-close" id="modal-close">✕</button>
-		<div id="modal-body"></div>
-		<div id="modal-actions" class="modal-actions"></div>
-		<div id="copy-confirm">✓ Copied to clipboard!</div>
+		<button class="roundsheet-close" id="roundsheet-close">✕</button>
+		<div id="roundsheet-body"></div>
+		<div id="roundsheet-actions" class="roundsheet-actions"></div>
+		<div id="roundsheet-flash">Copied to clipboard.</div>
 	</div>
 </div>
 
-<div id="cookie-banner">
-	<p>🍪 We use cookies to save your progress and prevent cheating. By playing, you agree to our use of essential cookies.</p>
+<div id="storage-gate">
+	<p>We store your round state locally so today's file and your running record resume without friction.</p>
 	<div class="cookie-btns">
-		<button class="btn-accept" id="cookie-accept">Accept &amp; Play</button>
-		<button class="btn-decline" id="cookie-decline">Decline</button>
+		<button class="btn-accept" id="storage-gate-allow">Save Progress &amp; Play</button>
+		<button class="btn-decline" id="storage-gate-deny">Not Now</button>
 	</div>
 </div>
 
 <script src="/js/games.js"></script>
-<script src="/js/game.js"></script>
+<script type="module" src="/js/daily-entry.js"></script>
 </body>
 </html>

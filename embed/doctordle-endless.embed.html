@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
@@ -50,7 +50,7 @@
 		.mode-toggle-btn,
 		.status-chip,
 		.utility-btn,
-		.next-case-btn {
+		.queue-advance-btn {
 			border-radius: 10px;
 			font-weight: 700;
 			cursor: pointer;
@@ -59,7 +59,7 @@
 
 		.mode-toggle-btn:hover,
 		.utility-btn:hover,
-		.next-case-btn:hover {
+		.queue-advance-btn:hover {
 			transform: translateY(-1px);
 		}
 
@@ -208,7 +208,7 @@
 			opacity: 0.88;
 		}
 
-		.next-case-btn {
+		.queue-advance-btn {
 			display: none;
 			width: 100%;
 			padding: 0.8rem;
@@ -240,80 +240,82 @@
 </head>
 <body>
 <main>
+	<section class="round-brief" aria-label="Mode header" style="margin-bottom:0.8rem;text-align:center">
+		<p style="margin:0 0 0.2rem;font-size:0.72rem;letter-spacing:0.16em;text-transform:uppercase;color:#9e7552">Continuous Play</p>
+		<h1 style="margin:0;font-size:1.6rem;line-height:1.08;color:#7b3f00">Keep the clinic moving.</h1>
+		<p style="margin:0.45rem auto 0;max-width:38rem;font-size:0.92rem;line-height:1.5;color:#8a6244">Challenge Mode rewards survival. Practice Mode lets you stack reps. Both pull from the same case file without touching the daily slot.</p>
+	</section>
+
 	<div class="endless-toolbar">
-		<button class="mode-toggle-btn active" id="challenge-mode-btn">Challenge Mode</button>
-		<button class="mode-toggle-btn" id="practice-mode-btn">Practice Mode</button>
-		<button class="utility-btn" id="stats-btn">Stats</button>
+		<button class="mode-toggle-btn active" id="track-pressure">Challenge Mode</button>
+		<button class="mode-toggle-btn" id="track-lab">Practice Mode</button>
+		<button class="utility-btn" id="session-records">Stats</button>
 	</div>
 
 	<div class="endless-statusbar">
-		<button class="status-chip is-ghost" type="button" id="status-mode-chip">
+		<button class="status-chip is-ghost" type="button" id="mode-chip-shell">
 			<span class="status-chip-label">Current Mode</span>
-			<span class="status-chip-value" id="status-mode">Challenge</span>
+			<span class="status-chip-value" id="mode-chip-value">Challenge Mode</span>
 		</button>
-		<button class="status-chip is-info" type="button" id="status-primary-chip">
-			<span class="status-chip-label" id="status-primary-label">Current Streak</span>
-			<span class="status-chip-value" id="status-primary-value">0</span>
-			<span class="status-chip-subtext">Tap for stats</span>
+		<button class="status-chip is-info" type="button" id="record-primary-shell">
+			<span class="status-chip-label" id="record-primary-label">Current Streak</span>
+			<span class="status-chip-value" id="record-primary-value">0</span>
+			<span class="status-chip-subtext">Open stats</span>
 		</button>
-		<button class="status-chip is-info" type="button" id="status-secondary-chip">
-			<span class="status-chip-label" id="status-secondary-label">Best Streak</span>
-			<span class="status-chip-value" id="status-secondary-value">0</span>
-			<span class="status-chip-subtext">Career high</span>
-		</button>
-		<button class="status-chip is-action" type="button" id="status-remaining-chip" style="display:none">
-			<span class="status-chip-label">Cases Left In Cycle</span>
-			<span class="status-chip-value" id="status-remaining">0</span>
-			<span class="status-chip-subtext">Next case ready</span>
+		<button class="status-chip is-info" type="button" id="record-secondary-shell">
+			<span class="status-chip-label" id="record-secondary-label">Best Streak</span>
+			<span class="status-chip-value" id="record-secondary-value">0</span>
+			<span class="status-chip-subtext">Highest streak so far</span>
 		</button>
 	</div>
 
 	<div class="card-flip">
-		<div class="card-flip-inner" id="card-flip-inner">
-			<div class="card-face">
-				<div class="section-label">Clinical Scenario</div>
-				<ul class="clue-list" id="clue-list"></ul>
-			</div>
+		<div class="caseflip-shell" id="caseflip-panel">
+			<section class="card-face" aria-labelledby="casefile-heading">
+				<div class="section-label" id="casefile-heading">Case</div>
+				<ul class="casefile-list" id="casefile-clues"></ul>
+			</section>
 
-			<div class="card-face card-back">
-				<h3>Diagnosis Summary</h3>
-				<p id="back-description"></p>
-				<div class="anki-row" id="anki-row">
-					<button class="anki-btn" id="anki1-btn" style="display:none">📋 Copy Step 1 Anki Tag</button>
-					<button class="anki-btn" id="anki2-btn" style="display:none">📋 Copy Step 2 Anki Tag</button>
+			<section class="card-face card-back" aria-labelledby="roundnotes-heading">
+				<h3 id="roundnotes-heading">Diagnosis Summary</h3>
+				<p id="roundnotes-copy"></p>
+				<div class="study-chip-row" id="study-actions">
+					<button class="anki-btn" id="study-save-step1" style="display:none">Copy Board Tag 1</button>
+					<button class="anki-btn" id="study-save-step2" style="display:none">Copy Board Tag 2</button>
 				</div>
-			</div>
+			</section>
 		</div>
 	</div>
 
-	<div id="guess-history"></div>
-	<div id="result-msg"></div>
-	<button id="summary-btn">+ Diagnosis Summary</button>
-	<button class="next-case-btn" id="next-case-btn">Next Case</button>
+	<div id="round-ledger"></div>
+	<div id="round-pulse"></div>
+	<button id="notes-toggle">View Summary</button>
+	<button id="results-toggle">Results &amp; Share</button>
+	<button class="queue-advance-btn" id="queue-advance">Next Case</button>
 
 	<div class="input-area">
 		<div class="input-row">
-			<input type="text" id="guess-input" placeholder="Diagnosis…" autocomplete="off" />
-			<button id="submit-btn">Submit</button>
+			<input type="text" id="diagnosis-search" placeholder="Search for a diagnosis or leave blank to reveal the next clue" autocomplete="off" />
+			<button id="diagnosis-commit">Submit Guess</button>
 		</div>
-		<div id="suggestions"></div>
+		<div id="diagnosis-menu"></div>
 	</div>
 
 	<p style="font-size:0.78rem;color:#a07050;text-align:center;margin-top:0.5rem">
-		You have <strong>6 guesses</strong>. Each wrong guess reveals a new clue. Leave blank to skip and get the next clue.
+		Leave the field blank to reveal the next clue. Repeated guesses are blocked.
 	</p>
 </main>
 
-<div class="modal-overlay" id="modal-overlay">
+<div class="roundsheet" id="roundsheet-modal">
 	<div class="modal-box">
-		<button class="modal-close" id="modal-close">✕</button>
-		<div id="modal-body"></div>
-		<div id="modal-actions" class="modal-actions"></div>
-		<div id="copy-confirm">✓ Copied to clipboard!</div>
+		<button class="roundsheet-close" id="roundsheet-close">✕</button>
+		<div id="roundsheet-body"></div>
+		<div id="roundsheet-actions" class="roundsheet-actions"></div>
+		<div id="roundsheet-flash">Copied to clipboard.</div>
 	</div>
 </div>
 
 <script src="../js/games.js"></script>
-<script src="../js/game-endless.js"></script>
+<script type="module" src="../js/endless-entry.js"></script>
 </body>
 </html>
