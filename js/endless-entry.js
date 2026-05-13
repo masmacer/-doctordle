@@ -386,22 +386,26 @@ function openModal(html, options = {}) {
   });
 
   if (shareText) {
+    const copyIcon = '<svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="vertical-align:-2px;margin-right:5px"><rect x="1" y="4" width="9" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M5 4V2a1 1 0 011-1h7a2 2 0 012 2v9a2 2 0 01-2 2H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
     const button = document.createElement('button');
     button.className = 'btn-share';
-    button.textContent = 'Copy Result';
+    button.innerHTML = copyIcon + 'Copy Result';
     button.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(shareText);
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'share_copy', { game: storageScope, mode: activeMode });
+        }
         const hint = selectors.copyState();
         if (hint) {
           hint.style.display = 'block';
           window.setTimeout(() => { hint.style.display = 'none'; }, 1800);
         }
         button.textContent = 'Copied';
-        window.setTimeout(() => { button.textContent = 'Copy Result'; }, 1800);
+        window.setTimeout(() => { button.innerHTML = copyIcon + 'Copy Result'; }, 1800);
       } catch {
         button.textContent = 'Copy failed';
-        window.setTimeout(() => { button.textContent = 'Copy Result'; }, 1800);
+        window.setTimeout(() => { button.innerHTML = copyIcon + 'Copy Result'; }, 1800);
       }
     });
     footer.appendChild(button);
