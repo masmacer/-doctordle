@@ -394,7 +394,7 @@ function openModal(html, options = {}) {
       try {
         await navigator.clipboard.writeText(shareText);
         if (typeof window.gtag === 'function') {
-          window.gtag('event', 'share_copy', { game: storageScope, mode: activeMode });
+          window.gtag('event', 'share_copy', { game: storageScope, game_mode: activeMode });
         }
         const hint = selectors.copyState();
         if (hint) {

@@ -183,7 +183,7 @@ function openModal(html, shareText) {
       try {
         await navigator.clipboard.writeText(shareText);
         if (typeof window.gtag === 'function') {
-          window.gtag('event', 'share_copy', { game: 'daily', mode: 'daily' });
+          window.gtag('event', 'share_copy', { game: 'daily', game_mode: 'daily' });
         }
         const hint = selectors.copyState();
         if (hint) {
