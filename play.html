@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Doctordle â€” Past Case</title>
+  <title>Doctordle â€?Past Case</title>
   <meta name="robots" content="noindex, nofollow" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-X8WH1TLTLW"></script>
@@ -92,11 +92,12 @@
       <a href="/games/doctordle-endless">Endless</a>
       <a href="/archive">Archive</a>
       <a href="/it/">Italiano</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
       <a href="/privacy-policy">Privacy Policy</a>
       <a href="/terms.html">Terms</a>
-      <a href="mailto:hello@doctordle.net">Contact</a>
     </nav>
-    <p class="site-footer__note">*Doctordle is for entertainment only and does not constitute medical advice. If you have any health concerns, please consult a medical professional.</p>
+    <p class="site-footer__note">*Doctordle is for entertainment only and does not constitute medical advice. If you have any health concerns, please consult a medical professional. Independent project. Not affiliated with any other website or brand offering similarly named diagnosis games.</p>
   </div>
 </footer>
 
@@ -112,13 +113,13 @@
     return;
   }
 
-  // Today â†’ redirect to home
+  // Today â†?redirect to home
   if (param === todayIndex) {
     location.replace('/');
     return;
   }
 
-  // Past day â€” load embed
+  // Past day â€?load embed
   var num     = param + 1;
   var date    = new Date(START_DATE.getTime() + param * 864e5);
   var months  = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];

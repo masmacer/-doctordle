@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Doctordle Archive â€” All Daily Cases</title>
+  <title>Doctordle Archive â€?All Daily Cases</title>
   <meta name="description" content="Browse every past Doctordle daily case by date and case number. See which puzzles you solved and which stumped you." />
   <link rel="canonical" href="https://doctordle.net/archive" />
   <!-- Google tag (gtag.js) -->
@@ -231,7 +231,7 @@
         <section class="page-intro page-intro--wide page-intro--compact">
           <h1 id="archive-title">Doctordle Archive</h1>
           <h2>Every daily case since launch. Click today's card to play.</h2>
-          <p>Your results are stored locally â€” solved and failed records appear automatically if you've played on this device.</p>
+          <p>Your results are stored locally â€?solved and failed records appear automatically if you've played on this device.</p>
         </section>
       </section>
 
@@ -269,11 +269,13 @@
       <a href="/">Home</a>
       <a href="/games/doctordle-endless">Endless</a>
       <a href="/archive">Archive</a>
+      <a href="/it/">Italiano</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
       <a href="/privacy-policy">Privacy Policy</a>
       <a href="/terms.html">Terms</a>
-      <a href="mailto:hello@doctordle.net">Contact</a>
     </nav>
-    <p class="site-footer__note">*Doctordle is for entertainment only and does not constitute medical advice. If you have any health concerns, please consult a medical professional.</p>
+    <p class="site-footer__note">*Doctordle is for entertainment only and does not constitute medical advice. If you have any health concerns, please consult a medical professional. Independent project. Not affiliated with any other website or brand offering similarly named diagnosis games.</p>
   </div>
 </footer>
 
@@ -318,7 +320,7 @@
     var d = new Date(cur);
     var isToday = ymd(d) === todayYMD;
     entries.push({
-      num:        dayIndex + 1,   // sequential: #1, #2, #3â€¦
+      num:        dayIndex + 1,   // sequential: #1, #2, #3â€?
       dayIndex:   dayIndex,
       dateObj:    d,
       dateStr:    ymd(d),
@@ -337,9 +339,9 @@
   var searchEl = document.getElementById('arc-search');
 
   function resultIcon(result) {
-    if (result === 'win')   return '<span class="arc-card__result" aria-label="Solved">âœ“</span>';
-    if (result === 'loss')  return '<span class="arc-card__result" aria-label="Failed">âœ—</span>';
-    if (result === 'today') return '<span class="arc-card__result" aria-label="Play today">Play â†’</span>';
+    if (result === 'win')   return '<span class="arc-card__result" aria-label="Solved">âœ?/span>';
+    if (result === 'loss')  return '<span class="arc-card__result" aria-label="Failed">âœ?/span>';
+    if (result === 'today') return '<span class="arc-card__result" aria-label="Play today">Play â†?/span>';
     return '<span class="arc-card__result" aria-label="Not played">Â·</span>';
   }
 
