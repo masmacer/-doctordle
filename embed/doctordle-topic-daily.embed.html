@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Doctordle Topic Daily</title>
+	<meta name="robots" content="noindex, nofollow" />
+	<link rel="stylesheet" href="/css/style.css" />
+	<style>
+		body { min-height: auto; }
+		main { padding-top: 1rem; max-width: 1180px; margin: 0 auto; }
+		.topic-daily-brief { margin-bottom: 0.8rem; text-align: center; }
+		.topic-daily-brief p:first-child { margin: 0 0 0.2rem; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: #9e7552; }
+		.topic-daily-brief h1 { margin: 0; font-size: 1.6rem; line-height: 1.08; color: #7b3f00; }
+		.topic-daily-brief p:last-child { margin: 0.45rem auto 0; max-width: 38rem; font-size: 0.92rem; line-height: 1.5; color: #8a6244; }
+		.topic-daily-meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.55rem; margin-bottom: 0.8rem; }
+		.topic-daily-chip { background: #fff8f2; border: 2px solid #e1bf98; border-radius: 12px; padding: 0.52rem 0.56rem; text-align: center; color: #7b3f00; }
+		.topic-daily-chip span { display: block; }
+		.topic-daily-chip__label { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.07em; color: #9e7552; margin-bottom: 0.15rem; }
+		.topic-daily-chip__value { font-size: 0.96rem; font-weight: 700; }
+		@media (max-width: 560px) { .topic-daily-meta { grid-template-columns: 1fr; } }
+	</style>
+</head>
+<body>
+<main class="daily-shell">
+	<section class="topic-daily-brief" aria-label="Round header">
+		<p id="topic-daily-kicker">Topic Daily</p>
+		<h1 id="topic-daily-headline">Read the case. Guess the diagnosis.</h1>
+		<p id="topic-daily-copy">One topic case per day. The clue ladder resets at midnight local time.</p>
+	</section>
+
+	<div class="topic-daily-meta">
+		<div class="topic-daily-chip">
+			<span class="topic-daily-chip__label">Today</span>
+			<span class="topic-daily-chip__value" id="daily-slot-value">Case #1</span>
+		</div>
+		<div class="topic-daily-chip">
+			<span class="topic-daily-chip__label">Next Reset</span>
+			<span class="topic-daily-chip__value" id="daily-reset-value">00:00:00</span>
+		</div>
+	</div>
+
+	<section class="daily-stage" aria-label="Play area">
+		<div class="card-flip case-panel">
+			<div class="caseflip-shell" id="caseflip-panel">
+				<section class="card-face" aria-labelledby="casefile-heading">
+					<div class="section-label" id="casefile-heading">Case</div>
+					<ul class="casefile-list" id="casefile-clues"></ul>
+				</section>
+
+				<section class="card-face card-back" aria-labelledby="roundnotes-heading">
+					<h3 id="roundnotes-heading">Diagnosis Summary</h3>
+					<p id="roundnotes-copy"></p>
+					<div class="study-chip-row" id="study-actions">
+						<button class="anki-btn" id="study-save-step1" style="display:none">Copy Board Tag 1</button>
+						<button class="anki-btn" id="study-save-step2" style="display:none">Copy Board Tag 2</button>
+					</div>
+				</section>
+			</div>
+		</div>
+
+		<div class="round-tools">
+			<div id="round-pulse"></div>
+			<button id="notes-toggle">View Summary</button>
+			<button id="results-toggle">Results &amp; Share</button>
+		</div>
+
+		<div id="round-ledger"></div>
+
+		<div class="input-area intake-console" aria-label="Diagnosis entry">
+			<div class="input-row">
+				<input type="text" id="diagnosis-search" placeholder="Search for a diagnosis or leave blank to reveal the next clue" autocomplete="off" />
+				<button id="diagnosis-commit">Submit Guess</button>
+			</div>
+			<div id="diagnosis-menu"></div>
+		</div>
+
+		<p class="intake-helper">Leave the field blank to reveal the next clue. Repeated guesses are blocked.</p>
+	</section>
+</main>
+
+<div class="roundsheet" id="roundsheet-modal">
+	<div class="modal-box">
+		<button class="roundsheet-close" id="roundsheet-close">✕</button>
+		<div id="roundsheet-body"></div>
+		<div id="roundsheet-actions" class="roundsheet-actions"></div>
+		<div id="roundsheet-flash">Copied to clipboard.</div>
+	</div>
+</div>
+
+<div id="storage-gate">
+	<p>We store your round state locally so today's topic daily resumes without friction.</p>
+	<div class="cookie-btns">
+		<button class="btn-accept" id="storage-gate-allow">Save Progress &amp; Play</button>
+		<button class="btn-decline" id="storage-gate-deny">Not Now</button>
+	</div>
+</div>
+
+<script src="/js/topic-config.js"></script>
+<script>
+(function () {
+	const topic = new URLSearchParams(window.location.search).get('topic');
+	function reportHeight() {
+		if (window.parent === window || !topic) return;
+		const height = Math.max(
+			document.documentElement ? document.documentElement.scrollHeight : 0,
+			document.body ? document.body.scrollHeight : 0
+		);
+		window.parent.postMessage({ type: 'ddle-topic-game-height', scope: topic, height }, '*');
+	}
+	window.addEventListener('load', () => window.requestAnimationFrame(reportHeight));
+	window.addEventListener('resize', reportHeight);
+	if ('ResizeObserver' in window) {
+		const resizeObserver = new ResizeObserver(() => reportHeight());
+		resizeObserver.observe(document.documentElement);
+	}
+	window.__DDLE_REPORT_TOPIC_HEIGHT__ = reportHeight;
+}());
+</script>
+<script type="module">
+	const params = new URLSearchParams(window.location.search);
+	const topics = window.__DDLE_TOPICS__ || {};
+	const slug = params.get('topic');
+	const topic = topics[slug];
+	const hubReturnEnabled = params.get('hub') === '1';
+
+	if (!topic) {
+		document.body.innerHTML = '<p style="padding:1rem;text-align:center;color:#7b3f00">Unknown topic.</p>';
+		throw new Error('Unknown topic');
+	}
+
+	function loadScript(source) {
+		return new Promise((resolve, reject) => {
+			const script = document.createElement('script');
+			script.src = source;
+			script.onload = resolve;
+			script.onerror = reject;
+			document.body.appendChild(script);
+		});
+	}
+
+	if (window.parent === window) {
+		window.location.replace(`${topic.pagePath}?mode=daily`);
+	}
+
+	document.title = `${topic.pageTitle} Daily`;
+	document.getElementById('topic-daily-kicker').textContent = `${topic.name} Daily`;
+	document.getElementById('topic-daily-headline').textContent = `Today's ${topic.name} case starts with one clue.`;
+	document.getElementById('topic-daily-copy').textContent = topic.dailyCopy;
+
+	window.__DDLE_DAILY_CONFIG__ = {
+		scope: topic.slug,
+		launchDate: window.__DDLE_TOPIC_LAUNCH_DATE__ || '2026-05-19T00:00:00',
+		allowArchive: false,
+		shareTitle: `${topic.pageTitle} Daily`,
+		pageUrl: `https://doctordle.net${topic.pagePath}`,
+		resultEyebrow: `${topic.name} Daily Result`,
+		hubReturnEnabled
+	};
+
+	await loadScript(topic.casesScript);
+	await import('/js/daily-entry.js');
+</script>
+</body>
+</html>

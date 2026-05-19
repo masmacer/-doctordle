@@ -448,6 +448,246 @@ window.__DDLE_CASES__ = [
     description: "Illness anxiety disorder is characterised by preoccupation with having or acquiring a serious undiagnosed illness, with high health anxiety and excessive health-related behaviour, in the absence of significant somatic symptoms. Reassurance provides only transient relief. CBT targeting health anxiety beliefs and avoidance behaviours is first-line; SSRIs may be used as adjuncts.",
     ankiStep1: "",
     ankiStep2: ""
+  },
+  {
+    id: 31,
+    answer: "Schizophreniform disorder",
+    clues: [
+      "A 22-year-old man presents with 2 months of auditory hallucinations, paranoid delusions, and disorganized speech.",
+      "He has withdrawn from school and has poor self-care.",
+      "Substance use evaluation is negative.",
+      "Mood episodes have not predominated the course.",
+      "Symptoms are too prolonged for brief psychotic disorder but have not lasted 6 months.",
+      "This diagnosis sits temporally between brief psychotic disorder and schizophrenia."
+    ],
+    description: "Schizophreniform disorder has the same core psychotic features as schizophrenia but lasts between 1 and 6 months. Some patients later transition to schizophrenia or schizoaffective disorder.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+    id: 32,
+    answer: "Avoidant personality disorder",
+    clues: [
+      "A 31-year-old man wants close relationships but avoids social situations because he fears criticism and rejection.",
+      "He turns down promotions that would require interacting with new people.",
+      "He describes himself as socially inept and inferior.",
+      "There are no psychotic symptoms or cognitive deficits.",
+      "He is distressed by his isolation rather than indifferent to it.",
+      "This cluster C personality disorder is characterized by pervasive social inhibition and hypersensitivity to negative evaluation."
+    ],
+    description: "Avoidant personality disorder involves social inhibition, feelings of inadequacy, and hypersensitivity to criticism despite a desire for relationships. It differs from schizoid personality disorder, in which patients usually do not desire close relationships.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+    id: 33,
+    answer: "Intermittent explosive disorder",
+    clues: [
+      "A 19-year-old man has repeated episodes of disproportionate verbal and physical aggression.",
+      "Outbursts are impulsive and last only minutes.",
+      "He feels remorse afterward.",
+      "There is no substance intoxication, mania, or psychosis.",
+      "Daily functioning is impaired because of fights and property damage.",
+      "This disorder is characterized by recurrent impulsive aggressive outbursts out of proportion to provocation."
+    ],
+    description: "Intermittent explosive disorder involves recurrent impulsive aggressive outbursts that are grossly disproportionate to the trigger. Diagnosis requires excluding substance, neurologic, and other psychiatric causes.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+    id: 34,
+    answer: "Obsessive-compulsive personality disorder",
+    clues: [
+      "A 41-year-old accountant is preoccupied with lists, schedules, and perfect order.",
+      "He spends so much time trying to make work flawless that deadlines are missed.",
+      "Coworkers describe him as rigid and inflexible.",
+      "He does not report intrusive unwanted thoughts or ritual behaviors that relieve anxiety.",
+      "Relationships suffer because he insists others follow his exact way of doing things.",
+      "This personality disorder is characterized by perfectionism and control rather than true obsessions and compulsions."
+    ],
+    description: "Obsessive-compulsive personality disorder involves pervasive perfectionism, orderliness, and control at the expense of flexibility and efficiency. Unlike obsessive-compulsive disorder, behaviors are generally ego-syntonic and not driven by intrusive obsessions.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+    id: 35,
+    answer: "Tic disorder",
+    clues: [
+      "A 10-year-old boy has repeated blinking and throat-clearing that worsen with stress.",
+      "He describes a buildup of inner tension before the movements.",
+      "He can suppress them briefly during class but then they return.",
+      "Neurologic exam is normal.",
+      "Symptoms wax and wane over time.",
+      "This disorder involves sudden recurrent nonrhythmic motor or vocal behaviors."
+    ],
+    description: "Tic disorders cause brief stereotyped motor movements or vocalizations that can often be suppressed transiently. Severity often fluctuates, and symptoms commonly worsen with anxiety or excitement.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+    id: 36,
+    answer: "Hypomanic episode",
+    clues: [
+      "A 26-year-old woman reports 5 days of unusually elevated mood, decreased need for sleep, and rapid speech.",
+      "She started multiple new projects impulsively and spent money excessively.",
+      "Her friends notice her behavior is more outgoing than usual but not severe enough to cause marked dysfunction.",
+      "She denies hallucinations or delusions.",
+      "The episode is clearly distinct from her baseline mood and functioning.",
+      "This represents the hallmark elevated mood state of bipolar II disorder."
+    ],
+    description: "A hypomanic episode is a distinct period of elevated or expansive mood lasting at least 4 days with decreased need for sleep, increased goal-directed activity, and poor judgment. It is less severe than mania and helps define bipolar II disorder.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+    id: 37,
+    answer: "Bipolar II disorder",
+    clues: [
+      "A 24-year-old woman has multiple depressive episodes with anhedonia, low energy, and suicidal thoughts.",
+      "Between depressive phases, she has periods of elevated mood with decreased sleep and impulsive behavior.",
+      "These elevated periods last 4 to 6 days but do not cause severe functional impairment or hospitalization.",
+      "She has never experienced full mania.",
+      "Family history is significant for mood disorders.",
+      "This disorder is defined by recurrent depression alternating with hypomanic episodes."
+    ],
+    description: "Bipolar II disorder is characterized by recurrent major depressive episodes alternating with hypomanic episodes. Patients often present during depression, so careful history is needed to identify the less dramatic hypomanic phases.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+    id: 38,
+    answer: "Malingering",
+    clues: [
+      "A 28-year-old man in police custody claims new severe back pain and inability to walk.",
+      "Exam findings vary dramatically when he is distracted.",
+      "MRI and neurologic testing are normal.",
+      "He later admits he hoped to delay a court appearance.",
+      "There is an obvious external incentive for the behavior.",
+      "This is intentional symptom production for secondary gain."
+    ],
+    description: "Malingering is the deliberate fabrication or exaggeration of symptoms for external benefit such as money, drugs, avoiding work, or evading legal consequences. It is not a psychiatric disorder.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+    id: 39,
+    answer: "Cannabis intoxication",
+    clues: [
+      "A 21-year-old college student is brought to the emergency department after smoking marijuana.",
+      "He is anxious, tachycardic, and has dry mouth.",
+      "He reports time distortion and mild paranoia.",
+      "Coordination is impaired.",
+      "Symptoms resolve over several hours with observation.",
+      "This acute toxidrome follows recent cannabinoid exposure."
+    ],
+    description: "Cannabis intoxication produces tachycardia, dry mouth, anxiety, altered time perception, and impaired coordination. Effects usually resolve with supportive care.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+    id: 40,
+    answer: "Cannabis withdrawal",
+    clues: [
+      "A 29-year-old man reports irritability, anxiety, and insomnia 3 days after stopping daily cannabis use.",
+      "He complains of low mood and decreased appetite.",
+      "He is not in pain or having seizures.",
+      "Physical exam is unremarkable and vital signs are stable.",
+      "Symptoms gradually improve over 1 to 2 weeks.",
+      "This withdrawal syndrome is uncomfortable but generally not medically dangerous."
+    ],
+    description: "Cannabis withdrawal causes irritability, anxiety, sleep disturbance, and reduced appetite after cessation of heavy use. Symptoms are distressing but not typically life-threatening.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+    id: 41,
+    answer: "Alcohol intoxication",
+    clues: [
+      "A 42-year-old man is brought to the emergency department with slurred speech and ataxia.",
+      "He is disinhibited and has impaired judgment.",
+      "Blood alcohol level is 240 mg/dL.",
+      "He becomes progressively sedated.",
+      "Aspiration precautions are taken.",
+      "His condition improves over several hours with supportive care."
+    ],
+    description: "Acute alcohol intoxication causes dose-dependent central nervous system depression with slurred speech, ataxia, impaired judgment, and sedation. Severe intoxication can cause respiratory depression and death.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+    id: 42,
+    answer: "Alcohol withdrawal",
+    clues: [
+      "A 44-year-old man is hospitalized and becomes tremulous about 12 hours after his last drink.",
+      "He has anxiety, diaphoresis, insomnia, and tachycardia.",
+      "He remains oriented and is not hallucinating.",
+      "There is mild hypertension but no fever.",
+      "Symptoms improve after benzodiazepine administration.",
+      "This syndrome results from abrupt cessation of chronic central nervous system depressant exposure."
+    ],
+    description: "Early alcohol withdrawal begins within hours of cessation and causes tremor, anxiety, autonomic hyperactivity, nausea, and insomnia. Severe complications include seizures and delirium tremens if not treated appropriately.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+    id: 43,
+    answer: "Benzodiazepine withdrawal",
+    clues: [
+      "A 42-year-old woman abruptly stops long-term alprazolam use.",
+      "She develops anxiety, tremor, insomnia, and perceptual disturbances.",
+      "Heart rate and blood pressure are elevated.",
+      "Hours later she has a generalized tonic-clonic seizure.",
+      "Toxicology confirms absence of new stimulant use.",
+      "Withdrawal from this sedative-hypnotic can be life-threatening."
+    ],
+    description: "Benzodiazepine withdrawal can cause autonomic hyperactivity, anxiety, insomnia, perceptual disturbances, and seizures. Gradual tapering is essential after prolonged use.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+    id: 44,
+    answer: "Amphetamine intoxication",
+    clues: [
+      "A 28-year-old man is brought to the emergency department after using methamphetamine.",
+      "He is agitated, paranoid, and has visual hallucinations.",
+      "He has marked tachycardia, hypertension, and hyperthermia.",
+      "Exam shows dilated pupils and bruxism.",
+      "He is at risk for myocardial infarction and stroke.",
+      "Treatment includes benzodiazepines and aggressive supportive care."
+    ],
+    description: "Amphetamine intoxication causes severe sympathomimetic toxicity with agitation, psychosis, hypertension, tachycardia, and hyperthermia. Cardiovascular and cerebrovascular complications are major dangers.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+    id: 45,
+    answer: "Nicotine intoxication",
+    clues: [
+      "A toddler is brought in after chewing several nicotine gum pieces.",
+      "He develops vomiting, pallor, tachycardia, and agitation.",
+      "Soon after, he becomes lethargic.",
+      "No opioid signs are present.",
+      "The family also uses concentrated vaping liquid at home.",
+      "This toxidrome reflects excessive stimulation followed by blockade at nicotinic receptors."
+    ],
+    description: "Nicotine intoxication can cause nausea, vomiting, agitation, tachycardia, hypertension, and later neurologic depression or seizures. Young children are especially vulnerable to gum, patches, and vaping liquid exposures.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+    id: 46,
+    answer: "Nicotine withdrawal",
+    clues: [
+      "A 39-year-old man stopped smoking 2 days ago and now feels irritable and restless.",
+      "He reports strong cravings, poor concentration, and increased appetite.",
+      "Sleep has become fragmented.",
+      "There is no intoxication, hallucination, or autonomic collapse.",
+      "He asks for help because he is worried he will relapse.",
+      "This syndrome commonly follows abrupt cessation of chronic tobacco use."
+    ],
+    description: "Nicotine withdrawal causes irritability, anxiety, increased appetite, concentration difficulty, insomnia, and craving after stopping tobacco. Behavioral support and pharmacotherapy such as nicotine replacement, varenicline, or bupropion improve quit success.",
+    ankiStep1: "",
+    ankiStep2: ""
   }
 ];
 

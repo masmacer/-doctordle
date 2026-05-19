@@ -91,7 +91,7 @@ window.__DDLE_CASES__ = [
   },
   {
     id: 7,
-    answer: "Temporomandibular joint disorder",
+    answer: "Temporomandibular disorders",
     clues: [
       "A 28-year-old woman presents with chronic jaw pain and headaches that are worse in the morning.",
       "Her partner reports that she grinds her teeth loudly at night.",
@@ -100,7 +100,7 @@ window.__DDLE_CASES__ = [
       "MRI of the jaw joints shows anterior disc displacement with reduction on the symptomatic side.",
       "Her symptoms improve significantly with a hard acrylic occlusal splint worn at night."
     ],
-    description: "Temporomandibular joint disorder encompasses a group of conditions involving the TMJ, masticatory muscles, and associated structures. It is the most common cause of orofacial pain of non-dental origin. Management is largely conservative, including occlusal splints, physiotherapy, and behaviour modification.",
+    description: "Temporomandibular disorders encompass a group of conditions involving the TMJ, masticatory muscles, and associated structures. They are the most common cause of orofacial pain of non-dental origin. Management is largely conservative, including occlusal splints, physiotherapy, and behaviour modification.",
     ankiStep1: "",
     ankiStep2: ""
   },
@@ -446,6 +446,81 @@ window.__DDLE_CASES__ = [
       "His CD4 count is 90 cells/μL, and microbiological smear shows a predominance of fusospirochaetal organisms."
     ],
     description: "Necrotising ulcerative periodontitis is a severe form of necrotising periodontal disease involving destruction of the interdental papillae, bone, and periodontal ligament, occurring almost exclusively in immunocompromised patients. It is an AIDS-defining illness when advanced. Management includes debridement, systemic metronidazole, optimisation of antiretroviral therapy, and oral hygiene instruction.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+    id: 31,
+    answer: "Bacterial parotitis",
+    clues: [
+      "A 61-year-old postoperative man develops acute unilateral parotid swelling and severe pain.",
+      "He has fever and purulent material expressing from the parotid duct.",
+      "He was on prolonged nil per os with inadequate hydration.",
+      "Exam shows significant tenderness over the affected gland and induration.",
+      "Ultrasonography shows hypoechoic areas suggesting abscess formation.",
+      "The classic predisposition is poor oral hygiene, dehydration, and failure to stimulate salivary flow."
+    ],
+    description: "Bacterial parotitis, typically caused by Staphylococcus aureus, presents with acute parotid swelling, fever, and purulent duct drainage. Risk factors include dehydration, poor oral hygiene, and postoperative state.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+    id: 32,
+    answer: "Mucoepidermoid carcinoma",
+    clues: [
+      "A 45-year-old woman has a slowly enlarging painless mass near the angle of the jaw.",
+      "The lesion arises from the parotid gland.",
+      "Facial nerve function is mildly weak on the same side.",
+      "Pathology shows a mixture of mucus-producing and squamoid cells.",
+      "It is malignant rather than a benign pleomorphic adenoma.",
+      "This is one of the most common malignant salivary gland tumors."
+    ],
+    description: "Mucoepidermoid carcinoma is a malignant salivary gland tumor composed of mucous and epidermoid cells, often arising in the parotid gland. Facial nerve dysfunction raises concern for malignancy in a parotid mass.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+    id: 33,
+    answer: "Actinomycosis",
+    clues: [
+      "A 45-year-old man presents with a painful, slowly enlarging swelling of the jaw and lower face.",
+      "He has had poor dental hygiene with recent tooth extraction.",
+      "Exam shows indurated tissue with sinus tract drainage and granulation tissue.",
+      "Discharge contains yellowish-white particles called sulfur granules.",
+      "Culture on anaerobic media grows branching gram-positive rods.",
+      "This chronic suppurative infection requires prolonged IV penicillin followed by oral amoxicillin."
+    ],
+    description: "Actinomycosis is a chronic suppurative infection caused by Actinomyces israelii, an oral anaerobe. It causes induration and sinus tracts often in the jaw or lung, with characteristic sulfur granules in drainage.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+    id: 34,
+    answer: "Branchial cleft cyst",
+    clues: [
+      "A 12-year-old girl presents with a painless lateral neck mass.",
+      "The swelling lies anterior to the sternocleidomastoid muscle.",
+      "It became more prominent after an upper respiratory infection.",
+      "Ultrasound shows a well-defined cystic lesion.",
+      "The thyroid gland is normal.",
+      "This congenital lesion arises from persistence of branchial apparatus remnants."
+    ],
+    description: "Branchial cleft cysts are congenital lateral neck cysts that often present in childhood or adolescence. They may become infected after upper respiratory infection and are usually located along the anterior sternocleidomastoid border.",
+    ankiStep1: "",
+    ankiStep2: ""
+  },
+  {
+    id: 35,
+    answer: "Thyroglossal duct cyst",
+    clues: [
+      "A 9-year-old child has a midline neck mass just below the hyoid bone.",
+      "It elevates when the child protrudes the tongue.",
+      "The lesion intermittently becomes infected.",
+      "Ultrasound confirms a cystic structure and a normal thyroid gland in the neck.",
+      "There is no lateral neck involvement.",
+      "This congenital remnant arises from persistence of the thyroglossal tract."
+    ],
+    description: "A thyroglossal duct cyst is a midline congenital neck cyst that moves with swallowing or tongue protrusion. Definitive treatment is surgical excision with the Sistrunk procedure.",
     ankiStep1: "",
     ankiStep2: ""
   }

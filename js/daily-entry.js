@@ -13,9 +13,16 @@ import {
   writeDailyStats
 } from './storage.js';
 
-const launchDate = new Date('2026-04-11T00:00:00');
+const runtimeConfig = window.__DDLE_DAILY_CONFIG__ || {};
+const launchDate = new Date(runtimeConfig.launchDate || '2026-04-11T00:00:00');
 const msPerDay = 864e5;
 const maxAttempts = 6;
+const storageScope = String(runtimeConfig.scope || 'daily');
+const allowArchive = runtimeConfig.allowArchive !== false;
+const shareTitle = String(runtimeConfig.shareTitle || 'Doctordle Daily');
+const shareUrl = String(runtimeConfig.pageUrl || 'https://doctordle.net');
+const resultEyebrow = String(runtimeConfig.resultEyebrow || 'Daily Result');
+const hubReturnEnabled = !!runtimeConfig.hubReturnEnabled;
 
 const selectors = {
   input: () => document.getElementById('diagnosis-search'),
@@ -36,6 +43,8 @@ const selectors = {
   modalFooter: () => document.getElementById('roundsheet-actions'),
   modalClose: () => document.getElementById('roundsheet-close'),
   copyState: () => document.getElementById('roundsheet-flash'),
+  dailySlot: () => document.getElementById('daily-slot-value'),
+  dailyReset: () => document.getElementById('daily-reset-value'),
   consentBar: () => document.getElementById('storage-gate'),
   consentAccept: () => document.getElementById('storage-gate-allow'),
   consentDecline: () => document.getElementById('storage-gate-deny')
@@ -43,9 +52,11 @@ const selectors = {
 
 const todayIndex = Math.floor((Date.now() - launchDate.getTime()) / msPerDay);
 const requestedDay = Number.parseInt(new URLSearchParams(window.location.search).get('day'), 10);
-const dayIndex = Number.isInteger(requestedDay) && requestedDay >= 0 && requestedDay <= todayIndex ? requestedDay : todayIndex;
-const archiveMode = dayIndex < todayIndex;
-const replayMode = archiveMode && hasCompletedPrimaryDay(dayIndex);
+const dayIndex = allowArchive && Number.isInteger(requestedDay) && requestedDay >= 0 && requestedDay <= todayIndex
+  ? requestedDay
+  : todayIndex;
+const archiveMode = allowArchive && dayIndex < todayIndex;
+const replayMode = archiveMode && hasCompletedPrimaryDay(dayIndex, storageScope);
 
 const currentCase = findCaseByDayIndex(dayIndex);
 let stats = createDailyStats();
@@ -139,11 +150,36 @@ function syncRevealButton(snapshot) {
   }
 }
 
+function getNextResetDate() {
+  const nextReset = new Date();
+  nextReset.setHours(24, 0, 0, 0);
+  return nextReset;
+}
+
+function renderDailyMeta() {
+  const slot = selectors.dailySlot();
+  const reset = selectors.dailyReset();
+  if (slot) slot.textContent = `Case #${dayIndex + 1}`;
+  if (!reset) return;
+
+  const remaining = Math.max(0, getNextResetDate().getTime() - Date.now());
+  const hours = Math.floor(remaining / 36e5);
+  const minutes = Math.floor((remaining % 36e5) / 6e4);
+  const seconds = Math.floor((remaining % 6e4) / 1000);
+  reset.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+}
+
+function startResetCountdown() {
+  if (!selectors.dailySlot() && !selectors.dailyReset()) return;
+  renderDailyMeta();
+  window.setInterval(renderDailyMeta, 1000);
+}
+
 function buildOutcomeCard(title, subtitle, theme, snapshot) {
   const guessesUsed = snapshot ? snapshot.guessCount : 0;
   const guessesLeft = Math.max(0, maxAttempts - guessesUsed);
   const outcomeLabel = theme === 'win' ? 'Solved' : 'Complete';
-  return `<section class="result-card result-card--${theme}"><p class="result-card__eyebrow">Daily Result</p><div class="result-card__header"><div><h3 class="result-card__title">${title}</h3><p class="result-card__copy">${subtitle}</p></div><span class="result-card__badge">${outcomeLabel}</span></div><div class="result-card__meta"><div class="result-stat"><span class="result-stat__label">Guesses Used</span><span class="result-stat__value">${guessesUsed}/${maxAttempts}</span></div><div class="result-stat"><span class="result-stat__label">Guesses Left</span><span class="result-stat__value">${guessesLeft}</span></div></div></section>`;
+  return `<section class="result-card result-card--${theme}"><p class="result-card__eyebrow">${resultEyebrow}</p><div class="result-card__header"><div><h3 class="result-card__title">${title}</h3><p class="result-card__copy">${subtitle}</p></div><span class="result-card__badge">${outcomeLabel}</span></div><div class="result-card__meta"><div class="result-stat"><span class="result-stat__label">Guesses Used</span><span class="result-stat__value">${guessesUsed}/${maxAttempts}</span></div><div class="result-stat"><span class="result-stat__label">Guesses Left</span><span class="result-stat__value">${guessesLeft}</span></div></div></section>`;
 }
 
 function createOutcomePayload(snapshot) {
@@ -162,17 +198,36 @@ function createOutcomePayload(snapshot) {
 function presentOutcome(snapshot) {
   latestOutcome = createOutcomePayload(snapshot);
   if (!latestOutcome) return;
-  openModal(latestOutcome.html, latestOutcome.shareText);
+  openModal(latestOutcome.html, { shareText: latestOutcome.shareText, actions: buildHubActions() });
 }
 
-function openModal(html, shareText) {
+function buildHubActions() {
+  if (!hubReturnEnabled) return [];
+  return [{
+    label: 'Back to Modes',
+    onClick: () => {
+      window.parent.postMessage({ type: 'ddle-topic-back', scope: storageScope }, '*');
+    }
+  }];
+}
+
+function openModal(html, options = {}) {
   const body = selectors.modalBody();
   const footer = selectors.modalFooter();
   const overlay = selectors.modal();
   if (!body || !footer || !overlay) return;
+  const { shareText = null, actions = [] } = options;
 
   body.innerHTML = `${html}${buildStatsMarkup()}`;
   footer.innerHTML = '';
+
+  actions.forEach((action) => {
+    const button = document.createElement('button');
+    button.className = 'btn-share';
+    button.textContent = action.label;
+    button.addEventListener('click', () => action.onClick(button));
+    footer.appendChild(button);
+  });
 
   if (shareText) {
     const copyIcon = '<svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="vertical-align:-2px;margin-right:5px"><rect x="1" y="4" width="9" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M5 4V2a1 1 0 011-1h7a2 2 0 012 2v9a2 2 0 01-2 2H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
@@ -183,7 +238,7 @@ function openModal(html, shareText) {
       try {
         await navigator.clipboard.writeText(shareText);
         if (typeof window.gtag === 'function') {
-          window.gtag('event', 'share_copy', { game: 'daily', game_mode: 'daily' });
+          window.gtag('event', 'share_copy', { game: storageScope, game_mode: 'daily' });
         }
         const hint = selectors.copyState();
         if (hint) {
@@ -216,14 +271,16 @@ function buildStatsMarkup() {
 function buildShareText(snapshot, won) {
   const marks = [];
   for (let index = 1; index <= maxAttempts; index += 1) {
-    if (index < snapshot.guessCount) marks.push('🟥');
-    else if (index === snapshot.guessCount) marks.push(won ? '🟩' : '🟥');
-    else marks.push('⬛');
+    if (index < snapshot.guessCount) marks.push('X');
+    else if (index === snapshot.guessCount) marks.push(won ? 'O' : 'X');
+    else marks.push('-');
   }
+
   const scoreLine = won
     ? `Solved in ${snapshot.guessCount}/6 guesses`
     : `Unsolved after ${snapshot.guessCount}/6 guesses`;
-  return `Doctordle Daily #${dayIndex + 1}\n${scoreLine}\n${marks.join(' ')}\n#doctordle\nPlay: https://doctordle.net`;
+
+  return `${shareTitle} #${dayIndex + 1}\n${scoreLine}\n${marks.join(' ')}\n#doctordle\nPlay: ${shareUrl}`;
 }
 
 function updateStats(won, snapshot) {
@@ -240,17 +297,17 @@ function updateStats(won, snapshot) {
     stats.currentStreak = 0;
   }
   stats.lastDate = today;
-  writeDailyStats(stats);
+  writeDailyStats(stats, storageScope);
 }
 
 function persistSnapshot(snapshot) {
   if (!hasConsent()) return;
-  writeDailyState(dayIndex, replayMode, snapshot);
+  writeDailyState(dayIndex, replayMode, snapshot, storageScope);
 }
 
 function restoreSnapshot() {
   if (!hasConsent() || replayMode) return null;
-  return readDailyState(dayIndex, replayMode);
+  return readDailyState(dayIndex, replayMode, storageScope);
 }
 
 function applySnapshot(snapshot) {
@@ -386,7 +443,7 @@ function wireEvents() {
   if (resultButton) {
     resultButton.addEventListener('click', () => {
       if (!latestOutcome) latestOutcome = createOutcomePayload(session.snapshot());
-      if (latestOutcome) openModal(latestOutcome.html, latestOutcome.shareText);
+      if (latestOutcome) openModal(latestOutcome.html, { shareText: latestOutcome.shareText, actions: buildHubActions() });
     });
   }
   if (reveal && card) {
@@ -416,7 +473,7 @@ function wireEvents() {
       acceptConsent();
       const bar = selectors.consentBar();
       if (bar) bar.style.display = 'none';
-      stats = readDailyStats();
+      stats = readDailyStats(storageScope);
       setInputEnabled(true);
       applySnapshot(restoreSnapshot());
     });
@@ -435,6 +492,7 @@ function wireEvents() {
 function boot() {
   if (!currentCase) return;
   wireEvents();
+  startResetCountdown();
   renderClues();
   populateSummary();
   syncRevealButton(session.snapshot());
@@ -442,7 +500,7 @@ function boot() {
   if (hasConsent()) {
     const bar = selectors.consentBar();
     if (bar) bar.style.display = 'none';
-    stats = readDailyStats();
+    stats = readDailyStats(storageScope);
     setInputEnabled(true);
     applySnapshot(restoreSnapshot());
     if (session.snapshot().gameCompleted) {

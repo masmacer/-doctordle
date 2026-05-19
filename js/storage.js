@@ -43,6 +43,23 @@ function writeCookieValue(name, value, days) {
   document.cookie = `${name}=${encodeURIComponent(value)};expires=${expires};path=/;SameSite=Lax`;
 }
 
+function normalizeScope(scope = 'daily') {
+  return String(scope || 'daily')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '') || 'daily';
+}
+
+function getDailyScopePrefix(scope = 'daily') {
+  const normalizedScope = normalizeScope(scope);
+  return normalizedScope === 'daily' ? 'ddle' : `ddle_${normalizedScope}`;
+}
+
+function getDailyStatsCookieKey(scope = 'daily') {
+  const normalizedScope = normalizeScope(scope);
+  return normalizedScope === 'daily' ? 'ddle_stats' : `ddle_stats_${normalizedScope}`;
+}
+
 export function createDailyStats() {
   return {
     played: 0,
@@ -71,29 +88,30 @@ export function getConsentState() {
   return readCookieValue('ddle_consent');
 }
 
-export function getDailyStorageKey(dayIndex, replayMode) {
-  return replayMode ? `ddle_day_${dayIndex}_replay` : `ddle_day_${dayIndex}`;
+export function getDailyStorageKey(dayIndex, replayMode, scope = 'daily') {
+  const prefix = getDailyScopePrefix(scope);
+  return replayMode ? `${prefix}_day_${dayIndex}_replay` : `${prefix}_day_${dayIndex}`;
 }
 
-export function readDailyState(dayIndex, replayMode) {
-  return parseJson(readLocalValue(getDailyStorageKey(dayIndex, replayMode)), null);
+export function readDailyState(dayIndex, replayMode, scope = 'daily') {
+  return parseJson(readLocalValue(getDailyStorageKey(dayIndex, replayMode, scope)), null);
 }
 
-export function writeDailyState(dayIndex, replayMode, value) {
-  return writeLocalValue(getDailyStorageKey(dayIndex, replayMode), JSON.stringify(value));
+export function writeDailyState(dayIndex, replayMode, value, scope = 'daily') {
+  return writeLocalValue(getDailyStorageKey(dayIndex, replayMode, scope), JSON.stringify(value));
 }
 
-export function clearDailyState(dayIndex, replayMode) {
-  return removeLocalValue(getDailyStorageKey(dayIndex, replayMode));
+export function clearDailyState(dayIndex, replayMode, scope = 'daily') {
+  return removeLocalValue(getDailyStorageKey(dayIndex, replayMode, scope));
 }
 
-export function hasCompletedPrimaryDay(dayIndex) {
-  const record = readDailyState(dayIndex, false);
+export function hasCompletedPrimaryDay(dayIndex, scope = 'daily') {
+  const record = readDailyState(dayIndex, false, scope);
   return !!(record && record.gameCompleted);
 }
 
-export function readDailyStats() {
-  const parsed = parseJson(readCookieValue('ddle_stats'), {});
+export function readDailyStats(scope = 'daily') {
+  const parsed = parseJson(readCookieValue(getDailyStatsCookieKey(scope)), {});
   return {
     ...createDailyStats(),
     ...parsed,
@@ -104,8 +122,8 @@ export function readDailyStats() {
   };
 }
 
-export function writeDailyStats(value) {
-  writeCookieValue('ddle_stats', JSON.stringify(value), 365);
+export function writeDailyStats(value, scope = 'daily') {
+  writeCookieValue(getDailyStatsCookieKey(scope), JSON.stringify(value), 365);
   return true;
 }
 

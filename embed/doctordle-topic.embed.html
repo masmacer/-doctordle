@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Doctordle Topic Mode</title>
+	<meta name="robots" content="noindex, nofollow" />
+	<link rel="stylesheet" href="/css/style.css" />
+	<style>
+		html, body { height: 100%; }
+		body { min-height: auto; }
+		main { padding: 0.8rem 0 0; max-width: 1180px; margin: 0 auto; min-height: 100vh; }
+		.topic-hub[hidden], .topic-game-shell[hidden], .topic-stats-modal[hidden] { display: none; }
+		.topic-hub { min-height: calc(100vh - 1.6rem); display: flex; flex-direction: column; justify-content: center; transform: translateY(-8vh); padding: 0 1rem; }
+		.topic-brief { display: flex; flex-direction: column; align-items: center; gap: 0.45rem; margin-bottom: 0.95rem; text-align: center; }
+		.topic-brief__kicker { margin: 0; font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: #9e7552; }
+		.topic-brief__title { margin: 0; max-width: 34ch; text-wrap: balance; font-size: 2.55rem; line-height: 1; color: #7b3f00; }
+		.topic-brief__copy { margin: 0; max-width: 58rem; text-wrap: pretty; font-size: 1rem; line-height: 1.62; color: #8a6244; }
+		.topic-mode-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.9rem; margin-bottom: 0.8rem; }
+		.topic-card { border: 2px solid #e2c09c; background: #fff; border-radius: 22px; padding: 1.15rem; text-align: left; cursor: pointer; box-shadow: 0 14px 34px rgba(123, 63, 0, 0.1); }
+		.topic-card:hover { transform: translateY(-1px); box-shadow: 0 12px 28px rgba(123, 63, 0, 0.12); }
+		.topic-card__eyebrow { margin: 0 0 0.3rem; font-size: 0.76rem; letter-spacing: 0.14em; text-transform: uppercase; color: #9e7552; }
+		.topic-card__title { margin: 0; max-width: 28ch; text-wrap: balance; font-size: 1.62rem; line-height: 1.05; color: #7b3f00; }
+		.topic-card__copy { margin: 0.55rem 0 0.85rem; max-width: 48ch; text-wrap: pretty; color: #8a6244; line-height: 1.58; font-size: 0.97rem; }
+		.topic-card__meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.65rem; }
+		.topic-chip { border-radius: 14px; background: #faf2ea; border: 1px solid #ecd6bf; padding: 0.76rem 0.82rem; }
+		.topic-chip__label { display: block; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: #9e7552; margin-bottom: 0.16rem; }
+		.topic-chip__value { display: block; font-size: 1.04rem; font-weight: 700; color: #7b3f00; line-height: 1.15; }
+		.topic-actions { display: flex; justify-content: center; margin-top: 0.2rem; }
+		.topic-stats-btn { border: 2px solid #c7d8e8; background: #f4f8fc; color: #295a88; border-radius: 14px; padding: 0.84rem 1.2rem; font-size: 0.98rem; font-weight: 700; cursor: pointer; }
+		.topic-game-frame { width: 100%; min-height: 960px; border: 0; border-radius: 16px; background: #fff; }
+		.topic-stats-modal { position: fixed; inset: 0; background: rgba(19, 16, 12, 0.52); z-index: 50; padding: 1rem; }
+		.topic-stats-box { max-width: 720px; margin: 4rem auto 0; background: #fff8f2; border: 1px solid #ead7c4; border-radius: 18px; padding: 1rem; box-shadow: 0 18px 44px rgba(24, 18, 12, 0.22); }
+		.topic-stats-box__top { display: flex; justify-content: space-between; gap: 1rem; align-items: center; margin-bottom: 0.8rem; }
+		.topic-stats-box__top h2 { margin: 0; color: #7b3f00; font-size: 1.2rem; }
+		.topic-stats-box__top p { margin: 0.2rem 0 0; color: #8a6244; }
+		.topic-stats-close { border: 0; background: transparent; color: #7b3f00; font-size: 1.35rem; cursor: pointer; }
+		.topic-stats-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem; }
+		.topic-stats-card { background: #fff; border: 1px solid #ecd6bf; border-radius: 14px; padding: 0.95rem; }
+		.topic-stats-card h3 { margin: 0 0 0.65rem; font-size: 1rem; color: #7b3f00; }
+		.topic-stats-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; }
+		.topic-stats-pill { background: #faf2ea; border-radius: 12px; padding: 0.68rem; }
+		.topic-stats-pill span { display: block; }
+		.topic-stats-pill__label { font-size: 0.64rem; letter-spacing: 0.08em; text-transform: uppercase; color: #9e7552; margin-bottom: 0.12rem; }
+		.topic-stats-pill__value { font-size: 0.98rem; font-weight: 700; color: #7b3f00; }
+		@media (max-width: 760px) {
+			.topic-mode-grid, .topic-stats-grid { grid-template-columns: 1fr; }
+			.topic-game-frame { min-height: 1080px; }
+			.topic-hub { min-height: calc(100vh - 1.2rem); transform: translateY(-2vh); padding: 0 0.75rem; }
+			.topic-brief__title { max-width: 20ch; font-size: 2.15rem; }
+			.topic-brief__copy { font-size: 0.98rem; line-height: 1.62; }
+			.topic-card__title { max-width: 24ch; font-size: 1.48rem; }
+			.topic-card__copy { max-width: 42ch; }
+		}
+		@media (min-width: 1100px) {
+			.topic-hub { transform: translateY(-10vh); }
+		}
+	</style>
+</head>
+<body>
+<main>
+	<section class="topic-hub" id="topic-hub">
+		<header class="topic-brief">
+			<p class="topic-brief__kicker" id="topic-kicker">Topic Edition</p>
+			<h1 class="topic-brief__title" id="topic-title">Choose a mode.</h1>
+			<p class="topic-brief__copy" id="topic-copy"></p>
+		</header>
+
+		<div class="topic-mode-grid" aria-label="Mode selection">
+			<button class="topic-card" id="mode-daily" type="button">
+				<p class="topic-card__eyebrow">Daily Game</p>
+				<h2 class="topic-card__title">One fixed case today</h2>
+				<p class="topic-card__copy" id="daily-copy">The daily case resets at midnight local time.</p>
+				<div class="topic-card__meta">
+					<div class="topic-chip">
+						<span class="topic-chip__label">Today</span>
+						<span class="topic-chip__value" id="daily-case-value">Case #1</span>
+					</div>
+					<div class="topic-chip">
+						<span class="topic-chip__label">Reset In</span>
+						<span class="topic-chip__value" id="daily-reset-value">00:00:00</span>
+					</div>
+				</div>
+			</button>
+
+			<button class="topic-card" id="mode-challenge" type="button">
+				<p class="topic-card__eyebrow">Challenge Mode</p>
+				<h2 class="topic-card__title">Continuous topic queue</h2>
+				<p class="topic-card__copy" id="challenge-copy">Keep playing from the same topic pool without waiting for tomorrow.</p>
+				<div class="topic-card__meta">
+					<div class="topic-chip">
+						<span class="topic-chip__label">Pool</span>
+						<span class="topic-chip__value" id="challenge-pool-value">Topic only</span>
+					</div>
+					<div class="topic-chip">
+						<span class="topic-chip__label">Best For</span>
+						<span class="topic-chip__value">Long sessions</span>
+					</div>
+				</div>
+			</button>
+		</div>
+
+		<div class="topic-actions">
+			<button class="topic-stats-btn" id="topic-stats-open" type="button">Stats</button>
+		</div>
+	</section>
+
+	<section class="topic-game-shell" id="topic-game-shell" hidden>
+		<iframe class="topic-game-frame" id="topic-game-frame" loading="eager" referrerpolicy="same-origin"></iframe>
+	</section>
+</main>
+
+<div class="topic-stats-modal" id="topic-stats-modal" hidden>
+	<div class="topic-stats-box">
+		<div class="topic-stats-box__top">
+			<div>
+				<h2>Topic Stats</h2>
+				<p id="topic-stats-copy">Daily and challenge totals for this topic.</p>
+			</div>
+			<button class="topic-stats-close" id="topic-stats-close" type="button">&times;</button>
+		</div>
+		<div class="topic-stats-grid">
+			<section class="topic-stats-card">
+				<h3>Daily</h3>
+				<div class="topic-stats-row">
+					<div class="topic-stats-pill"><span class="topic-stats-pill__label">Played</span><span class="topic-stats-pill__value" id="daily-stats-played">0</span></div>
+					<div class="topic-stats-pill"><span class="topic-stats-pill__label">Win Rate</span><span class="topic-stats-pill__value" id="daily-stats-winrate">0%</span></div>
+					<div class="topic-stats-pill"><span class="topic-stats-pill__label">Current Streak</span><span class="topic-stats-pill__value" id="daily-stats-current">0</span></div>
+					<div class="topic-stats-pill"><span class="topic-stats-pill__label">Best Streak</span><span class="topic-stats-pill__value" id="daily-stats-best">0</span></div>
+				</div>
+			</section>
+			<section class="topic-stats-card">
+				<h3>Challenge</h3>
+				<div class="topic-stats-row">
+					<div class="topic-stats-pill"><span class="topic-stats-pill__label">Played</span><span class="topic-stats-pill__value" id="challenge-stats-played">0</span></div>
+					<div class="topic-stats-pill"><span class="topic-stats-pill__label">Win Rate</span><span class="topic-stats-pill__value" id="challenge-stats-winrate">0%</span></div>
+					<div class="topic-stats-pill"><span class="topic-stats-pill__label">Current Streak</span><span class="topic-stats-pill__value" id="challenge-stats-current">0</span></div>
+					<div class="topic-stats-pill"><span class="topic-stats-pill__label">Best Streak</span><span class="topic-stats-pill__value" id="challenge-stats-best">0</span></div>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>
+
+<script src="/js/topic-config.js"></script>
+<script>
+(function () {
+	const params = new URLSearchParams(window.location.search);
+	const topics = window.__DDLE_TOPICS__ || {};
+	const slug = params.get('topic');
+	const topic = topics[slug];
+	if (!topic) {
+		document.body.innerHTML = '<p style="padding:1rem;text-align:center;color:#7b3f00">Unknown topic.</p>';
+		return;
+	}
+
+	if (window.parent === window) {
+		window.location.replace(topic.pagePath);
+		return;
+	}
+
+	const launchDate = new Date(window.__DDLE_TOPIC_LAUNCH_DATE__ || '2026-05-19T00:00:00');
+	const todayIndex = Math.max(0, Math.floor((Date.now() - launchDate.getTime()) / 864e5));
+	const nodes = {
+		hub: document.getElementById('topic-hub'),
+		gameShell: document.getElementById('topic-game-shell'),
+		frame: document.getElementById('topic-game-frame'),
+		kicker: document.getElementById('topic-kicker'),
+		title: document.getElementById('topic-title'),
+		copy: document.getElementById('topic-copy'),
+		dailyCopy: document.getElementById('daily-copy'),
+		challengeCopy: document.getElementById('challenge-copy'),
+		dailyCase: document.getElementById('daily-case-value'),
+		dailyReset: document.getElementById('daily-reset-value'),
+		challengePool: document.getElementById('challenge-pool-value'),
+		openStats: document.getElementById('topic-stats-open'),
+		statsModal: document.getElementById('topic-stats-modal'),
+		closeStats: document.getElementById('topic-stats-close')
+	};
+
+	function readCookie(name) {
+		const match = document.cookie.match(new RegExp(`(?:^|; )${name}=([^;]*)`));
+		return match ? decodeURIComponent(match[1]) : null;
+	}
+
+	function parseJson(rawValue, fallback) {
+		if (!rawValue) return fallback;
+		try { return JSON.parse(rawValue); } catch { return fallback; }
+	}
+
+	function normalizeScope(scope) {
+		return String(scope || 'daily').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'daily';
+	}
+
+	function getDailyStats(scope) {
+		const normalized = normalizeScope(scope);
+		const key = normalized === 'daily' ? 'ddle_stats' : `ddle_stats_${normalized}`;
+		return {
+			played: 0,
+			wins: 0,
+			currentStreak: 0,
+			longestStreak: 0,
+			...parseJson(readCookie(key), {})
+		};
+	}
+
+	function getChallengeStats(scope) {
+		const normalized = normalizeScope(scope);
+		const key = normalized === 'endless' ? 'ddle_endless_v1' : `ddle_endless_${normalized}_v1`;
+		const bundle = parseJson(window.localStorage.getItem(key), null) || {};
+		const stats = bundle.stats && bundle.stats.challenge ? bundle.stats.challenge : {};
+		return {
+			played: 0,
+			wins: 0,
+			currentStreak: 0,
+			bestStreak: 0,
+			...stats
+		};
+	}
+
+	function setText(id, value) {
+		const node = document.getElementById(id);
+		if (node) node.textContent = value;
+	}
+
+	function updateStatsModal() {
+		const daily = getDailyStats(topic.slug);
+		const challenge = getChallengeStats(topic.slug);
+		const dailyWinRate = daily.played ? Math.round((daily.wins / daily.played) * 100) : 0;
+		const challengeWinRate = challenge.played ? Math.round((challenge.wins / challenge.played) * 100) : 0;
+
+		setText('daily-stats-played', String(daily.played || 0));
+		setText('daily-stats-winrate', `${dailyWinRate}%`);
+		setText('daily-stats-current', String(daily.currentStreak || 0));
+		setText('daily-stats-best', String(daily.longestStreak || 0));
+		setText('challenge-stats-played', String(challenge.played || 0));
+		setText('challenge-stats-winrate', `${challengeWinRate}%`);
+		setText('challenge-stats-current', String(challenge.currentStreak || 0));
+		setText('challenge-stats-best', String(challenge.bestStreak || 0));
+	}
+
+	function nextReset() {
+		const value = new Date();
+		value.setHours(24, 0, 0, 0);
+		return value;
+	}
+
+	function updateCountdown() {
+		const remaining = Math.max(0, nextReset().getTime() - Date.now());
+		const hours = Math.floor(remaining / 36e5);
+		const minutes = Math.floor((remaining % 36e5) / 6e4);
+		const seconds = Math.floor((remaining % 6e4) / 1000);
+		nodes.dailyReset.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+	}
+
+	function frameSrc(mode) {
+		const suffix = mode === 'daily' ? 'daily' : 'challenge';
+		return `/embed/doctordle-topic-${suffix}.embed.html?topic=${encodeURIComponent(slug)}&hub=1`;
+	}
+
+	function reportParentHeight() {
+		const height = Math.max(
+			document.documentElement ? document.documentElement.scrollHeight : 0,
+			document.body ? document.body.scrollHeight : 0
+		);
+		window.parent.postMessage({ type: 'ddle-topic-shell-height', scope: topic.slug, height }, '*');
+	}
+
+	function showHub() {
+		nodes.frame.src = 'about:blank';
+		nodes.gameShell.hidden = true;
+		nodes.hub.hidden = false;
+		window.requestAnimationFrame(reportParentHeight);
+	}
+
+	function showMode(mode) {
+		nodes.hub.hidden = true;
+		nodes.gameShell.hidden = false;
+		nodes.frame.src = frameSrc(mode);
+		window.requestAnimationFrame(reportParentHeight);
+	}
+
+	function openStats() {
+		updateStatsModal();
+		nodes.statsModal.hidden = false;
+	}
+
+	function closeStats() {
+		nodes.statsModal.hidden = true;
+	}
+
+	document.title = topic.pageTitle;
+	nodes.kicker.textContent = topic.heroKicker;
+	nodes.title.textContent = topic.heroHeadline;
+	nodes.copy.textContent = topic.heroCopy;
+	nodes.dailyCopy.textContent = topic.dailyCopy;
+	nodes.challengeCopy.textContent = topic.challengeCopy;
+	nodes.dailyCase.textContent = `Case #${todayIndex + 1}`;
+	nodes.challengePool.textContent = `${topic.name} only`;
+
+	document.getElementById('mode-daily').addEventListener('click', () => showMode('daily'));
+	document.getElementById('mode-challenge').addEventListener('click', () => showMode('challenge'));
+	nodes.openStats.addEventListener('click', openStats);
+	nodes.closeStats.addEventListener('click', closeStats);
+	nodes.statsModal.addEventListener('click', (event) => {
+		if (event.target === nodes.statsModal) closeStats();
+	});
+	window.addEventListener('keydown', (event) => {
+		if (event.key === 'Escape' && !nodes.statsModal.hidden) closeStats();
+	});
+
+	window.addEventListener('message', (event) => {
+		const data = event.data || {};
+		if (data.type === 'ddle-topic-back' && data.scope === topic.slug) {
+			showHub();
+			return;
+		}
+		if (data.type === 'ddle-topic-game-height' && data.scope === topic.slug && Number.isFinite(data.height)) {
+			nodes.frame.style.height = `${Math.max(860, Math.ceil(data.height))}px`;
+			window.requestAnimationFrame(reportParentHeight);
+		}
+	});
+
+	window.addEventListener('resize', reportParentHeight);
+	if ('ResizeObserver' in window) {
+		const resizeObserver = new ResizeObserver(() => reportParentHeight());
+		resizeObserver.observe(document.documentElement);
+	}
+
+	updateCountdown();
+	window.setInterval(updateCountdown, 1000);
+	showHub();
+}());
+</script>
+</body>
+</html>

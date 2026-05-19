@@ -47,7 +47,10 @@ const selectors = {
 const storageScope = document.body && document.body.dataset && document.body.dataset.endlessScope
   ? document.body.dataset.endlessScope
   : 'endless';
-const topicMeta = storageScope === 'dental'
+const bodyData = document.body && document.body.dataset ? document.body.dataset : {};
+const allowPractice = bodyData.allowPractice !== 'false';
+const hubReturnEnabled = bodyData.hubReturnEnabled === 'true';
+const defaultMeta = storageScope === 'dental'
   ? {
       title: 'Doctordle Dental Edition',
       challengeTitle: 'Doctordle Dental Challenge',
@@ -55,16 +58,31 @@ const topicMeta = storageScope === 'dental'
       pageUrl: 'https://doctordle.net/games/doctordle-for-dentist',
       fileSlug: 'doctordle-dental'
     }
-  : {
-      title: 'Doctordle Endless',
-      challengeTitle: 'Doctordle Endless Challenge',
-      practiceTitle: 'Doctordle Endless Practice',
-      pageUrl: 'https://doctordle.net/games/doctordle-endless',
-      fileSlug: 'doctordle-endless'
-    };
+  : storageScope === 'mental-health'
+    ? {
+        title: 'Doctordle Mental Health',
+        challengeTitle: 'Doctordle Mental Health Challenge',
+        practiceTitle: 'Doctordle Mental Health Practice',
+        pageUrl: 'https://doctordle.net/games/doctordle-mental-health',
+        fileSlug: 'doctordle-mental-health'
+      }
+    : {
+        title: 'Doctordle Endless',
+        challengeTitle: 'Doctordle Endless Challenge',
+        practiceTitle: 'Doctordle Endless Practice',
+        pageUrl: 'https://doctordle.net/games/doctordle-endless',
+        fileSlug: 'doctordle-endless'
+      };
+const topicMeta = {
+  title: bodyData.topicTitle || defaultMeta.title,
+  challengeTitle: bodyData.challengeTitle || defaultMeta.challengeTitle,
+  practiceTitle: bodyData.practiceTitle || defaultMeta.practiceTitle,
+  pageUrl: bodyData.pageUrl || defaultMeta.pageUrl,
+  fileSlug: bodyData.fileSlug || defaultMeta.fileSlug
+};
 const allCases = listCases();
 let store = readEndlessBundle(storageScope);
-let activeMode = store.mode === modes.practice ? modes.practice : modes.challenge;
+let activeMode = allowPractice && store.mode === modes.practice ? modes.practice : modes.challenge;
 let currentCase = null;
 let session = createRoundSession({ legacyId: -1, title: '', clues: [] });
 let selectedGuess = null;
@@ -254,6 +272,16 @@ function presentOutcome(payload, options = {}) {
   latestOutcome = payload;
   if (!payload) return;
   openModal(payload.html, { ...options, shareText: payload.shareText });
+}
+
+function buildHubActions() {
+  if (!hubReturnEnabled) return [];
+  return [{
+    label: 'Back to Modes',
+    onClick: () => {
+      window.parent.postMessage({ type: 'ddle-topic-back', scope: storageScope }, '*');
+    }
+  }];
 }
 
 function getChallengeRank(streak, won) {
@@ -493,7 +521,8 @@ function settleRound(result) {
         {
           actions: [
             { label: 'Next Challenge', onClick: () => { closeModal(); moveToNextCase(); } },
-            { label: 'Download Share Card', onClick: () => downloadChallengeShareImage(challengeShare) }
+            { label: 'Download Share Card', onClick: () => downloadChallengeShareImage(challengeShare) },
+            ...buildHubActions()
           ],
           statsMode: modes.challenge
         }
@@ -503,7 +532,8 @@ function settleRound(result) {
 
     presentOutcome(outcome, {
       actions: [
-        { label: 'Next Case', onClick: () => { closeModal(); moveToNextCase(); } }
+        { label: 'Next Case', onClick: () => { closeModal(); moveToNextCase(); } },
+        ...buildHubActions()
       ],
       statsMode: activeMode
     });
@@ -536,7 +566,8 @@ function settleRound(result) {
         {
           actions: [
             { label: 'Next Challenge', onClick: () => { closeModal(); moveToNextCase(); } },
-            { label: 'Download Share Card', onClick: () => downloadChallengeShareImage(challengeShare) }
+            { label: 'Download Share Card', onClick: () => downloadChallengeShareImage(challengeShare) },
+            ...buildHubActions()
           ],
           statsMode: modes.challenge
         }
@@ -546,7 +577,8 @@ function settleRound(result) {
 
     presentOutcome(outcome, {
       actions: [
-        { label: 'Next Case', onClick: () => { closeModal(); moveToNextCase(); } }
+        { label: 'Next Case', onClick: () => { closeModal(); moveToNextCase(); } },
+        ...buildHubActions()
       ],
       statsMode: activeMode
     });
@@ -608,6 +640,7 @@ function moveToNextCase() {
 }
 
 function switchMode(mode) {
+  if (!allowPractice && mode === modes.practice) return;
   if (mode === activeMode) return;
   activeMode = mode;
   selectedGuess = null;
@@ -660,7 +693,7 @@ function wireEvents() {
         const won = snapshot.guessHistory.some((entry) => entry.result === 'correct');
         latestOutcome = createOutcomePayload(snapshot, won);
       }
-      if (latestOutcome) openModal(latestOutcome.html, { shareText: latestOutcome.shareText, statsMode: activeMode });
+      if (latestOutcome) openModal(latestOutcome.html, { shareText: latestOutcome.shareText, statsMode: activeMode, actions: buildHubActions() });
     });
   }
   if (reveal && card) {
@@ -677,7 +710,7 @@ function wireEvents() {
     });
   }
   if (challengeToggle) challengeToggle.addEventListener('click', () => switchMode(modes.challenge));
-  if (practiceToggle) practiceToggle.addEventListener('click', () => switchMode(modes.practice));
+  if (allowPractice && practiceToggle) practiceToggle.addEventListener('click', () => switchMode(modes.practice));
   if (statsButton) statsButton.addEventListener('click', showStatsOnly);
   if (deckOne) {
     deckOne.addEventListener('click', async () => {
@@ -692,6 +725,10 @@ function wireEvents() {
 }
 
 function boot() {
+  if (!allowPractice) {
+    store.mode = modes.challenge;
+    writeEndlessBundle(store, storageScope);
+  }
   wireEvents();
   hydrateCurrentCase();
   renderSummary();
