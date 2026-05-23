@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Doctordle â€?Past Case</title>
+  <title>Doctordle - Past Case</title>
   <meta name="robots" content="noindex, nofollow" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-X8WH1TLTLW"></script>
@@ -113,13 +113,13 @@
     return;
   }
 
-  // Today â†?redirect to home
+  // Today -> redirect to home
   if (param === todayIndex) {
     location.replace('/');
     return;
   }
 
-  // Past day â€?load embed
+  // Past day -> load embed
   var num     = param + 1;
   var date    = new Date(START_DATE.getTime() + param * 864e5);
   var months  = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
