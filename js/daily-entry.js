@@ -305,9 +305,49 @@ function persistSnapshot(snapshot) {
   writeDailyState(dayIndex, replayMode, snapshot, storageScope);
 }
 
+function buildGuessedIds(history) {
+  return history.reduce((ids, entry) => {
+    if (!entry || entry.result === 'skip') return ids;
+    const resolved = resolveDiagnosis(entry.name);
+    ids.push(resolved && resolved.legacyId ? resolved.legacyId : entry.name);
+    return ids;
+  }, []);
+}
+
+function migrateSnapshot(snapshot) {
+  if (!snapshot || !currentCase || !snapshot.gameCompleted || !Array.isArray(snapshot.guessHistory) || snapshot.guessHistory.some((entry) => entry.result === 'correct')) {
+    return snapshot;
+  }
+
+  const correctedIndex = snapshot.guessHistory.findIndex((entry) => {
+    if (!entry || entry.result !== 'wrong') return false;
+    const resolved = resolveDiagnosis(entry.name);
+    return !!(resolved && resolved.legacyId === currentCase.legacyId);
+  });
+
+  if (correctedIndex < 0) return snapshot;
+
+  const correctedHistory = snapshot.guessHistory.slice(0, correctedIndex + 1).map((entry, index) => (
+    index === correctedIndex
+      ? { ...entry, result: 'correct' }
+      : entry
+  ));
+
+  return {
+    ...snapshot,
+    guessCount: correctedHistory.length,
+    gameCompleted: true,
+    guessedIds: buildGuessedIds(correctedHistory),
+    guessHistory: correctedHistory
+  };
+}
+
 function restoreSnapshot() {
   if (!hasConsent() || replayMode) return null;
-  return readDailyState(dayIndex, replayMode, storageScope);
+  const snapshot = readDailyState(dayIndex, replayMode, storageScope);
+  const migrated = migrateSnapshot(snapshot);
+  if (snapshot && migrated !== snapshot) writeDailyState(dayIndex, replayMode, migrated, storageScope);
+  return migrated;
 }
 
 function applySnapshot(snapshot) {
