@@ -5,6 +5,7 @@ Thumbs.db
 
 # Local temp / scratch files
 temp_*.txt
+temp_*.js
 *.tmp
 *.bak
 *.orig

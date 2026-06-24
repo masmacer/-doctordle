@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Privacy-friendly analytics by Plausible -->
+  <script async src="https://analytics.shudushaole.xyz/js/pa-VoALqv6K08dDuxygSd-91.js"></script>
+  <script>
+    window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+    plausible.init();
+  </script>
+  <title>Doctordle Case Library</title>
+  <meta name="description" content="Use the Doctordle Case Library to look up diagnoses, filter by topic, and get quick definitions." />
+  <link rel="canonical" href="https://doctordle.net/case-library" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X8WH1TLTLW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-X8WH1TLTLW');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3369196922808842" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/shell.css" />
+  <link rel="icon" type="image/png" href="/images/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Doctordle" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Doctordle",
+          "item": "https://doctordle.net/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Case Library",
+          "item": "https://doctordle.net/case-library"
+        }
+      ]
+    }
+  </script>
+  <style>
+    .library-layout {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .library-hero {
+      background:
+        radial-gradient(circle at top right, rgba(210, 228, 244, 0.52), transparent 34%),
+        linear-gradient(180deg, #fffaf5 0%, #f8efe3 100%);
+    }
+
+    .library-toolbar {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .library-search {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 1.5px solid #d9b490;
+      border-radius: 14px;
+      background: #fffdf9;
+      color: #3a2a1a;
+      font-size: 0.96rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .library-search:focus {
+      border-color: #7b3f00;
+      box-shadow: 0 0 0 4px rgba(123, 63, 0, 0.08);
+    }
+
+    .library-toolbar__meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.55rem 0.9rem;
+    }
+
+    .library-count {
+      font-size: 0.83rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #9e7552;
+    }
+
+    .library-status {
+      font-size: 0.87rem;
+      color: #7c5a3f;
+    }
+
+    .library-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+
+    .library-filter {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      min-height: 38px;
+      padding: 0.5rem 0.82rem;
+      border: 1px solid #e3c4a2;
+      border-radius: 999px;
+      background: #fff8f2;
+      color: #7b3f00;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+
+    .library-filter strong {
+      font-size: 0.76rem;
+      color: #9e7552;
+    }
+
+    .library-filter:hover {
+      background: #fff1e3;
+      border-color: #d8ab79;
+    }
+
+    .library-filter.is-active {
+      background: #7b3f00;
+      border-color: #7b3f00;
+      color: #fff;
+    }
+
+    .library-filter.is-active strong {
+      color: #f5dcc2;
+    }
+
+    .library-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 0.9rem;
+      align-items: start;
+    }
+
+    .library-card {
+      position: relative;
+      min-height: 320px;
+      perspective: 1200px;
+      align-self: start;
+      cursor: pointer;
+    }
+
+    .library-card--error {
+      grid-column: 1 / -1;
+      min-height: 0;
+      padding: 1rem;
+      border: 1px solid #ecd4ba;
+      border-radius: 16px;
+      background: #fffaf5;
+    }
+
+    .library-card__flip {
+      position: relative;
+      min-height: 320px;
+      transform-style: preserve-3d;
+      transition: transform 0.5s ease;
+    }
+
+    .library-card.is-flipped .library-card__flip {
+      transform: rotateY(180deg);
+    }
+
+    .library-card__face {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      gap: 0.8rem;
+      grid-template-rows: auto auto 1fr auto;
+      border: 1px solid #ecd4ba;
+      border-radius: 16px;
+      background: #fffaf5;
+      padding: 1rem;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      overflow: hidden;
+    }
+
+    .library-card__face--back {
+      transform: rotateY(180deg);
+      background: linear-gradient(180deg, #fffaf5 0%, #f6ede1 100%);
+    }
+
+    .library-card__head {
+      display: flex;
+      gap: 0.8rem;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .library-card h2 {
+      margin: 0 0 0.25rem;
+      font-size: 1rem;
+      line-height: 1.25;
+      color: #7b3f00;
+    }
+
+    .library-card__lead {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: #6f5339;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .library-card__count {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0.28rem 0.55rem;
+      border-radius: 999px;
+      background: #f4e6d7;
+      color: #8a6244;
+      font-size: 0.74rem;
+      font-weight: 700;
+    }
+
+    .library-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .library-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0.3rem 0.65rem;
+      border-radius: 999px;
+      background: #fff2e1;
+      border: 1px solid #edd0ae;
+      color: #8b5527;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .library-card__body {
+      display: grid;
+      gap: 0.75rem;
+      align-content: start;
+      min-height: 0;
+    }
+
+    .library-card__body p {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #6f5339;
+    }
+
+    .library-card__body h3 {
+      margin: 0;
+      font-size: 0.86rem;
+      line-height: 1.3;
+      color: #7b3f00;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .library-note {
+      margin: 0;
+      font-size: 0.83rem;
+      line-height: 1.55;
+      color: #8a6244;
+    }
+
+    .library-clues {
+      display: grid;
+      gap: 0.5rem;
+      margin: 0;
+      padding-left: 1rem;
+      color: #6f5339;
+    }
+
+    .library-clues li {
+      line-height: 1.55;
+      font-size: 0.88rem;
+    }
+
+    .library-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: auto;
+    }
+
+    .library-card__body--scroll {
+      overflow-y: auto;
+      padding-right: 0.2rem;
+      align-self: stretch;
+    }
+
+    .library-action {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 0.45rem 0.8rem;
+      border-radius: 10px;
+      background: #7b3f00;
+      color: #fff;
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .library-action:hover {
+      background: #5f2f07;
+      text-decoration: none;
+    }
+
+    .library-card__hint {
+      align-self: end;
+      font-size: 0.78rem;
+      color: #9e7552;
+      font-weight: 700;
+    }
+
+    .library-card__backcopy {
+      font-size: 0.94rem;
+      line-height: 1.65;
+      color: #6f5339;
+    }
+
+    @media (max-width: 720px) {
+      .library-toolbar__meta {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .library-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .library-card__head {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body class="shell-page">
+
+<header>
+  <a class="logo" href="/" aria-label="Doctordle home">
+    <img src="/images/logo.webp" alt="Doctordle" />
+    <span class="logo-wordmark">Doctordle</span>
+  </a>
+  <div class="header-right">
+    <div class="header-quick">
+      <a class="header-btn" href="/games/doctordle-endless">Endless</a>
+      <a class="header-btn" href="/archive">Archive</a>
+    </div>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+    </button>
+  </div>
+  <nav class="nav-drawer" id="nav-drawer" aria-label="Primary">
+    <a class="nav-drawer__link" href="/">Daily</a>
+    <a class="nav-drawer__link" href="/games/doctordle-endless">Endless</a>
+    <a class="nav-drawer__link" href="/archive">Archive</a>
+    <a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-emergency">Emergency Medicine</a>
+    <a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-dermatology">Dermatology</a>
+    <a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-pediatrics">Pediatrics</a>
+    <a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-digestive-health">Digestive Health</a>
+    <a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-womens-health">Women's Health</a>
+    <a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-cardiology">Cardiology</a>
+    <a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-for-dentist">For Dentists</a>
+    <a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-mental-health">Mental Health</a>
+    <a class="nav-drawer__link" href="/case-library" aria-current="page">Case Library</a>
+    <a class="nav-drawer__link" href="/it/">Italiano</a>
+  </nav>
+</header>
+<script>
+(function(){var t=document.getElementById('nav-toggle'),d=document.getElementById('nav-drawer');if(!t||!d)return;t.addEventListener('click',function(){var o=t.getAttribute('aria-expanded')==='true';t.setAttribute('aria-expanded',String(!o));d.classList.toggle('nav-drawer--open',!o);});document.addEventListener('click',function(e){if(!t.contains(e.target)&&!d.contains(e.target)){t.setAttribute('aria-expanded','false');d.classList.remove('nav-drawer--open');}});document.addEventListener('keydown',function(e){if(e.key==='Escape'){t.setAttribute('aria-expanded','false');d.classList.remove('nav-drawer--open');}});}());
+</script>
+
+<main>
+  <div class="shell-wrap library-layout">
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <span>Case Library</span>
+    </nav>
+
+    <section class="content-block library-hero" aria-labelledby="library-title">
+      <section class="page-intro page-intro--wide page-intro--compact">
+        <h1 id="library-title">Case Library</h1>
+        <h2>Look up a diagnosis while you play.</h2>
+        <p>Search for a condition and read a short definition.</p>
+      </section>
+    </section>
+
+    <section class="content-block" aria-labelledby="library-search-title">
+      <div class="library-toolbar">
+        <div>
+          <h2 id="library-search-title">Search and Filter</h2>
+          <p>Search by diagnosis name, then narrow the list with a topic filter when you want to stay inside one part of the case bank.</p>
+        </div>
+        <input
+          class="library-search"
+          id="library-search"
+          type="search"
+          autocomplete="off"
+          placeholder="Search a diagnosis, clue, or topic"
+          aria-label="Search the case library"
+        />
+        <div class="library-toolbar__meta">
+          <p class="library-count" id="library-count">Loading…</p>
+          <p class="library-status" id="library-status">Loading diagnoses and topic case banks…</p>
+        </div>
+        <div class="library-filters" id="library-filters" aria-label="Topic filters"></div>
+      </div>
+    </section>
+
+    <section class="content-block" aria-labelledby="library-results-title">
+      <h2 id="library-results-title">Diagnoses</h2>
+      <p class="library-note">Each card gives a short definition and fast links. It is meant to help you confirm what a condition is, then get back to playing.</p>
+      <div class="library-grid" id="library-grid" aria-live="polite"></div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="site-footer">
+    <a class="site-footer__brand" href="/" aria-label="Doctordle home">
+      <img src="/images/logo.webp" alt="Doctordle" />
+      <span class="site-footer__wordmark">Doctordle</span>
+    </a>
+    <nav class="site-footer__links" aria-label="Footer">
+      <a href="/">Home</a>
+      <a href="/games/doctordle-endless">Endless</a>
+      <a href="/archive">Archive</a>
+      <a href="/case-library">Case Library</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <a href="/privacy-policy">Privacy Policy</a>
+      <a href="/terms.html">Terms</a>
+    </nav>
+    <p class="site-footer__note">*Doctordle is for entertainment only and does not constitute medical advice. If you have any health concerns, please consult a medical professional. Independent project. Not affiliated with any other website or brand offering similarly named diagnosis games.</p>
+  </div>
+</footer>
+
+<script src="/js/case-library.js"></script>
+</body>
+</html>
