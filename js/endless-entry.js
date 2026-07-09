@@ -4,7 +4,7 @@ import {
   listCases,
   resolveDiagnosis
 } from './casebook.js';
-import { createRoundSession } from './round-session.js';
+import { createRoundSession, matchesCaseAnswer } from './round-session.js';
 import { readEndlessBundle, writeEndlessBundle } from './storage.js';
 
 const modes = {
@@ -148,6 +148,41 @@ function setInputsEnabled(enabled) {
   if (!enabled) hideSuggestions();
 }
 
+function buildGuessedIds(history) {
+  return history.reduce((ids, entry) => {
+    if (!entry || entry.result === 'skip') return ids;
+    const resolved = resolveDiagnosis(entry.name);
+    ids.push(resolved && resolved.legacyId ? resolved.legacyId : entry.name);
+    return ids;
+  }, []);
+}
+
+function migrateModeSession(modeSession) {
+  if (!modeSession || !currentCase || !modeSession.gameCompleted || !Array.isArray(modeSession.guessHistory)) return false;
+
+  const correctedIndex = modeSession.guessHistory.findIndex((entry) => {
+    if (!entry || entry.result !== 'wrong') return false;
+    const resolved = resolveDiagnosis(entry.name);
+    const guessKey = resolved && resolved.legacyId ? resolved.legacyId : entry.name;
+    const guessLabel = resolved && resolved.label ? resolved.label : entry.name;
+    return matchesCaseAnswer(currentCase, guessKey, guessLabel);
+  });
+
+  if (correctedIndex < 0) return false;
+
+  const correctedHistory = modeSession.guessHistory.slice(0, correctedIndex + 1).map((entry, index) => (
+    index === correctedIndex
+      ? { ...entry, result: 'correct' }
+      : entry
+  ));
+
+  modeSession.guessCount = correctedHistory.length;
+  modeSession.gameCompleted = true;
+  modeSession.guessedIds = buildGuessedIds(correctedHistory);
+  modeSession.guessHistory = correctedHistory;
+  return true;
+}
+
 function hydrateCurrentCase() {
   const modeSession = getModeSession();
   if (!modeSession.currentId) {
@@ -160,6 +195,7 @@ function hydrateCurrentCase() {
   }
 
   currentCase = findCaseByLegacyId(modeSession.currentId) || allCases[0] || null;
+  if (migrateModeSession(modeSession)) persistStore();
   session = createRoundSession(currentCase || { legacyId: -1, title: '', clues: [] }, {
     attempts: modeSession.guessCount,
     completed: modeSession.gameCompleted,

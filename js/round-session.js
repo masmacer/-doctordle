@@ -24,7 +24,7 @@ function answerForms(value) {
 
 export function matchesCaseAnswer(caseRecord, guessKey, guessLabel) {
   if (typeof guessKey === 'number') {
-    return guessKey === caseRecord.legacyId;
+    if (guessKey === caseRecord.legacyId) return true;
   }
 
   const acceptedAnswers = Array.isArray(caseRecord.answers) && caseRecord.answers.length

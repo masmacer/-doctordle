@@ -315,7 +315,7 @@ function buildGuessedIds(history) {
 }
 
 function migrateSnapshot(snapshot) {
-  if (!snapshot || !currentCase || !snapshot.gameCompleted || !Array.isArray(snapshot.guessHistory) || snapshot.guessHistory.some((entry) => entry.result === 'correct')) {
+  if (!snapshot || !currentCase || !snapshot.gameCompleted || !Array.isArray(snapshot.guessHistory)) {
     return snapshot;
   }
 
