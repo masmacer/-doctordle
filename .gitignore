@@ -4,6 +4,7 @@ Thumbs.db
 .vscode/
 
 # Local temp / scratch files
+.local/
 temp_*.txt
 temp_*.js
 *.tmp

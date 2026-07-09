@@ -1,5 +1,5 @@
 import { findCaseByDayIndex, getDiagnosisDictionary, resolveDiagnosis } from './casebook.js';
-import { createRoundSession } from './round-session.js';
+import { createRoundSession, matchesCaseAnswer } from './round-session.js';
 import {
   acceptConsent,
   createDailyStats,
@@ -322,7 +322,9 @@ function migrateSnapshot(snapshot) {
   const correctedIndex = snapshot.guessHistory.findIndex((entry) => {
     if (!entry || entry.result !== 'wrong') return false;
     const resolved = resolveDiagnosis(entry.name);
-    return !!(resolved && resolved.legacyId === currentCase.legacyId);
+    const guessKey = resolved && resolved.legacyId ? resolved.legacyId : entry.name;
+    const guessLabel = resolved && resolved.label ? resolved.label : entry.name;
+    return matchesCaseAnswer(currentCase, guessKey, guessLabel);
   });
 
   if (correctedIndex < 0) return snapshot;

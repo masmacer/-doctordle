@@ -7052,21 +7052,6 @@ const GAMES = [
     ankiStep2: ""
   },
   {
-    id: 471,
-    answer: "Obsessive-compulsive personality disorder",
-    clues:     [
-      "A 41-year-old accountant is preoccupied with lists, schedules, and perfect order.",
-      "He spends so much time trying to make work flawless that deadlines are missed.",
-      "Coworkers describe him as rigid and inflexible.",
-      "He does not report intrusive unwanted thoughts or ritual behaviors that relieve anxiety.",
-      "Relationships suffer because he insists others follow his exact way of doing things.",
-      "This personality disorder is characterized by perfectionism and control rather than true obsessions and compulsions."
-    ],
-    description: "Obsessive-compulsive personality disorder involves pervasive perfectionism, orderliness, and control at the expense of flexibility and efficiency. Unlike obsessive-compulsive disorder, behaviors are generally ego-syntonic and not driven by intrusive obsessions.",
-    ankiStep1: "",
-    ankiStep2: ""
-  },
-  {
     id: 472,
     answer: "Diffuse Proliferative Glomerulonephritis",
     clues:     [
@@ -9423,7 +9408,6 @@ const DISEASE_LIST = [
   "Traveler's diarrhea",
   "Long QT syndrome",
   "Acute necrotising ulcerative periodontitis",
-  "Obsessive-compulsive personality disorder",
   "Acute Disseminated Encephalomyelitis (ADEM)",
   "Ehrlichiosis"
 ];

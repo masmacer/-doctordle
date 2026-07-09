@@ -24,7 +24,7 @@
 	<script>
 		(function () {
 			if (window.parent === window) {
-				window.location.replace('../games/doctordle-for-dentist.html');
+				window.location.replace('/games/doctordle-for-dentist');
 			} else {
 				var ref = document.referrer ? new URL(document.referrer).hostname : '(unknown)';
 				window.addEventListener('load', function () {

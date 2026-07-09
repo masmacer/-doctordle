@@ -33,7 +33,9 @@ function normalizeAnswer(value) {
 }
 
 function canonicalAnswer(answer) {
-  const normalized = normalizeAnswer(answer);
+  const normalized = normalizeAnswer(
+    String(answer || '').replace(/\s*\(([A-Z0-9-]{2,10})\)\s*$/g, ' ')
+  );
   const aliases = new Map([
     ['oral lichen planus', 'lichen planus']
   ]);
