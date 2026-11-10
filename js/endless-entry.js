@@ -5,6 +5,9 @@ import { createLocalizedCasebook } from './localized-casebook.js';
 import { loadCaseTranslations } from './translation-registry.js';
 import { applyContentRevision, currentContentVersion, savedContentVersion } from './case-content-revisions.js';
 import { localizedPath } from './localized-routes.js';
+import { trackFriendEvent } from './friend-analytics.js';
+import { installShareCardPreview } from './share-card-preview.js';
+import {parseFriendChallenge,buildFriendChallengeUrl,readFriendRound,writeFriendRound,shareFriendChallenge,copyShareText} from './friend-challenge.js';
 import {
   findCaseByLegacyId as findCanonicalCase,
   getDiagnosisDictionary,
@@ -12,7 +15,7 @@ import {
   resolveDiagnosis as resolveCanonicalDiagnosis
 } from './casebook.js';
 import { createRoundSession } from './round-session.js';
-import { readEndlessBundle, writeEndlessBundle } from './storage.js';
+import { createEndlessBundle, readEndlessBundle, writeEndlessBundle } from './storage.js';
 
 const modes = {
   challenge: 'challenge',
@@ -58,6 +61,9 @@ const bodyData = document.body && document.body.dataset ? document.body.dataset 
 const locale = normalizeLocale(bodyData.locale);
 await loadCaseTranslations(locale);
 const t = createTranslator(locale);
+const friendParams = new URLSearchParams(window.location.search);
+const friendInvite = parseFriendChallenge(friendParams, listCases());
+const invalidFriendInvite = friendParams.has('challenge') && !friendInvite;
 const localizedBook = createLocalizedCasebook(locale, getDiagnosisDictionary(), resolveCanonicalDiagnosis, { scope: storageScope, cases: listCases() });
 const findCaseByLegacyId = (id, version) => applyContentRevision(localizedBook.localize(findCanonicalCase(id)), { scope: storageScope, locale, version });
 const resolveDiagnosis = query => localizedBook.resolve(query);
@@ -101,10 +107,11 @@ if (locale !== 'en') {
   if (!bodyData.pageUrl) topicMeta.pageUrl = `https://doctordle.net${localizedPath(new URL(defaultMeta.pageUrl).pathname, locale)}`;
 }
 const allCases = listCases().map(record => localizedBook.localize(record));
-let store = readEndlessBundle(storageScope);
+let store = friendParams.has('challenge') ? createEndlessBundle() : readEndlessBundle(storageScope);
+if (friendInvite) store.sessions.challenge = { ...store.sessions.challenge, ...readFriendRound(storageScope, friendInvite), currentId: friendInvite.caseId, contentVersion: friendInvite.contentVersion };
 const initialMode = bodyData.initialMode === modes.practice || bodyData.initialMode === modes.challenge
   ? bodyData.initialMode : store.mode;
-let activeMode = allowPractice && initialMode === modes.practice ? modes.practice : modes.challenge;
+let activeMode = friendInvite ? modes.challenge : allowPractice && initialMode === modes.practice ? modes.practice : modes.challenge;
 let currentCase = null;
 let session = createRoundSession({ legacyId: -1, title: '', clues: [] });
 let selectedGuess = null;
@@ -130,6 +137,8 @@ function getModeStats(mode = activeMode) {
 }
 
 function persistStore() {
+  if (friendInvite) { writeFriendRound(storageScope, friendInvite, getModeSession()); return; }
+  if (invalidFriendInvite) return;
   store.mode = activeMode;
   writeEndlessBundle(store, storageScope);
 }
@@ -277,108 +286,59 @@ function renderStatus() {
   if (practiceToggle) practiceToggle.classList.toggle('active', activeMode === modes.practice);
   if (resultButton) resultButton.style.display = session.snapshot().gameCompleted ? 'inline-flex' : 'none';
   if (next) next.style.display = session.snapshot().gameCompleted ? 'block' : 'none';
+  if (friendInvite) {
+    if (modeLabel) modeLabel.textContent = t('Friend challenge');
+    if (primaryLabel) primaryLabel.textContent = t('Guesses used');
+    if (primaryValue) primaryValue.textContent = `${session.snapshot().guessCount} / 6`;
+    if (secondaryLabel) secondaryLabel.textContent = t('Friend’s score');
+    if (secondaryValue) secondaryValue.textContent = friendInvite.targetGuesses ? `${friendInvite.targetGuesses} / 6` : '—';
+    if (next) next.style.display = 'none';
+  }
   translateGameDom(document.querySelector('main'), locale);
 }
 
 function buildOutcomeCard(won, snapshot) {
-  return renderCaseResult({
+  const card = renderCaseResult({
     title: currentCase.title, summary: currentCase.summary,
     won, guesses: snapshot ? snapshot.guessCount : 0,
-    eyebrow: activeMode === modes.challenge ? 'Challenge Result' : 'Practice Result',
-    format: activeMode === modes.challenge ? 'Challenge' : 'Practice', locale
+    eyebrow: friendInvite ? 'Friend challenge' : activeMode === modes.challenge ? 'Challenge Result' : 'Practice Result',
+    format: friendInvite ? 'Friend challenge' : activeMode === modes.challenge ? 'Challenge' : 'Practice',
+    streak:!friendInvite && activeMode === modes.challenge ? getModeStats().currentStreak : null, locale
   });
+  if(!friendInvite?.targetGuesses || !won) return card;
+  const comparison = snapshot.guessCount < friendInvite.targetGuesses ? 'You beat your friend’s score!' : snapshot.guessCount === friendInvite.targetGuesses ? 'You matched your friend’s score!' : 'Case solved! Share it with another friend.';
+  return `${card}<p class="friend-comparison">${t(comparison)}</p>`;
 }
 
-function createOutcomePayload(snapshot, won) {
+function createOutcomePayload(snapshot, won, before = null) {
   if (!snapshot || !snapshot.gameCompleted || !currentCase) return null;
   return {
     html: buildOutcomeCard(won, snapshot),
-    shareText: buildShareText(snapshot, won)
+    shareText: buildShareText(snapshot, won),
+    cardData: !friendInvite && activeMode === modes.challenge ? {
+      kind:'challenge', locale, won, snapshot, topic:t(topicMeta.title), pageUrl:topicMeta.pageUrl,
+      streak:won?getModeStats().currentStreak:before?.currentStreak??null,
+      best:getModeStats().bestStreak,
+      newBest:!!won && !!before && getModeStats().currentStreak>before.bestStreak
+    } : null
   };
 }
 
 function presentOutcome(payload, options = {}) {
   latestOutcome = payload;
   if (!payload) return;
-  openModal(payload.html, { ...options, shareText: payload.shareText });
+  openModal(payload.html, { ...options, shareText: payload.shareText, cardData:payload.cardData });
   if (options.celebrate) celebrateSuccess(selectors.modal());
 }
 
 function buildHubActions() {
   if (!hubReturnEnabled) return [];
   return [{
-    label: 'Back to Modes',
+    label: 'Back to Modes', icon: 'modes',
     onClick: () => {
       window.parent.postMessage({ type: 'ddle-topic-back', scope: storageScope }, '*');
     }
   }];
-}
-
-function getChallengeRank(streak, won) {
-  if (won && streak >= 18) return { title: 'Actually Unfair', subtitle: 'This streak has left the group chat.', flavor: 'The cases are not even mad anymore. They are impressed.' };
-  if (won && streak >= 12) return { title: 'Screenshot This', subtitle: 'You are posting this run somewhere and you know it.', flavor: 'Every new case is starting to look like free content.' };
-  if (won && streak >= 8) return { title: 'Different Beast', subtitle: 'This is getting disrespectful in a very public way.', flavor: 'The board keeps loading cases and you keep deleting them.' };
-  if (won && streak >= 5) return { title: 'Too Locked In', subtitle: 'You are reading these clues like they owe you money.', flavor: 'At this pace, even the distractors are feeling unsafe.' };
-  if (won && streak >= 3) return { title: 'In Your Bag', subtitle: 'The run has real juice now.', flavor: 'Keep pressing. This is one good screenshot away from ego inflation.' };
-  if (won) return { title: 'We Move', subtitle: 'First case handled.', flavor: 'No parade yet. Keep stacking them.' };
-  if (streak >= 10) return { title: 'Cinema', subtitle: 'The streak is over, but the aura survived.', flavor: 'That was not a collapse. That was prestige television.' };
-  if (streak >= 5) return { title: 'Tough Scene', subtitle: 'Painful miss. Strong run.', flavor: 'You were one answer away from being extremely annoying.' };
-  return { title: 'Queue Again', subtitle: 'Unfortunate. Regroup.', flavor: 'The only respectable response is hitting next case immediately.' };
-}
-
-function buildChallengeShareCardData({ won, guesses, streakBeforeRound, streakAfterRound, bestStreak }) {
-  const relevantStreak = won ? streakAfterRound : streakBeforeRound;
-  return {
-    won,
-    guesses,
-    streakAfterRound,
-    bestStreak,
-    rank: (() => {
-      const rank = getChallengeRank(relevantStreak, won);
-      if (locale === 'en') return rank;
-      return { title: t(rank.title), subtitle: t(won ? 'Correct. Move on when you are ready.' : 'No guesses remaining. The round is complete.'), flavor: t(won ? 'Keep the streak alive.' : 'Reload. Re-enter. Reclaim the crown.') };
-    })()
-  };
-}
-
-function buildChallengeShareCardHtml(data, caseTitle) {
-  return renderCaseResult({
-    title: caseTitle, summary: currentCase ? currentCase.summary : '',
-    won: data.won, guesses: data.guesses,
-    eyebrow: topicMeta.challengeTitle, streak: data.streakAfterRound, locale
-  });
-}
-
-function buildChallengeShareSvg(data) {
-  const roundLabel = t(data.won ? 'WIN' : 'MISS');
-  const footer = t(data.won ? 'Keep the streak alive.' : 'Reload. Re-enter. Reclaim the crown.');
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7b3f00"/><stop offset="55%" stop-color="#a85a00"/><stop offset="100%" stop-color="#f2b66d"/></linearGradient></defs><rect width="1200" height="630" rx="36" fill="url(#bg)"/><text x="70" y="86" fill="#fff5eb" font-size="26" font-family="Segoe UI, Arial, sans-serif" letter-spacing="4">${topicMeta.challengeTitle.toUpperCase()}</text><text x="70" y="190" fill="#fffaf3" font-size="74" font-weight="800" font-family="Segoe UI, Arial, sans-serif">${data.rank.title}</text><text x="70" y="255" fill="#fff4e8" font-size="34" font-family="Segoe UI, Arial, sans-serif">${data.rank.subtitle}</text><text x="70" y="305" fill="#ffe8cf" font-size="28" font-family="Segoe UI, Arial, sans-serif">${data.rank.flavor}</text><rect x="70" y="365" width="300" height="140" rx="22" fill="rgba(255,248,242,0.15)" stroke="rgba(255,248,242,0.26)"/><rect x="390" y="365" width="300" height="140" rx="22" fill="rgba(255,248,242,0.15)" stroke="rgba(255,248,242,0.26)"/><rect x="710" y="365" width="300" height="140" rx="22" fill="rgba(255,248,242,0.15)" stroke="rgba(255,248,242,0.26)"/><text x="105" y="410" fill="#ffead1" font-size="22" letter-spacing="3" font-family="Segoe UI, Arial, sans-serif">${t('ROUND')}</text><text x="105" y="475" fill="#ffffff" font-size="52" font-weight="800" font-family="Segoe UI, Arial, sans-serif">${roundLabel}</text><text x="425" y="410" fill="#ffead1" font-size="22" letter-spacing="3" font-family="Segoe UI, Arial, sans-serif">${t('GUESSES')}</text><text x="425" y="475" fill="#ffffff" font-size="52" font-weight="800" font-family="Segoe UI, Arial, sans-serif">${data.guesses}/6</text><text x="745" y="410" fill="#ffead1" font-size="22" letter-spacing="3" font-family="Segoe UI, Arial, sans-serif">${t('BEST STREAK')}</text><text x="745" y="475" fill="#ffffff" font-size="52" font-weight="800" font-family="Segoe UI, Arial, sans-serif">${data.bestStreak}</text><text x="70" y="575" fill="#fff5eb" font-size="24" font-family="Segoe UI, Arial, sans-serif">${footer}</text></svg>`;
-}
-
-function downloadChallengeShareImage(data) {
-  const svg = buildChallengeShareSvg(data);
-  const blob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const image = new Image();
-
-  image.onload = () => {
-    const canvas = document.createElement('canvas');
-    canvas.width = 1200;
-    canvas.height = 630;
-    const context = canvas.getContext('2d');
-    if (context) context.drawImage(image, 0, 0);
-    URL.revokeObjectURL(url);
-    const link = document.createElement('a');
-    link.href = canvas.toDataURL('image/png');
-    link.download = `${topicMeta.fileSlug}-${data.won ? 'win' : 'miss'}.png`;
-    link.click();
-  };
-
-  image.onerror = () => {
-    URL.revokeObjectURL(url);
-  };
-
-  image.src = url;
 }
 
 function buildSuggestions(query) {
@@ -430,7 +390,10 @@ function buildStatsMarkup(mode = activeMode) {
   return `<div style="margin-top:1rem"><p style="margin:0 0 0.35rem;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:#9e7552">${t(mode === modes.challenge ? 'Challenge Mode' : 'Practice Mode')} · ${t('Stats')}</p><div class="scores-grid"><div class="scores-cell"><div class="scores-value">${stats.played}</div><div class="scores-desc">Cases Played</div></div><div class="scores-cell"><div class="scores-value">${stats.wins}</div><div class="scores-desc">Correct Guesses</div></div><div class="scores-cell"><div class="scores-value">${winRate}%</div><div class="scores-desc">Win Rate</div></div>${streakBlock}</div></div>`;
 }
 
+let disposeShareCard = null;
+
 function openModal(html, options = {}) {
+  disposeShareCard?.();disposeShareCard=null;
   const body = selectors.modalBody();
   const footer = selectors.modalFooter();
   const overlay = selectors.modal();
@@ -438,62 +401,89 @@ function openModal(html, options = {}) {
 
   const { shareText = null, actions = [], statsMode = activeMode } = options;
 
-  body.innerHTML = `${html}${buildStatsMarkup(statsMode)}`;
+  body.innerHTML = `${html}${friendInvite ? `<p class="friend-round-note">${t('Friend challenges have separate progress and do not change your streak.')}</p>` : buildStatsMarkup(statsMode)}`;
   footer.innerHTML = '';
+  footer.classList.add('roundsheet-actions--endless');
+
+  function actionButton(label, icon) {
+    const button = document.createElement('button');
+    button.type = 'button';button.className = 'btn-share';
+    button.innerHTML = `<svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#${icon}" /></svg><span class="button-label"></span>`;
+    button.querySelector('.button-label').textContent = t(label);
+    return button;
+  }
+  const relabel = (button,label) => { button.querySelector('.button-label').textContent = t(label); };
 
   actions.forEach((action) => {
-    const button = document.createElement('button');
-    button.className = 'btn-share';
-    button.textContent = action.label;
+    const button = actionButton(action.label, action.icon || (action.label === 'Back to Modes' ? 'modes' : 'arrow'));
     button.addEventListener('click', () => action.onClick(button));
     footer.appendChild(button);
   });
 
   if (shareText) {
-    const copyIcon = '<svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="vertical-align:-2px;margin-right:5px"><rect x="1" y="4" width="9" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M5 4V2a1 1 0 011-1h7a2 2 0 012 2v9a2 2 0 01-2 2H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
-    const button = document.createElement('button');
-    button.className = 'btn-share';
-    button.innerHTML = copyIcon + t('Copy Result');
+    const inviteButton = actionButton('Challenge a Friend','share');
+    inviteButton.dataset.action = 'friend';
+    inviteButton.addEventListener('click', async () => {
+      inviteButton.disabled = true;
+        const analyticsContext = { game: storageScope, language: locale, game_mode: friendInvite ? 'friend' : activeMode };
+        trackFriendEvent('click', analyticsContext);
+      const snapshot = session.snapshot(), won = snapshot.guessHistory.some(row=>row.result==='correct');
+      const url = buildFriendChallengeUrl(topicMeta.pageUrl,currentCase.legacyId,savedContentVersion(getModeSession()),won?snapshot.guessCount:null);
+      const text = t(won ? 'Can you match or beat {n} guesses?' : 'Can you solve this case in six guesses?', {n:snapshot.guessCount});
+      try {
+        const result = await shareFriendChallenge({title:topicMeta.title,text,url});
+          trackFriendEvent('share', {...analyticsContext, share_result: result});
+        if(result!=='cancelled')relabel(inviteButton,result==='copied'?'Challenge link copied':'Share opened');
+        } catch { trackFriendEvent('share', {...analyticsContext, share_result: 'failed'});relabel(inviteButton,'Copy failed'); }
+      finally { inviteButton.disabled = false;window.setTimeout(()=>relabel(inviteButton,'Challenge a Friend'),2200); }
+    });
+    footer.appendChild(inviteButton);
+    const button = actionButton('Copy Result','copy');
+    button.dataset.action = 'copy-result';
     button.addEventListener('click', async () => {
       try {
-        await navigator.clipboard.writeText(shareText);
+        await copyShareText(shareText);
         if (typeof window.gtag === 'function') {
-          window.gtag('event', 'share_copy', { game: storageScope, game_mode: activeMode });
+          window.gtag('event', 'share_copy', { game: storageScope, game_mode: friendInvite ? 'friend' : activeMode });
         }
         const hint = selectors.copyState();
         if (hint) {
           hint.style.display = 'block';
           window.setTimeout(() => { hint.style.display = 'none'; }, 1800);
         }
-        button.textContent = t('Copied');
-        window.setTimeout(() => { button.innerHTML = copyIcon + t('Copy Result'); }, 1800);
+        relabel(button,'Copied');
+        window.setTimeout(() => relabel(button,'Copy Result'), 1800);
       } catch {
-        button.textContent = t('Copy failed');
-        window.setTimeout(() => { button.innerHTML = copyIcon + t('Copy Result'); }, 1800);
+        relabel(button,'Copy failed');
+        window.setTimeout(() => relabel(button,'Copy Result'), 1800);
       }
     });
     footer.appendChild(button);
   }
 
+  if(shareText && options.cardData) disposeShareCard=installShareCardPreview({body,footer,data:options.cardData,filename:`${topicMeta.fileSlug}-streak.png`});
   overlay.classList.add('open');
   translateGameDom(body, locale);
   translateGameDom(footer, locale);
 }
 
 function closeModal() {
+  disposeShareCard?.();disposeShareCard=null;
   const overlay = selectors.modal();
   if (overlay) overlay.classList.remove('open');
 }
 
 function buildShareText(snapshot, won) {
   const marks = buildShareMarks(snapshot, won);
+  const challengeUrl = buildFriendChallengeUrl(topicMeta.pageUrl,currentCase.legacyId,savedContentVersion(getModeSession()),won?snapshot.guessCount:null);
+  if (friendInvite) return `${topicMeta.title} · ${t('Friend challenge')}\n${t(won ? 'Solved in {n}/6 guesses' : 'Unsolved after {n}/6 guesses',{n:snapshot.guessCount})}\n${marks.join(' ')}\n#doctordle\n${t('Play')}: ${challengeUrl}`;
   if (activeMode === modes.challenge) {
     const stats = getModeStats(modes.challenge);
-    return `${topicMeta.challengeTitle}\n${t(won ? 'Solved in {n}/6 guesses' : 'Unsolved after {n}/6 guesses', { n: snapshot.guessCount })}\n${marks.join(' ')}\n${t('Best streak')}: ${stats.bestStreak}\n#doctordle\n${t('Play')}: ${topicMeta.pageUrl}`;
+    return `${topicMeta.challengeTitle}\n${t(won ? 'Solved in {n}/6 guesses' : 'Unsolved after {n}/6 guesses', { n: snapshot.guessCount })}\n${marks.join(' ')}\n${t('Best streak')}: ${stats.bestStreak}\n#doctordle\n${t('Play')}: ${challengeUrl}`;
   }
 
   const scoreLine = t(won ? 'Solved in {n}/6 guesses' : 'Unsolved after {n}/6 guesses', { n: snapshot.guessCount });
-  return `${topicMeta.practiceTitle}\n${scoreLine}\n${marks.join(' ')}\n#doctordle\n${t('Play')}: ${topicMeta.pageUrl}`;
+  return `${topicMeta.practiceTitle}\n${scoreLine}\n${marks.join(' ')}\n#doctordle\n${t('Play')}: ${challengeUrl}`;
 }
 
 function updateStatsForResult(won) {
@@ -522,6 +512,14 @@ function settleRound(result) {
   renderHistory();
   renderStatus();
 
+  if (friendInvite && ['correct','exhausted'].includes(result.status)) {
+    const won = result.status === 'correct';
+    trackFriendEvent('complete', {game:storageScope, language:locale, game_mode:'friend', outcome:won?'won':'lost', guesses_used:result.snapshot.guessCount, has_target:!!friendInvite.targetGuesses});
+    renderSummary();setInputsEnabled(false);
+    syncFeedback(won ? 'Correct. Move on when you are ready.' : 'No guesses remaining. The round is complete.',won?'correct':'incorrect');
+    presentOutcome(createOutcomePayload(result.snapshot,won),{actions:buildHubActions(),celebrate:won});
+    return;
+  }
   if (result.status === 'correct') {
     updateStatsForResult(true);
     syncSessionState();
@@ -529,39 +527,13 @@ function settleRound(result) {
     renderStatus();
     setInputsEnabled(false);
     syncFeedback('Correct. Move on when you are ready.', 'correct');
-    const outcome = createOutcomePayload(result.snapshot, true);
+    const outcome = createOutcomePayload(result.snapshot, true, challengeStatsBeforeRound);
 
-    if (activeMode === modes.challenge) {
-      const challengeStats = getModeStats(modes.challenge);
-      const challengeShare = buildChallengeShareCardData({
-        won: true,
-        guesses: result.snapshot.guessCount,
-        streakBeforeRound: challengeStatsBeforeRound ? challengeStatsBeforeRound.currentStreak : 0,
-        streakAfterRound: challengeStats.currentStreak,
-        bestStreak: challengeStats.bestStreak
-      });
-      presentOutcome(
-        {
-          html: buildChallengeShareCardHtml(challengeShare, currentCase.title),
-          shareText: outcome ? outcome.shareText : buildShareText(result.snapshot, true)
-        },
-        {
-          actions: [
-            { label: 'Next Challenge', onClick: () => { closeModal(); moveToNextCase(); } },
-            { label: 'Download Share Card', onClick: () => downloadChallengeShareImage(challengeShare) },
-            ...buildHubActions()
-          ],
-          celebrate: true,
-          statsMode: modes.challenge
-        }
-      );
-      return;
-    }
 
     presentOutcome(outcome, {
       celebrate: true,
       actions: [
-        { label: 'Next Case', onClick: () => { closeModal(); moveToNextCase(); } },
+        { label: activeMode===modes.challenge?'Next Challenge':'Next Case', onClick: () => { closeModal(); moveToNextCase(); } },
         ...buildHubActions()
       ],
       statsMode: activeMode
@@ -576,37 +548,12 @@ function settleRound(result) {
     renderStatus();
     setInputsEnabled(false);
     syncFeedback('No guesses remaining. The round is complete.', 'incorrect');
-    const outcome = createOutcomePayload(result.snapshot, false);
+    const outcome = createOutcomePayload(result.snapshot, false, challengeStatsBeforeRound);
 
-    if (activeMode === modes.challenge) {
-      const challengeStats = getModeStats(modes.challenge);
-      const challengeShare = buildChallengeShareCardData({
-        won: false,
-        guesses: result.snapshot.guessCount,
-        streakBeforeRound: challengeStatsBeforeRound ? challengeStatsBeforeRound.currentStreak : 0,
-        streakAfterRound: challengeStats.currentStreak,
-        bestStreak: Math.max(challengeStats.bestStreak, challengeStatsBeforeRound ? challengeStatsBeforeRound.bestStreak : challengeStats.bestStreak)
-      });
-      presentOutcome(
-        {
-          html: buildChallengeShareCardHtml(challengeShare, currentCase.title),
-          shareText: outcome ? outcome.shareText : buildShareText(result.snapshot, false)
-        },
-        {
-          actions: [
-            { label: 'Next Challenge', onClick: () => { closeModal(); moveToNextCase(); } },
-            { label: 'Download Share Card', onClick: () => downloadChallengeShareImage(challengeShare) },
-            ...buildHubActions()
-          ],
-          statsMode: modes.challenge
-        }
-      );
-      return;
-    }
 
     presentOutcome(outcome, {
       actions: [
-        { label: 'Next Case', onClick: () => { closeModal(); moveToNextCase(); } },
+        { label: activeMode===modes.challenge?'Next Challenge':'Next Case', onClick: () => { closeModal(); moveToNextCase(); } },
         ...buildHubActions()
       ],
       statsMode: activeMode
@@ -645,6 +592,7 @@ function submitGuess() {
 }
 
 function moveToNextCase() {
+  if (friendInvite || invalidFriendInvite) return;
   const modeSession = getModeSession();
   ensureQueue();
   modeSession.currentId = modeSession.queue.shift() || allCases[0].legacyId;
@@ -670,6 +618,7 @@ function moveToNextCase() {
 }
 
 function switchMode(mode) {
+  if (friendInvite || invalidFriendInvite) return;
   if (!allowPractice && mode === modes.practice) return;
   if (mode === activeMode) return;
   activeMode = mode;
@@ -723,7 +672,7 @@ function wireEvents() {
         const won = snapshot.guessHistory.some((entry) => entry.result === 'correct');
         latestOutcome = createOutcomePayload(snapshot, won);
       }
-      if (latestOutcome) openModal(latestOutcome.html, { shareText: latestOutcome.shareText, statsMode: activeMode, actions: buildHubActions() });
+      if (latestOutcome) openModal(latestOutcome.html, { cardData:latestOutcome.cardData, shareText: latestOutcome.shareText, statsMode: activeMode, actions: buildHubActions() });
     });
   }
   if (reveal && card) {
@@ -757,7 +706,20 @@ function wireEvents() {
 function boot() {
   localizeStaticGame(locale);
   installSuccessFeedback();
-  if (!allowPractice) {
+  if (invalidFriendInvite) {
+    trackFriendEvent('start', {game:storageScope, language:locale, game_mode:'friend', invite_status:'invalid'});
+    const main = document.querySelector('main');
+    main.replaceChildren();
+    const message = document.createElement('p');message.className = 'case-language-notice';message.textContent = t('This challenge link is unavailable. Choose a mode to keep playing.');main.appendChild(message);
+    return;
+  }
+  if (friendInvite) {
+    const saved = getModeSession();
+    trackFriendEvent('start', {game:storageScope, language:locale, game_mode:'friend', invite_status:'valid', round_state:saved.gameCompleted?'completed':saved.guessCount?'resumed':'new', has_target:!!friendInvite.targetGuesses});
+    document.body.classList.add('friend-play');
+    const note = document.createElement('p');note.className = 'friend-round-note';note.textContent = t('Friend challenges have separate progress and do not change your streak.');document.querySelector('main').prepend(note);
+  }
+  if (!allowPractice && !friendInvite) {
     store.mode = modes.challenge;
     writeEndlessBundle(store, storageScope);
   }

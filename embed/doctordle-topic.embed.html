@@ -27,6 +27,10 @@
 			</div>
 		</div>
 		<p class="topic-brief__copy" id="topic-copy">Choose how you want to play.</p>
+		<section class="friend-invite" id="friend-invite" aria-labelledby="friend-invite-title" hidden>
+			<div><h2 id="friend-invite-title">A friend challenged you</h2><p id="friend-invite-copy"></p></div>
+			<button id="friend-invite-start" type="button"><svg class="ui-icon" aria-hidden="true"><use href="/images/ui-icons.svg#arrow" /></svg><span>Play friend challenge</span></button>
+		</section>
 		<div class="topic-toolbar">
 			<div class="topic-mode-switch" aria-label="Game mode">
 				<button id="mode-daily" type="button" aria-pressed="false"><span class="mode-choice__icon" aria-hidden="true"><svg class="ui-icon"><use href="/images/ui-icons.svg#daily" /></svg></span><span class="mode-choice__title">Daily case <svg class="ui-icon" aria-hidden="true"><use href="/images/ui-icons.svg#arrow" /></svg></span><span class="mode-choice__description">One case each day. Six guesses to solve it.</span><span class="mode-choice__meta"><span id="daily-case-value">Today's case</span><span class="topic-clock__reset">Next daily case in <strong id="daily-reset-value" aria-live="off">00:00:00</strong></span></span><span class="mode-choice__action">Play daily <span aria-hidden="true">→</span></span></button>
@@ -35,7 +39,7 @@
 		</div>
 	</section>
 	<section class="topic-game-shell" id="topic-game-shell" hidden>
-		<iframe class="topic-game-frame" id="topic-game-frame" loading="eager" referrerpolicy="same-origin"></iframe>
+		<iframe class="topic-game-frame" id="topic-game-frame" loading="eager" allow="web-share" referrerpolicy="same-origin"></iframe>
 	</section>
 
 <section class="topic-stats-panel" id="topic-stats-panel" aria-labelledby="topic-stats-title" hidden>

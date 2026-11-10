@@ -1,11 +1,14 @@
 import { normalizeLocale, createTranslator, translateGameDom } from './locale.js';
 import { localizedPath } from './localized-routes.js';
 import { installSuccessFeedback } from './success-feedback.js';
+import { parseFriendChallenge, forwardFriendChallenge } from './friend-challenge.js';
+import { trackFriendEvent } from './friend-analytics.js';
 
 (function () {
 	const params = new URLSearchParams(window.location.search);
 	const locale = normalizeLocale(params.get('lang'));
 	const t = createTranslator(locale);
+	const friendRequest = parseFriendChallenge(params);
 	document.documentElement.lang = locale === 'pt' ? 'pt-BR' : locale;
 	installSuccessFeedback(document.getElementById('topic-sound-controls'));
 	const topics = window.__DDLE_TOPICS__ || {};
@@ -19,7 +22,9 @@ import { installSuccessFeedback } from './success-feedback.js';
 	}
 
 	if (window.parent === window) {
-		window.location.replace(localizedPath(topic.pagePath, locale));
+		const destination = new URL(localizedPath(topic.pagePath, locale),window.location.origin);
+		forwardFriendChallenge(params,destination.searchParams);
+		window.location.replace(destination.pathname+destination.search);
 		return;
 	}
 
@@ -140,9 +145,11 @@ import { installSuccessFeedback } from './success-feedback.js';
 	}
 
 	function frameSrc(mode) {
-		if (hasPractice) return `${topic.gameFrame}?mode=${mode === 'daily' ? 'challenge' : 'practice'}&hub=1&lang=${locale}`;
-		const suffix = mode === 'daily' ? 'daily' : 'challenge';
-		return `/embed/doctordle-topic-${suffix}.embed.html?topic=${encodeURIComponent(slug)}&hub=1&lang=${locale}`;
+		const path = hasPractice ? `${topic.gameFrame}?mode=${mode === 'challenge' ? 'practice' : 'challenge'}` : `/embed/doctordle-topic-${mode === 'daily' ? 'daily' : 'challenge'}.embed.html?topic=${encodeURIComponent(slug)}`;
+		const url = new URL(path,window.location.origin);
+		url.searchParams.set('hub','1');url.searchParams.set('lang',locale);
+		if(mode==='friend')forwardFriendChallenge(params,url.searchParams);
+		return url.pathname+url.search;
 	}
 
 	function reportParentHeight() {
@@ -161,6 +168,7 @@ import { installSuccessFeedback } from './success-feedback.js';
 		nodes.gameShell.hidden = true;
 		nodes.hub.dataset.playing = 'false';
 		nodes.copy.textContent = t('Choose how you want to play.');
+		document.getElementById('friend-invite').hidden = !params.has('challenge');
 		for (const value of ['daily', 'challenge']) {
 			document.getElementById(`mode-${value}`).setAttribute('aria-pressed', 'false');
 		}
@@ -172,12 +180,13 @@ import { installSuccessFeedback } from './success-feedback.js';
 		const stage = document.querySelector('main');
 		stage.style.minHeight = `${Math.ceil(stage.getBoundingClientRect().height)}px`;
 		document.body.dataset.view = 'game';
-		document.body.dataset.gameMode = mode;
+		document.body.dataset.gameMode = mode === 'friend' ? 'daily' : mode;
 		nodes.statsPanel.hidden = true;
 		nodes.openStats.setAttribute('aria-expanded', 'false');
 		nodes.hub.hidden = false;
 		nodes.hub.dataset.playing = 'true';
-		nodes.copy.textContent = t('One patient. Six guesses. Follow the clues.');
+		nodes.copy.textContent = t(mode === 'friend' ? 'Friend challenge · Six guesses' : 'One patient. Six guesses. Follow the clues.');
+		document.getElementById('friend-invite').hidden = true;
 		nodes.gameShell.hidden = false;
 		for (const value of ['daily', 'challenge']) {
 			document.getElementById(`mode-${value}`).setAttribute('aria-pressed', String(mode === value));
@@ -271,6 +280,14 @@ import { installSuccessFeedback } from './success-feedback.js';
 
 	updateCountdown();
 	if (!hasPractice) window.setInterval(updateCountdown, 1000);
+	if(params.has('challenge')) {
+		trackFriendEvent('open', {game:topic.slug, language:locale, invite_status:friendRequest?'valid_format':'invalid', has_target:!!friendRequest?.targetGuesses});
+		document.getElementById('friend-invite-title').textContent = t(friendRequest ? 'A friend challenged you' : 'Challenge unavailable');
+		document.getElementById('friend-invite-copy').textContent = friendRequest ? (friendRequest.targetGuesses ? t('Can you match or beat {n} guesses?',{n:friendRequest.targetGuesses}) : t('Can you solve this case in six guesses?')) : t('This challenge link is unavailable. Choose a mode to keep playing.');
+		document.getElementById('friend-invite-start').hidden = !friendRequest;
+		document.getElementById('friend-invite-start').addEventListener('click',()=>showMode('friend'));
+	}
 	translateGameDom(document.body, locale);
 	showHub();
+	if(!params.has('challenge') && params.get('play')==='challenge') showMode(hasPractice?'daily':'challenge');
 }());

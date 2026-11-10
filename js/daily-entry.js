@@ -1,4 +1,5 @@
 import { renderCaseResult, buildShareMarks } from './result-view.js';
+import { installShareCardPreview } from './share-card-preview.js';
 import { installSuccessFeedback, celebrateSuccess } from './success-feedback.js';
 import { findCaseByDayIndex, getDiagnosisDictionary, listCases, resolveDiagnosis as resolveCanonicalDiagnosis } from './casebook.js';
 import { createTranslator, normalizeLocale } from './locale.js';
@@ -223,7 +224,10 @@ function buildHubActions() {
   }];
 }
 
+let disposeShareCard = null;
+
 function openModal(html, options = {}) {
+  disposeShareCard?.();disposeShareCard=null;
   const body = selectors.modalBody();
   const footer = selectors.modalFooter();
   const overlay = selectors.modal();
@@ -267,10 +271,16 @@ function openModal(html, options = {}) {
     footer.appendChild(button);
   }
 
+  if(shareText && storageScope === 'daily') {
+    const snapshot=session.snapshot(),won=snapshot.guessHistory.some(row=>row.result==='correct');
+    footer.classList.add('roundsheet-actions--endless');
+    disposeShareCard=installShareCardPreview({body,footer,data:{kind:'daily',locale,won,snapshot,dayNumber:dayIndex+1,pageUrl:shareUrl},filename:`doctordle-daily-${dayIndex+1}.png`});
+  }
   overlay.classList.add('open');
 }
 
 function closeModal() {
+  disposeShareCard?.();disposeShareCard=null;
   const overlay = selectors.modal();
   if (overlay) overlay.classList.remove('open');
 }

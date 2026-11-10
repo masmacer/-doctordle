@@ -13,6 +13,12 @@
       const root = language === 'en' ? '/' : `/${language}/`;
       const url = new URL(gamePath ? root + gamePath.slice(1).replace(/\.html$/, '') : isArchive ? `${root}archive` : root, window.location.origin);
       if (isDaily && day !== null && /^\d+$/.test(day)) url.searchParams.set('day', day);
+      const params = new URLSearchParams(window.location.search);
+      if(gamePath && params.get('play')==='challenge') url.searchParams.set('play','challenge');
+      if (gamePath && /^(1|2)\.[1-9]\d{0,5}$/.test(params.get('challenge')||'')) {
+        url.searchParams.set('challenge',params.get('challenge'));
+        if (/^[1-6]$/.test(params.get('target')||'')) url.searchParams.set('target',params.get('target'));
+      }
       link.href = url.pathname + url.search;
       if (language === current) link.setAttribute('aria-current', 'true');
       else link.removeAttribute('aria-current');
