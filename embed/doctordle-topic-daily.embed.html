@@ -26,8 +26,9 @@
 		.topic-daily-chip__value { font-size: 0.96rem; font-weight: 700; }
 		@media (max-width: 560px) { .topic-daily-meta { grid-template-columns: 1fr; } }
 	</style>
+	<link rel="stylesheet" href="/css/topic-ui.css" />
 </head>
-<body>
+<body class="topic-play" data-game-mode="daily">
 <main class="daily-shell">
 	<section class="topic-daily-brief" aria-label="Round header">
 		<p id="topic-daily-kicker">Topic Daily</p>
@@ -108,23 +109,24 @@
 	const topic = new URLSearchParams(window.location.search).get('topic');
 	function reportHeight() {
 		if (window.parent === window || !topic) return;
-		const height = Math.max(
-			document.documentElement ? document.documentElement.scrollHeight : 0,
-			document.body ? document.body.scrollHeight : 0
-		);
+		const height = Math.ceil(document.querySelector('main').getBoundingClientRect().height);
 		window.parent.postMessage({ type: 'ddle-topic-game-height', scope: topic, height }, '*');
 	}
 	window.addEventListener('load', () => window.requestAnimationFrame(reportHeight));
 	window.addEventListener('resize', reportHeight);
 	if ('ResizeObserver' in window) {
 		const resizeObserver = new ResizeObserver(() => reportHeight());
-		resizeObserver.observe(document.documentElement);
+		resizeObserver.observe(document.querySelector('main'));
 	}
 	window.__DDLE_REPORT_TOPIC_HEIGHT__ = reportHeight;
 }());
 </script>
 <script type="module">
+	import { normalizeLocale, createTranslator, localizeStaticGame } from '/js/locale.js';
+	import { localizedPath } from '/js/localized-routes.js';
 	const params = new URLSearchParams(window.location.search);
+	const locale = normalizeLocale(params.get('lang'));
+	const t = createTranslator(locale);
 	const topics = window.__DDLE_TOPICS__ || {};
 	const slug = params.get('topic');
 	const topic = topics[slug];
@@ -146,25 +148,27 @@
 	}
 
 	if (window.parent === window) {
-		window.location.replace(`${topic.pagePath}?mode=daily`);
+		window.location.replace(`${localizedPath(topic.pagePath, locale)}?mode=daily`);
 	}
 
 	document.title = `${topic.pageTitle} Daily`;
-	document.getElementById('topic-daily-kicker').textContent = `${topic.name} Daily`;
-	document.getElementById('topic-daily-headline').textContent = `Today's ${topic.name} case starts with one clue.`;
-	document.getElementById('topic-daily-copy').textContent = topic.dailyCopy;
+	document.getElementById('topic-daily-kicker').textContent = `${t(topic.name)} · ${t('Daily')}`;
+	document.getElementById('topic-daily-headline').textContent = t('Read the case. Guess the diagnosis.');
+	document.getElementById('topic-daily-copy').textContent = locale === 'en' ? topic.dailyCopy : t('One case each day. Six guesses to solve it.');
 
 	window.__DDLE_DAILY_CONFIG__ = {
+		locale,
 		scope: topic.slug,
 		launchDate: window.__DDLE_TOPIC_LAUNCH_DATE__ || '2026-05-19T00:00:00',
 		allowArchive: false,
-		shareTitle: `${topic.pageTitle} Daily`,
-		pageUrl: `https://doctordle.net${topic.pagePath}`,
-		resultEyebrow: `${topic.name} Daily Result`,
+		shareTitle: `${t(topic.name)} · ${t('Daily')}`,
+		pageUrl: `https://doctordle.net${localizedPath(topic.pagePath, locale)}`,
+		resultEyebrow: `${t(topic.name)} · ${t('Daily Result')}`,
 		hubReturnEnabled
 	};
 
 	await loadScript(topic.casesScript);
+	localizeStaticGame(locale);
 	await import('/js/daily-entry.js');
 </script>
 </body>

@@ -39,8 +39,9 @@
 		.queue-advance-btn { display: none; width: 100%; padding: 0.8rem; margin-bottom: 0.9rem; border: none; background: #2e7d32; color: #fff; font-size: 0.96rem; }
 		@media (max-width: 560px) { main { max-width: none; } .endless-toolbar { grid-template-columns: 1fr; } .endless-statusbar { grid-template-columns: repeat(2, minmax(0, 1fr)); } .challenge-share-grid { grid-template-columns: 1fr; } }
 	</style>
+	<link rel="stylesheet" href="/css/topic-ui.css" />
 </head>
-<body data-allow-practice="false">
+<body class="topic-play" data-game-mode="challenge" data-allow-practice="false">
 <main>
 	<section class="round-brief" aria-label="Mode header" style="margin-bottom:0.8rem;text-align:center">
 		<p id="topic-challenge-kicker" style="margin:0 0 0.2rem;font-size:0.72rem;letter-spacing:0.16em;text-transform:uppercase;color:#9e7552">Topic Challenge</p>
@@ -120,23 +121,24 @@
 	const topic = new URLSearchParams(window.location.search).get('topic');
 	function reportHeight() {
 		if (window.parent === window || !topic) return;
-		const height = Math.max(
-			document.documentElement ? document.documentElement.scrollHeight : 0,
-			document.body ? document.body.scrollHeight : 0
-		);
+		const height = Math.ceil(document.querySelector('main').getBoundingClientRect().height);
 		window.parent.postMessage({ type: 'ddle-topic-game-height', scope: topic, height }, '*');
 	}
 	window.addEventListener('load', () => window.requestAnimationFrame(reportHeight));
 	window.addEventListener('resize', reportHeight);
 	if ('ResizeObserver' in window) {
 		const resizeObserver = new ResizeObserver(() => reportHeight());
-		resizeObserver.observe(document.documentElement);
+		resizeObserver.observe(document.querySelector('main'));
 	}
 	window.__DDLE_REPORT_TOPIC_HEIGHT__ = reportHeight;
 }());
 </script>
 <script type="module">
+	import { normalizeLocale, createTranslator, localizeStaticGame } from '/js/locale.js';
+	import { localizedPath } from '/js/localized-routes.js';
 	const params = new URLSearchParams(window.location.search);
+	const locale = normalizeLocale(params.get('lang'));
+	const t = createTranslator(locale);
 	const topics = window.__DDLE_TOPICS__ || {};
 	const slug = params.get('topic');
 	const topic = topics[slug];
@@ -158,22 +160,24 @@
 	}
 
 	if (window.parent === window) {
-		window.location.replace(`${topic.pagePath}?mode=challenge`);
+		window.location.replace(`${localizedPath(topic.pagePath, locale)}?mode=challenge`);
 	}
 
 	document.title = `${topic.pageTitle} Challenge`;
 	document.body.dataset.endlessScope = topic.slug;
-	document.body.dataset.topicTitle = topic.pageTitle;
-	document.body.dataset.challengeTitle = `${topic.pageTitle} Challenge`;
-	document.body.dataset.practiceTitle = `${topic.pageTitle} Practice`;
-	document.body.dataset.pageUrl = `https://doctordle.net${topic.pagePath}`;
+	document.body.dataset.locale = locale;
+	document.body.dataset.topicTitle = locale === 'en' ? topic.pageTitle : `Doctordle ${t(topic.name)}`;
+	document.body.dataset.challengeTitle = `${t(topic.name)} · ${t('Challenge')}`;
+	document.body.dataset.practiceTitle = `${t(topic.name)} · ${t('Practice')}`;
+	document.body.dataset.pageUrl = `https://doctordle.net${localizedPath(topic.pagePath, locale)}`;
 	document.body.dataset.fileSlug = topic.fileSlug;
 	document.body.dataset.hubReturnEnabled = hubReturnEnabled ? 'true' : 'false';
-	document.getElementById('topic-challenge-kicker').textContent = `${topic.name} Challenge`;
-	document.getElementById('topic-challenge-headline').textContent = `Stay inside ${topic.name} and keep the streak alive.`;
-	document.getElementById('topic-challenge-copy').textContent = topic.challengeCopy;
+	document.getElementById('topic-challenge-kicker').textContent = `${t(topic.name)} · ${t('Challenge')}`;
+	document.getElementById('topic-challenge-headline').textContent = locale === 'en' ? `Stay inside ${topic.name} and keep the streak alive.` : t('Read the case. Guess the diagnosis.');
+	document.getElementById('topic-challenge-copy').textContent = locale === 'en' ? topic.challengeCopy : t('Solve each case in six guesses and build your streak.');
 
 	await loadScript(topic.casesScript);
+	localizeStaticGame(locale);
 	await import('/js/endless-entry.js');
 </script>
 </body>

@@ -2,6 +2,13 @@
 .DS_Store
 Thumbs.db
 .vscode/
+/.agents/
+/.codex/
+/.aws/
+/.ssh/
+AGENTS.md
+CLAUDE.md
+GEMINI.md
 
 # Local temp / scratch files
 .local/
@@ -10,9 +17,48 @@ temp_*.js
 *.tmp
 *.bak
 *.orig
+*.log
+*.har
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.rar
+node_modules/
+coverage/
+test-results/
+playwright-report/
+screenshots/
+
+# Local build and verification helpers (the site deploys generated static files).
+/tools/
 
 # Local source material not needed for deploy
 archive_diseases.csv
+*.csv
+*.tsv
+*.xls
+*.xlsx
 
 # Internal prompt / workflow docs
 prompts/
+
+# Credentials and local databases must never enter this public repository.
+.env
+.env.*
+.npmrc
+.pypirc
+credentials*.json
+service-account*.json
+*service-account*.json
+secrets*.json
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+*.sqlite
+*.sqlite3
+*.db

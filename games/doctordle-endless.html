@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" prefix="og: https://ogp.me/ns#">
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,26 +28,6 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
 <meta name="apple-mobile-web-app-title" content="Doctordle" />
 <link rel="manifest" href="/site.webmanifest" />
-	<script type="application/ld+json">
-		{
-			"@context": "https://schema.org",
-			"@type": "BreadcrumbList",
-			"itemListElement": [
-				{
-					"@type": "ListItem",
-					"position": 1,
-					"name": "Doctordle",
-					"item": "https://doctordle.net/"
-				},
-				{
-					"@type": "ListItem",
-					"position": 2,
-					"name": "Doctordle Endless",
-					"item": "https://doctordle.net/games/doctordle-endless"
-				}
-			]
-		}
-	</script>
 	<script type="application/ld+json">
 		{
 			"@context": "https://schema.org",
@@ -80,6 +60,29 @@
 			]
 		}
 	</script>
+<script src="/js/language-menu.js" defer></script>
+<script src="/js/locale-page.js" defer></script>
+<!-- ddle:metadata:start -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Doctordle" />
+<meta property="og:title" content="Doctordle Endless - Infinite Mode" />
+<meta property="og:description" content="Doctordle Endless is the infinite mode - unlimited clinical cases beyond the daily puzzle. Challenge your streak or practice at your own pace." />
+<meta property="og:url" content="https://doctordle.net/games/doctordle-endless" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:image" content="https://doctordle.net/images/og/en-endless.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Doctordle — Unlimited cases, with illustrated clue cards." />
+<meta property="og:locale:alternate" content="it_IT" />
+<meta property="og:locale:alternate" content="pt_BR" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Doctordle Endless - Infinite Mode" />
+<meta name="twitter:description" content="Doctordle Endless is the infinite mode - unlimited clinical cases beyond the daily puzzle. Challenge your streak or practice at your own pace." />
+<meta name="twitter:image" content="https://doctordle.net/images/og/en-endless.png" />
+<meta name="twitter:image:alt" content="Doctordle — Unlimited cases, with illustrated clue cards." />
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://doctordle.net/games/doctordle-endless#webpage","url":"https://doctordle.net/games/doctordle-endless","name":"Doctordle Endless - Infinite Mode","description":"Doctordle Endless is the infinite mode - unlimited clinical cases beyond the daily puzzle. Challenge your streak or practice at your own pace.","inLanguage":"en","isPartOf":{"@id":"https://doctordle.net/#website"},"primaryImageOfPage":{"@id":"https://doctordle.net/games/doctordle-endless#primaryimage"},"image":{"@id":"https://doctordle.net/games/doctordle-endless#primaryimage"},"breadcrumb":{"@id":"https://doctordle.net/games/doctordle-endless#breadcrumb"}},{"@type":"ImageObject","@id":"https://doctordle.net/games/doctordle-endless#primaryimage","url":"https://doctordle.net/images/og/en-endless.png","width":1200,"height":630,"inLanguage":"en","caption":"Doctordle — Unlimited cases, with illustrated clue cards."},{"@type":"BreadcrumbList","@id":"https://doctordle.net/games/doctordle-endless#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://doctordle.net/"},{"@type":"ListItem","position":2,"name":"Doctordle Endless","item":"https://doctordle.net/games/doctordle-endless"}]}]}</script>
+<!-- ddle:metadata:end -->
 </head>
 <body class="shell-page">
 <header>
@@ -89,28 +92,26 @@
 	</a>
 	<div class="header-right">
 		<div class="header-quick">
-			<a class="header-btn" href="/games/doctordle-endless" aria-current="page">Endless</a>
-			<a class="header-btn" href="/it/">Italiano</a>
+			<a class="header-btn" href="/games/doctordle-endless" aria-current="page"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#infinity" /></svg>Endless</a>
 		</div>
+		<details class="language-menu"><summary aria-label="Choose language"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#language" /></svg><span class="language-menu__current">English</span><svg class="ui-icon language-menu__chevron" aria-hidden="true" focusable="false" viewBox="0 0 16 16"><path d="m4 6 4 4 4-4" /></svg></summary><nav class="language-menu__options" aria-label="Choose language"><a href="/" data-language="en" lang="en" hreflang="en" aria-current="true">English</a><a href="/it/" data-language="it" lang="it" hreflang="it">Italiano</a><a href="/pt/" data-language="pt" lang="pt-BR" hreflang="pt">Português</a></nav></details>
 		<button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
-			<span class="nav-toggle__bar"></span>
-			<span class="nav-toggle__bar"></span>
-			<span class="nav-toggle__bar"></span>
+			<svg class="ui-icon icon-menu" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#menu" /></svg>
+			<svg class="ui-icon icon-close" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#close" /></svg>
 		</button>
 	</div>
 	<nav class="nav-drawer" id="nav-drawer" aria-label="Primary">
-		<a class="nav-drawer__link" href="/">Daily</a>
-		<a class="nav-drawer__link" href="/games/doctordle-endless" aria-current="page">Endless</a>
-		<a class="nav-drawer__link" href="/archive">Archive</a>
-		<a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-emergency">Emergency Medicine</a>
-		<a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-dermatology">Dermatology</a>
-		<a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-pediatrics">Pediatrics</a>
-		<a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-digestive-health">Digestive Health</a>
-		<a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-womens-health">Women's Health</a>
-		<a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-cardiology">Cardiology</a>
-		<a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-for-dentist">For Dentists</a>
-		<a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-mental-health">Mental Health</a>
-		<a class="nav-drawer__link" href="/it/">Italiano</a>
+		<a class="nav-drawer__link" href="/"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#daily" /></svg>Daily</a>
+		<a class="nav-drawer__link" href="/games/doctordle-endless" aria-current="page"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#infinity" /></svg>Endless</a>
+		<a class="nav-drawer__link" href="/archive"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#archive" /></svg>Archive</a>
+		<a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-emergency"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#emergency" /></svg>Emergency Medicine</a>
+		<a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-dermatology"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#dermatology" /></svg>Dermatology</a>
+		<a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-pediatrics"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#pediatrics" /></svg>Pediatrics</a>
+		<a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-digestive-health"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#digestive" /></svg>Digestive Health</a>
+		<a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-womens-health"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#womens-health" /></svg>Women's Health</a>
+		<a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-cardiology"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#cardiology" /></svg>Cardiology</a>
+		<a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-for-dentist"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#dental" /></svg>For Dentists</a>
+		<a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-mental-health"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#mental" /></svg>Mental Health</a>
 	</nav>
 </header>
 <script>
@@ -126,8 +127,9 @@
 		</nav>
 
 		<iframe
+			data-topic-scope="endless"
 			class="endless-frame"
-			src="/embed/doctordle-endless.embed.html"
+			src="/embed/doctordle-topic.embed.html?topic=endless"
 			title="Doctordle Endless"
 			loading="eager"
 			referrerpolicy="same-origin"
@@ -255,6 +257,7 @@
 		<p class="site-footer__note">*Doctordle is for entertainment only and does not constitute medical advice. If you have any health concerns, please consult a medical professional. Independent project. Not affiliated with any other website or brand offering similarly named diagnosis games.</p>
 	</div>
 </footer>
+<script src="/js/topic-frame-host.js"></script>
 </body>
 </html>
 

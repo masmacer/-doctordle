@@ -1,3 +1,5 @@
+import { normalizeDiagnosis, stripAcronymSuffix, buildAnswerForms, getDiagnosisAliases } from './diagnosis-names.js';
+
 function slugifyLabel(value) {
   return String(value || '')
     .toLowerCase()
@@ -6,34 +8,6 @@ function slugifyLabel(value) {
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
     .slice(0, 48) || 'case';
-}
-
-function normalizeDiagnosis(value) {
-  return String(value || '')
-    .toLowerCase()
-    .normalize('NFKD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-z0-9]+/g, ' ')
-    .trim();
-}
-
-function stripParentheticalSegments(value) {
-  return String(value || '').replace(/\([^)]*\)/g, ' ');
-}
-
-function stripAcronymSuffix(value) {
-  return String(value || '').replace(/\s*\(([A-Z0-9-]{2,10})\)\s*$/g, ' ');
-}
-
-function buildAnswerForms(title) {
-  const forms = new Set();
-  const normalizedTitle = normalizeDiagnosis(title);
-  const acronymBaseTitle = normalizeDiagnosis(stripAcronymSuffix(title));
-
-  if (normalizedTitle) forms.add(normalizedTitle);
-  if (acronymBaseTitle) forms.add(acronymBaseTitle);
-
-  return [...forms];
 }
 
 function normalizeCase(entry, index) {
@@ -83,7 +57,8 @@ const answerIndex = buildUniqueAnswerIndex(normalizedCases);
 
 const diagnosisDictionary = (() => {
   if (Array.isArray(window.__DDLE_DICTIONARY__) && window.__DDLE_DICTIONARY__.length) {
-    return [...new Set(window.__DDLE_DICTIONARY__.map((item) => String(item).trim()).filter(Boolean))].sort();
+    const aliases = getDiagnosisAliases().filter(label => normalizedCases.some(item => item.answers.includes(normalizeDiagnosis(label))));
+    return [...new Set([...window.__DDLE_DICTIONARY__, ...aliases].map((item) => String(item).trim()).filter(Boolean))].sort();
   }
 
   return normalizedCases.map((item) => item.title);

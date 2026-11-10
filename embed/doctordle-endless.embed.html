@@ -23,9 +23,7 @@
 	<link rel="stylesheet" href="../css/style.css" />
 	<script>
 		(function () {
-			if (window.parent === window) {
-				window.location.replace('/games/doctordle-endless');
-			} else {
+			if (window.parent !== window) {
 				var ref = document.referrer ? new URL(document.referrer).hostname : '(unknown)';
 				window.addEventListener('load', function () {
 					if (typeof gtag === 'function') {
@@ -243,6 +241,7 @@
 			}
 		}
 	</style>
+	<link rel="stylesheet" href="/css/topic-ui.css" />
 </head>
 <body data-endless-scope="endless">
 <main>
@@ -321,6 +320,7 @@
 	</div>
 </div>
 
+<script src="/js/continuous-frame.js"></script>
 <script src="../js/games.js"></script>
 <script type="module" src="../js/endless-entry.js"></script>
 </body>

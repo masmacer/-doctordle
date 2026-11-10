@@ -1,10 +1,17 @@
+import { renderCaseResult, buildShareMarks } from './result-view.js';
+import { installSuccessFeedback, celebrateSuccess } from './success-feedback.js';
+import { normalizeLocale, createTranslator, localizeStaticGame, translateGameDom } from './locale.js';
+import { createLocalizedCasebook } from './localized-casebook.js';
+import { loadCaseTranslations } from './translation-registry.js';
+import { applyContentRevision, currentContentVersion, savedContentVersion } from './case-content-revisions.js';
+import { localizedPath } from './localized-routes.js';
 import {
-  findCaseByLegacyId,
+  findCaseByLegacyId as findCanonicalCase,
   getDiagnosisDictionary,
   listCases,
-  resolveDiagnosis
+  resolveDiagnosis as resolveCanonicalDiagnosis
 } from './casebook.js';
-import { createRoundSession, matchesCaseAnswer } from './round-session.js';
+import { createRoundSession } from './round-session.js';
 import { readEndlessBundle, writeEndlessBundle } from './storage.js';
 
 const modes = {
@@ -48,6 +55,12 @@ const storageScope = document.body && document.body.dataset && document.body.dat
   ? document.body.dataset.endlessScope
   : 'endless';
 const bodyData = document.body && document.body.dataset ? document.body.dataset : {};
+const locale = normalizeLocale(bodyData.locale);
+await loadCaseTranslations(locale);
+const t = createTranslator(locale);
+const localizedBook = createLocalizedCasebook(locale, getDiagnosisDictionary(), resolveCanonicalDiagnosis, { scope: storageScope, cases: listCases() });
+const findCaseByLegacyId = (id, version) => applyContentRevision(localizedBook.localize(findCanonicalCase(id)), { scope: storageScope, locale, version });
+const resolveDiagnosis = query => localizedBook.resolve(query);
 const allowPractice = bodyData.allowPractice !== 'false';
 const hubReturnEnabled = bodyData.hubReturnEnabled === 'true';
 const defaultMeta = storageScope === 'dental'
@@ -80,9 +93,18 @@ const topicMeta = {
   pageUrl: bodyData.pageUrl || defaultMeta.pageUrl,
   fileSlug: bodyData.fileSlug || defaultMeta.fileSlug
 };
-const allCases = listCases();
+if (locale !== 'en') {
+  const name = storageScope === 'endless' ? t('Doctordle Endless') : bodyData.topicTitle && !['dental','mental-health'].includes(storageScope) ? bodyData.topicTitle : `Doctordle ${t(storageScope === 'dental' ? 'Dental' : 'Mental Health')}`;
+  topicMeta.title = name;
+  if (!bodyData.challengeTitle) topicMeta.challengeTitle = `${name} · ${t('Challenge')}`;
+  if (!bodyData.practiceTitle) topicMeta.practiceTitle = `${name} · ${t('Practice')}`;
+  if (!bodyData.pageUrl) topicMeta.pageUrl = `https://doctordle.net${localizedPath(new URL(defaultMeta.pageUrl).pathname, locale)}`;
+}
+const allCases = listCases().map(record => localizedBook.localize(record));
 let store = readEndlessBundle(storageScope);
-let activeMode = allowPractice && store.mode === modes.practice ? modes.practice : modes.challenge;
+const initialMode = bodyData.initialMode === modes.practice || bodyData.initialMode === modes.challenge
+  ? bodyData.initialMode : store.mode;
+let activeMode = allowPractice && initialMode === modes.practice ? modes.practice : modes.challenge;
 let currentCase = null;
 let session = createRoundSession({ legacyId: -1, title: '', clues: [] });
 let selectedGuess = null;
@@ -125,7 +147,7 @@ function ensureQueue(mode = activeMode) {
 function syncFeedback(message, tone) {
   const node = selectors.feedback();
   if (!node) return;
-  node.textContent = message;
+  node.textContent = t(message);
   node.className = tone || '';
 }
 
@@ -139,48 +161,13 @@ function setInputsEnabled(enabled) {
   const button = selectors.submit();
   if (input) {
     input.disabled = !enabled;
-    input.placeholder = enabled ? 'Search for a diagnosis or leave blank to reveal the next clue' : currentCase ? currentCase.title : 'Round complete';
+    input.placeholder = enabled ? t('Search for a diagnosis or leave blank to reveal the next clue') : currentCase ? currentCase.title : t('Round Complete');
   }
   if (button) {
     button.disabled = !enabled;
-    button.textContent = enabled ? 'Submit Guess' : 'Round Complete';
+    button.textContent = t(enabled ? 'Submit Guess' : 'Round Complete');
   }
   if (!enabled) hideSuggestions();
-}
-
-function buildGuessedIds(history) {
-  return history.reduce((ids, entry) => {
-    if (!entry || entry.result === 'skip') return ids;
-    const resolved = resolveDiagnosis(entry.name);
-    ids.push(resolved && resolved.legacyId ? resolved.legacyId : entry.name);
-    return ids;
-  }, []);
-}
-
-function migrateModeSession(modeSession) {
-  if (!modeSession || !currentCase || !modeSession.gameCompleted || !Array.isArray(modeSession.guessHistory)) return false;
-
-  const correctedIndex = modeSession.guessHistory.findIndex((entry) => {
-    if (!entry || entry.result !== 'wrong') return false;
-    const resolved = resolveDiagnosis(entry.name);
-    const guessKey = resolved && resolved.legacyId ? resolved.legacyId : entry.name;
-    const guessLabel = resolved && resolved.label ? resolved.label : entry.name;
-    return matchesCaseAnswer(currentCase, guessKey, guessLabel);
-  });
-
-  if (correctedIndex < 0) return false;
-
-  const correctedHistory = modeSession.guessHistory.slice(0, correctedIndex + 1).map((entry, index) => (
-    index === correctedIndex
-      ? { ...entry, result: 'correct' }
-      : entry
-  ));
-
-  modeSession.guessCount = correctedHistory.length;
-  modeSession.gameCompleted = true;
-  modeSession.guessedIds = buildGuessedIds(correctedHistory);
-  modeSession.guessHistory = correctedHistory;
-  return true;
 }
 
 function hydrateCurrentCase() {
@@ -192,10 +179,10 @@ function hydrateCurrentCase() {
     modeSession.gameCompleted = false;
     modeSession.guessedIds = [];
     modeSession.guessHistory = [];
+    modeSession.contentVersion = currentContentVersion;
   }
 
-  currentCase = findCaseByLegacyId(modeSession.currentId) || allCases[0] || null;
-  if (migrateModeSession(modeSession)) persistStore();
+  currentCase = findCaseByLegacyId(modeSession.currentId, savedContentVersion(modeSession)) || allCases[0] || null;
   session = createRoundSession(currentCase || { legacyId: -1, title: '', clues: [] }, {
     attempts: modeSession.guessCount,
     completed: modeSession.gameCompleted,
@@ -218,6 +205,11 @@ function syncSessionState() {
 function renderClues() {
   const node = selectors.clues();
   if (!node || !currentCase) return;
+  let notice = document.getElementById('case-language-notice');
+  if (locale !== 'en' && currentCase.untranslated) {
+    if (!notice) { notice = document.createElement('p'); notice.id = 'case-language-notice'; notice.className = 'intake-helper'; node.before(notice); }
+    notice.textContent = t('English case notice');
+  } else { notice?.remove(); }
   const visible = session.revealCount();
   node.innerHTML = '';
   currentCase.clues.forEach((clue, index) => {
@@ -228,7 +220,7 @@ function renderClues() {
       if (index > 0) item.classList.add('revealed');
     } else {
       item.classList.add('locked');
-      item.textContent = `Clue ${index + 1} unlocks after the next miss`;
+      item.textContent = t('Clue {n} unlocks after the next miss', { n: index + 1 });
     }
     node.appendChild(item);
   });
@@ -239,8 +231,10 @@ function renderHistory() {
   if (!node) return;
   const snapshot = session.snapshot();
   node.innerHTML = snapshot.guessHistory.map((entry, index) => {
-    const badge = entry.result === 'correct' ? 'Correct' : entry.result === 'skip' ? 'Skip' : 'Miss';
-    return `<div class="attempt-row ${entry.result}"><span>Guess ${index + 1}: ${entry.name}</span><span class="attempt-icon">${badge}</span></div>`;
+    const badge = t(entry.result === 'correct' ? 'Correct' : entry.result === 'skip' ? 'Skip' : 'Miss');
+    const label = entry.result === 'skip' ? t('Skipped') : localizedBook.display(entry.name);
+    const safe = String(label).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
+    return `<div class="attempt-row ${entry.result}"><span>${t('Guess {n}', { n: index + 1 })}: ${safe}</span><span class="attempt-icon">${badge}</span></div>`;
   }).join('');
 }
 
@@ -283,23 +277,22 @@ function renderStatus() {
   if (practiceToggle) practiceToggle.classList.toggle('active', activeMode === modes.practice);
   if (resultButton) resultButton.style.display = session.snapshot().gameCompleted ? 'inline-flex' : 'none';
   if (next) next.style.display = session.snapshot().gameCompleted ? 'block' : 'none';
+  translateGameDom(document.querySelector('main'), locale);
 }
 
-function buildOutcomeCard(title, subtitle, theme, snapshot) {
-  const guessesUsed = snapshot ? snapshot.guessCount : 0;
-  const guessesLeft = Math.max(0, 6 - guessesUsed);
-  const outcomeLabel = theme === 'win' ? 'Solved' : 'Complete';
-  return `<section class="result-card result-card--${theme}"><p class="result-card__eyebrow">${activeMode === modes.challenge ? 'Challenge Result' : 'Practice Result'}</p><div class="result-card__header"><div><h3 class="result-card__title">${title}</h3><p class="result-card__copy">${subtitle}</p></div><span class="result-card__badge">${outcomeLabel}</span></div><div class="result-card__meta"><div class="result-stat"><span class="result-stat__label">Guesses Used</span><span class="result-stat__value">${guessesUsed}/6</span></div><div class="result-stat"><span class="result-stat__label">Guesses Left</span><span class="result-stat__value">${guessesLeft}</span></div></div></section>`;
+function buildOutcomeCard(won, snapshot) {
+  return renderCaseResult({
+    title: currentCase.title, summary: currentCase.summary,
+    won, guesses: snapshot ? snapshot.guessCount : 0,
+    eyebrow: activeMode === modes.challenge ? 'Challenge Result' : 'Practice Result',
+    format: activeMode === modes.challenge ? 'Challenge' : 'Practice', locale
+  });
 }
 
 function createOutcomePayload(snapshot, won) {
   if (!snapshot || !snapshot.gameCompleted || !currentCase) return null;
-  const title = won ? `Diagnosis confirmed: ${currentCase.title}` : `Round complete: ${currentCase.title}`;
-  const subtitle = won
-    ? `You solved the case in ${snapshot.guessCount} of 6 guesses.`
-    : 'No guesses remain. Review the summary, then start the next case when you are ready.';
   return {
-    html: buildOutcomeCard(title, subtitle, won ? 'win' : 'loss', snapshot),
+    html: buildOutcomeCard(won, snapshot),
     shareText: buildShareText(snapshot, won)
   };
 }
@@ -308,6 +301,7 @@ function presentOutcome(payload, options = {}) {
   latestOutcome = payload;
   if (!payload) return;
   openModal(payload.html, { ...options, shareText: payload.shareText });
+  if (options.celebrate) celebrateSuccess(selectors.modal());
 }
 
 function buildHubActions() {
@@ -339,21 +333,26 @@ function buildChallengeShareCardData({ won, guesses, streakBeforeRound, streakAf
     guesses,
     streakAfterRound,
     bestStreak,
-    rank: getChallengeRank(relevantStreak, won)
+    rank: (() => {
+      const rank = getChallengeRank(relevantStreak, won);
+      if (locale === 'en') return rank;
+      return { title: t(rank.title), subtitle: t(won ? 'Correct. Move on when you are ready.' : 'No guesses remaining. The round is complete.'), flavor: t(won ? 'Keep the streak alive.' : 'Reload. Re-enter. Reclaim the crown.') };
+    })()
   };
 }
 
 function buildChallengeShareCardHtml(data, caseTitle) {
-  const summary = data.won
-    ? `Solved in ${data.guesses}/6 guesses.`
-    : `Missed after ${data.guesses}/6 guesses.`;
-  return `<section class="challenge-share-card"><div class="challenge-share-topline"><div><div class="challenge-share-kicker">${topicMeta.challengeTitle}</div><h3 class="challenge-share-title">${data.rank.title}</h3></div><span class="challenge-share-pill">${data.won ? 'Win' : 'Miss'}</span></div><p class="challenge-share-diagnosis">Diagnosis: ${caseTitle}</p><p class="challenge-share-subtitle">${summary} ${data.rank.subtitle}</p><div class="challenge-share-grid"><div class="challenge-share-stat"><span class="challenge-share-stat-label">Guesses</span><span class="challenge-share-stat-value">${data.guesses}/6</span></div><div class="challenge-share-stat"><span class="challenge-share-stat-label">Streak</span><span class="challenge-share-stat-value">${data.streakAfterRound}</span></div><div class="challenge-share-stat"><span class="challenge-share-stat-label">Best</span><span class="challenge-share-stat-value">${data.bestStreak}</span></div></div><div class="challenge-share-footer">${data.rank.flavor}</div></section>`;
+  return renderCaseResult({
+    title: caseTitle, summary: currentCase ? currentCase.summary : '',
+    won: data.won, guesses: data.guesses,
+    eyebrow: topicMeta.challengeTitle, streak: data.streakAfterRound, locale
+  });
 }
 
 function buildChallengeShareSvg(data) {
-  const roundLabel = data.won ? 'WIN' : 'MISS';
-  const footer = data.won ? 'Keep the streak alive.' : 'Reload. Re-enter. Reclaim the crown.';
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7b3f00"/><stop offset="55%" stop-color="#a85a00"/><stop offset="100%" stop-color="#f2b66d"/></linearGradient></defs><rect width="1200" height="630" rx="36" fill="url(#bg)"/><text x="70" y="86" fill="#fff5eb" font-size="26" font-family="Segoe UI, Arial, sans-serif" letter-spacing="4">${topicMeta.challengeTitle.toUpperCase()}</text><text x="70" y="190" fill="#fffaf3" font-size="74" font-weight="800" font-family="Segoe UI, Arial, sans-serif">${data.rank.title}</text><text x="70" y="255" fill="#fff4e8" font-size="34" font-family="Segoe UI, Arial, sans-serif">${data.rank.subtitle}</text><text x="70" y="305" fill="#ffe8cf" font-size="28" font-family="Segoe UI, Arial, sans-serif">${data.rank.flavor}</text><rect x="70" y="365" width="300" height="140" rx="22" fill="rgba(255,248,242,0.15)" stroke="rgba(255,248,242,0.26)"/><rect x="390" y="365" width="300" height="140" rx="22" fill="rgba(255,248,242,0.15)" stroke="rgba(255,248,242,0.26)"/><rect x="710" y="365" width="300" height="140" rx="22" fill="rgba(255,248,242,0.15)" stroke="rgba(255,248,242,0.26)"/><text x="105" y="410" fill="#ffead1" font-size="22" letter-spacing="3" font-family="Segoe UI, Arial, sans-serif">ROUND</text><text x="105" y="475" fill="#ffffff" font-size="52" font-weight="800" font-family="Segoe UI, Arial, sans-serif">${roundLabel}</text><text x="425" y="410" fill="#ffead1" font-size="22" letter-spacing="3" font-family="Segoe UI, Arial, sans-serif">GUESSES</text><text x="425" y="475" fill="#ffffff" font-size="52" font-weight="800" font-family="Segoe UI, Arial, sans-serif">${data.guesses}/6</text><text x="745" y="410" fill="#ffead1" font-size="22" letter-spacing="3" font-family="Segoe UI, Arial, sans-serif">BEST STREAK</text><text x="745" y="475" fill="#ffffff" font-size="52" font-weight="800" font-family="Segoe UI, Arial, sans-serif">${data.bestStreak}</text><text x="70" y="575" fill="#fff5eb" font-size="24" font-family="Segoe UI, Arial, sans-serif">${footer}</text></svg>`;
+  const roundLabel = t(data.won ? 'WIN' : 'MISS');
+  const footer = t(data.won ? 'Keep the streak alive.' : 'Reload. Re-enter. Reclaim the crown.');
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7b3f00"/><stop offset="55%" stop-color="#a85a00"/><stop offset="100%" stop-color="#f2b66d"/></linearGradient></defs><rect width="1200" height="630" rx="36" fill="url(#bg)"/><text x="70" y="86" fill="#fff5eb" font-size="26" font-family="Segoe UI, Arial, sans-serif" letter-spacing="4">${topicMeta.challengeTitle.toUpperCase()}</text><text x="70" y="190" fill="#fffaf3" font-size="74" font-weight="800" font-family="Segoe UI, Arial, sans-serif">${data.rank.title}</text><text x="70" y="255" fill="#fff4e8" font-size="34" font-family="Segoe UI, Arial, sans-serif">${data.rank.subtitle}</text><text x="70" y="305" fill="#ffe8cf" font-size="28" font-family="Segoe UI, Arial, sans-serif">${data.rank.flavor}</text><rect x="70" y="365" width="300" height="140" rx="22" fill="rgba(255,248,242,0.15)" stroke="rgba(255,248,242,0.26)"/><rect x="390" y="365" width="300" height="140" rx="22" fill="rgba(255,248,242,0.15)" stroke="rgba(255,248,242,0.26)"/><rect x="710" y="365" width="300" height="140" rx="22" fill="rgba(255,248,242,0.15)" stroke="rgba(255,248,242,0.26)"/><text x="105" y="410" fill="#ffead1" font-size="22" letter-spacing="3" font-family="Segoe UI, Arial, sans-serif">${t('ROUND')}</text><text x="105" y="475" fill="#ffffff" font-size="52" font-weight="800" font-family="Segoe UI, Arial, sans-serif">${roundLabel}</text><text x="425" y="410" fill="#ffead1" font-size="22" letter-spacing="3" font-family="Segoe UI, Arial, sans-serif">${t('GUESSES')}</text><text x="425" y="475" fill="#ffffff" font-size="52" font-weight="800" font-family="Segoe UI, Arial, sans-serif">${data.guesses}/6</text><text x="745" y="410" fill="#ffead1" font-size="22" letter-spacing="3" font-family="Segoe UI, Arial, sans-serif">${t('BEST STREAK')}</text><text x="745" y="475" fill="#ffffff" font-size="52" font-weight="800" font-family="Segoe UI, Arial, sans-serif">${data.bestStreak}</text><text x="70" y="575" fill="#fff5eb" font-size="24" font-family="Segoe UI, Arial, sans-serif">${footer}</text></svg>`;
 }
 
 function downloadChallengeShareImage(data) {
@@ -393,7 +392,8 @@ function buildSuggestions(query) {
 
   const lower = query.toLowerCase();
   const snapshot = session.snapshot();
-  const matches = getDiagnosisDictionary().filter((label) => label.toLowerCase().includes(lower)).slice(0, 12);
+  const searchKey = value => value.normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  const matches = localizedBook.dictionary.filter((label) => searchKey(label).includes(searchKey(lower))).slice(0, 12);
   if (!matches.length) {
     node.style.display = 'none';
     return;
@@ -401,16 +401,16 @@ function buildSuggestions(query) {
 
   matches.forEach((label) => {
     const resolved = resolveDiagnosis(label);
-    const guessKey = resolved && resolved.legacyId ? resolved.legacyId : label;
+    const guessKey = resolved && resolved.legacyId ? resolved.legacyId : resolved ? resolved.label : label;
     const disabled = snapshot.guessedIds.includes(guessKey);
     const option = document.createElement('div');
     option.className = `autocomplete-item${disabled ? ' used-guess' : ''}`;
-    option.textContent = disabled ? `${label} (used)` : label;
+    option.textContent = disabled ? `${label} (${t('used')})` : label;
     if (!disabled) {
       option.addEventListener('click', () => {
         const input = selectors.input();
         if (input) input.value = label;
-        selectedGuess = { key: guessKey, label };
+        selectedGuess = { key: guessKey, label: resolved ? resolved.label : label };
         hideSuggestions();
       });
     }
@@ -427,7 +427,7 @@ function buildStatsMarkup(mode = activeMode) {
     ? `<div class="scores-cell"><div class="scores-value">${stats.currentStreak}</div><div class="scores-desc">Current Streak</div></div><div class="scores-cell"><div class="scores-value">${stats.bestStreak}</div><div class="scores-desc">Best Streak</div></div>`
     : '';
 
-  return `<div style="margin-top:1rem"><p style="margin:0 0 0.35rem;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:#9e7552">${mode === modes.challenge ? 'Challenge Mode' : 'Practice Mode'} Stats</p><div class="scores-grid"><div class="scores-cell"><div class="scores-value">${stats.played}</div><div class="scores-desc">Cases Played</div></div><div class="scores-cell"><div class="scores-value">${stats.wins}</div><div class="scores-desc">Correct Guesses</div></div><div class="scores-cell"><div class="scores-value">${winRate}%</div><div class="scores-desc">Win Rate</div></div>${streakBlock}</div></div>`;
+  return `<div style="margin-top:1rem"><p style="margin:0 0 0.35rem;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:#9e7552">${t(mode === modes.challenge ? 'Challenge Mode' : 'Practice Mode')} · ${t('Stats')}</p><div class="scores-grid"><div class="scores-cell"><div class="scores-value">${stats.played}</div><div class="scores-desc">Cases Played</div></div><div class="scores-cell"><div class="scores-value">${stats.wins}</div><div class="scores-desc">Correct Guesses</div></div><div class="scores-cell"><div class="scores-value">${winRate}%</div><div class="scores-desc">Win Rate</div></div>${streakBlock}</div></div>`;
 }
 
 function openModal(html, options = {}) {
@@ -453,7 +453,7 @@ function openModal(html, options = {}) {
     const copyIcon = '<svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="vertical-align:-2px;margin-right:5px"><rect x="1" y="4" width="9" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M5 4V2a1 1 0 011-1h7a2 2 0 012 2v9a2 2 0 01-2 2H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
     const button = document.createElement('button');
     button.className = 'btn-share';
-    button.innerHTML = copyIcon + 'Copy Result';
+    button.innerHTML = copyIcon + t('Copy Result');
     button.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(shareText);
@@ -465,17 +465,19 @@ function openModal(html, options = {}) {
           hint.style.display = 'block';
           window.setTimeout(() => { hint.style.display = 'none'; }, 1800);
         }
-        button.textContent = 'Copied';
-        window.setTimeout(() => { button.innerHTML = copyIcon + 'Copy Result'; }, 1800);
+        button.textContent = t('Copied');
+        window.setTimeout(() => { button.innerHTML = copyIcon + t('Copy Result'); }, 1800);
       } catch {
-        button.textContent = 'Copy failed';
-        window.setTimeout(() => { button.innerHTML = copyIcon + 'Copy Result'; }, 1800);
+        button.textContent = t('Copy failed');
+        window.setTimeout(() => { button.innerHTML = copyIcon + t('Copy Result'); }, 1800);
       }
     });
     footer.appendChild(button);
   }
 
   overlay.classList.add('open');
+  translateGameDom(body, locale);
+  translateGameDom(footer, locale);
 }
 
 function closeModal() {
@@ -484,25 +486,14 @@ function closeModal() {
 }
 
 function buildShareText(snapshot, won) {
+  const marks = buildShareMarks(snapshot, won);
   if (activeMode === modes.challenge) {
     const stats = getModeStats(modes.challenge);
-    const marks = [];
-    for (let index = 1; index <= 6; index += 1) {
-      if (index < snapshot.guessCount) marks.push('🟥');
-      else if (index === snapshot.guessCount) marks.push(won ? '🟩' : '🟥');
-      else marks.push('⬛');
-    }
-    return `${topicMeta.challengeTitle}\n${won ? `Solved in ${snapshot.guessCount}/6 guesses` : `Unsolved after ${snapshot.guessCount}/6 guesses`}\n${marks.join(' ')}\nBest streak: ${stats.bestStreak}\n#doctordle\nPlay: ${topicMeta.pageUrl}`;
+    return `${topicMeta.challengeTitle}\n${t(won ? 'Solved in {n}/6 guesses' : 'Unsolved after {n}/6 guesses', { n: snapshot.guessCount })}\n${marks.join(' ')}\n${t('Best streak')}: ${stats.bestStreak}\n#doctordle\n${t('Play')}: ${topicMeta.pageUrl}`;
   }
 
-  const marks = [];
-  for (let index = 1; index <= 6; index += 1) {
-    if (index < snapshot.guessCount) marks.push('🟥');
-    else if (index === snapshot.guessCount) marks.push(won ? '🟩' : '🟥');
-    else marks.push('⬛');
-  }
-  const scoreLine = won ? `Solved in ${snapshot.guessCount}/6 guesses` : `Unsolved after ${snapshot.guessCount}/6 guesses`;
-  return `${topicMeta.practiceTitle}\n${scoreLine}\n${marks.join(' ')}\n#doctordle\nPlay: ${topicMeta.pageUrl}`;
+  const scoreLine = t(won ? 'Solved in {n}/6 guesses' : 'Unsolved after {n}/6 guesses', { n: snapshot.guessCount });
+  return `${topicMeta.practiceTitle}\n${scoreLine}\n${marks.join(' ')}\n#doctordle\n${t('Play')}: ${topicMeta.pageUrl}`;
 }
 
 function updateStatsForResult(won) {
@@ -560,6 +551,7 @@ function settleRound(result) {
             { label: 'Download Share Card', onClick: () => downloadChallengeShareImage(challengeShare) },
             ...buildHubActions()
           ],
+          celebrate: true,
           statsMode: modes.challenge
         }
       );
@@ -567,6 +559,7 @@ function settleRound(result) {
     }
 
     presentOutcome(outcome, {
+      celebrate: true,
       actions: [
         { label: 'Next Case', onClick: () => { closeModal(); moveToNextCase(); } },
         ...buildHubActions()
@@ -659,6 +652,7 @@ function moveToNextCase() {
   modeSession.gameCompleted = false;
   modeSession.guessedIds = [];
   modeSession.guessHistory = [];
+  modeSession.contentVersion = currentContentVersion;
   persistStore();
   selectedGuess = null;
   latestOutcome = null;
@@ -735,7 +729,7 @@ function wireEvents() {
   if (reveal && card) {
     reveal.addEventListener('click', () => {
       const flipped = card.classList.toggle('flipped');
-      reveal.textContent = flipped ? 'Back to Case' : 'View Summary';
+      reveal.textContent = t(flipped ? 'Back to Case' : 'View Summary');
     });
   }
   if (next) next.addEventListener('click', moveToNextCase);
@@ -761,6 +755,8 @@ function wireEvents() {
 }
 
 function boot() {
+  localizeStaticGame(locale);
+  installSuccessFeedback();
   if (!allowPractice) {
     store.mode = modes.challenge;
     writeEndlessBundle(store, storageScope);

@@ -6,7 +6,7 @@
 
   function applyHeight(frame, height) {
     if (!frame || !Number.isFinite(height)) return;
-    frame.style.height = `${Math.max(760, Math.ceil(height))}px`;
+    frame.style.height = `${Math.max(200, Math.ceil(height))}px`;
   }
 
   window.addEventListener('message', (event) => {
@@ -14,6 +14,7 @@
     if (data.type !== 'ddle-topic-shell-height') return;
     const frame = frameMap.get(data.scope);
     if (!frame) return;
+    if (event.origin !== window.location.origin || event.source !== frame.contentWindow) return;
     applyHeight(frame, data.height);
   });
 }());

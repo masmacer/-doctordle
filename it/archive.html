@@ -1,5 +1,5 @@
-﻿<!DOCTYPE html>
-<html lang="it">
+<!DOCTYPE html>
+<html lang="it" prefix="og: https://ogp.me/ns#">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,8 +9,8 @@
     window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
     plausible.init();
   </script>
-  <title>Archivio Doctordle - Tutti i Casi Giornalieri</title>
-  <meta name="description" content="Sfoglia tutti i casi giornalieri passati di Doctordle per data e numero caso. L'archivio completo del puzzle clinico quotidiano." />
+  <title>Archivio Doctordle italiano — casi clinici precedenti</title>
+  <meta name="description" content="Scegli una data o un numero e torna agli indizi. I risultati sono quelli salvati in questo browser, condivisi tra le lingue." />
   <link rel="canonical" href="https://doctordle.net/it/archive" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-X8WH1TLTLW"></script>
@@ -29,311 +29,52 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-title" content="Doctordle" />
   <link rel="manifest" href="/site.webmanifest" />
-  <link rel="alternate" hreflang="en" href="https://doctordle.net/archive" />
-  <link rel="alternate" hreflang="it" href="https://doctordle.net/it/archive" />
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Doctordle",
-          "item": "https://doctordle.net/it/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Archivio",
-          "item": "https://doctordle.net/it/archive"
-        }
-      ]
-    }
-  </script>
-  <style>
-    .arc-legend {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-bottom: 1rem;
-      font-size: 0.84rem;
-    }
-    .arc-legend__item {
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-      color: #6f5339;
-    }
-    .arc-dot {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-    .arc-dot--win      { background: #2e7d32; }
-    .arc-dot--loss     { background: #c62828; }
-    .arc-dot--unplayed { background: #d4bfa6; }
-    .arc-dot--today    { background: #7b3f00; }
-    .arc-filter {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-      margin-bottom: 1rem;
-    }
-    .arc-filter label {
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: #7b3f00;
-    }
-    .arc-filter input[type="text"] {
-      padding: 0.38rem 0.7rem;
-      border: 1.5px solid #d4a87a;
-      border-radius: 8px;
-      font-size: 0.88rem;
-      color: #3a2a1a;
-      background: #fff8f2;
-      outline: none;
-      transition: border-color 0.2s;
-      width: 160px;
-    }
-    .arc-filter input[type="text"]:focus { border-color: #7b3f00; }
-    .arc-count {
-      margin-left: auto;
-      font-size: 0.82rem;
-      color: #8a6244;
-    }
-    .arc-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-      gap: 0.55rem;
-    }
-    .arc-card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.18rem;
-      padding: 0.65rem 0.4rem 0.6rem;
-      border-radius: 10px;
-      border: 1.5px solid #ecd4ba;
-      background: #fffaf5;
-      text-align: center;
-      text-decoration: none;
-      min-height: 80px;
-      transition: background 0.15s, border-color 0.15s;
-    }
-    a.arc-card--today {
-      border-color: #7b3f00;
-      background: #fff3e0;
-      cursor: pointer;
-    }
-    a.arc-card--today:hover {
-      background: #ffe8c0;
-      border-color: #5a2d00;
-    }
-    .arc-card--win  { border-color: #a5d6a7; background: #f1faf1; }
-    .arc-card--loss { border-color: #ef9a9a; background: #fff5f5; }
-    .arc-card--unplayed { border-color: #ecd4ba; background: #fffaf5; opacity: 0.7; }
-    .arc-card__num  { font-size: 0.78rem; font-weight: 700; color: #7b3f00; line-height: 1; }
-    .arc-card__date { font-size: 0.75rem; color: #8a6244; line-height: 1.2; }
-    .arc-card__result { margin-top: 0.25rem; font-size: 1rem; line-height: 1; }
-    .arc-card--win  .arc-card__result { color: #2e7d32; }
-    .arc-card--loss .arc-card__result { color: #c62828; }
-    .arc-card--today .arc-card__result { font-size: 0.75rem; font-weight: 700; color: #7b3f00; letter-spacing: 0.02em; }
-    .arc-month {
-      grid-column: 1 / -1;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: #7b3f00;
-      padding: 0.3rem 0 0.1rem;
-      border-bottom: 1px solid #ecd4ba;
-      margin-top: 0.3rem;
-    }
-    .arc-month:first-child { margin-top: 0; }
-  </style>
+<link rel="alternate" hreflang="en" href="https://doctordle.net/archive" />
+<link rel="alternate" hreflang="it" href="https://doctordle.net/it/archive" />
+<link rel="alternate" hreflang="pt" href="https://doctordle.net/pt/archive" />
+<link rel="alternate" hreflang="x-default" href="https://doctordle.net/archive" />
+<script src="/js/language-menu.js" defer></script>
+<script src="/js/locale-page.js" defer></script>
+
+<link rel="stylesheet" href="/css/archive.css" />
+<!-- ddle:metadata:start -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Doctordle" />
+<meta property="og:title" content="Archivio Doctordle italiano — casi clinici precedenti" />
+<meta property="og:description" content="Scegli una data o un numero e torna agli indizi. I risultati sono quelli salvati in questo browser, condivisi tra le lingue." />
+<meta property="og:url" content="https://doctordle.net/it/archive" />
+<meta property="og:locale" content="it_IT" />
+<meta property="og:image" content="https://doctordle.net/images/og/it-archive.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Doctordle — Archivio dei casi, con schede illustrate degli indizi." />
+<meta property="og:locale:alternate" content="en_US" />
+<meta property="og:locale:alternate" content="pt_BR" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Archivio Doctordle italiano — casi clinici precedenti" />
+<meta name="twitter:description" content="Scegli una data o un numero e torna agli indizi. I risultati sono quelli salvati in questo browser, condivisi tra le lingue." />
+<meta name="twitter:image" content="https://doctordle.net/images/og/it-archive.png" />
+<meta name="twitter:image:alt" content="Doctordle — Archivio dei casi, con schede illustrate degli indizi." />
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://doctordle.net/it/archive#webpage","url":"https://doctordle.net/it/archive","name":"Archivio Doctordle italiano — casi clinici precedenti","description":"Scegli una data o un numero e torna agli indizi. I risultati sono quelli salvati in questo browser, condivisi tra le lingue.","inLanguage":"it","isPartOf":{"@id":"https://doctordle.net/it/#website"},"primaryImageOfPage":{"@id":"https://doctordle.net/it/archive#primaryimage"},"image":{"@id":"https://doctordle.net/it/archive#primaryimage"},"breadcrumb":{"@id":"https://doctordle.net/it/archive#breadcrumb"}},{"@type":"ImageObject","@id":"https://doctordle.net/it/archive#primaryimage","url":"https://doctordle.net/images/og/it-archive.png","width":1200,"height":630,"inLanguage":"it","caption":"Doctordle — Archivio dei casi, con schede illustrate degli indizi."},{"@type":"BreadcrumbList","@id":"https://doctordle.net/it/archive#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Caso del giorno","item":"https://doctordle.net/it/"},{"@type":"ListItem","position":2,"name":"Archivio","item":"https://doctordle.net/it/archive"}]}]}</script>
+<!-- ddle:metadata:end -->
 </head>
 <body class="shell-page">
-
-<!-- ===== Header ===== -->
-<header>
-  <a class="logo" href="/it/" aria-label="Doctordle home">
-    <img src="/images/logo.webp" alt="Doctordle" />
-    <span class="logo-wordmark">Doctordle</span>
-  </a>
-  <nav class="header-btns" aria-label="Primario">
-    <a class="header-btn" href="/games/doctordle-endless">Endless</a>
-    <a class="header-btn" href="/it/archive" aria-current="page">Archivio</a>
-    <a class="header-btn" href="/archive">English</a>
-  </nav>
-</header>
-
-<!-- ===== Main ===== -->
-<main>
-  <div class="embed-shell">
-    <div class="page-sections page-sections--home">
-      <section class="content-block" aria-labelledby="archive-title">
-        <section class="page-intro page-intro--wide page-intro--compact">
-          <h1 id="archive-title">Archivio Doctordle</h1>
-          <h2>Tutti i casi giornalieri dal lancio. Clicca la scheda di oggi per giocare.</h2>
-          <p>I tuoi risultati sono salvati localmente - i record di vittoria e sconfitta appaiono automaticamente se hai giocato su questo dispositivo.</p>
-        </section>
-      </section>
-
-      <section class="content-block" aria-labelledby="archive-cases-title">
-        <h2 id="archive-cases-title">Casi Precedenti</h2>
-
-        <div class="arc-legend" aria-label="Legenda">
-          <span class="arc-legend__item"><span class="arc-dot arc-dot--today"></span>Oggi</span>
-          <span class="arc-legend__item"><span class="arc-dot arc-dot--win"></span>Risolto</span>
-          <span class="arc-legend__item"><span class="arc-dot arc-dot--loss"></span>Fallito</span>
-          <span class="arc-legend__item"><span class="arc-dot arc-dot--unplayed"></span>Non giocato</span>
-        </div>
-
-        <div class="arc-filter">
-          <label for="arc-search">Filtra:</label>
-          <input type="text" id="arc-search" placeholder="# o data" autocomplete="off" />
-          <span class="arc-count" id="arc-count"></span>
-        </div>
-
-        <div class="arc-grid" id="arc-grid" aria-label="Archivio casi giornalieri">
-        </div>
-      </section>
-    </div>
-  </div>
-</main>
-
-<!-- ===== Footer ===== -->
-<footer>
-  <div class="site-footer">
-    <a class="site-footer__brand" href="/it/" aria-label="Doctordle home">
-      <img src="/images/logo.webp" alt="Doctordle" />
-      <span class="site-footer__wordmark">Doctordle</span>
-    </a>
-    <nav class="site-footer__links" aria-label="Footer">
-      <a href="/it/">Home</a>
-      <a href="/games/doctordle-endless">Endless</a>
-      <a href="/it/archive">Archivio</a>
-      <a href="/privacy-policy">Privacy Policy</a>
-      <a href="/terms">Termini</a>
-      <a href="mailto:hello@doctordle.net">Contatti</a>
-    </nav>
-    <p class="site-footer__note">*Doctordle è solo a scopo di intrattenimento e non costituisce un consiglio medico. Per qualsiasi problema di salute, consulta un professionista medico.</p>
-  </div>
-</footer>
-
-<script>
-(function () {
-  var START = new Date('2026-04-11T00:00:00');
-  var MONTHS = ['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];
-
-  function pad(n) { return n < 10 ? '0' + n : '' + n; }
-  function ymd(d)  { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
-  function monthLabel(d) { return MONTHS[d.getMonth()] + ' ' + d.getFullYear(); }
-
-  function getResult(dayIndex) {
-    function readKey(key) {
-      try {
-        var raw = localStorage.getItem(key);
-        if (!raw) return null;
-        var s = JSON.parse(raw);
-        if (!s.gameCompleted) return null;
-        return (Array.isArray(s.guessHistory) && s.guessHistory.some(function (g) { return g.result === 'correct'; }))
-          ? 'win' : 'loss';
-      } catch (e) { return null; }
-    }
-    var replay = readKey('ddle_day_' + dayIndex + '_replay');
-    if (replay !== null) return replay;
-    var orig = readKey('ddle_day_' + dayIndex);
-    if (orig !== null) return orig;
-    return 'unplayed';
-  }
-
-  var todayNorm = new Date();
-  todayNorm.setHours(0, 0, 0, 0);
-  var todayYMD = ymd(todayNorm);
-
-  var entries = [];
-  var cur = new Date(START);
-  cur.setHours(0, 0, 0, 0);
-  var dayIndex = 0;
-
-  while (cur <= todayNorm) {
-    var d = new Date(cur);
-    var isToday = ymd(d) === todayYMD;
-    entries.push({
-      num: dayIndex + 1,
-      dayIndex: dayIndex,
-      dateObj: d,
-      dateStr: ymd(d),
-      monthLabel: monthLabel(d),
-      isToday: isToday,
-      result: isToday ? (getResult(dayIndex) === 'unplayed' ? 'today' : getResult(dayIndex)) : getResult(dayIndex)
-    });
-    cur.setDate(cur.getDate() + 1);
-    dayIndex++;
-  }
-  entries.reverse();
-
-  var grid     = document.getElementById('arc-grid');
-  var countEl  = document.getElementById('arc-count');
-  var searchEl = document.getElementById('arc-search');
-
-  function resultIcon(result) {
-    if (result === 'win')   return '<span class="arc-card__result" aria-label="Risolto">&#10003;</span>';
-    if (result === 'loss')  return '<span class="arc-card__result" aria-label="Fallito">&#10005;</span>';
-    if (result === 'today') return '<span class="arc-card__result" aria-label="Gioca oggi">Gioca &rarr;</span>';
-    return '<span class="arc-card__result" aria-label="Non giocato">&middot;</span>';
-  }
-
-  function cardClass(result) {
-    if (result === 'today')   return 'arc-card arc-card--today';
-    if (result === 'win')     return 'arc-card arc-card--win';
-    if (result === 'loss')    return 'arc-card arc-card--loss';
-    return 'arc-card arc-card--unplayed';
-  }
-
-  function renderGrid(list) {
-    var html = '';
-    var lastMonth = null;
-    for (var i = 0; i < list.length; i++) {
-      var e = list[i];
-      if (e.monthLabel !== lastMonth) {
-        html += '<div class="arc-month">' + e.monthLabel + '</div>';
-        lastMonth = e.monthLabel;
-      }
-      var tag  = 'a';
-      var href = e.isToday ? ' href="/it/"' : ' href="/play.html?day=' + e.dayIndex + '"';
-      var d    = e.dateObj;
-      var label = MONTHS[d.getMonth()] + ' ' + d.getDate();
-      html += '<' + tag + ' class="' + cardClass(e.result) + '"' + href + '>';
-      html += '<span class="arc-card__num">#' + e.num + '</span>';
-      html += '<span class="arc-card__date">' + label + '</span>';
-      html += resultIcon(e.result);
-      html += '</' + tag + '>';
-    }
-    grid.innerHTML = html;
-    countEl.textContent = list.length + ' voci';
-  }
-
-  renderGrid(entries);
-
-  searchEl.addEventListener('input', function () {
-    var q = searchEl.value.trim().toLowerCase();
-    if (!q) { renderGrid(entries); return; }
-    var filtered = entries.filter(function (e) {
-      return e.dateStr.includes(q) ||
-             ('#' + e.num).includes(q) ||
-             String(e.num).includes(q) ||
-             e.monthLabel.toLowerCase().includes(q);
-    });
-    renderGrid(filtered);
-  });
-}());
-</script>
-
+<header><a class="logo" href="/it/" aria-label="Doctordle"><img src="/images/logo.webp" alt="" /><span class="logo-wordmark">Doctordle</span></a><div class="header-right"><div class="header-quick"><a class="header-btn" href="/it/archive">Archivio</a></div><details class="language-menu"><summary aria-label="Scegli la lingua"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#language" /></svg><span class="language-menu__current">Italiano</span><svg class="ui-icon language-menu__chevron" aria-hidden="true" focusable="false" viewBox="0 0 16 16"><path d="m4 6 4 4 4-4" /></svg></summary><nav class="language-menu__options" aria-label="Scegli la lingua"><a href="/" data-language="en" lang="en" hreflang="en">English</a><a href="/it/" data-language="it" lang="it" hreflang="it" aria-current="true">Italiano</a><a href="/pt/" data-language="pt" lang="pt-BR" hreflang="pt">Português</a></nav></details><button class="nav-toggle" id="nav-toggle" aria-label="Menu di navigazione" aria-expanded="false" aria-controls="nav-drawer"><svg class="ui-icon icon-menu" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#menu" /></svg><svg class="ui-icon icon-close" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#close" /></svg></button></div><nav class="nav-drawer" id="nav-drawer" aria-label="Navigazione principale"><a class="nav-drawer__link" href="/it/"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#daily" /></svg>Caso del giorno</a>
+<a class="nav-drawer__link" href="/it/games/doctordle-endless"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#infinity" /></svg>Senza limiti</a>
+<a class="nav-drawer__link" href="/it/archive" aria-current="page"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#archive" /></svg>Archivio</a>
+<a class="nav-drawer__link" href="/it/games/doctordle-emergency"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#emergency" /></svg>Medicina d’urgenza</a>
+<a class="nav-drawer__link" href="/it/games/doctordle-dermatology"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#dermatology" /></svg>Dermatologia</a>
+<a class="nav-drawer__link" href="/it/games/doctordle-pediatrics"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#pediatrics" /></svg>Pediatria</a>
+<a class="nav-drawer__link" href="/it/games/doctordle-digestive-health"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#digestive" /></svg>Gastroenterologia</a>
+<a class="nav-drawer__link" href="/it/games/doctordle-womens-health"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#womens-health" /></svg>Ginecologia e ostetricia</a>
+<a class="nav-drawer__link" href="/it/games/doctordle-cardiology"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#cardiology" /></svg>Cardiologia</a>
+<a class="nav-drawer__link" href="/it/games/doctordle-for-dentist"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#dental" /></svg>Odontoiatria</a>
+<a class="nav-drawer__link" href="/it/games/doctordle-mental-health"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#mental" /></svg>Psichiatria e salute mentale</a>
+<a class="nav-drawer__link" href="/case-library" lang="en"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#library" /></svg>Biblioteca dei casi (inglese)</a></nav></header>
+<main><div class="embed-shell"><nav class="breadcrumb-nav" aria-label="Breadcrumb"><a href="/it/">Caso del giorno</a><span aria-hidden="true">/</span><span>Archivio</span></nav><section class="content-block"><div class="page-intro page-intro--compact"><h1>Archivio dei casi clinici</h1><p>Scegli una data o un numero e torna agli indizi. I risultati sono quelli salvati in questo browser, condivisi tra le lingue.</p></div><p class="locale-coverage">I casi clinici e le spiegazioni sono disponibili in italiano. Cambiare lingua mantiene i risultati salvati.</p><div class="arc-legend"><span class="arc-legend__item"><span class="arc-dot arc-dot--win" aria-hidden="true"></span>Risolto</span><span class="arc-legend__item"><span class="arc-dot arc-dot--loss" aria-hidden="true"></span>Non risolto</span><span class="arc-legend__item"><span class="arc-dot arc-dot--unplayed" aria-hidden="true"></span>Da giocare</span><span class="arc-legend__item"><span class="arc-dot arc-dot--today" aria-hidden="true"></span>Oggi</span></div><div class="arc-filter"><label for="arc-search">Cerca un caso</label><input type="text" id="arc-search" placeholder="Numero o data, es. #175" autocomplete="off" /><span class="arc-count" id="arc-count" aria-live="polite"></span></div><div class="arc-grid" id="arc-grid"></div></section></div></main><script type="module" src="/js/archive-view.js"></script>
+<footer><div class="site-footer"><a class="site-footer__brand" href="/it/"><img src="/images/logo.webp" alt="" /><span>Doctordle</span></a><nav class="site-footer__links" aria-label="Footer"><a href="/it/">Caso del giorno</a><a href="/it/archive">Archivio</a><a href="/it/games/doctordle-endless">Modalità senza limiti</a><a href="/updates">Aggiornamenti (inglese)</a><a href="/privacy-policy">Privacy (inglese)</a><a href="/terms">Termini (inglese)</a><a href="/contact">Contatti</a></nav><p class="site-footer__note">Gioco a scopo ludico e di interesse didattico. Non sostituisce una valutazione medica. Progetto indipendente.</p></div></footer>
+<script src="/js/site-navigation.js"></script>
 </body>
 </html>
 

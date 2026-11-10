@@ -1,5 +1,12 @@
 window.__DDLE_TOPIC_LAUNCH_DATE__ = '2026-05-19T00:00:00';
 
+// These existing modes have separate Challenge/Practice saves, not Daily slots.
+window.__DDLE_CONTINUOUS_TOPICS__ = {
+  endless: { slug: 'endless', name: 'Doctordle Endless', pageTitle: 'Doctordle Endless', pagePath: '/games/doctordle-endless', gameFrame: '/embed/doctordle-endless.embed.html' },
+  dental: { slug: 'dental', name: 'Dental', pageTitle: 'Doctordle Dental Edition', pagePath: '/games/doctordle-for-dentist', gameFrame: '/embed/doctordle-dental.embed.html' },
+  'mental-health': { slug: 'mental-health', name: 'Mental Health', pageTitle: 'Doctordle Mental Health', pagePath: '/games/doctordle-mental-health', gameFrame: '/embed/doctordle-mental-health.embed.html' }
+};
+
 window.__DDLE_TOPICS__ = {
   emergency: {
     slug: 'emergency',

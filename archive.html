@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" prefix="og: https://ogp.me/ns#">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -31,26 +31,8 @@
   <link rel="manifest" href="/site.webmanifest" />
   <link rel="alternate" hreflang="en" href="https://doctordle.net/archive" />
   <link rel="alternate" hreflang="it" href="https://doctordle.net/it/archive" />
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Doctordle",
-          "item": "https://doctordle.net/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Archive",
-          "item": "https://doctordle.net/archive"
-        }
-      ]
-    }
-  </script>
+  <link rel="alternate" hreflang="pt" href="https://doctordle.net/pt/archive" />
+  <link rel="alternate" hreflang="x-default" href="https://doctordle.net/archive" />
   <style>
     /* Legend */
     .arc-legend {
@@ -190,6 +172,29 @@
     }
     .arc-month:first-child { margin-top: 0; }
   </style>
+<script src="/js/language-menu.js" defer></script>
+<script src="/js/locale-page.js" defer></script>
+<!-- ddle:metadata:start -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Doctordle" />
+<meta property="og:title" content="Doctordle Archive - All Daily Cases" />
+<meta property="og:description" content="Browse every past Doctordle daily case by date and case number. See which puzzles you solved and which stumped you." />
+<meta property="og:url" content="https://doctordle.net/archive" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:image" content="https://doctordle.net/images/og/en-archive.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Doctordle — Daily case archive, with illustrated clue cards." />
+<meta property="og:locale:alternate" content="it_IT" />
+<meta property="og:locale:alternate" content="pt_BR" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Doctordle Archive - All Daily Cases" />
+<meta name="twitter:description" content="Browse every past Doctordle daily case by date and case number. See which puzzles you solved and which stumped you." />
+<meta name="twitter:image" content="https://doctordle.net/images/og/en-archive.png" />
+<meta name="twitter:image:alt" content="Doctordle — Daily case archive, with illustrated clue cards." />
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://doctordle.net/archive#webpage","url":"https://doctordle.net/archive","name":"Doctordle Archive - All Daily Cases","description":"Browse every past Doctordle daily case by date and case number. See which puzzles you solved and which stumped you.","inLanguage":"en","isPartOf":{"@id":"https://doctordle.net/#website"},"primaryImageOfPage":{"@id":"https://doctordle.net/archive#primaryimage"},"image":{"@id":"https://doctordle.net/archive#primaryimage"},"breadcrumb":{"@id":"https://doctordle.net/archive#breadcrumb"}},{"@type":"ImageObject","@id":"https://doctordle.net/archive#primaryimage","url":"https://doctordle.net/images/og/en-archive.png","width":1200,"height":630,"inLanguage":"en","caption":"Doctordle — Daily case archive, with illustrated clue cards."},{"@type":"BreadcrumbList","@id":"https://doctordle.net/archive#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://doctordle.net/"},{"@type":"ListItem","position":2,"name":"Archive","item":"https://doctordle.net/archive"}]}]}</script>
+<!-- ddle:metadata:end -->
 </head>
 <body class="shell-page">
 
@@ -201,28 +206,28 @@
   </a>
   <div class="header-right">
     <div class="header-quick">
-      <a class="header-btn" href="/games/doctordle-endless">Endless</a>
+      <a class="header-btn" href="/games/doctordle-endless"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#infinity" /></svg>Endless</a>
       <a class="header-btn" href="/it/archive">Italiano</a>
     </div>
+    <details class="language-menu"><summary aria-label="Choose language"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#language" /></svg><span class="language-menu__current">English</span><svg class="ui-icon language-menu__chevron" aria-hidden="true" focusable="false" viewBox="0 0 16 16"><path d="m4 6 4 4 4-4" /></svg></summary><nav class="language-menu__options" aria-label="Choose language"><a href="/" data-language="en" lang="en" hreflang="en" aria-current="true">English</a><a href="/it/" data-language="it" lang="it" hreflang="it">Italiano</a><a href="/pt/" data-language="pt" lang="pt-BR" hreflang="pt">Português</a></nav></details>
     <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
-      <span class="nav-toggle__bar"></span>
-      <span class="nav-toggle__bar"></span>
-      <span class="nav-toggle__bar"></span>
+      <svg class="ui-icon icon-menu" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#menu" /></svg>
+      <svg class="ui-icon icon-close" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#close" /></svg>
     </button>
   </div>
   <nav class="nav-drawer" id="nav-drawer" aria-label="Primary">
-    <a class="nav-drawer__link" href="/">Daily</a>
-    <a class="nav-drawer__link" href="/games/doctordle-endless">Endless</a>
-    <a class="nav-drawer__link" href="/archive" aria-current="page">Archive</a>
-    <a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-emergency">Emergency Medicine</a>
-    <a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-dermatology">Dermatology</a>
-    <a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-pediatrics">Pediatrics</a>
-    <a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-digestive-health">Digestive Health</a>
-    <a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-womens-health">Women's Health</a>
-    <a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-cardiology">Cardiology</a>
-    <a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-for-dentist">For Dentists</a>
-    <a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-mental-health">Mental Health</a>
-    <a class="nav-drawer__link" href="/case-library">Case Library</a>
+    <a class="nav-drawer__link" href="/"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#daily" /></svg>Daily</a>
+    <a class="nav-drawer__link" href="/games/doctordle-endless"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#infinity" /></svg>Endless</a>
+    <a class="nav-drawer__link" href="/archive" aria-current="page"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#archive" /></svg>Archive</a>
+    <a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-emergency"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#emergency" /></svg>Emergency Medicine</a>
+    <a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-dermatology"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#dermatology" /></svg>Dermatology</a>
+    <a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-pediatrics"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#pediatrics" /></svg>Pediatrics</a>
+    <a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-digestive-health"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#digestive" /></svg>Digestive Health</a>
+    <a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-womens-health"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#womens-health" /></svg>Women's Health</a>
+    <a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-cardiology"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#cardiology" /></svg>Cardiology</a>
+    <a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-for-dentist"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#dental" /></svg>For Dentists</a>
+    <a class="nav-drawer__link nav-drawer__link--featured" href="/games/doctordle-mental-health"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#mental" /></svg>Mental Health</a>
+    <a class="nav-drawer__link" href="/case-library"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/images/ui-icons.svg#library" /></svg>Case Library</a>
     <a class="nav-drawer__link" href="/it/archive">Italiano</a>
   </nav>
 </header>
@@ -233,6 +238,7 @@
 <!-- ===== Main ===== -->
 <main>
   <div class="embed-shell">
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Archive</span></nav>
     <div class="page-sections page-sections--home">
       <section class="content-block" aria-labelledby="archive-title">
         <section class="page-intro page-intro--wide page-intro--compact">

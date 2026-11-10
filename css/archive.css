@@ -1,0 +1,101 @@
+.arc-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 0.84rem;
+    }
+    .arc-legend__item {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: #6f5339;
+    }
+    .arc-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .arc-dot--win      { background: #2e7d32; }
+    .arc-dot--loss     { background: #c62828; }
+    .arc-dot--unplayed { background: #d4bfa6; }
+    .arc-dot--today    { background: #7b3f00; }
+    .arc-filter {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    .arc-filter label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #7b3f00;
+    }
+    .arc-filter input[type="text"] {
+      padding: 0.38rem 0.7rem;
+      border: 1.5px solid #d4a87a;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      color: #3a2a1a;
+      background: #fff8f2;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 160px;
+    }
+    .arc-filter input[type="text"]:focus { border-color: #7b3f00; }
+    .arc-count {
+      margin-left: auto;
+      font-size: 0.82rem;
+      color: #8a6244;
+    }
+    .arc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      gap: 0.55rem;
+    }
+    .arc-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.18rem;
+      padding: 0.65rem 0.4rem 0.6rem;
+      border-radius: 10px;
+      border: 1.5px solid #ecd4ba;
+      background: #fffaf5;
+      text-align: center;
+      text-decoration: none;
+      min-height: 80px;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    a.arc-card--today {
+      border-color: #7b3f00;
+      background: #fff3e0;
+      cursor: pointer;
+    }
+    a.arc-card--today:hover {
+      background: #ffe8c0;
+      border-color: #5a2d00;
+    }
+    .arc-card--win  { border-color: #a5d6a7; background: #f1faf1; }
+    .arc-card--loss { border-color: #ef9a9a; background: #fff5f5; }
+    .arc-card--unplayed { border-color: #ecd4ba; background: #fffaf5; opacity: 0.7; }
+    .arc-card__num  { font-size: 0.78rem; font-weight: 700; color: #7b3f00; line-height: 1; }
+    .arc-card__date { font-size: 0.75rem; color: #8a6244; line-height: 1.2; }
+    .arc-card__result { margin-top: 0.25rem; font-size: 1rem; line-height: 1; }
+    .arc-card--win  .arc-card__result { color: #2e7d32; }
+    .arc-card--loss .arc-card__result { color: #c62828; }
+    .arc-card--today .arc-card__result { font-size: 0.75rem; font-weight: 700; color: #7b3f00; letter-spacing: 0.02em; }
+    .arc-month {
+      grid-column: 1 / -1;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #7b3f00;
+      padding: 0.3rem 0 0.1rem;
+      border-bottom: 1px solid #ecd4ba;
+      margin-top: 0.3rem;
+    }
+    .arc-month:first-child { margin-top: 0; }

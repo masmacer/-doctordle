@@ -1,5 +1,11 @@
-import { findCaseByDayIndex, getDiagnosisDictionary, resolveDiagnosis } from './casebook.js';
-import { createRoundSession, matchesCaseAnswer } from './round-session.js';
+import { renderCaseResult, buildShareMarks } from './result-view.js';
+import { installSuccessFeedback, celebrateSuccess } from './success-feedback.js';
+import { findCaseByDayIndex, getDiagnosisDictionary, listCases, resolveDiagnosis as resolveCanonicalDiagnosis } from './casebook.js';
+import { createTranslator, normalizeLocale } from './locale.js';
+import { createLocalizedCasebook } from './localized-casebook.js';
+import { loadCaseTranslations } from './translation-registry.js';
+import { applyContentRevision, dailyContentVersion } from './case-content-revisions.js';
+import { createRoundSession } from './round-session.js';
 import {
   acceptConsent,
   createDailyStats,
@@ -14,14 +20,19 @@ import {
 } from './storage.js';
 
 const runtimeConfig = window.__DDLE_DAILY_CONFIG__ || {};
+const locale = normalizeLocale(runtimeConfig.locale);
+await loadCaseTranslations(locale);
+const t = createTranslator(locale);
+const resolveDiagnosis = query => localizedBook.resolve(query);
 const launchDate = new Date(runtimeConfig.launchDate || '2026-04-11T00:00:00');
 const msPerDay = 864e5;
 const maxAttempts = 6;
 const storageScope = String(runtimeConfig.scope || 'daily');
+const localizedBook = createLocalizedCasebook(locale, getDiagnosisDictionary(), resolveCanonicalDiagnosis, { scope: storageScope, cases: listCases() });
 const allowArchive = runtimeConfig.allowArchive !== false;
 const shareTitle = String(runtimeConfig.shareTitle || 'Doctordle Daily');
 const shareUrl = String(runtimeConfig.pageUrl || 'https://doctordle.net');
-const resultEyebrow = String(runtimeConfig.resultEyebrow || 'Daily Result');
+const resultEyebrow = String(runtimeConfig.resultEyebrow || t('Daily Result'));
 const hubReturnEnabled = !!runtimeConfig.hubReturnEnabled;
 
 const selectors = {
@@ -58,7 +69,9 @@ const dayIndex = allowArchive && Number.isInteger(requestedDay) && requestedDay 
 const archiveMode = allowArchive && dayIndex < todayIndex;
 const replayMode = archiveMode && hasCompletedPrimaryDay(dayIndex, storageScope);
 
-const currentCase = findCaseByDayIndex(dayIndex);
+const originalCase = localizedBook.localize(findCaseByDayIndex(dayIndex));
+let contentVersion = dailyContentVersion({ launchDate, dayIndex });
+let currentCase = applyContentRevision(originalCase, { scope: storageScope, locale, version: contentVersion });
 let stats = createDailyStats();
 let session = createRoundSession(currentCase || { legacyId: -1, title: '', clues: [] });
 let selectedGuess = null;
@@ -67,7 +80,7 @@ let latestOutcome = null;
 function setFeedback(message, tone) {
   const node = selectors.feedback();
   if (!node) return;
-  node.textContent = message;
+  node.textContent = t(message);
   node.className = tone || '';
 }
 
@@ -81,11 +94,11 @@ function setInputEnabled(enabled, placeholder, disabledLabel = 'Storage Required
   const button = selectors.submit();
   if (input) {
     input.disabled = !enabled;
-    input.placeholder = placeholder || (enabled ? 'Search for a diagnosis or leave blank to reveal the next clue' : 'Local storage is required to save progress');
+    input.placeholder = t(placeholder || (enabled ? 'Search for a diagnosis or leave blank to reveal the next clue' : 'Local storage is required to save progress'));
   }
   if (button) {
     button.disabled = !enabled;
-    button.textContent = enabled ? 'Submit Guess' : disabledLabel;
+    button.textContent = t(enabled ? 'Submit Guess' : disabledLabel);
   }
   if (!enabled) hideSuggestions();
 }
@@ -104,7 +117,7 @@ function renderClues() {
       if (index > 0) item.classList.add('revealed');
     } else {
       item.classList.add('locked');
-      item.textContent = `Clue ${index + 1} unlocks after the next miss`;
+      item.textContent = t('Clue {n} unlocks after the next miss', { n: index + 1 });
     }
     node.appendChild(item);
   });
@@ -114,8 +127,10 @@ function renderHistory(snapshot) {
   const node = selectors.attempts();
   if (!node) return;
   node.innerHTML = snapshot.guessHistory.map((entry, index) => {
-    const icon = entry.result === 'correct' ? 'Correct' : entry.result === 'skip' ? 'Skip' : 'Miss';
-    return `<div class="attempt-row ${entry.result}"><span>Guess ${index + 1}: ${entry.name}</span><span class="attempt-icon">${icon}</span></div>`;
+    const icon = t(entry.result === 'correct' ? 'Correct' : entry.result === 'skip' ? 'Skip' : 'Miss');
+    const label = entry.result === 'skip' ? t('Skipped') : localizedBook.display(entry.name);
+    const safe = String(label).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
+    return `<div class="attempt-row ${entry.result}"><span>${t('Guess {n}', { n: index + 1 })}: ${safe}</span><span class="attempt-icon">${icon}</span></div>`;
   }).join('');
 }
 
@@ -143,10 +158,10 @@ function syncRevealButton(snapshot) {
   }
 
   button.style.display = 'block';
-  button.textContent = 'View Summary';
+  button.textContent = t('View Summary');
   if (resultButton) {
     resultButton.style.display = 'block';
-    resultButton.textContent = 'Results & Share';
+    resultButton.textContent = t('Results & Share');
   }
 }
 
@@ -159,7 +174,7 @@ function getNextResetDate() {
 function renderDailyMeta() {
   const slot = selectors.dailySlot();
   const reset = selectors.dailyReset();
-  if (slot) slot.textContent = `Case #${dayIndex + 1}`;
+  if (slot) slot.textContent = t('Case #{n}', { n: dayIndex + 1 });
   if (!reset) return;
 
   const remaining = Math.max(0, getNextResetDate().getTime() - Date.now());
@@ -175,22 +190,19 @@ function startResetCountdown() {
   window.setInterval(renderDailyMeta, 1000);
 }
 
-function buildOutcomeCard(title, subtitle, theme, snapshot) {
-  const guessesUsed = snapshot ? snapshot.guessCount : 0;
-  const guessesLeft = Math.max(0, maxAttempts - guessesUsed);
-  const outcomeLabel = theme === 'win' ? 'Solved' : 'Complete';
-  return `<section class="result-card result-card--${theme}"><p class="result-card__eyebrow">${resultEyebrow}</p><div class="result-card__header"><div><h3 class="result-card__title">${title}</h3><p class="result-card__copy">${subtitle}</p></div><span class="result-card__badge">${outcomeLabel}</span></div><div class="result-card__meta"><div class="result-stat"><span class="result-stat__label">Guesses Used</span><span class="result-stat__value">${guessesUsed}/${maxAttempts}</span></div><div class="result-stat"><span class="result-stat__label">Guesses Left</span><span class="result-stat__value">${guessesLeft}</span></div></div></section>`;
+function buildOutcomeCard(won, snapshot) {
+  return renderCaseResult({
+    title: currentCase.title, summary: currentCase.summary,
+    won, guesses: snapshot ? snapshot.guessCount : 0,
+    eyebrow: resultEyebrow, locale
+  });
 }
 
 function createOutcomePayload(snapshot) {
   if (!snapshot || !snapshot.gameCompleted || !currentCase) return null;
   const won = snapshot.guessHistory.some((entry) => entry.result === 'correct');
-  const title = won ? `Diagnosis confirmed: ${currentCase.title}` : `Case complete: ${currentCase.title}`;
-  const subtitle = won
-    ? `You solved the case in ${snapshot.guessCount} of ${maxAttempts} guesses.`
-    : 'You are out of guesses. The full summary is open below for review.';
   return {
-    html: buildOutcomeCard(title, subtitle, won ? 'win' : 'loss', snapshot),
+    html: buildOutcomeCard(won, snapshot),
     shareText: buildShareText(snapshot, won)
   };
 }
@@ -224,7 +236,7 @@ function openModal(html, options = {}) {
   actions.forEach((action) => {
     const button = document.createElement('button');
     button.className = 'btn-share';
-    button.textContent = action.label;
+    button.textContent = t(action.label);
     button.addEventListener('click', () => action.onClick(button));
     footer.appendChild(button);
   });
@@ -233,7 +245,7 @@ function openModal(html, options = {}) {
     const copyIcon = '<svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="vertical-align:-2px;margin-right:5px"><rect x="1" y="4" width="9" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M5 4V2a1 1 0 011-1h7a2 2 0 012 2v9a2 2 0 01-2 2H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
     const button = document.createElement('button');
     button.className = 'btn-share';
-    button.innerHTML = copyIcon + 'Copy Result';
+    button.innerHTML = copyIcon + t('Copy Result');
     button.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(shareText);
@@ -245,11 +257,11 @@ function openModal(html, options = {}) {
           hint.style.display = 'block';
           window.setTimeout(() => { hint.style.display = 'none'; }, 1800);
         }
-        button.textContent = 'Copied';
-        window.setTimeout(() => { button.innerHTML = copyIcon + 'Copy Result'; }, 1800);
+        button.textContent = t('Copied');
+        window.setTimeout(() => { button.innerHTML = copyIcon + t('Copy Result'); }, 1800);
       } catch {
-        button.textContent = 'Copy failed';
-        window.setTimeout(() => { button.innerHTML = copyIcon + 'Copy Result'; }, 1800);
+        button.textContent = t('Copy failed');
+        window.setTimeout(() => { button.innerHTML = copyIcon + t('Copy Result'); }, 1800);
       }
     });
     footer.appendChild(button);
@@ -265,22 +277,17 @@ function closeModal() {
 
 function buildStatsMarkup() {
   const winRate = stats.played ? Math.round((stats.wins / stats.played) * 100) : 0;
-  return `<div style="margin-top:1rem"><p style="margin:0 0 0.35rem;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:#9e7552">Daily Stats</p><div class="scores-grid"><div class="scores-cell"><div class="scores-value">${stats.played}</div><div class="scores-desc">Games Played</div></div><div class="scores-cell"><div class="scores-value">${winRate}%</div><div class="scores-desc">Win Rate</div></div><div class="scores-cell"><div class="scores-value">${stats.currentStreak}</div><div class="scores-desc">Current Streak</div></div><div class="scores-cell"><div class="scores-value">${stats.longestStreak}</div><div class="scores-desc">Best Streak</div></div></div></div>`;
+  return `<div style="margin-top:1rem"><p style="margin:0 0 0.35rem;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:#9e7552">${t('Daily Stats')}</p><div class="scores-grid"><div class="scores-cell"><div class="scores-value">${stats.played}</div><div class="scores-desc">${t('Games Played')}</div></div><div class="scores-cell"><div class="scores-value">${winRate}%</div><div class="scores-desc">${t('Win Rate')}</div></div><div class="scores-cell"><div class="scores-value">${stats.currentStreak}</div><div class="scores-desc">${t('Current Streak')}</div></div><div class="scores-cell"><div class="scores-value">${stats.longestStreak}</div><div class="scores-desc">${t('Best Streak')}</div></div></div></div>`;
 }
 
 function buildShareText(snapshot, won) {
-  const marks = [];
-  for (let index = 1; index <= maxAttempts; index += 1) {
-    if (index < snapshot.guessCount) marks.push('X');
-    else if (index === snapshot.guessCount) marks.push(won ? 'O' : 'X');
-    else marks.push('-');
-  }
+  const marks = buildShareMarks(snapshot, won, maxAttempts);
 
   const scoreLine = won
-    ? `Solved in ${snapshot.guessCount}/6 guesses`
-    : `Unsolved after ${snapshot.guessCount}/6 guesses`;
+    ? t('Solved in {n}/6 guesses', { n: snapshot.guessCount })
+    : t('Unsolved after {n}/6 guesses', { n: snapshot.guessCount });
 
-  return `${shareTitle} #${dayIndex + 1}\n${scoreLine}\n${marks.join(' ')}\n#doctordle\nPlay: ${shareUrl}`;
+  return `${shareTitle} #${dayIndex + 1}\n${scoreLine}\n${marks.join(' ')}\n#doctordle\n${t('Play')}: ${shareUrl}`;
 }
 
 function updateStats(won, snapshot) {
@@ -302,57 +309,18 @@ function updateStats(won, snapshot) {
 
 function persistSnapshot(snapshot) {
   if (!hasConsent()) return;
-  writeDailyState(dayIndex, replayMode, snapshot, storageScope);
-}
-
-function buildGuessedIds(history) {
-  return history.reduce((ids, entry) => {
-    if (!entry || entry.result === 'skip') return ids;
-    const resolved = resolveDiagnosis(entry.name);
-    ids.push(resolved && resolved.legacyId ? resolved.legacyId : entry.name);
-    return ids;
-  }, []);
-}
-
-function migrateSnapshot(snapshot) {
-  if (!snapshot || !currentCase || !snapshot.gameCompleted || !Array.isArray(snapshot.guessHistory)) {
-    return snapshot;
-  }
-
-  const correctedIndex = snapshot.guessHistory.findIndex((entry) => {
-    if (!entry || entry.result !== 'wrong') return false;
-    const resolved = resolveDiagnosis(entry.name);
-    const guessKey = resolved && resolved.legacyId ? resolved.legacyId : entry.name;
-    const guessLabel = resolved && resolved.label ? resolved.label : entry.name;
-    return matchesCaseAnswer(currentCase, guessKey, guessLabel);
-  });
-
-  if (correctedIndex < 0) return snapshot;
-
-  const correctedHistory = snapshot.guessHistory.slice(0, correctedIndex + 1).map((entry, index) => (
-    index === correctedIndex
-      ? { ...entry, result: 'correct' }
-      : entry
-  ));
-
-  return {
-    ...snapshot,
-    guessCount: correctedHistory.length,
-    gameCompleted: true,
-    guessedIds: buildGuessedIds(correctedHistory),
-    guessHistory: correctedHistory
-  };
+  writeDailyState(dayIndex, replayMode, contentVersion === 1 ? snapshot : { ...snapshot, contentVersion }, storageScope);
 }
 
 function restoreSnapshot() {
   if (!hasConsent() || replayMode) return null;
-  const snapshot = readDailyState(dayIndex, replayMode, storageScope);
-  const migrated = migrateSnapshot(snapshot);
-  if (snapshot && migrated !== snapshot) writeDailyState(dayIndex, replayMode, migrated, storageScope);
-  return migrated;
+  // Saved results are historical facts; apply new matching rules only to new turns.
+  return readDailyState(dayIndex, replayMode, storageScope);
 }
 
 function applySnapshot(snapshot) {
+  contentVersion = dailyContentVersion({ launchDate, dayIndex, savedState: snapshot });
+  currentCase = applyContentRevision(originalCase, { scope: storageScope, locale, version: contentVersion });
   session = createRoundSession(currentCase, {
     attempts: snapshot && snapshot.guessCount,
     completed: snapshot && snapshot.gameCompleted,
@@ -361,10 +329,10 @@ function applySnapshot(snapshot) {
   });
   renderClues();
   renderHistory(session.snapshot());
+  populateSummary();
   syncRevealButton(session.snapshot());
   if (snapshot && snapshot.gameCompleted) {
     setInputEnabled(false, currentCase.title, 'Round Complete');
-    populateSummary();
     latestOutcome = createOutcomePayload(snapshot);
   }
 }
@@ -380,7 +348,8 @@ function buildSuggestions(query) {
 
   const snapshot = session.snapshot();
   const lower = query.toLowerCase();
-  const matches = getDiagnosisDictionary().filter((label) => label.toLowerCase().includes(lower)).slice(0, 12);
+  const searchKey = value => value.normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  const matches = localizedBook.dictionary.filter((label) => searchKey(label).includes(searchKey(lower))).slice(0, 12);
   if (!matches.length) {
     node.style.display = 'none';
     return;
@@ -388,16 +357,16 @@ function buildSuggestions(query) {
 
   matches.forEach((label) => {
     const resolved = resolveDiagnosis(label);
-    const guessKey = resolved && resolved.legacyId ? resolved.legacyId : label;
+    const guessKey = resolved && resolved.legacyId ? resolved.legacyId : resolved ? resolved.label : label;
     const disabled = snapshot.guessedIds.includes(guessKey);
     const option = document.createElement('div');
     option.className = `autocomplete-item${disabled ? ' used-guess' : ''}`;
-    option.textContent = disabled ? `${label} (used)` : label;
+    option.textContent = disabled ? `${label} (${t('used')})` : label;
     if (!disabled) {
       option.addEventListener('click', () => {
         const input = selectors.input();
         if (input) input.value = label;
-        selectedGuess = { key: guessKey, label };
+        selectedGuess = { key: guessKey, label: resolved ? resolved.label : label };
         hideSuggestions();
       });
     }
@@ -420,6 +389,7 @@ function settleRound(result) {
     setInputEnabled(false, currentCase.title, 'Round Complete');
     setFeedback('Correct. The case is complete.', 'correct');
     presentOutcome(snapshot);
+    celebrateSuccess(selectors.modal());
     return;
   }
 
@@ -482,6 +452,7 @@ function wireEvents() {
   }
 
   if (submit) submit.addEventListener('click', submitGuess);
+  document.getElementById('daily-stats-open')?.addEventListener('click', () => openModal(''));
   if (resultButton) {
     resultButton.addEventListener('click', () => {
       if (!latestOutcome) latestOutcome = createOutcomePayload(session.snapshot());
@@ -491,7 +462,7 @@ function wireEvents() {
   if (reveal && card) {
     reveal.addEventListener('click', () => {
       const flipped = card.classList.toggle('flipped');
-      reveal.textContent = flipped ? 'Back to Case' : 'View Summary';
+      reveal.textContent = t(flipped ? 'Back to Case' : 'View Summary');
     });
   }
   if (close) close.addEventListener('click', closeModal);
@@ -533,6 +504,14 @@ function wireEvents() {
 
 function boot() {
   if (!currentCase) return;
+  if (locale !== 'en' && currentCase.untranslated) {
+    const notice = document.createElement('p');
+    notice.className = 'case-language-notice';
+    notice.lang = locale === 'pt' ? 'pt-BR' : locale;
+    notice.textContent = t('English case notice');
+    document.querySelector('.daily-stage')?.prepend(notice);
+  }
+  installSuccessFeedback();
   wireEvents();
   startResetCountdown();
   renderClues();

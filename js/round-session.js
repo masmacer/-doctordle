@@ -1,26 +1,4 @@
-function normalizeGuess(value) {
-  return String(value || '')
-    .toLowerCase()
-    .normalize('NFKD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-z0-9]+/g, ' ')
-    .trim();
-}
-
-function stripAcronymSuffix(value) {
-  return String(value || '').replace(/\s*\(([A-Z0-9-]{2,10})\)\s*$/g, ' ');
-}
-
-function answerForms(value) {
-  const forms = new Set();
-  const normalized = normalizeGuess(value);
-  const acronymBase = normalizeGuess(stripAcronymSuffix(value));
-
-  if (normalized) forms.add(normalized);
-  if (acronymBase) forms.add(acronymBase);
-
-  return [...forms];
-}
+import { buildAnswerForms } from './diagnosis-names.js';
 
 export function matchesCaseAnswer(caseRecord, guessKey, guessLabel) {
   if (typeof guessKey === 'number') {
@@ -29,8 +7,8 @@ export function matchesCaseAnswer(caseRecord, guessKey, guessLabel) {
 
   const acceptedAnswers = Array.isArray(caseRecord.answers) && caseRecord.answers.length
     ? caseRecord.answers
-    : answerForms(caseRecord.title);
-  const guessedAnswers = answerForms(guessLabel);
+    : buildAnswerForms(caseRecord.title);
+  const guessedAnswers = buildAnswerForms(guessLabel);
 
   return guessedAnswers.some((answer) => acceptedAnswers.includes(answer));
 }
